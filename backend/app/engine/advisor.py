@@ -156,12 +156,12 @@ def _scope_rows(universe: list[dict], sector: str) -> tuple[list[dict], str, str
     sector_rows = [r for r in universe if r["sector"] == sector]
     companies = {r["cvm_code"] for r in sector_rows}
     if len(companies) >= 3:
-        return sector_rows, "sector", f"other {sector.lower()} names in the Ibovespa"
+        return sector_rows, "sector", "its industry peers on the Ibovespa"
     group = SECTOR_GROUP.get(sector, "Index")
     group_rows = [r for r in universe if r["group"] == group]
     companies = {r["cvm_code"] for r in group_rows}
     if len(companies) >= 3:
-        return group_rows, "group", f"similar {group.lower()} names in the Ibovespa"
+        return group_rows, "group", f"similar {group.lower()} businesses on the Ibovespa"
     return universe, "index", "the whole Ibovespa"
 
 
@@ -175,7 +175,13 @@ def industry_medians(rows: list[dict], sector: str) -> dict[str, Any]:
     med: dict[str, Optional[float]] = {}
     for spec in METRIC_SPECS:
         sample = unique if spec["kind"] != "value" else scoped
-        med[spec["key"]] = _median([r.get(spec["key"]) for r in sample])  # type: ignore[arg-type]
+        m = _median([r.get(spec["key"]) for r in sample])  # type: ignore[arg-type]
+        if m is None:
+            med[spec["key"]] = None
+        elif spec["unit"] == "%":
+            med[spec["key"]] = round(m, 4)
+        else:
+            med[spec["key"]] = round(m, 2)
     return {
         "scope": scope,
         "label": label,
@@ -348,8 +354,8 @@ def _implied(stock_row: dict, medians: dict[str, Optional[float]]) -> dict:
     pb = stock_row.get("pb")
     sector_pe = medians.get("pe")
     sector_pb = medians.get("pb")
-    at_pe = price * (sector_pe / pe) if price and pe and sector_pe and pe > 0 else None
-    at_pb = price * (sector_pb / pb) if price and pb and sector_pb and pb > 0 else None
+    at_pe = round(price * (sector_pe / pe), 2) if price and pe and sector_pe and pe > 0 else None
+    at_pb = round(price * (sector_pb / pb), 2) if price and pb and sector_pb and pb > 0 else None
     bank = stock_row["sector"] in BANK_LIKE
     method_price = at_pb if bank and at_pb else at_pe
     method = "industry P/VP" if bank and at_pb else "industry P/L"
