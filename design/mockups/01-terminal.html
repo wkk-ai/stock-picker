@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>01 · Terminal — StockPicker</title>
+  <link rel="icon" href="../../web/public/favicon.svg" />
+  <link rel="stylesheet" href="_shared.css" />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #000; --panel: #0d0d0d; --line: #1c1c1c; --ink: #d8d8d8; --muted: #6e6e6e;
+      --up: #00c853; --dn: #ff5252; --amber: #ffb300; --mono: "IBM Plex Mono", ui-monospace, monospace;
+    }
+    body { background: var(--bg); color: var(--ink); font: 12px/1.35 var(--mono); }
+    .tape { height: 26px; overflow: hidden; background: #080808; border-bottom: 1px solid #222; color: var(--amber); white-space: nowrap; }
+    .tape span { display: inline-block; padding: 5px 18px; animation: mar 28s linear infinite; }
+    @keyframes mar { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    header { display: flex; align-items: center; gap: 18px; padding: 6px 10px; border-bottom: 1px solid #222; }
+    header .logo { color: var(--amber); font-weight: 600; letter-spacing: .12em; }
+    header nav a { color: var(--muted); margin-right: 12px; }
+    header nav a.on { color: var(--amber); }
+    .clock { margin-left: auto; color: var(--amber); }
+    .grid { display: grid; grid-template-columns: 220px 1fr 280px; grid-template-rows: auto 1fr 180px; height: calc(100vh - 92px); }
+    .panel { border: 1px solid var(--line); background: var(--panel); overflow: auto; }
+    .h { padding: 6px 8px; color: var(--amber); border-bottom: 1px solid #222; text-transform: uppercase; letter-spacing: .08em; font-size: 10px; }
+    .watch tr td { padding: 5px 8px; border-bottom: 1px solid #161616; }
+    .watch tr:hover { background: #141414; }
+    .kpis { display: grid; grid-template-columns: repeat(6, 1fr); border-bottom: 1px solid #222; }
+    .kpis div { padding: 8px 10px; border-right: 1px solid #1a1a1a; }
+    .kpis b { display: block; font-size: 16px; color: #fff; }
+    .chart { padding: 8px; }
+    .news li { padding: 6px 8px; border-bottom: 1px solid #161616; color: #bbb; }
+    .news time { color: var(--amber); }
+    .book { display: grid; grid-template-columns: 1fr 1fr; }
+    .book td { padding: 3px 8px; }
+  </style>
+</head>
+<body>
+  <div class="gallery-bar">
+    <strong>Mockups</strong>
+    <a class="on" href="01-terminal.html">1 Terminal</a>
+    <a href="02-navy-desk.html">2 Navy desk</a>
+    <a href="03-trade-floor.html">3 Trade floor</a>
+    <a href="04-private-bank.html">4 Private bank</a>
+    <a href="05-quant-grid.html">5 Quant grid</a>
+    <a href="index.html">Gallery</a>
+  </div>
+  <div class="tape"><span>IBOV 127.432 +0.84% &nbsp; PETR4 44.37 +2.92% &nbsp; VALE3 73.81 +2.33% &nbsp; ITUB4 37.46 −2.37% &nbsp; USD 5.19 &nbsp; SELIC 14.00% &nbsp; IBOV 127.432 +0.84% &nbsp; PETR4 44.37 +2.92% &nbsp; VALE3 73.81 +2.33% &nbsp; ITUB4 37.46 −2.37% &nbsp; USD 5.19 &nbsp; SELIC 14.00%</span></div>
+  <header>
+    <div class="logo">SPBR T</div>
+    <nav><a class="on" href="#">MON</a><a href="#">SCR</a><a href="#">POS</a><a href="#">ALRT</a><a href="#">CMP</a></nav>
+    <div class="clock">B3 11:42:08 &nbsp; DELAY 15m</div>
+  </header>
+  <div class="grid">
+    <div class="panel" style="grid-row:1/3">
+      <div class="h">Watch</div>
+      <table class="watch">
+        <tr><td>PETR4</td><td class="up">44.37</td><td class="up">+2.92</td></tr>
+        <tr><td>VALE3</td><td class="up">73.81</td><td class="up">+2.33</td></tr>
+        <tr><td>ITUB4</td><td class="dn">37.46</td><td class="dn">−2.37</td></tr>
+        <tr><td>WEGE3</td><td>52.00</td><td>0.00</td></tr>
+        <tr><td>BBAS3</td><td class="up">27.10</td><td class="up">+0.41</td></tr>
+        <tr><td>B3SA3</td><td class="dn">12.88</td><td class="dn">−0.62</td></tr>
+        <tr><td>ABEV3</td><td class="up">11.42</td><td class="up">+0.18</td></tr>
+        <tr><td>SUZB3</td><td class="dn">52.30</td><td class="dn">−1.10</td></tr>
+      </table>
+    </div>
+    <div class="kpis" style="grid-column:2/4">
+      <div>SELIC<b>14.00%</b></div>
+      <div>IPCA 12m<b>4.48%</b></div>
+      <div>USD/BRL<b>5.19</b></div>
+      <div>IBOV<b class="up">+0.84%</b></div>
+      <div>PETR4 SCORE<b>80</b></div>
+      <div>BAND<b style="color:var(--amber)">WATCH</b></div>
+    </div>
+    <div class="panel chart">
+      <div class="h">PETR4 · 6m · volume overlay</div>
+      <svg viewBox="0 0 640 220" width="100%" height="200" preserveAspectRatio="none">
+        <polyline fill="none" stroke="#00c853" stroke-width="1.5" points="0,140 40,150 80,120 120,128 160,90 200,100 240,70 280,88 320,60 360,75 400,50 440,62 480,40 520,55 560,38 640,28"/>
+        <polyline fill="none" stroke="#ffb300" stroke-width="1" opacity=".5" points="0,180 80,170 160,175 240,160 320,155 400,150 480,140 560,145 640,130"/>
+      </svg>
+    </div>
+    <div class="panel news">
+      <div class="h">Tape / news</div>
+      <ul>
+        <li><time>11:38</time> PETR4 — produção 2T acima do guidance</li>
+        <li><time>11:21</time> SELIC estável; bancos pressionados no pregão</li>
+        <li><time>10:55</time> VALE3 — minério +1.1% em Dalian</li>
+        <li><time>10:12</time> CVM: novo ITR WEGE3 disponível</li>
+      </ul>
+    </div>
+    <div class="panel" style="grid-column:1/3">
+      <div class="h">Screener · quality compounders</div>
+      <table class="watch">
+        <tr class="muted"><td>TCK</td><td>SETOR</td><td>P/L</td><td>ROE</td><td>SCORE</td><td>BAND</td></tr>
+        <tr><td>WEGE3</td><td>IND</td><td>28.1</td><td class="up">32%</td><td>88</td><td>HOLD+</td></tr>
+        <tr><td>ITUB4</td><td>BANC</td><td>8.4</td><td>20%</td><td>75</td><td>WATCH</td></tr>
+        <tr><td>B3SA3</td><td>FIN</td><td>16.0</td><td>22%</td><td>77</td><td>WATCH</td></tr>
+      </table>
+    </div>
+    <div class="panel book">
+      <div style="grid-column:1/-1" class="h">Depth / score split</div>
+      <table>
+        <tr><td class="up">Q 80</td><td>quality</td></tr>
+        <tr><td class="up">V 72</td><td>value</td></tr>
+        <tr><td style="color:var(--amber)">M 85</td><td>moat</td></tr>
+        <tr><td>X 70</td><td>macro</td></tr>
+      </table>
+      <table>
+        <tr><td class="dn">38.90</td><td>ask</td></tr>
+        <tr><td>44.37</td><td>last</td></tr>
+        <tr><td class="up">44.10</td><td>bid</td></tr>
+        <tr><td>33.8M</td><td>vol</td></tr>
+      </table>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,40 @@
+import Link from "next/link";
+import { NavTabs } from "@/components/NavTabs";
+import { getSnapshot } from "@/lib/store";
+import { fmtNum } from "@/lib/api";
+
+function BrandMark() {
+  return (
+    <svg width="22" height="22" viewBox="0 0 32 32" aria-hidden>
+      <rect width="32" height="32" rx="7" fill="#0B1F33" />
+      <path d="M6 22h3v-7H6v7Zm5 0h3V8h-3v14Zm5 0h3v-10h-3v10Zm5 0h3v-5h-3v5Z" fill="#1FA97A" />
+      <path d="M11 8h3v4h-3V8Z" fill="#E24B4A" />
+      <path d="M6 24.5h20" stroke="#C9A227" strokeWidth="1.2" />
+    </svg>
+  );
+}
+
+export function Shell({ children }: { children: React.ReactNode }) {
+  const macros = getSnapshot().macros;
+  const usd = macros.find((m) => m.code === "USD_BRL");
+  const selic = macros.find((m) => m.code === "SELIC");
+
+  return (
+    <div className="min-h-screen bg-bg">
+      <header className="flex h-[52px] items-center gap-6 bg-navy px-5 text-[#E8EEF4]">
+        <Link href="/" className="flex items-center gap-2.5 text-[13px] font-semibold tracking-[0.04em]">
+          <BrandMark />
+          STOCKPICKER <span className="font-normal text-gold">BR</span>
+        </Link>
+        <div className="hidden font-mono text-[13px] text-[#9DFFC2] sm:block">
+          USD {usd?.value != null ? fmtNum(usd.value, 2) : "—"}
+          {selic?.value != null ? <span className="ml-4 text-[#E8EEF4]/80">SELIC {fmtNum(selic.value, 2)}%</span> : null}
+        </div>
+        <div className="ml-auto text-[12px] text-white/70">Research desk · B3 delayed</div>
+      </header>
+      <div className="h-[3px] bg-gold" />
+      <NavTabs />
+      <main className="mx-auto w-full max-w-6xl px-5 py-5 pb-10">{children}</main>
+    </div>
+  );
+}

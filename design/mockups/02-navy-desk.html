@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>02 · Navy desk — StockPicker</title>
+  <link rel="icon" href="../../web/public/favicon.svg" />
+  <link rel="stylesheet" href="_shared.css" />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --navy: #0b1f33; --gold: #c9a227; --bg: #eef1f4; --card: #fff; --ink: #12202e;
+      --muted: #5b6b7a; --line: #d5dde5; --up: #0f7a4a; --dn: #b42318;
+      --mono: "IBM Plex Mono", monospace;
+    }
+    body { background: var(--bg); color: var(--ink); font: 14px/1.4 "IBM Plex Sans", sans-serif; }
+    .top { background: var(--navy); color: #e8eef4; display: flex; align-items: center; gap: 24px; padding: 0 20px; height: 52px; }
+    .brand { display: flex; align-items: center; gap: 10px; font-weight: 600; letter-spacing: .04em; }
+    .brand img { width: 22px; height: 22px; }
+    .ibov { font-family: var(--mono); font-size: 13px; color: #9dffc2; }
+    .tabs { background: #fff; border-bottom: 1px solid var(--line); padding: 0 20px; display: flex; gap: 4px; }
+    .tabs a { padding: 12px 14px; color: var(--muted); border-bottom: 2px solid transparent; }
+    .tabs a.on { color: var(--navy); border-color: var(--gold); font-weight: 600; }
+    main { padding: 18px 20px 28px; display: grid; grid-template-columns: 1.6fr .9fr; gap: 16px; }
+    .card { background: var(--card); border: 1px solid var(--line); border-radius: 4px; }
+    .card h2 { font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); padding: 12px 16px; border-bottom: 1px solid var(--line); }
+    .quote { padding: 16px 18px; }
+    .px { font: 600 36px/1 var(--mono); }
+    .sub { margin-top: 6px; color: var(--muted); font-size: 13px; }
+    .metrics { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 16px; padding: 14px 18px; font-size: 13px; }
+    .metrics span { color: var(--muted); }
+    .metrics b { float: right; font-family: var(--mono); font-weight: 500; }
+    table td, table th { padding: 10px 14px; border-bottom: 1px solid var(--line); text-align: left; font-size: 13px; }
+    th { color: var(--muted); font-weight: 500; }
+    .goldbar { height: 3px; background: var(--gold); }
+    .row3 { grid-column: 1/-1; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+    .kpi { padding: 16px 18px; }
+    .kpi .l { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+    .kpi .n { font: 500 26px/1.2 var(--mono); margin-top: 6px; }
+  </style>
+</head>
+<body>
+  <div class="gallery-bar">
+    <strong>Mockups</strong>
+    <a href="01-terminal.html">1 Terminal</a>
+    <a class="on" href="02-navy-desk.html">2 Navy desk</a>
+    <a href="03-trade-floor.html">3 Trade floor</a>
+    <a href="04-private-bank.html">4 Private bank</a>
+    <a href="05-quant-grid.html">5 Quant grid</a>
+    <a href="index.html">Gallery</a>
+  </div>
+  <div class="top">
+    <div class="brand">
+      <svg width="22" height="22" viewBox="0 0 32 32"><rect width="32" height="32" rx="7" fill="#0B1F33"/><path d="M6 22h3v-7H6v7Zm5 0h3V8h-3v14Zm5 0h3v-10h-3v10Zm5 0h3v-5h-3v5Z" fill="#1FA97A"/><path d="M11 8h3v4h-3V8Z" fill="#E24B4A"/><path d="M6 24.5h20" stroke="#C9A227" stroke-width="1.2"/></svg>
+      STOCKPICKER <span style="color:var(--gold);font-weight:400">BR</span>
+    </div>
+    <div class="ibov">IBOV 127.432 &nbsp; +0.84%</div>
+    <div style="margin-left:auto;font-size:12px;opacity:.8">Research desk · B3 delayed</div>
+  </div>
+  <div class="goldbar"></div>
+  <div class="tabs">
+    <a class="on" href="#">Overview</a><a href="#">Screener</a><a href="#">Portfolio</a><a href="#">Alerts</a><a href="#">Compare</a>
+  </div>
+  <main>
+    <div class="card">
+      <h2>Price · PETR4</h2>
+      <svg viewBox="0 0 700 240" width="100%" height="240" style="display:block">
+        <rect fill="#f7f9fb" width="700" height="240"/>
+        <g stroke="#d5dde5" stroke-width="1">
+          <line x1="0" y1="60" x2="700" y2="60"/><line x1="0" y1="120" x2="700" y2="120"/><line x1="0" y1="180" x2="700" y2="180"/>
+        </g>
+        <polyline fill="rgba(15,122,74,.12)" stroke="#0f7a4a" stroke-width="2"
+          points="0,200 60,190 120,170 180,175 240,140 300,150 360,110 420,125 480,90 540,100 600,70 700,55 700,240 0,240"/>
+      </svg>
+    </div>
+    <div class="card">
+      <div class="quote">
+        <div class="sub">Petrobras PN · Oil &amp; Gas</div>
+        <div class="px">44,37 <span class="up" style="font-size:16px">+2,92%</span></div>
+        <div class="sub">Decision score 80 · band Watch</div>
+      </div>
+      <div class="metrics">
+        <div><span>P/L</span><b>6,2</b></div>
+        <div><span>P/VP</span><b>1,1</b></div>
+        <div><span>ROE</span><b>28%</b></div>
+        <div><span>Div. yield</span><b>12%</b></div>
+        <div><span>Moat</span><b>85</b></div>
+        <div><span>Macro fit</span><b>70</b></div>
+      </div>
+    </div>
+    <div class="row3">
+      <div class="card kpi"><div class="l">Selic</div><div class="n">14,00%</div><div class="sub">meta · BCB</div></div>
+      <div class="card kpi"><div class="l">USD / BRL</div><div class="n">5,19</div><div class="sub">PTAX venda</div></div>
+      <div class="card kpi"><div class="l">Portfolio vs IBOV</div><div class="n up">+1,2%</div><div class="sub">YTD excess</div></div>
+    </div>
+    <div class="card" style="grid-column:1/-1">
+      <h2>Holdings</h2>
+      <table>
+        <thead><tr><th>Ticker</th><th>Qty</th><th>Avg</th><th>Last</th><th>Weight</th><th>P&amp;L</th></tr></thead>
+        <tbody>
+          <tr><td>ITUB4</td><td class="mono">400</td><td class="mono">28,10</td><td class="mono">37,46</td><td>45%</td><td class="up">+33%</td></tr>
+          <tr><td>PETR4</td><td class="mono">300</td><td class="mono">35,00</td><td class="mono">44,37</td><td>40%</td><td class="up">+27%</td></tr>
+          <tr><td>WEGE3</td><td class="mono">100</td><td class="mono">40,00</td><td class="mono">52,00</td><td>15%</td><td class="up">+30%</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+</body>
+</html>

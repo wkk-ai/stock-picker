@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>05 · Quant grid — StockPicker</title>
+  <link rel="icon" href="../../web/public/favicon.svg" />
+  <link rel="stylesheet" href="_shared.css" />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #070b14; --panel: #0e1524; --line: #1c2740; --ink: #d7e3f4; --muted: #7d8aa3;
+      --up: #00e5c0; --dn: #ff5d73; --mono: "IBM Plex Mono", monospace;
+    }
+    body { background: var(--bg); color: var(--ink); font: 13px/1.4 "IBM Plex Sans", sans-serif; }
+    .head { display: flex; align-items: center; gap: 20px; padding: 14px 18px; border-bottom: 1px solid var(--line); }
+    .logo { font-weight: 600; letter-spacing: .16em; color: var(--up); }
+    .gauges { display: flex; gap: 18px; margin-left: auto; font-family: var(--mono); font-size: 12px; }
+    .gauges b { color: var(--up); }
+    .heat { display: grid; grid-template-columns: repeat(8, 1fr); gap: 6px; padding: 16px 18px; }
+    .cell { padding: 14px 10px; background: var(--panel); border: 1px solid var(--line); min-height: 72px; }
+    .cell .t { font-family: var(--mono); font-size: 12px; }
+    .cell .s { font-size: 22px; font-weight: 600; }
+    .g1 { background: #04332c; border-color: #0a5c4e; }
+    .g2 { background: #0a2a24; }
+    .g3 { background: #1a1a12; }
+    .g4 { background: #2a1216; border-color: #5a2028; }
+    .split { display: grid; grid-template-columns: 1.4fr 1fr; gap: 12px; padding: 0 18px 18px; }
+    .panel { background: var(--panel); border: 1px solid var(--line); padding: 14px; }
+    table td { padding: 8px; border-bottom: 1px solid var(--line); font-family: var(--mono); font-size: 12px; }
+    h2 { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
+  </style>
+</head>
+<body>
+  <div class="gallery-bar">
+    <strong>Mockups</strong>
+    <a href="01-terminal.html">1 Terminal</a>
+    <a href="02-navy-desk.html">2 Navy desk</a>
+    <a href="03-trade-floor.html">3 Trade floor</a>
+    <a href="04-private-bank.html">4 Private bank</a>
+    <a class="on" href="05-quant-grid.html">5 Quant grid</a>
+    <a href="index.html">Gallery</a>
+  </div>
+  <div class="head">
+    <div class="logo">SPBR / QUANT</div>
+    <div class="muted">Universe 12 · scores recomputed on ingest</div>
+    <div class="gauges">
+      SELIC <b>14.00</b> &nbsp; IPCA <b>0.07</b> &nbsp; FX <b>5.19</b> &nbsp; IBOV <b class="up">+0.84</b>
+    </div>
+  </div>
+  <div class="heat">
+    <div class="cell g1"><div class="t">WEGE3</div><div class="s">88</div><div class="muted">IND</div></div>
+    <div class="cell g1"><div class="t">PETR4</div><div class="s">80</div><div class="muted">OIL</div></div>
+    <div class="cell g2"><div class="t">B3SA3</div><div class="s">77</div><div class="muted">FIN</div></div>
+    <div class="cell g2"><div class="t">ITUB4</div><div class="s">75</div><div class="muted">BANK</div></div>
+    <div class="cell g2"><div class="t">VALE3</div><div class="s">73</div><div class="muted">MIN</div></div>
+    <div class="cell g2"><div class="t">BBAS3</div><div class="s">71</div><div class="muted">BANK</div></div>
+    <div class="cell g3"><div class="t">ABEV3</div><div class="s">63</div><div class="muted">CONS</div></div>
+    <div class="cell g3"><div class="t">SUZB3</div><div class="s">63</div><div class="muted">PULP</div></div>
+    <div class="cell g3"><div class="t">RENT3</div><div class="s">61</div><div class="muted">CONS</div></div>
+    <div class="cell g3"><div class="t">WEGE*</div><div class="s">60</div><div class="muted">CHK</div></div>
+    <div class="cell g4"><div class="t">MGLU3</div><div class="s">41</div><div class="muted">RTL</div></div>
+    <div class="cell g4"><div class="t">PRIO3</div><div class="s">68</div><div class="muted">OIL</div></div>
+  </div>
+  <div class="split">
+    <div class="panel">
+      <h2>Factor exposure · PETR4</h2>
+      <table>
+        <tr><td>QUALITY</td><td class="up">80</td><td>ROE 28% · margins 22%</td></tr>
+        <tr><td>VALUE</td><td class="up">72</td><td>P/L 6.2 · DY 12%</td></tr>
+        <tr><td>MOAT</td><td class="up">85</td><td>scale 9 · regulation 9</td></tr>
+        <tr><td>MACRO</td><td>70</td><td>FX beta high · Selic −0.2</td></tr>
+        <tr><td>COMPOSITE</td><td class="up">80</td><td>WATCH band</td></tr>
+      </table>
+    </div>
+    <div class="panel">
+      <h2>Selic scenario Δ +100bp</h2>
+      <table>
+        <tr><td>Banks</td><td class="up">+2.4</td></tr>
+        <tr><td>Financial svcs</td><td class="up">+1.2</td></tr>
+        <tr><td>Retail</td><td class="dn">−2.1</td></tr>
+        <tr><td>Consumer</td><td class="dn">−1.5</td></tr>
+        <tr><td>Oil &amp; gas</td><td class="dn">−0.6</td></tr>
+      </table>
+    </div>
+  </div>
+</body>
+</html>

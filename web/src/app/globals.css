@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+body {
+  @apply bg-bg text-ink antialiased;
+}
+
+input,
+select,
+textarea {
+  @apply rounded-[4px] border border-line bg-elev outline-none focus:border-navy;
+}
+
+button {
+  @apply rounded-[4px];
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-up {
+  animation: fade-up 180ms ease-out both;
+}

@@ -1,0 +1,10 @@
+{
+  "name": "stock-picker",
+  "private": true,
+  "scripts": {
+    "bootstrap": "cd backend && .venv/bin/python -m app.bootstrap",
+    "api": "cd backend && PYTHONPATH=. .venv/bin/uvicorn app.main:app --reload --port 8000",
+    "web": "cd web && npm run dev",
+    "dev": "echo 'Run npm run api and npm run web in two terminals'"
+  }
+}

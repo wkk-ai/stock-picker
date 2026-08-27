@@ -1,0 +1,11 @@
+.venv/
+__pycache__/
+*.pyc
+.env
+backend/data/*.db
+backend/data/cvm_cache/
+.DS_Store
+node_modules/
+web/.next/
+*.egg-info/
+dist/

@@ -1,0 +1,1618 @@
+{
+  "disclaimer": "Decision support only — not licensed investment advice under CVM rules. Scores are transparent heuristics, not recommendations from a registered analyst.",
+  "score_weights": {
+    "quality": 0.3,
+    "value": 0.25,
+    "moat": 0.3,
+    "macro_fit": 0.15
+  },
+  "sector_macro": {
+    "Banks": {
+      "selic": 0.8,
+      "ipca": 0.2,
+      "fx": 0.1
+    },
+    "Oil & Gas": {
+      "selic": -0.2,
+      "ipca": 0.1,
+      "fx": 0.7
+    },
+    "Mining": {
+      "selic": -0.1,
+      "ipca": 0.1,
+      "fx": 0.8
+    },
+    "Industrials": {
+      "selic": -0.3,
+      "ipca": -0.2,
+      "fx": 0.3
+    },
+    "Consumer": {
+      "selic": -0.5,
+      "ipca": -0.4,
+      "fx": 0.2
+    },
+    "Retail": {
+      "selic": -0.7,
+      "ipca": -0.5,
+      "fx": 0.2
+    },
+    "Financial Services": {
+      "selic": 0.4,
+      "ipca": 0.1,
+      "fx": 0.2
+    },
+    "Paper & Pulp": {
+      "selic": -0.2,
+      "ipca": 0.1,
+      "fx": 0.6
+    }
+  },
+  "macros": [
+    {
+      "code": "SELIC",
+      "name": "Selic meta % a.a.",
+      "date": "20/08/2026",
+      "value": 14.0
+    },
+    {
+      "code": "CDI",
+      "name": "CDI diário %",
+      "date": "19/08/2026",
+      "value": 0.05166
+    },
+    {
+      "code": "IPCA",
+      "name": "IPCA mensal %",
+      "date": "01/07/2026",
+      "value": 0.07
+    },
+    {
+      "code": "USD_BRL",
+      "name": "USD/BRL venda",
+      "date": "20/08/2026",
+      "value": 5.1862
+    },
+    {
+      "code": "IBC_BR",
+      "name": "IBC-Br atividade",
+      "date": "01/06/2026",
+      "value": 109.89427
+    }
+  ],
+  "stocks": [
+    {
+      "ticker": "PETR4",
+      "name": "Petrobras PN",
+      "sector": "Oil & Gas",
+      "quote": {
+        "price": 44.37,
+        "change_percent": 2.92,
+        "market_cap": 587237695843.0,
+        "volume": 33806000.0,
+        "fetched_at": "2026-08-20T17:48:32.228372"
+      },
+      "indicators": {
+        "pe": 6.2,
+        "pb": 1.1,
+        "ev_ebitda": 3.4,
+        "dividend_yield": 0.12,
+        "roe": 0.28,
+        "roa": 0.12,
+        "roic": 0.18,
+        "net_margin": 0.22,
+        "ebitda_margin": 0.4,
+        "debt_equity": 0.7,
+        "current_ratio": 1.2,
+        "revenue_growth": 0.05,
+        "earnings_growth": 0.08,
+        "source": "cvm+seed"
+      },
+      "score": {
+        "quality": 100.0,
+        "value": 86.1,
+        "moat": 66.7,
+        "macro_fit": 54.7,
+        "composite": 79.7,
+        "band": "Watch",
+        "rationale": "Weights Q0.3/V0.25/M0.3/X0.15. Transparent rule score — not licensed advice."
+      },
+      "moat": {
+        "scale": 9,
+        "regulation": 9,
+        "brand": 6,
+        "cost_advantage": 8,
+        "switching_costs": 5,
+        "network": 3,
+        "summary": "Dominant integrated oil producer with scale and state-linked competitive position in Brazil."
+      },
+      "statements": [
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 127272727.2727273,
+          "source": "seed"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 28000000.000000004,
+          "source": "seed"
+        },
+        {
+          "period": "2024",
+          "type": "balance",
+          "account": "Equity",
+          "value": 100000000.0,
+          "source": "seed"
+        },
+        {
+          "period": "2024",
+          "type": "balance",
+          "account": "TotalAssets",
+          "value": 220000000.00000003,
+          "source": "seed"
+        },
+        {
+          "period": "2024",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 30800000.000000007,
+          "source": "seed"
+        },
+        {
+          "period": "2023",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 117090909.09090912,
+          "source": "seed"
+        },
+        {
+          "period": "2023",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 25200000.000000004,
+          "source": "seed"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "Receita de Venda de Bens e/ou Serviços",
+          "value": 511994000.0,
+          "source": "cvm"
+        }
+      ],
+      "thesis": null
+    },
+    {
+      "ticker": "VALE3",
+      "name": "Vale ON",
+      "sector": "Mining",
+      "quote": {
+        "price": 73.81,
+        "change_percent": 2.33,
+        "market_cap": 300704993434.0,
+        "volume": 15387100.0,
+        "fetched_at": "2026-08-20T17:48:32.897078"
+      },
+      "indicators": {
+        "pe": 7.5,
+        "pb": 1.4,
+        "ev_ebitda": 4.1,
+        "dividend_yield": 0.08,
+        "roe": 0.22,
+        "roa": 0.1,
+        "roic": 0.15,
+        "net_margin": 0.18,
+        "ebitda_margin": 0.35,
+        "debt_equity": 0.5,
+        "current_ratio": 1.5,
+        "revenue_growth": -0.02,
+        "earnings_growth": -0.05,
+        "source": "cvm+seed"
+      },
+      "score": {
+        "quality": 92.2,
+        "value": 79.2,
+        "moat": 56.7,
+        "macro_fit": 55.3,
+        "composite": 72.8,
+        "band": "Watch",
+        "rationale": "Weights Q0.3/V0.25/M0.3/X0.15. Transparent rule score — not licensed advice."
+      },
+      "moat": {
+        "scale": 9,
+        "regulation": 6,
+        "brand": 5,
+        "cost_advantage": 8,
+        "switching_costs": 4,
+        "network": 2,
+        "summary": "World-class iron ore assets; cost curve advantage, commodity cyclical."
+      },
+      "statements": [
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 122222222.22222222,
+          "source": "seed"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 22000000.0,
+          "source": "seed"
+        },
+        {
+          "period": "2024",
+          "type": "balance",
+          "account": "Equity",
+          "value": 100000000.0,
+          "source": "seed"
+        },
+        {
+          "period": "2024",
+          "type": "balance",
+          "account": "TotalAssets",
+          "value": 220000000.00000003,
+          "source": "seed"
+        },
+        {
+          "period": "2024",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 24200000.000000004,
+          "source": "seed"
+        },
+        {
+          "period": "2023",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 112444444.44444445,
+          "source": "seed"
+        },
+        {
+          "period": "2023",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 19800000.0,
+          "source": "seed"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "Receita de Venda de Bens e/ou Serviços",
+          "value": 208066000.0,
+          "source": "cvm"
+        }
+      ],
+      "thesis": null
+    },
+    {
+      "ticker": "ITUB4",
+      "name": "Itaú Unibanco PN",
+      "sector": "Banks",
+      "quote": {
+        "price": 37.46,
+        "change_percent": -2.37,
+        "market_cap": 438911431672.0,
+        "volume": 17189300.0,
+        "fetched_at": "2026-08-20T17:48:33.462323"
+      },
+      "indicators": {
+        "pe": 8.5,
+        "pb": 1.6,
+        "ev_ebitda": null,
+        "dividend_yield": 0.06,
+        "roe": 0.2,
+        "roa": 0.015,
+        "roic": null,
+        "net_margin": 0.28,
+        "ebitda_margin": null,
+        "debt_equity": null,
+        "current_ratio": null,
+        "revenue_growth": 0.1,
+        "earnings_growth": 0.12,
+        "source": "cvm+seed"
+      },
+      "score": {
+        "quality": 88.0,
+        "value": 69.7,
+        "moat": 73.3,
+        "macro_fit": 61.6,
+        "composite": 75.1,
+        "band": "Watch",
+        "rationale": "Weights Q0.3/V0.25/M0.3/X0.15. Transparent rule score — not licensed advice."
+      },
+      "moat": {
+        "scale": 8,
+        "regulation": 8,
+        "brand": 8,
+        "cost_advantage": 7,
+        "switching_costs": 7,
+        "network": 6,
+        "summary": "Large private bank franchise; deposit stickiness and brand."
+      },
+      "statements": [
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 71428571.42857142,
+          "source": "seed"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 20000000.0,
+          "source": "seed"
+        },
+        {
+          "period": "2024",
+          "type": "balance",
+          "account": "Equity",
+          "value": 100000000.0,
+          "source": "seed"
+        },
+        {
+          "period": "2024",
+          "type": "balance",
+          "account": "TotalAssets",
+          "value": 220000000.00000003,
+          "source": "seed"
+        },
+        {
+          "period": "2024",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 22000000.0,
+          "source": "seed"
+        },
+        {
+          "period": "2023",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 65714285.71428571,
+          "source": "seed"
+        },
+        {
+          "period": "2023",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 18000000.0,
+          "source": "seed"
+        }
+      ],
+      "thesis": null
+    },
+    {
+      "ticker": "BBAS3",
+      "name": "Banco do Brasil ON",
+      "sector": "Banks",
+      "quote": {
+        "price": 27.8,
+        "change_percent": 0.0,
+        "market_cap": null,
+        "volume": null,
+        "fetched_at": "2026-08-20T17:48:34.044006"
+      },
+      "indicators": {
+        "pe": 5.1,
+        "pb": 0.9,
+        "ev_ebitda": null,
+        "dividend_yield": 0.08,
+        "roe": 0.18,
+        "roa": 0.012,
+        "roic": null,
+        "net_margin": 0.22,
+        "ebitda_margin": null,
+        "debt_equity": null,
+        "current_ratio": null,
+        "revenue_growth": 0.08,
+        "earnings_growth": 0.09,
+        "source": "cvm+seed"
+      },
+      "score": {
+        "quality": 82.2,
+        "value": 77.2,
+        "moat": 66.7,
+        "macro_fit": 61.6,
+        "composite": 73.2,
+        "band": "Watch",
+        "rationale": "Weights Q0.3/V0.25/M0.3/X0.15. Transparent rule score — not licensed advice."
+      },
+      "moat": {
+        "scale": 8,
+        "regulation": 8,
+        "brand": 7,
+        "cost_advantage": 6,
+        "switching_costs": 6,
+        "network": 5,
+        "summary": "Public bank with agribusiness reach and policy role."
+      },
+      "statements": [
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 81818181.81818181,
+          "source": "seed"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 18000000.0,
+          "source": "seed"
+        },
+        {
+          "period": "2024",
+          "type": "balance",
+          "account": "Equity",
+          "value": 100000000.0,
+          "source": "seed"
+        },
+        {
+          "period": "2024",
+          "type": "balance",
+          "account": "TotalAssets",
+          "value": 220000000.00000003,
+          "source": "seed"
+        },
+        {
+          "period": "2024",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 19800000.0,
+          "source": "seed"
+        },
+        {
+          "period": "2023",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 75272727.27272727,
+          "source": "seed"
+        },
+        {
+          "period": "2023",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 16200000.0,
+          "source": "seed"
+        }
+      ],
+      "thesis": null
+    },
+    {
+      "ticker": "WEGE3",
+      "name": "WEG ON",
+      "sector": "Industrials",
+      "quote": {
+        "price": 52.0,
+        "change_percent": 0.0,
+        "market_cap": null,
+        "volume": null,
+        "fetched_at": "2026-08-20T17:48:34.607121"
+      },
+      "indicators": {
+        "pe": 28.0,
+        "pb": 8.5,
+        "ev_ebitda": 20.0,
+        "dividend_yield": 0.015,
+        "roe": 0.32,
+        "roa": 0.18,
+        "roic": 0.25,
+        "net_margin": 0.16,
+        "ebitda_margin": 0.2,
+        "debt_equity": 0.2,
+        "current_ratio": 2.0,
+        "revenue_growth": 0.14,
+        "earnings_growth": 0.16,
+        "source": "cvm+seed"
+      },
+      "score": {
+        "quality": 100.0,
+        "value": 15.0,
+        "moat": 60.0,
+        "macro_fit": 51.4,
+        "composite": 59.5,
+        "band": "Caution",
+        "rationale": "Weights Q0.3/V0.25/M0.3/X0.15. Transparent rule score — not licensed advice."
+      },
+      "moat": {
+        "scale": 7,
+        "regulation": 4,
+        "brand": 8,
+        "cost_advantage": 7,
+        "switching_costs": 6,
+        "network": 4,
+        "summary": "Industrial compounder with global niche leadership in motors/automation."
+      },
+      "statements": [
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 200000000.0,
+          "source": "seed"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 32000000.0,
+          "source": "seed"
+        },
+        {
+          "period": "2024",
+          "type": "balance",
+          "account": "Equity",
+          "value": 100000000.0,
+          "source": "seed"
+        },
+        {
+          "period": "2024",
+          "type": "balance",
+          "account": "TotalAssets",
+          "value": 220000000.00000003,
+          "source": "seed"
+        },
+        {
+          "period": "2024",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 35200000.0,
+          "source": "seed"
+        },
+        {
+          "period": "2023",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 184000000.0,
+          "source": "seed"
+        },
+        {
+          "period": "2023",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 28800000.0,
+          "source": "seed"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "Receita de Venda de Bens e/ou Serviços",
+          "value": 32503601.0,
+          "source": "cvm"
+        }
+      ],
+      "thesis": null
+    },
+    {
+      "ticker": "ABEV3",
+      "name": "Ambev ON",
+      "sector": "Consumer",
+      "quote": {
+        "price": 12.4,
+        "change_percent": 0.0,
+        "market_cap": null,
+        "volume": null,
+        "fetched_at": "2026-08-20T17:48:35.220727"
+      },
+      "indicators": {
+        "pe": 14.0,
+        "pb": 2.4,
+        "ev_ebitda": 9.0,
+        "dividend_yield": 0.05,
+        "roe": 0.18,
+        "roa": 0.1,
+        "roic": 0.16,
+        "net_margin": 0.18,
+        "ebitda_margin": 0.3,
+        "debt_equity": 0.1,
+        "current_ratio": 1.1,
+        "revenue_growth": 0.04,
+        "earnings_growth": 0.03,
+        "source": "cvm+seed"
+      },
+      "score": {
+        "quality": 96.4,
+        "value": 61.8,
+        "moat": 61.7,
+        "macro_fit": 48.5,
+        "composite": 70.1,
+        "band": "Watch",
+        "rationale": "Weights Q0.3/V0.25/M0.3/X0.15. Transparent rule score — not licensed advice."
+      },
+      "moat": {
+        "scale": 8,
+        "regulation": 5,
+        "brand": 9,
+        "cost_advantage": 8,
+        "switching_costs": 4,
+        "network": 3,
+        "summary": "Beverage scale and brand portfolio; distribution moat."
+      },
+      "statements": [
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 100000000.0,
+          "source": "seed"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 18000000.0,
+          "source": "seed"
+        },
+        {
+          "period": "2024",
+          "type": "balance",
+          "account": "Equity",
+          "value": 100000000.0,
+          "source": "seed"
+        },
+        {
+          "period": "2024",
+          "type": "balance",
+          "account": "TotalAssets",
+          "value": 220000000.00000003,
+          "source": "seed"
+        },
+        {
+          "period": "2024",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 19800000.0,
+          "source": "seed"
+        },
+        {
+          "period": "2023",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 92000000.0,
+          "source": "seed"
+        },
+        {
+          "period": "2023",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 16200000.0,
+          "source": "seed"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "Receita de Venda de Bens e/ou Serviços",
+          "value": 79736856.0,
+          "source": "cvm"
+        }
+      ],
+      "thesis": null
+    },
+    {
+      "ticker": "BBDC4",
+      "name": "Bradesco PN",
+      "sector": "Banks",
+      "quote": {
+        "price": 13.1,
+        "change_percent": 0.0,
+        "market_cap": null,
+        "volume": null,
+        "fetched_at": "2026-08-20T17:48:35.813328"
+      },
+      "indicators": {
+        "pe": 7.8,
+        "pb": 1.1,
+        "ev_ebitda": null,
+        "dividend_yield": 0.07,
+        "roe": 0.14,
+        "roa": 0.01,
+        "roic": null,
+        "net_margin": 0.18,
+        "ebitda_margin": null,
+        "debt_equity": null,
+        "current_ratio": null,
+        "revenue_growth": 0.06,
+        "earnings_growth": 0.05,
+        "source": "cvm+seed"
+      },
+      "score": {
+        "quality": 75.4,
+        "value": 72.9,
+        "moat": 68.3,
+        "macro_fit": 61.6,
+        "composite": 70.6,
+        "band": "Watch",
+        "rationale": "Weights Q0.3/V0.25/M0.3/X0.15. Transparent rule score — not licensed advice."
+      },
+      "moat": {
+        "scale": 8,
+        "regulation": 8,
+        "brand": 7,
+        "cost_advantage": 6,
+        "switching_costs": 7,
+        "network": 5,
+        "summary": "Large retail bank; franchise and switching costs."
+      },
+      "statements": [
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 77777777.77777779,
+          "source": "seed"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 14000000.000000002,
+          "source": "seed"
+        },
+        {
+          "period": "2024",
+          "type": "balance",
+          "account": "Equity",
+          "value": 100000000.0,
+          "source": "seed"
+        },
+        {
+          "period": "2024",
+          "type": "balance",
+          "account": "TotalAssets",
+          "value": 220000000.00000003,
+          "source": "seed"
+        },
+        {
+          "period": "2024",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 15400000.000000004,
+          "source": "seed"
+        },
+        {
+          "period": "2023",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 71555555.55555557,
+          "source": "seed"
+        },
+        {
+          "period": "2023",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 12600000.000000002,
+          "source": "seed"
+        }
+      ],
+      "thesis": null
+    },
+    {
+      "ticker": "B3SA3",
+      "name": "B3 ON",
+      "sector": "Financial Services",
+      "quote": {
+        "price": 11.2,
+        "change_percent": 0.0,
+        "market_cap": null,
+        "volume": null,
+        "fetched_at": "2026-08-20T17:48:36.347253"
+      },
+      "indicators": {
+        "pe": 16.0,
+        "pb": 3.2,
+        "ev_ebitda": 11.0,
+        "dividend_yield": 0.04,
+        "roe": 0.22,
+        "roa": 0.12,
+        "roic": 0.2,
+        "net_margin": 0.45,
+        "ebitda_margin": 0.65,
+        "debt_equity": 0.3,
+        "current_ratio": 1.8,
+        "revenue_growth": 0.07,
+        "earnings_growth": 0.08,
+        "source": "cvm+seed"
+      },
+      "score": {
+        "quality": 100.0,
+        "value": 54.4,
+        "moat": 83.3,
+        "macro_fit": 58.3,
+        "composite": 77.3,
+        "band": "Watch",
+        "rationale": "Weights Q0.3/V0.25/M0.3/X0.15. Transparent rule score — not licensed advice."
+      },
+      "moat": {
+        "scale": 9,
+        "regulation": 9,
+        "brand": 7,
+        "cost_advantage": 8,
+        "switching_costs": 8,
+        "network": 9,
+        "summary": "Exchange monopoly-like infrastructure with network effects."
+      },
+      "statements": [
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 48888888.88888889,
+          "source": "seed"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 22000000.0,
+          "source": "seed"
+        },
+        {
+          "period": "2024",
+          "type": "balance",
+          "account": "Equity",
+          "value": 100000000.0,
+          "source": "seed"
+        },
+        {
+          "period": "2024",
+          "type": "balance",
+          "account": "TotalAssets",
+          "value": 220000000.00000003,
+          "source": "seed"
+        },
+        {
+          "period": "2024",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 24200000.000000004,
+          "source": "seed"
+        },
+        {
+          "period": "2023",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 44977777.777777776,
+          "source": "seed"
+        },
+        {
+          "period": "2023",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 19800000.0,
+          "source": "seed"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "Receita de Venda de Bens e/ou Serviços",
+          "value": 9921251.0,
+          "source": "cvm"
+        }
+      ],
+      "thesis": null
+    },
+    {
+      "ticker": "RENT3",
+      "name": "Localiza ON",
+      "sector": "Consumer",
+      "quote": {
+        "price": 42.0,
+        "change_percent": 0.0,
+        "market_cap": null,
+        "volume": null,
+        "fetched_at": "2026-08-20T17:48:36.872308"
+      },
+      "indicators": {
+        "pe": 18.0,
+        "pb": 2.8,
+        "ev_ebitda": 7.5,
+        "dividend_yield": 0.02,
+        "roe": 0.16,
+        "roa": 0.05,
+        "roic": 0.08,
+        "net_margin": 0.1,
+        "ebitda_margin": 0.4,
+        "debt_equity": 1.5,
+        "current_ratio": 1.0,
+        "revenue_growth": 0.12,
+        "earnings_growth": 0.1,
+        "source": "cvm+seed"
+      },
+      "score": {
+        "quality": 67.2,
+        "value": 55.1,
+        "moat": 51.7,
+        "macro_fit": 48.5,
+        "composite": 56.7,
+        "band": "Caution",
+        "rationale": "Weights Q0.3/V0.25/M0.3/X0.15. Transparent rule score — not licensed advice."
+      },
+      "moat": {
+        "scale": 7,
+        "regulation": 4,
+        "brand": 7,
+        "cost_advantage": 6,
+        "switching_costs": 4,
+        "network": 3,
+        "summary": "Fleet scale in car rental; competitive industry."
+      },
+      "statements": [
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 160000000.0,
+          "source": "seed"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 16000000.0,
+          "source": "seed"
+        },
+        {
+          "period": "2024",
+          "type": "balance",
+          "account": "Equity",
+          "value": 100000000.0,
+          "source": "seed"
+        },
+        {
+          "period": "2024",
+          "type": "balance",
+          "account": "TotalAssets",
+          "value": 220000000.00000003,
+          "source": "seed"
+        },
+        {
+          "period": "2024",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 17600000.0,
+          "source": "seed"
+        },
+        {
+          "period": "2023",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 147200000.0,
+          "source": "seed"
+        },
+        {
+          "period": "2023",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 14400000.0,
+          "source": "seed"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "Receita de Venda de Bens e/ou Serviços",
+          "value": 5157876.0,
+          "source": "cvm"
+        }
+      ],
+      "thesis": null
+    },
+    {
+      "ticker": "MGLU3",
+      "name": "Magazine Luiza ON",
+      "sector": "Retail",
+      "quote": {
+        "price": 3.86,
+        "change_percent": -4.69,
+        "market_cap": 2854686041.0,
+        "volume": 26134000.0,
+        "fetched_at": "2026-08-20T17:48:37.439134"
+      },
+      "indicators": {
+        "pe": null,
+        "pb": 1.8,
+        "ev_ebitda": 12.0,
+        "dividend_yield": 0.0,
+        "roe": -0.05,
+        "roa": -0.02,
+        "roic": -0.03,
+        "net_margin": -0.02,
+        "ebitda_margin": 0.04,
+        "debt_equity": 1.2,
+        "current_ratio": 1.3,
+        "revenue_growth": 0.02,
+        "earnings_growth": -0.1,
+        "source": "cvm+seed"
+      },
+      "score": {
+        "quality": 31.9,
+        "value": 51.6,
+        "moat": 46.7,
+        "macro_fit": 46.4,
+        "composite": 43.4,
+        "band": "Avoid",
+        "rationale": "Weights Q0.3/V0.25/M0.3/X0.15. Transparent rule score — not licensed advice."
+      },
+      "moat": {
+        "scale": 6,
+        "regulation": 3,
+        "brand": 7,
+        "cost_advantage": 4,
+        "switching_costs": 3,
+        "network": 5,
+        "summary": "Retail/e-commerce brand; thin moat, high competition."
+      },
+      "statements": [
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 250000000.0,
+          "source": "seed"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetIncome",
+          "value": -5000000.0,
+          "source": "seed"
+        },
+        {
+          "period": "2024",
+          "type": "balance",
+          "account": "Equity",
+          "value": 100000000.0,
+          "source": "seed"
+        },
+        {
+          "period": "2024",
+          "type": "balance",
+          "account": "TotalAssets",
+          "value": 220000000.00000003,
+          "source": "seed"
+        },
+        {
+          "period": "2024",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": -5500000.0,
+          "source": "seed"
+        },
+        {
+          "period": "2023",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 230000000.0,
+          "source": "seed"
+        },
+        {
+          "period": "2023",
+          "type": "income",
+          "account": "NetIncome",
+          "value": -4500000.0,
+          "source": "seed"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "Receita de Venda de Bens e/ou Serviços",
+          "value": 36768149.0,
+          "source": "cvm"
+        }
+      ],
+      "thesis": null
+    },
+    {
+      "ticker": "SUZB3",
+      "name": "Suzano ON",
+      "sector": "Paper & Pulp",
+      "quote": {
+        "price": 55.0,
+        "change_percent": 0.0,
+        "market_cap": null,
+        "volume": null,
+        "fetched_at": "2026-08-20T17:48:37.959552"
+      },
+      "indicators": {
+        "pe": 9.0,
+        "pb": 1.5,
+        "ev_ebitda": 5.5,
+        "dividend_yield": 0.03,
+        "roe": 0.15,
+        "roa": 0.06,
+        "roic": 0.09,
+        "net_margin": 0.12,
+        "ebitda_margin": 0.35,
+        "debt_equity": 1.0,
+        "current_ratio": 1.4,
+        "revenue_growth": 0.03,
+        "earnings_growth": 0.04,
+        "source": "cvm+seed"
+      },
+      "score": {
+        "quality": 71.9,
+        "value": 71.0,
+        "moat": 50.0,
+        "macro_fit": 54.7,
+        "composite": 62.5,
+        "band": "Caution",
+        "rationale": "Weights Q0.3/V0.25/M0.3/X0.15. Transparent rule score — not licensed advice."
+      },
+      "moat": {
+        "scale": 8,
+        "regulation": 5,
+        "brand": 4,
+        "cost_advantage": 8,
+        "switching_costs": 3,
+        "network": 2,
+        "summary": "Pulp cost leadership and forestry assets."
+      },
+      "statements": [
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 125000000.0,
+          "source": "seed"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 15000000.0,
+          "source": "seed"
+        },
+        {
+          "period": "2024",
+          "type": "balance",
+          "account": "Equity",
+          "value": 100000000.0,
+          "source": "seed"
+        },
+        {
+          "period": "2024",
+          "type": "balance",
+          "account": "TotalAssets",
+          "value": 220000000.00000003,
+          "source": "seed"
+        },
+        {
+          "period": "2024",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 16500000.000000002,
+          "source": "seed"
+        },
+        {
+          "period": "2023",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 115000000.0,
+          "source": "seed"
+        },
+        {
+          "period": "2023",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 13500000.0,
+          "source": "seed"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "Receita de Venda de Bens e/ou Serviços",
+          "value": 39755575.0,
+          "source": "cvm"
+        }
+      ],
+      "thesis": null
+    },
+    {
+      "ticker": "PRIO3",
+      "name": "Prio ON",
+      "sector": "Oil & Gas",
+      "quote": {
+        "price": 44.0,
+        "change_percent": 0.0,
+        "market_cap": null,
+        "volume": null,
+        "fetched_at": "2026-08-20T17:48:38.477854"
+      },
+      "indicators": {
+        "pe": 8.0,
+        "pb": 2.0,
+        "ev_ebitda": 4.0,
+        "dividend_yield": 0.01,
+        "roe": 0.3,
+        "roa": 0.15,
+        "roic": 0.22,
+        "net_margin": 0.35,
+        "ebitda_margin": 0.55,
+        "debt_equity": 0.6,
+        "current_ratio": 1.6,
+        "revenue_growth": 0.2,
+        "earnings_growth": 0.25,
+        "source": "cvm+seed"
+      },
+      "score": {
+        "quality": 100.0,
+        "value": 70.0,
+        "moat": 45.0,
+        "macro_fit": 54.7,
+        "composite": 69.2,
+        "band": "Watch",
+        "rationale": "Weights Q0.3/V0.25/M0.3/X0.15. Transparent rule score — not licensed advice."
+      },
+      "moat": {
+        "scale": 5,
+        "regulation": 6,
+        "brand": 4,
+        "cost_advantage": 7,
+        "switching_costs": 3,
+        "network": 2,
+        "summary": "Efficient offshore oil operator; smaller scale than Petrobras."
+      },
+      "statements": [
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 85714285.71428572,
+          "source": "seed"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 30000000.0,
+          "source": "seed"
+        },
+        {
+          "period": "2024",
+          "type": "balance",
+          "account": "Equity",
+          "value": 100000000.0,
+          "source": "seed"
+        },
+        {
+          "period": "2024",
+          "type": "balance",
+          "account": "TotalAssets",
+          "value": 220000000.00000003,
+          "source": "seed"
+        },
+        {
+          "period": "2024",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 33000000.000000004,
+          "source": "seed"
+        },
+        {
+          "period": "2023",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 78857142.85714287,
+          "source": "seed"
+        },
+        {
+          "period": "2023",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 27000000.0,
+          "source": "seed"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "Receita de Venda de Bens e/ou Serviços",
+          "value": 3542587.0,
+          "source": "cvm"
+        }
+      ],
+      "thesis": null
+    }
+  ],
+  "watchlist": [
+    "PETR4",
+    "VALE3",
+    "ITUB4",
+    "WEGE3"
+  ],
+  "portfolio": [
+    {
+      "ticker": "ITUB4",
+      "quantity": 400.0,
+      "avg_price": 28.1,
+      "note": ""
+    },
+    {
+      "ticker": "PETR4",
+      "quantity": 300.0,
+      "avg_price": 35.0,
+      "note": ""
+    },
+    {
+      "ticker": "WEGE3",
+      "quantity": 100.0,
+      "avg_price": 40.0,
+      "note": ""
+    }
+  ],
+  "alerts": [
+    {
+      "id": 1,
+      "kind": "price",
+      "ticker": "PETR4",
+      "rule": "PETR4 < 36",
+      "threshold": 36.0,
+      "status": "Armed"
+    },
+    {
+      "id": 2,
+      "kind": "indicator",
+      "ticker": "VALE3",
+      "rule": "VALE3 P/L < 5",
+      "threshold": 5.0,
+      "status": "Armed"
+    },
+    {
+      "id": 3,
+      "kind": "filing",
+      "ticker": null,
+      "rule": "New ITR any watchlist",
+      "threshold": null,
+      "status": "Armed"
+    }
+  ],
+  "news": [
+    {
+      "title": "Bessent vê ‘precipitação’ do mercado em relação à dívida pública e não descarta novas atuações nos Treasuries",
+      "url": "https://valor.globo.com/financas/noticia/2026/08/20/bessent-v-precipitao-do-mercado-em-relao-dvida-pblica-e-no-descarta-novas-atuaes-nos-treasuries.ghtml",
+      "source": "Valor RSS",
+      "published_at": "Thu, 20 Aug 2026 16:02:36 -0000",
+      "summary": "<img src=\"https://s2-valor.glbimg.com/dYY79fA0XbDrJ4qoMPopAKQhJvA=/i.s3.glbimg.com/v1/AUTH_63b422c2caee4269b8b34177e8876b93/internal_photos/bs/2026/w/v/kfbSS9RJWIm5bVjPTmsg/436536620.jpg\" /><br />     Após o Departamento do Tesouro americano ter surpreendido o mercado ao anunciar ontem um aumento na recompra de títulos de longo prazo, o secretário Scott Bessent veio a público nesta quinta-feira (20) para afirmar que os Estados Unidos anunciarão um foco maior na consolidação fiscal, com a dívida do país próxima de US$ 40 trilhões. “Queremos mostrar que o mercado de juros não reflete os fundamentos subjacentes”, disse, em entrevista à CNBC americana.\n\nOs juros de longo prazo nos Estados Unidos passaram por uma turbulência ao longo da última semana e o mercado acendeu um sinal de alerta quanto ao nível de endividamento do país. Os receios fiscais levaram a taxa da T-bond de 30 anos a romper a faixa de 5,3% e ultrapassar o maior nível desde junho de 2007. O Tesouro americano, dias após o a",
+      "ticker": "BBAS3"
+    },
+    {
+      "title": "Presidente da ANS aplica medida cautelar para impedir reajustes ou cancelamentos de 947 mil planos de saúde pela Hapvida",
+      "url": "https://valor.globo.com/empresas/noticia/2026/08/20/presidente-da-ans-aplica-medida-cautelar-para-impedir-reajustes-ou-cancelamentos-de-947-mil-planos-de-sade-pela-hapvida.ghtml",
+      "source": "Valor RSS",
+      "published_at": "Thu, 20 Aug 2026 16:03:01 -0000",
+      "summary": "<img src=\"https://s2-valor.glbimg.com/AUnLtmQxb8uCJi7Zxg8BZWFgyoM=/i.s3.glbimg.com/v1/AUTH_63b422c2caee4269b8b34177e8876b93/internal_photos/bs/2024/A/d/GprbiNTR2AfBlzDNOuBQ/shutterstock.jpg\" /><br />     O presidente da Agência Nacional de Saúde Suplementar (ANS), Wadih Damous, confirmou a adoção, nesta quinta-feira (20), de uma medida cautelar de ofício (preventivo) a fim de impedir que a Hapvida aplique reajustes de dois dígitos ou cancele 947 mil planos de saúde considerados deficitários pela operadora.\n\n“Em vista do grande número de contratos e de vidas envolvidas, essa medida tem uma aparência muito forte de seleção de risco, o que é proibido e que será apurado pela ANS. Assinamos uma medida cautelar para frear qualquer medida de rescisão ou reajuste até que os esclarecimentos sejam prestados”, informou o presidente da ANS em comunicado.\nA Hapvida, por sua vez, disse que não foi notificada pela ANS e que solicitou audiência junto ao regulador, “uma vez que não foi chamada a presta",
+      "ticker": null
+    },
+    {
+      "title": "Bolsas da Europa fecham majoritariamente em queda com foco no petróleo e Treasuries",
+      "url": "https://valor.globo.com/financas/noticia/2026/08/20/bolsas-da-europa-fecham-majoritariamente-em-queda-com-foco-no-petroleo-e-treasuries.ghtml",
+      "source": "Valor RSS",
+      "published_at": "Thu, 20 Aug 2026 16:15:45 -0000",
+      "summary": "<img src=\"https://s2-valor.glbimg.com/SXwkDxPDv3c569zxA4ACbG7pf5U=/i.s3.glbimg.com/v1/AUTH_63b422c2caee4269b8b34177e8876b93/internal_photos/bs/2023/O/L/ni41gLQhyQTNbgI6PPhQ/400673033.jpg\" /><br />     Os mercados acionários europeus encerraram o pregão desta quinta-feira (20) sem sinal único, com o Stoxx 600 em leve queda, no momento em que os preços do petróleo alimentam, novamente, preocupações com a oferta e a inflação, ao mesmo tempo que deram apoio à recuperação dos juros globais, mesmo após o Departamento do Tesouro dos Estados Unidos ter anunciado uma intervenção no mercado de Treasuries com um aumento das recompras de títulos.\n\nNo fim dos negócios, o índice pan-europeu Stoxx 600 anotou queda marginal de 0,04%, aos 650,89 pontos, o DAX, de Frankfurt, recuou 0,42%, aos 25.983,04 pontos, e, na Bolsa de Paris, o índice CAC 40 cedeu 0,57%, aos 8.453,09 pontos. Na contramão de seus pares, o FTSE 100, da Bolsa de Londres, teve alta marginal de 0,04%, aos 10.748,16 pontos. \n\nO presiden",
+      "ticker": null
+    },
+    {
+      "title": "Cepal alerta sobre armadilha de baixo crescimento na América Latina",
+      "url": "https://valor.globo.com/mundo/noticia/2026/08/20/cepal-alerta-sobre-armadilha-de-baixo-crescimento-na-amrica-latina.ghtml",
+      "source": "Valor RSS",
+      "published_at": "Thu, 20 Aug 2026 16:30:35 -0000",
+      "summary": "<img src=\"https://s2-valor.glbimg.com/YwdIKFiJ-flhlq9xy_zxTvqUGpo=/i.s3.glbimg.com/v1/AUTH_63b422c2caee4269b8b34177e8876b93/internal_photos/bs/2025/R/q/d0IxYBQ6aBqVMBnqa20w/54948271738-edf54535e2-o.jpg\" /><br />     A América Latina e o Caribe seguem presos a uma armadilha de baixo crescimento que deve persistir pelos próximos dois anos, alertou a Comissão Econômica para a América Latina e o Caribe (Cepal) em novo relatório divulgado nesta quinta-feira (20). O organismo ligado à ONU atribui a perspectiva principalmente a entraves estruturais, como o baixo nível de investimento, a fraca produtividade e a elevada informalidade. \n Matéria exclusiva para assinantes. Para ter acesso completo, acesse o link da matéria e faça o seu cadastro.",
+      "ticker": null
+    },
+    {
+      "title": "Split payment e o fluxo de caixa das empresas",
+      "url": "https://valor.globo.com/legislacao/fio-da-meada/post/2026/08/split-payment-e-o-fluxo-de-caixa-das-empresas.ghtml",
+      "source": "Valor RSS",
+      "published_at": "Thu, 20 Aug 2026 16:30:57 -0000",
+      "summary": "<img src=\"https://s2-valor.glbimg.com/FsaCkaNrvzDObWrAm4694kxKQAA=/i.s3.glbimg.com/v1/AUTH_63b422c2caee4269b8b34177e8876b93/internal_photos/bs/2026/1/n/gRgCj4S1SazEYjZMAIgg/real-moedadinheiro-jfcrz-abr-1701220049-1.webp\" /><br />     O split payment, introduzido pela reforma tributária, é alvo de severas críticas por impactar o fluxo de caixa das empresas. Isso porque, no momento da liquidação financeira, a parcela correspondente ao IBS e à CBS será segregada e encaminhada ao Fisco. O fornecedor não receberá integralmente o valor da venda para recolher o tributo depois. Soma-se a isso o fato de que, como regra, o crédito do adquirente depende da extinção do débito da operação anterior. Haveria, assim, um descasamento capaz de consumir capital de giro.\nNo sistema atual, o fluxo de caixa de muitas empresas é impactado de forma muito mais severa, na medida em que créditos acumulados de tributos existem na contabilidade, mas não existem no caixa das empresas. Esse fenômeno ocorre há década",
+      "ticker": "VALE3"
+    },
+    {
+      "title": "Super Micro conclui investigação e isenta alta administração por suposto contrabando de chips para China",
+      "url": "https://valor.globo.com/empresas/noticia/2026/08/20/super-micro-conclui-investigacao-e-isenta-alta-administracao-por-suposto-contrabando-de-chips-para-china.ghtml",
+      "source": "Valor RSS",
+      "published_at": "Thu, 20 Aug 2026 16:31:08 -0000",
+      "summary": "<img src=\"https://s2-valor.glbimg.com/hs1CV2RtIQkr07vYpjbsOeShchw=/i.s3.glbimg.com/v1/AUTH_63b422c2caee4269b8b34177e8876b93/internal_photos/bs/2026/5/p/ATXqOCTAKTY4GS3osAtA/459819424.jpg\" /><br />     A Super Micro Computer concluiu sua investigação sobre um suposto esquema revelado no início deste ano, no qual dois funcionários e um prestador de serviços teriam contrabandeado chips avançados da Nvidia para a China. Matéria exclusiva para assinantes. Para ter acesso completo, acesse o link da matéria e faça o seu cadastro.",
+      "ticker": null
+    },
+    {
+      "title": "Caiado sugere isenção da 'taxa das blusinhas' também para empresas brasileiras",
+      "url": "https://valor.globo.com/politica/eleicoes-2026/noticia/2026/08/20/caiado-sugere-iseno-da-taxa-das-blusinhas-tambm-para-empresas-brasileiras.ghtml",
+      "source": "Valor RSS",
+      "published_at": "Thu, 20 Aug 2026 16:32:16 -0000",
+      "summary": "<img src=\"https://s2-valor.glbimg.com/YnPFAtjVNiUrYwCn_zGdBZrHtH0=/i.s3.glbimg.com/v1/AUTH_63b422c2caee4269b8b34177e8876b93/internal_photos/bs/2026/s/0/8OhHjXRDSzfkyqAYRegA/foto18pol-121-caiado-a10.jpg\" /><br />     Ex-governador de Goiás, Ronaldo Caiado (PDS), candidato à Presidência\nDivulgação\nO candidato à Presidência Ronaldo Caiado (PSD) defendeu nesta quinta-feira (20) que a isenção do Imposto de Importação sobre compras internacionais de até US$ 50, a chamada “taxa das blusinhas”, seja estendida a empresas brasileiras. Caiado disse não ser contrário ao benefício concedido às compras no exterior, mas reivindica tratamento semelhante para as empresas do varejo que atuam no país. Hoje, a isenção se aplica apenas a pessoas físicas que comprem em plataformas de e-commerce estrangeiras.\nLeia mais\n\n\nAs declarações foram dadas a jornalistas durante uma agenda de campanha na região do Brás, na capital paulista. Caiado fez o aceno ao setor varejista após ouvir, durante um encontro com empr",
+      "ticker": "PRIO3"
+    },
+    {
+      "title": "Diretor da Aneel diz que pedido de perícia da Enel SP em processo de caducidade é ‘estranho’",
+      "url": "https://valor.globo.com/brasil/noticia/2026/08/20/diretor-da-aneel-diz-que-pedido-de-pericia-da-enel-sp-em-processo-de-caducidade-e-estranho.ghtml",
+      "source": "Valor RSS",
+      "published_at": "Thu, 20 Aug 2026 16:34:49 -0000",
+      "summary": "<img src=\"https://s2-valor.glbimg.com/675AjRrhVUA2kwI3VEjEDt52XmU=/i.s3.glbimg.com/v1/AUTH_63b422c2caee4269b8b34177e8876b93/internal_photos/bs/2024/Z/z/KJwznISCGjPXjAoPqQlg/rev-infralog-066-energia-eletrica-sandoval-feitosa-aneel.jpg\" /><br />     O diretor-geral da Agência Nacional de Energia Elétrica (Aneel), Sandoval Feitosa, classificou como “estranho” o pedido da Enel São Paulo para realização de uma perícia técnica no processo que pode levar à recomendação de caducidade da concessão da distribuidora. O requerimento será analisado pelo colegiado da agência na próxima reunião pública, na terça-feira (25), antes de uma decisão sobre o mérito do processo.\n\n“É um pedido diferente. É estranho. A Aneel tem 30 anos e nunca teve a sua parcialidade, a sua competência técnica, a sua isenção questionada. No Brasil, os maiores especialistas em auditoria e fiscalização de serviços públicos de distribuição, transmissão e geração estão exatamente na Aneel. E os servidores têm legitimidade públic",
+      "ticker": null
+    },
+    {
+      "title": "Clima econômico deve registrar volatilidade no 2º semestre com eleições, diz FGV",
+      "url": "https://valor.globo.com/brasil/noticia/2026/08/20/clima-economico-deve-registrar-volatilidade-no-2o-semestre-com-eleicoes-diz-fgv.ghtml",
+      "source": "Valor RSS",
+      "published_at": "Thu, 20 Aug 2026 16:52:01 -0000",
+      "summary": "<img src=\"https://s2-valor.glbimg.com/nU34ehbeG0ey2eX6LNRqY6WJy9Q=/i.s3.glbimg.com/v1/AUTH_63b422c2caee4269b8b34177e8876b93/internal_photos/bs/2026/6/1/Z9lMvxT5yWJbT7hXUJAw/120825livioribeiro16.jpg\" /><br />     O Índice de Clima Econômico (ICE) do Brasil, mapeado pela Sondagem Econômica da América Latina da Fundação Getulio Vargas (FGV), subiu 4,7 pontos, para 76,9 pontos entre o primeiro e o segundo trimestre, informou nesta quinta-feira (20) a fundação. Para Livio Ribeiro, pesquisador associado da FGV e sócio da consultoria econômica BRCG, foi uma melhora discreta, impulsionada, principalmente, por uma avaliação mais favorável presente entre analistas em relação à economia brasileira.\n\nPorém, mesmo com melhora observada até junho, ele não descartou momentos de volatilidade no ICE do país, no segundo semestre. Isso porque os próximos meses contarão com fatores que podem dificultar previsões quanto à economia brasileira, como eleições, exemplificou.\n\nA sondagem é publicação da FGV que",
+      "ticker": null
+    },
+    {
+      "title": "Zuckerberg, dono da Meta, compra castelo do século 19 na Irlanda",
+      "url": "https://valor.globo.com/empresas/noticia/2026/08/20/zuckerberg-dono-da-meta-compra-castelo-do-seculo-19-na-irlanda.ghtml",
+      "source": "Valor RSS",
+      "published_at": "Thu, 20 Aug 2026 16:57:11 -0000",
+      "summary": "<img src=\"https://s2-valor.glbimg.com/v8zyOKO0wmDsYTkyfHjFfQUydVA=/i.s3.glbimg.com/v1/AUTH_63b422c2caee4269b8b34177e8876b93/internal_photos/bs/2026/1/E/XoNaA5R2ybWyAUhLiTRg/2026-08-20t153905z-1719865848-rc2e2natt4ni-rtrmadp-3-meta-zuckerberg-ireland-1-.jpg\" /><br />     O diretor-presidente da Meta, Mark Zuckerberg, comprou um castelo em estilo gótico do século 19 com vista para um rio no sudeste da Irlanda, a 200 quilômetros da sede europeia de sua empresa, informou um porta-voz nesta quinta-feira.\nO Castelo de Strancally foi construído por volta de 1830 em um terreno com vista para o Rio Blackwater e passou por uma ampla reforma em 2003, segundo um arquivo arquitetônico estatal.\nA transação não consta no registro estatal irlandês de preços de imóveis. O jornal The Irish Times, que noticiou a compra em primeira mão, estimou que a propriedade possa valer entre 20 milhões e 30 milhões de euros.\nUm porta-voz de Zuckerberg afirmou que ele e sua família estavam “entusiasmados em continuar ",
+      "ticker": "VALE3"
+    },
+    {
+      "title": "Proliferação de satélites põe em risco observações astronômicas, mostra estudo",
+      "url": "https://valor.globo.com/empresas/noticia/2026/08/20/proliferao-de-satlites-pe-em-risco-observaes-astronmicas-mostra-estudo.ghtml",
+      "source": "Valor RSS",
+      "published_at": "Thu, 20 Aug 2026 17:01:07 -0000",
+      "summary": "<img src=\"https://s2-valor.glbimg.com/9fVNHulkB259Z2KX6fgA-nWpXXw=/i.s3.glbimg.com/v1/AUTH_63b422c2caee4269b8b34177e8876b93/internal_photos/bs/2024/t/f/BewxUxSl25HaCHVA5M1g/satelite-da-starlink-rep-starlink.webp\" /><br />     À medida que milhares de novos satélites entram em órbita, os astrônomos podem enfrentar dificuldades crescentes para observar o cosmos, de acordo com um estudo do Observatório Europeu do Sul (ESO, na sigla em inglês), que opera telescópios no norte do Chile.\nO estudo do ESO constatou que as propostas atuais para lançar mais de 1,7 milhão de satélites em órbita, incluindo alguns muito brilhantes, prejudicariam substancialmente as falas astronômicas. Atualmente, há cerca de 15 mil satélites em órbita.\nRastros brilhantes de luz deixados pelos satélites podem interferir no funcionamento dos observatórios e na qualidade das fotografias do céu noturno.\n“Cada um desses satélites, ao cruzar o campo de visão de um telescópio, deixa uma linha brilhante”, disse o astrônomo ",
+      "ticker": null
+    },
+    {
+      "title": "Ao menos 15 candidatos tiveram registros questionados no Rio",
+      "url": "https://valor.globo.com/politica/eleicoes-2026/noticia/2026/08/20/ao-menos-15-candidatos-tiveram-registros-questionados-no-rio.ghtml",
+      "source": "Valor RSS",
+      "published_at": "Thu, 20 Aug 2026 17:12:59 -0000",
+      "summary": "<img src=\"https://s2-valor.glbimg.com/PHlgKbBcHIH9gC_Sgd01jYX5kcI=/i.s3.glbimg.com/v1/AUTH_63b422c2caee4269b8b34177e8876b93/internal_photos/bs/2020/6/z/RqDO8WR8eHm12Uoe7luw/ceciliano.jpg\" /><br />     André Ceciliano, presidente da Alerj\nVitor Soares/Alerj/Arquivo\nAo menos 15 candidatos no Rio de Janeiro tiveram o registro questionado na Justiça eleitoral. Os motivos da impugnação, em sua maioria de autoria do Ministério Público Eleitoral, vão desde suspeitas de envolvimento com o crime organizado a contas públicas reprovadas pelo Tribunal de Contas da União (TCU) ou do Estado (TCE). Entre os postulantes na mira da procuradoria estão o ex-presidente da Assembleia Legislativa (Alerj) André Ceciliano (PT) e o ex-prefeito de Belford Roxo Márcio Canella (União Brasil) – ambos candidatos a deputado estadual. \n\nO MP Eleitoral ainda vai divulgar um balanço final de quantos pedidos de contestação foram feitos para o pleito de outubro no Rio. Esse número deve se tornar público na sexta-feira (2",
+      "ticker": null
+    },
+    {
+      "title": "Quero ver o Nubank manter o mesmo desempenho como banco, diz Damodaran",
+      "url": "https://valor.globo.com/financas/noticia/2026/08/20/quero-ver-o-nubank-manter-o-mesmo-desempenho-como-banco-diz-damodaran.ghtml",
+      "source": "Valor RSS",
+      "published_at": "Thu, 20 Aug 2026 17:16:36 -0000",
+      "summary": "<img src=\"https://s2-valor.glbimg.com/ceVI3gcjWp8dR5U18ZIfCquYbUQ=/i.s3.glbimg.com/v1/AUTH_63b422c2caee4269b8b34177e8876b93/internal_photos/bs/2026/9/f/i1ynjTSaGbsIgwSrU0TA/whatsapp-image-2026-08-20-at-11.25.56.jpeg\" /><br />     Especialista em “valuation”, técnica de atribuir preço às empresas, o professor Aswath Damodaran, da Universidade de Nova York, diz que acompanhou com grande interesse a estreia do Nubank na bolsa de Nova York em 2021, com um valor de mercado de US$ 41,5 bilhões — na época acima de Itaú (37,7 bilhões) e Bradesco (US$ 33,3 bilhões), os dois maiores bancos brasileiros, incumbentes com décadas de atuação à frente do neobanco.\n Matéria exclusiva para assinantes. Para ter acesso completo, acesse o link da matéria e faça o seu cadastro.",
+      "ticker": "ITUB4"
+    },
+    {
+      "title": "Genentech, subsidiária da Roche nos EUA, investirá US$ 750 milhões na expansão da produção",
+      "url": "https://valor.globo.com/empresas/noticia/2026/08/20/genentech-subsidiria-da-roche-nos-eua-investir-us-750-milhes-na-expanso-da-produo.ghtml",
+      "source": "Valor RSS",
+      "published_at": "Thu, 20 Aug 2026 17:17:33 -0000",
+      "summary": "<img src=\"https://s2-valor.glbimg.com/UDEk5SWjI9NBargVVXWWMR-4gq8=/i.s3.glbimg.com/v1/AUTH_63b422c2caee4269b8b34177e8876b93/internal_photos/bs/2026/Q/H/qgLnBcRt2aNmwlDzx4Mg/generated-1269-investing-america-hero-2800x800-v4-medium.png\" /><br />     A Genentech, subsidiária da Roche, planeja investir cerca de US$ 750 milhões em uma expansão para reforçar sua capacidade de produção de medicamentos nos Estados Unidos. Matéria exclusiva para assinantes. Para ter acesso completo, acesse o link da matéria e faça o seu cadastro.",
+      "ticker": null
+    },
+    {
+      "title": "Valdemar escala vice de Flávio para comandar ofensiva contra Lulinha",
+      "url": "https://valor.globo.com/politica/eleicoes-2026/noticia/2026/08/20/valdemar-escala-vice-de-flvio-para-comandar-ofensiva-contra-lulinha.ghtml",
+      "source": "Valor RSS",
+      "published_at": "Thu, 20 Aug 2026 17:18:13 -0000",
+      "summary": "<img src=\"https://s2-valor.glbimg.com/60Ze7QOjmYCFU3Gmhc6D7ckJmmE=/i.s3.glbimg.com/v1/AUTH_63b422c2caee4269b8b34177e8876b93/internal_photos/bs/2019/K/Y/lAG4ITSwG5FAzXy5GLMA/agenciabrasil021012-dsa9238.jpg\" /><br />     Valdemar da Costa Neto, presidente do PL\nJosé Cruz/ABr\nO presidente nacional do PL, Valdemar Costa Neto, afirmou nesta quinta-feira (20) que a atuação do filho do presidente Luiz Inácio Lula da Silva (PT), Fábio Luís Lula da Silva, deve ser investigada e que a corrupção será um tema central nas eleições deste ano. Valdemar tentou atrelar Lulinha ao caso das fraudes no Instituto Nacional do Seguro Social (INSS) e disse que o candidato a vice na chapa de Flávio Bolsonaro, Alfredo Gaspar, vai liderar a ofensiva contra o filho de Lula.\n\n\"Eu não tenho dúvida disso [de que a corrupção pautará o debate eleitoral]. Acho que esse caso do Lulinha tem que investigar, e investigar muito. Para a gente poder falar com certeza, tem que investigar. Tem muita coisa que vai acontecer na c",
+      "ticker": "VALE3"
+    },
+    {
+      "title": "A nova pesquisa Quaest para governo de SP após sabatina de Valor, O Globo e CBN",
+      "url": "https://valor.globo.com/politica/eleicoes-2026/noticia/2026/08/20/a-nova-pesquisa-quaest-para-governo-de-sp-apos-sabatina-do-valor-o-globo-e-cbn.ghtml",
+      "source": "Valor RSS",
+      "published_at": "Thu, 20 Aug 2026 17:22:03 -0000",
+      "summary": "<img src=\"https://s2-valor.glbimg.com/WCQCe-ByhgTdhoPxhx-VGr5CKEg=/i.s3.glbimg.com/v1/AUTH_63b422c2caee4269b8b34177e8876b93/internal_photos/bs/2026/a/P/THq1qHRmiA8RgFN6Ekrw/gemini-generated-image-sk8jrwsk8jrwsk8j.jpg\" /><br />     A nova rodada da pesquisa Quaest em São Paulo será divulgada no terça-feira (25), após as sabatinas realizadas em parceria pelos jornais Valor, O Globo e a rádio CBN com os candidatos a governador de São Paulo. \nSegurança, saúde, educação, mobilidade, gestão pública e economia estão entre os assuntos abordados com Tarcísio de Freitas (Republicanos), que é o atual governador de São Paulo, e Fernando Haddad (PT), que já foi prefeito da capital paulista e ministro da Educação e da Fazenda em gestões do presidente Lula. \nA nova pesquisa vai medir as intenções de voto para o governo estadual e para o Senado nas eleições de 2026. O levantamento inclui sete candidatos na apuração do primeiro turno e também testa um cenário de segundo turno para a sucessão paulista.\n",
+      "ticker": null
+    },
+    {
+      "title": "Compliance amplia debate sobre limites da atuação privada",
+      "url": "https://valor.globo.com/patrocinado/dino/noticia/2026/08/20/compliance-amplia-debate-sobre-limites-da-atuacao-privada-1.ghtml",
+      "source": "Valor RSS",
+      "published_at": "Thu, 20 Aug 2026 17:25:18 -0000",
+      "summary": "<img src=\"https://s2-valor.glbimg.com/DafFg5Q-CBIhfU6yH-yYpu1DVrg=/i.s3.glbimg.com/v1/AUTH_63b422c2caee4269b8b34177e8876b93/internal_photos/bs/2026/D/s/do8sjASiAKt9mfNaGYWQ/publicador-api-valor-dino-100-072380b8-e5d1-43d4-8dde-b29fda79de99.jpg-20260820142503\" /><br />     Nos últimos anos, os programas de compliance deixaram de ser um diferencial restrito a grandes corporações e passaram a integrar, de forma cada vez mais estruturada, a arquitetura de governança de empresas de diferentes portes. Esse avanço decorre do fortalecimento normativo trazido pela Lei Anticorrupção (Lei nº 12.846/2013) e pelo Decreto nº 11.129/2022, que conferem relevância jurídica concreta à existência de mecanismos internos de integridade, inclusive para fins de dosimetria de sanções administrativas.\nAo mesmo tempo, cresce o debate sobre os limites da atuação privada na prevenção e apuração de irregularidades, especialmente diante da necessidade de compatibilizar tais práticas com garantias constitucionais co",
+      "ticker": "VALE3"
+    },
+    {
+      "title": "Ibovespa não sustenta recuperação e passa a cair; dólar e juros avançam com Treasuries e petróleo no foco",
+      "url": "https://valor.globo.com/financas/ao-vivo/2023/06/16/dolar-avanca-e-ibovespa-recua-em-dia-de-correcao-siga-os-mercados.ghtml",
+      "source": "Valor RSS",
+      "published_at": "Thu, 20 Aug 2026 17:29:36 -0000",
+      "summary": "<img src=\"https://s2-valor.glbimg.com/SpsNtLhTrgbD14B9Vz94l27acSY=/i.s3.glbimg.com/v1/AUTH_63b422c2caee4269b8b34177e8876b93/internal_photos/bs/2026/B/e/whGeEPTX2Nbq2B2Bg82g/454428597.jpg\" /><br />     Ibovespa não sustenta recuperação e passa a cair; dólar e juros avançam com Treasuries e petróleo no foco Falas de Bessent sobre atuação no mercado de títulos americanos não acalmam os investidores, que temem escalada da dívida pública Bessent vê ‘precipitação’ do mercado em relação à dívida pública e não descarta novas atuações nos Treasuries. Treasuries devolvem alívio da véspera e juros futuros acompanham alta. Dólar à vista avança em ajuste após queda forte de ontem. Renda fixa global segue pressionada e bolsas recuam em NY; petróleo sobe",
+      "ticker": null
+    },
+    {
+      "title": "Acidente com barco no interior da Nigéria mata dezenas de pessoas",
+      "url": "https://valor.globo.com/mundo/noticia/2026/08/20/acidente-com-barco-no-interior-da-nigeria-mata-dezenas-de-pessoas.ghtml",
+      "source": "Valor RSS",
+      "published_at": "Thu, 20 Aug 2026 17:33:27 -0000",
+      "summary": "<img src=\"https://s2-valor.glbimg.com/6Zk4ty1-We_73QDGd3jIYHjkgO0=/i.s3.glbimg.com/v1/AUTH_63b422c2caee4269b8b34177e8876b93/internal_photos/bs/2026/p/m/SjjkyRRAuB9BtJvdoKXw/2026-08-20t145635z-2039014501-rc2e2naif8s3-rtrmadp-3-nigeria-boat-accident-1-.jpg\" /><br />     Ao menos 40 corpos, na maioria de crianças, foram resgatados após um barco superlotado ter virado no estado de Sokoto, no noroeste da Nigéria, informaram, nesta quinta-feira (20), moradores e autoridades locais. Conforme a mais recente atualização, baseada no relato de testemunhas locais, 50 pessoas teriam morrido no acidente, perto da localidade de Gorau.\nAs buscas na região continuam, disse Abdulkadir Yusuf, gestor local da agência nacional aquaviária da Nigéria. Segundo ele, os corpos de 40 crianças foram encontrados, mas um político local fala em 43 mortes e 16 resgates com vida.\nUm morador da localidade onde o acidente ocorreu disse que o barco transportava agricultores e trabalhadores rurais contratados para a colhe",
+      "ticker": null
+    },
+    {
+      "title": "Como a Fórmula 1 se transformou em uma potência financeira e a nova aposta de Wall Street",
+      "url": "https://valor.globo.com/empresas/noticia/2026/08/20/como-a-frmula-1-se-transformou-em-uma-potncia-financeira-e-a-nova-aposta-de-wall-street.ghtml",
+      "source": "Valor RSS",
+      "published_at": "Thu, 20 Aug 2026 17:40:00 -0000",
+      "summary": "<img src=\"https://s2-valor.glbimg.com/w7Y8vBlEOhpLJOOAdcCkn77q9ps=/i.s3.glbimg.com/v1/AUTH_63b422c2caee4269b8b34177e8876b93/internal_photos/bs/2025/B/i/NpyoVjTfq0zXe6dNuxUA/m526639b.jpeg\" /><br />     Diante do valor de um desempenho previsível e retornos estáveis, o “sem graça” costuma ser atrativo quando o assunto são ações. E então existe a Fórmula 1. Matéria exclusiva para assinantes. Para ter acesso completo, acesse o link da matéria e faça o seu cadastro.",
+      "ticker": null
+    },
+    {
+      "title": "Caixa passa a considerar renda de apps como formal para financiamento",
+      "url": "https://www.infomoney.com.br/minhas-financas/caixa-passa-a-considerar-renda-de-apps-como-formal-para-financiamento/",
+      "source": "InfoMoney",
+      "published_at": "Thu, 20 Aug 2026 17:00:35 +0000",
+      "summary": "<p><img alt=\"IFood é mais uma empresa que conduz demissões em massa\" class=\"attachment-medium size-medium wp-post-image\" height=\"176\" src=\"https://www.infomoney.com.br/wp-content/uploads/2023/03/5A36E1E1-8799-49E0-90D3-46C54D06CB9C.jpeg?fit=300%2C176&amp;quality=70&amp;strip=all\" style=\"float: right; margin: 0 0 10px 10px;\" width=\"300\" />Banco passou a considerar como formal a renda de profissionais na análise de crédito; especialista avalia que medida beneficia uma categoria que cresceu nos últimos anos</p>\n<p>The post <a href=\"https://www.infomoney.com.br/minhas-financas/caixa-passa-a-considerar-renda-de-apps-como-formal-para-financiamento/\">Caixa passa a considerar renda de apps como formal para financiamento</a> appeared first on <a href=\"https://www.infomoney.com.br\">InfoMoney</a>.</p>",
+      "ticker": "BBAS3"
+    },
+    {
+      "title": "Escritórios de assessoria de investimentos avançam no Brasil fora do eixo tradicional",
+      "url": "https://www.infomoney.com.br/advisor/escritorios-de-assessoria-de-investimentos-avancam-no-brasil-fora-do-eixo-tradicional/",
+      "source": "InfoMoney",
+      "published_at": "Thu, 20 Aug 2026 17:02:00 +0000",
+      "summary": "<p><img alt=\"Barueri, na Grande São Paulo, ampliou o número de escritórios de 16 em 2019 para 48 em 2026, triplicando sua base em sete anos (Foto: Prefeitura Municipal de Barueri/Reprodução)\" class=\"attachment-medium size-medium wp-post-image\" height=\"188\" src=\"https://www.infomoney.com.br/wp-content/uploads/2026/08/Barueri_Prefeitura-Municipal-de-Barueri.jpg?fit=300%2C188&amp;quality=70&amp;strip=all\" style=\"float: right; margin: 0 0 10px 10px;\" width=\"300\" />São Paulo perde espaço relativo e assessoria cresce em estados como Santa Catarina e Goiás</p>\n<p>The post <a href=\"https://www.infomoney.com.br/advisor/escritorios-de-assessoria-de-investimentos-avancam-no-brasil-fora-do-eixo-tradicional/\">Escritórios de assessoria de investimentos avançam no Brasil fora do eixo tradicional</a> appeared first on <a href=\"https://www.infomoney.com.br\">InfoMoney</a>.</p>",
+      "ticker": null
+    },
+    {
+      "title": "AtlasIntel: Hana lidera todos os cenários de 1º e 2º turno no Pará",
+      "url": "https://www.infomoney.com.br/politica/atlasintel-hana-lidera-todos-os-cenarios-de-1o-e-2o-turno-no-para/",
+      "source": "InfoMoney",
+      "published_at": "Thu, 20 Aug 2026 17:12:37 +0000",
+      "summary": "<p><img alt=\"\" class=\"attachment-medium size-medium wp-post-image\" height=\"200\" src=\"https://www.infomoney.com.br/wp-content/uploads/2026/08/Hana-Ghlassan.avif?resize=300,200\" style=\"float: right; margin: 0 0 10px 10px;\" width=\"300\" />Atual governadora pode ser reeleita ainda no primeiro turno</p>\n<p>The post <a href=\"https://www.infomoney.com.br/politica/atlasintel-hana-lidera-todos-os-cenarios-de-1o-e-2o-turno-no-para/\">AtlasIntel: Hana lidera todos os cenários de 1º e 2º turno no Pará</a> appeared first on <a href=\"https://www.infomoney.com.br\">InfoMoney</a>.</p>",
+      "ticker": null
+    },
+    {
+      "title": "Brasil ganha 2.023 novos assessores de investimento até julho; veja os números",
+      "url": "https://www.infomoney.com.br/advisor/brasil-ganha-2-023-novos-assessores-de-investimento-ate-julho-veja-os-numeros/",
+      "source": "InfoMoney",
+      "published_at": "Thu, 20 Aug 2026 17:29:34 +0000",
+      "summary": "<p><img alt=\"Segundo a Ancord, só em julho foram 314 novos credenciamentos, mais de 10 por dia (Foto: Pexels/RDNE)\" class=\"attachment-medium size-medium wp-post-image\" height=\"200\" src=\"https://www.infomoney.com.br/wp-content/uploads/2026/08/pexels-rdne-7414212.jpg?fit=300%2C200&amp;quality=70&amp;strip=all\" style=\"float: right; margin: 0 0 10px 10px;\" width=\"300\" />Mercado de assessoria avança em 2026, enquanto educação continuada mantém foco na qualificação dos profissionais</p>\n<p>The post <a href=\"https://www.infomoney.com.br/advisor/brasil-ganha-2-023-novos-assessores-de-investimento-ate-julho-veja-os-numeros/\">Brasil ganha 2.023 novos assessores de investimento até julho; veja os números</a> appeared first on <a href=\"https://www.infomoney.com.br\">InfoMoney</a>.</p>",
+      "ticker": null
+    },
+    {
+      "title": "Mansão centenária do cofundador do Facebook é vendida por R$ 44 milhões",
+      "url": "https://www.infomoney.com.br/consumo/mansao-centenaria-de-fundador-do-facebook/",
+      "source": "InfoMoney",
+      "published_at": "Thu, 20 Aug 2026 17:30:00 +0000",
+      "summary": "<p><img alt=\"\" class=\"attachment-medium size-medium wp-post-image\" height=\"168\" src=\"https://www.infomoney.com.br/wp-content/uploads/2026/08/Area-externa-mansao.jpg?fit=300%2C168&amp;quality=70&amp;strip=all\" style=\"float: right; margin: 0 0 10px 10px;\" width=\"300\" />Em um dos endereços mais cobiçados de Washington, mansão centenária mistura charme de época e luxo contemporâneo</p>\n<p>The post <a href=\"https://www.infomoney.com.br/consumo/mansao-centenaria-de-fundador-do-facebook/\">Mansão centenária do cofundador do Facebook é vendida por R$ 44 milhões</a> appeared first on <a href=\"https://www.infomoney.com.br\">InfoMoney</a>.</p>",
+      "ticker": null
+    },
+    {
+      "title": "Análise: Irã desafia pressão dos EUA e prolonga impasse — mas quem cede primeiro?",
+      "url": "https://www.infomoney.com.br/business/global/analise-ira-desafia-pressao-dos-eua-e-prolonga-impasse-mas-quem-cede-primeiro/",
+      "source": "InfoMoney",
+      "published_at": "Thu, 20 Aug 2026 17:30:45 +0000",
+      "summary": "<p><img alt=\"\" class=\"attachment-medium size-medium wp-post-image\" height=\"200\" src=\"https://www.infomoney.com.br/wp-content/uploads/2026/07/Iran-rua.jpg?fit=300%2C200&amp;quality=70&amp;strip=all\" style=\"float: right; margin: 0 0 10px 10px;\" width=\"300\" />Há semanas, não há avanços diplomáticos, mas também não há combates em grande escala, já que ambos os lados parecem acreditar que conseguem resistir por mais tempo do que o adversário</p>\n<p>The post <a href=\"https://www.infomoney.com.br/business/global/analise-ira-desafia-pressao-dos-eua-e-prolonga-impasse-mas-quem-cede-primeiro/\">Análise: Irã desafia pressão dos EUA e prolonga impasse — mas quem cede primeiro?</a> appeared first on <a href=\"https://www.infomoney.com.br\">InfoMoney</a>.</p>",
+      "ticker": null
+    },
+    {
+      "title": "Príncipe aos 26: filho secreto da realeza belga obtém reconhecimento após 2 décadas",
+      "url": "https://www.infomoney.com.br/business/global/principe-aos-26-filho-secreto-da-realeza-belga-obtem-reconhecimento-apos-2-decadas/",
+      "source": "InfoMoney",
+      "published_at": "Thu, 20 Aug 2026 17:37:19 +0000",
+      "summary": "<p><img alt=\"\" class=\"attachment-medium size-medium wp-post-image\" height=\"198\" src=\"https://www.infomoney.com.br/wp-content/uploads/2026/08/Captura-de-tela-2026-08-20-143008.png?fit=300%2C198&amp;quality=70&amp;strip=all\" style=\"float: right; margin: 0 0 10px 10px;\" width=\"300\" />Clément Vandenkerckhove nasceu antes do casamento do príncipe Laurent, da Bélgica. Agora, ele também se tornou príncipe, embora não deva exercer funções oficiais da realeza</p>\n<p>The post <a href=\"https://www.infomoney.com.br/business/global/principe-aos-26-filho-secreto-da-realeza-belga-obtem-reconhecimento-apos-2-decadas/\">Príncipe aos 26: filho secreto da realeza belga obtém reconhecimento após 2 décadas</a> appeared first on <a href=\"https://www.infomoney.com.br\">InfoMoney</a>.</p>",
+      "ticker": null
+    },
+    {
+      "title": "Dólar hoje sobe a R$ 5,17 após cair na véspera com anúncio de recompra de Treasuries",
+      "url": "https://www.infomoney.com.br/mercados/dolar-hoje-abertura-fechamento-comercial-turismo-20082026/",
+      "source": "InfoMoney",
+      "published_at": "Thu, 20 Aug 2026 17:39:41 +0000",
+      "summary": "<p><img alt=\"\" class=\"attachment-medium size-medium wp-post-image\" height=\"200\" src=\"https://www.infomoney.com.br/wp-content/uploads/2026/04/2026-04-23T223943Z_1_LYNXMPEM3M1IY_RTROPTP_4_IRAN-ECONOMY.jpg?fit=300%2C200&amp;quality=70&amp;strip=all\" style=\"float: right; margin: 0 0 10px 10px;\" width=\"300\" />Divisa americana caiu quase 1% na sessão anterior</p>\n<p>The post <a href=\"https://www.infomoney.com.br/mercados/dolar-hoje-abertura-fechamento-comercial-turismo-20082026/\">Dólar hoje sobe a R$ 5,17 após cair na véspera com anúncio de recompra de Treasuries</a> appeared first on <a href=\"https://www.infomoney.com.br\">InfoMoney</a>.</p>",
+      "ticker": null
+    },
+    {
+      "title": "Flávio inclui Marçal em aliança da direita vencer “guerra contra o PT” nas urnas",
+      "url": "https://www.infomoney.com.br/politica/flavio-inclui-marcal-em-alianca-da-direita-vencer-guerra-contra-o-pt-nas-urnas/",
+      "source": "InfoMoney",
+      "published_at": "Thu, 20 Aug 2026 17:42:24 +0000",
+      "summary": "<p><img alt=\"\" class=\"attachment-medium size-medium wp-post-image\" height=\"200\" src=\"https://www.infomoney.com.br/wp-content/uploads/2026/08/2026-08-11T200624Z_1_LYNXMPEM7A1GS_RTROPTP_4_BRAZIL-BOLSONARO.jpg?fit=300%2C200&amp;quality=70&amp;strip=all\" style=\"float: right; margin: 0 0 10px 10px;\" width=\"300\" />Flávio destacou que disputa em outubro não se resumirá em um embate entre Lula e Bolsonaro, mas sim em uma eleição do \"PT contra o Brasil\"</p>\n<p>The post <a href=\"https://www.infomoney.com.br/politica/flavio-inclui-marcal-em-alianca-da-direita-vencer-guerra-contra-o-pt-nas-urnas/\">Flávio inclui Marçal em aliança da direita vencer &#8220;guerra contra o PT&#8221; nas urnas</a> appeared first on <a href=\"https://www.infomoney.com.br\">InfoMoney</a>.</p>",
+      "ticker": null
+    },
+    {
+      "title": "Como a Moderna quase triplicou o valor de suas ações em um único dia",
+      "url": "https://www.infomoney.com.br/business/global/como-a-moderna-quase-triplicou-o-valor-de-suas-acoes-em-um-unico-dia/",
+      "source": "InfoMoney",
+      "published_at": "Thu, 20 Aug 2026 17:42:47 +0000",
+      "summary": "<p><img alt=\"\" class=\"attachment-medium size-medium wp-post-image\" height=\"179\" src=\"https://www.infomoney.com.br/wp-content/uploads/2026/08/2026-08-04T150024Z_1783274554_RC2LCR9UK8N7_RTRMADP_3_MODERNA-STUDY-EBOLA.jpg?fit=300%2C179&amp;quality=70&amp;strip=all\" style=\"float: right; margin: 0 0 10px 10px;\" width=\"300\" />A empresa viu sua sorte desmoronar à medida que a demanda por vacinas contra a Covid-19 despencava. Mas, enquanto isso, estava ocupada trabalhando em outra aposta</p>\n<p>The post <a href=\"https://www.infomoney.com.br/business/global/como-a-moderna-quase-triplicou-o-valor-de-suas-acoes-em-um-unico-dia/\">Como a Moderna quase triplicou o valor de suas ações em um único dia</a> appeared first on <a href=\"https://www.infomoney.com.br\">InfoMoney</a>.</p>",
+      "ticker": null
+    }
+  ]
+}

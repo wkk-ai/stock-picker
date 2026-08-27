@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Stock Picker BR — Wireframes</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;600&family=IBM+Plex+Mono:wght@400;500&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #F7F6F3; --elev: #fff; --ink: #1A1A1A; --muted: #6B6B6B;
+      --faint: #9A9A9A; --line: #E8E6E1; --accent: #0F6E56; --soft: #E6F4EF;
+      --down: #B42318; --watch: #B54708;
+      --pad: 32px; --gap: 40px; --side: 240px; --r: 10px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: "Source Sans 3", system-ui, sans-serif; background: var(--bg); color: var(--ink); }
+    h1,h2,h3 { font-family: Fraunces, Georgia, serif; font-weight: 550; }
+    .mono { font-family: "IBM Plex Mono", monospace; }
+    .shell { display: grid; grid-template-columns: var(--side) 1fr; min-height: 100vh; }
+    nav { padding: var(--pad); border-right: 1px solid var(--line); display: flex; flex-direction: column; gap: 8px; }
+    .brand { font-family: Fraunces, serif; font-size: 22px; margin-bottom: 32px; letter-spacing: -0.02em; }
+    .brand span { color: var(--accent); }
+    nav a { color: var(--muted); text-decoration: none; padding: 10px 12px; border-radius: 8px; font-size: 14px; transition: background 120ms ease; }
+    nav a:hover, nav a.active { background: var(--elev); color: var(--ink); }
+    main { padding: var(--pad); }
+    .tabs { display: flex; gap: 8px; margin-bottom: 24px; flex-wrap: wrap; }
+    .tabs button { border: 1px solid var(--line); background: transparent; padding: 8px 14px; border-radius: 999px; cursor: pointer; font: inherit; color: var(--muted); }
+    .tabs button.on { background: var(--ink); color: #fff; border-color: var(--ink); }
+    .screen { display: none; }
+    .screen.on { display: block; }
+    .page-head { margin-bottom: var(--gap); }
+    .page-head p { color: var(--muted); margin-top: 8px; max-width: 52ch; }
+    .grid { display: grid; gap: 20px; }
+    .grid-4 { grid-template-columns: repeat(4, 1fr); }
+    .grid-3 { grid-template-columns: 2fr 1fr; gap: 24px; }
+    .card { background: var(--elev); border: 1px solid var(--line); border-radius: var(--r); padding: 24px; box-shadow: 0 1px 2px rgba(26,26,26,.04); }
+    .label { font-size: 12px; color: var(--faint); letter-spacing: 0.04em; text-transform: uppercase; margin-bottom: 8px; }
+    .metric { font-family: "IBM Plex Mono", monospace; font-size: 28px; }
+    .up { color: var(--accent); } .dn { color: var(--down); }
+    table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    th { text-align: left; color: var(--faint); font-weight: 500; padding: 12px 8px; border-bottom: 1px solid var(--line); }
+    td { padding: 16px 8px; border-bottom: 1px solid var(--line); }
+    .score { display: inline-flex; align-items: center; justify-content: center; min-width: 40px; height: 28px; border-radius: 6px; background: var(--soft); color: var(--accent); font-family: "IBM Plex Mono", monospace; font-size: 13px; }
+    .filters { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 24px; }
+    .filters input, .filters select { border: 1px solid var(--line); background: var(--elev); padding: 10px 12px; border-radius: 8px; font: inherit; }
+    .disclaimer { margin-top: var(--gap); font-size: 12px; color: var(--faint); max-width: 70ch; line-height: 1.5; }
+    .chip { display: inline-block; padding: 4px 10px; border-radius: 6px; background: var(--soft); color: var(--accent); font-size: 12px; }
+    .chip.watch { background: #FDF0E7; color: var(--watch); }
+    @media (max-width: 960px) {
+      .shell { grid-template-columns: 1fr; }
+      nav { border-right: none; border-bottom: 1px solid var(--line); flex-direction: row; flex-wrap: wrap; align-items: center; }
+      .brand { margin: 0 16px 0 0; }
+      .grid-4, .grid-3 { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <nav>
+      <div class="brand">Stock<span>Picker</span></div>
+      <a href="#" class="active" data-screen="dash">Dashboard</a>
+      <a href="#" data-screen="stock">Stock</a>
+      <a href="#" data-screen="screener">Screener</a>
+      <a href="#" data-screen="portfolio">Portfolio</a>
+      <a href="#" data-screen="alerts">Alerts</a>
+    </nav>
+    <main>
+      <div class="tabs" id="tabs"></div>
+
+      <section class="screen on" id="dash">
+        <div class="page-head">
+          <h1>Overview</h1>
+          <p>Macro pulse and watchlist. Spaced, quiet, decision-ready.</p>
+        </div>
+        <div class="grid grid-4" style="margin-bottom:40px">
+          <div class="card"><div class="label">Selic</div><div class="metric">14.75%</div></div>
+          <div class="card"><div class="label">IPCA 12m</div><div class="metric">4.8%</div></div>
+          <div class="card"><div class="label">CDI</div><div class="metric">14.65%</div></div>
+          <div class="card"><div class="label">USD/BRL</div><div class="metric">5.42</div></div>
+        </div>
+        <div class="card">
+          <div class="label" style="margin-bottom:16px">Watchlist</div>
+          <table>
+            <thead><tr><th>Ticker</th><th>Price</th><th>Day</th><th>Score</th><th>Band</th></tr></thead>
+            <tbody>
+              <tr><td class="mono">PETR4</td><td class="mono">38.50</td><td class="up mono">+0.8%</td><td><span class="score">78</span></td><td><span class="chip">Watch</span></td></tr>
+              <tr><td class="mono">VALE3</td><td class="mono">62.10</td><td class="dn mono">−1.2%</td><td><span class="score">71</span></td><td><span class="chip">Watch</span></td></tr>
+              <tr><td class="mono">ITUB4</td><td class="mono">34.20</td><td class="up mono">+0.3%</td><td><span class="score">82</span></td><td><span class="chip">Hold+</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="screen" id="stock">
+        <div class="page-head">
+          <h1 class="mono">PETR4</h1>
+          <p>Petrobras · Oil & Gas · Moat: scale + regulation</p>
+        </div>
+        <div class="grid grid-3">
+          <div class="card">
+            <div class="label">Decision score</div>
+            <div class="metric up" style="font-size:48px">78</div>
+            <p style="color:var(--muted);margin-top:12px;font-size:14px">Quality 80 · Value 72 · Moat 85 · Macro fit 70</p>
+          </div>
+          <div class="card">
+            <div class="label">Key ratios</div>
+            <table>
+              <tr><td>P/L</td><td class="mono">6.2</td></tr>
+              <tr><td>P/VP</td><td class="mono">1.1</td></tr>
+              <tr><td>ROE</td><td class="mono">28%</td></tr>
+              <div></div>
+              <tr><td>Div. yield</td><td class="mono">12%</td></tr>
+            </table>
+          </div>
+        </div>
+        <div class="card" style="margin-top:24px">
+          <div class="label">Tabs</div>
+          <p style="margin-top:12px;color:var(--muted)">Overview · Financials · News · Moat · Macro</p>
+        </div>
+      </section>
+
+      <section class="screen" id="screener">
+        <div class="page-head">
+          <h1>Screener</h1>
+          <p>Filter the B3 universe. Presets for quality and deep value.</p>
+        </div>
+        <div class="filters">
+          <select><option>All sectors</option></select>
+          <input placeholder="Max P/L" />
+          <input placeholder="Min ROE %" />
+          <select><option>Quality compounders</option><option>Deep value</option></select>
+        </div>
+        <div class="card">
+          <table>
+            <thead><tr><th>Ticker</th><th>Sector</th><th>P/L</th><th>ROE</th><th>Score</th></tr></thead>
+            <tbody>
+              <tr><td class="mono">WEGE3</td><td>Industrials</td><td class="mono">28</td><td class="mono">32%</td><td><span class="score">88</span></td></tr>
+              <tr><td class="mono">BBAS3</td><td>Banks</td><td class="mono">5.1</td><td class="mono">18%</td><td><span class="score">74</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="screen" id="portfolio">
+        <div class="page-head">
+          <h1>Portfolio</h1>
+          <p>Manual positions, allocation, concentration flags.</p>
+        </div>
+        <div class="grid grid-4" style="margin-bottom:24px">
+          <div class="card"><div class="label">Equity</div><div class="metric">R$ 125.4k</div></div>
+          <div class="card"><div class="label">Day P&L</div><div class="metric up">+0.6%</div></div>
+          <div class="card"><div class="label">vs Ibovespa</div><div class="metric up">+1.2%</div></div>
+          <div class="card"><div class="label">Top sector</div><div class="metric" style="font-size:18px">Banks 34%</div></div>
+        </div>
+        <div class="card">
+          <table>
+            <thead><tr><th>Ticker</th><th>Qty</th><th>Avg</th><th>Weight</th></tr></thead>
+            <tbody>
+              <tr><td class="mono">ITUB4</td><td class="mono">400</td><td class="mono">28.10</td><td class="mono">22%</td></tr>
+              <tr><td class="mono">PETR4</td><td class="mono">300</td><td class="mono">35.00</td><td class="mono">18%</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="screen" id="alerts">
+        <div class="page-head">
+          <h1>Alerts</h1>
+          <p>Price, indicator, filings, macro regime.</p>
+        </div>
+        <div class="card">
+          <table>
+            <thead><tr><th>Type</th><th>Rule</th><th>Status</th></tr></thead>
+            <tbody>
+              <tr><td>Price</td><td class="mono">PETR4 &lt; 36</td><td><span class="chip watch">Armed</span></td></tr>
+              <tr><td>Indicator</td><td class="mono">VALE3 P/L &lt; 5</td><td><span class="chip">Triggered</span></td></tr>
+              <tr><td>Filing</td><td>New ITR any watchlist</td><td><span class="chip watch">Armed</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <p class="disclaimer">Decision support only — not licensed investment advice under CVM rules. Past performance does not guarantee future results.</p>
+    </main>
+  </div>
+  <script>
+    const links = document.querySelectorAll("nav a");
+    const screens = document.querySelectorAll(".screen");
+    links.forEach((a) => {
+      a.addEventListener("click", (e) => {
+        e.preventDefault();
+        links.forEach((x) => x.classList.remove("active"));
+        a.classList.add("active");
+        screens.forEach((s) => s.classList.remove("on"));
+        document.getElementById(a.dataset.screen).classList.add("on");
+      });
+    });
+  </script>
+</body>
+</html>

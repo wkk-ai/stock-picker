@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>StockPicker · 5 dashboard mockups</title>
+  <link rel="icon" href="../../web/public/favicon.svg" />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font: 15px/1.45 "IBM Plex Sans", sans-serif; background: #0b1f33; color: #e8eef4; padding: 32px; }
+    h1 { font-size: 22px; font-weight: 600; }
+    p { color: #9aadc2; margin: 8px 0 24px; max-width: 62ch; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+    a.card { display: block; background: #12263a; border: 1px solid #2a4158; border-radius: 10px; padding: 18px; color: inherit; text-decoration: none; }
+    a.card:hover { border-color: #c9a227; }
+    .n { font-size: 12px; letter-spacing: .12em; color: #c9a227; }
+    h2 { font-size: 18px; margin: 6px 0; }
+    .sw { display: flex; gap: 6px; margin: 10px 0; }
+    .sw i { width: 18px; height: 18px; border-radius: 3px; display: block; }
+  </style>
+</head>
+<body>
+  <h1>StockPicker — pick a financial look</h1>
+  <p>Five HTML dashboards. Open one, then say the number to apply it to the live app. Favicon is the navy candlestick mark.</p>
+  <div class="grid">
+    <a class="card" href="01-terminal.html">
+      <div class="n">01</div>
+      <h2>Terminal</h2>
+      <div class="sw"><i style="background:#000"></i><i style="background:#ffb300"></i><i style="background:#00c853"></i></div>
+      <p>Bloomberg density. Black, amber headers, ticker tape, watch + chart + tape.</p>
+    </a>
+    <a class="card" href="02-navy-desk.html">
+      <div class="n">02</div>
+      <h2>Navy desk</h2>
+      <div class="sw"><i style="background:#0b1f33"></i><i style="background:#c9a227"></i><i style="background:#fff"></i></div>
+      <p>Research bank. Navy chrome, gold rule, large chart, holdings table.</p>
+    </a>
+    <a class="card" href="03-trade-floor.html">
+      <div class="n">03</div>
+      <h2>Trade floor</h2>
+      <div class="sw"><i style="background:#131722"></i><i style="background:#26a69a"></i><i style="background:#ef5350"></i></div>
+      <p>TradingView. Dark chart, left watchlist, candles, score stack.</p>
+    </a>
+    <a class="card" href="04-private-bank.html">
+      <div class="n">04</div>
+      <h2>Private bank</h2>
+      <div class="sw"><i style="background:#f3efe6"></i><i style="background:#a8893a"></i><i style="background:#3d6b4f"></i></div>
+      <p>Wealth desk. Cream, serif numbers, allocation ring, quiet book.</p>
+    </a>
+    <a class="card" href="05-quant-grid.html">
+      <div class="n">05</div>
+      <h2>Quant grid</h2>
+      <div class="sw"><i style="background:#070b14"></i><i style="background:#00e5c0"></i><i style="background:#ff5d73"></i></div>
+      <p>Heatmap of scores. Factor table. Selic scenario. Most “quant”.</p>
+    </a>
+  </div>
+</body>
+</html>
