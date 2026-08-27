@@ -11,6 +11,7 @@ export default function ScreenerPage() {
   const [minRoe, setMinRoe] = useState("");
   const [preset, setPreset] = useState("");
   const [rows, setRows] = useState<StockListItem[]>([]);
+  const [sectors, setSectors] = useState<Array<{ sector: string; count: number }>>([]);
   const [loading, setLoading] = useState(true);
 
   const query = useMemo(
@@ -24,6 +25,10 @@ export default function ScreenerPage() {
   );
 
   useEffect(() => {
+    api.sectors().then((d) => setSectors(d.sectors || [])).catch(() => undefined);
+  }, []);
+
+  useEffect(() => {
     setLoading(true);
     api
       .screener(query)
@@ -35,7 +40,7 @@ export default function ScreenerPage() {
     <div>
       <PageHead
         title="Screener"
-        subtitle="Filter the universe. Presets for quality compounders and deep value."
+        subtitle="Every Ibovespa name. Open a company to see each metric against its industry."
       />
 
       <div className="mb-6 flex flex-wrap gap-3">
@@ -45,13 +50,11 @@ export default function ScreenerPage() {
           onChange={(e) => setSector(e.target.value)}
         >
           <option value="">All sectors</option>
-          {["Banks", "Oil & Gas", "Mining", "Industrials", "Consumer", "Retail", "Financial Services", "Paper & Pulp"].map(
-            (s) => (
-              <option key={s} value={s}>
-                {s}
-              </option>
-            ),
-          )}
+          {sectors.map((s) => (
+            <option key={s.sector} value={s.sector}>
+              {s.sector} ({s.count})
+            </option>
+          ))}
         </select>
         <input
           className="border border-line bg-elev px-3 py-2.5 text-sm"
@@ -82,43 +85,47 @@ export default function ScreenerPage() {
         </a>
       </div>
 
+      <p className="mb-3 text-[12px] text-muted">{loading ? "Loading…" : `${rows.length} names`}</p>
+
       <Card>
         {loading ? (
           <p className="text-muted text-sm">Loading…</p>
         ) : (
           <div className="overflow-x-auto">
-          <table className="w-full min-w-[640px] text-sm">
-            <thead>
-              <tr className="text-left text-muted">
-                <th className="pb-3 font-medium">Ticker</th>
-                <th className="pb-3 font-medium">Sector</th>
-                <th className="pb-3 font-medium">P/L</th>
-                <th className="pb-3 font-medium">ROE</th>
-                <th className="pb-3 font-medium">Score</th>
-                <th className="pb-3 font-medium">Band</th>
-              </tr>
-            </thead>
-            <tbody>
-              {rows.map((r) => (
-                <tr key={r.ticker} className="border-t border-line">
-                  <td className="py-4">
-                    <Link className="font-mono hover:text-accent" href={`/stocks/${r.ticker}`}>
-                      {r.ticker}
-                    </Link>
-                  </td>
-                  <td className="py-4 text-muted">{r.sector}</td>
-                  <td className="py-4 font-mono">{fmtNum(r.pe, 1)}</td>
-                  <td className="py-4 font-mono">{fmtPct(r.roe)}</td>
-                  <td className="py-4">
-                    <ScorePill value={r.composite} />
-                  </td>
-                  <td className="py-4">
-                    <BandChip band={r.band} />
-                  </td>
+            <table className="w-full min-w-[720px] text-sm">
+              <thead>
+                <tr className="text-left text-muted">
+                  <th className="pb-3 font-medium">Ticker</th>
+                  <th className="pb-3 font-medium">Name</th>
+                  <th className="pb-3 font-medium">Sector</th>
+                  <th className="pb-3 font-medium">P/L</th>
+                  <th className="pb-3 font-medium">ROE</th>
+                  <th className="pb-3 font-medium">Score</th>
+                  <th className="pb-3 font-medium">Band</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {rows.map((r) => (
+                  <tr key={r.ticker} className="border-t border-line">
+                    <td className="py-4">
+                      <Link className="font-mono hover:text-accent" href={`/stocks/${r.ticker}`}>
+                        {r.ticker}
+                      </Link>
+                    </td>
+                    <td className="py-4 text-muted">{r.name}</td>
+                    <td className="py-4 text-muted">{r.sector}</td>
+                    <td className="py-4 font-mono">{fmtNum(r.pe, 1)}</td>
+                    <td className="py-4 font-mono">{fmtPct(r.roe)}</td>
+                    <td className="py-4">
+                      <ScorePill value={r.composite} />
+                    </td>
+                    <td className="py-4">
+                      <BandChip band={r.band} />
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
         )}
       </Card>

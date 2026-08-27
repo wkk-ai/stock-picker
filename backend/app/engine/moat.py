@@ -3,21 +3,33 @@ from __future__ import annotations
 from sqlalchemy.orm import Session
 
 from app.db import MoatProfile, Stock
-from app.seed_data import MOAT_SEED
+from app.seed_data import MOAT_SEED, SECTOR_MOAT
+
+
+def _is_placeholder(row: MoatProfile) -> bool:
+    return (
+        not (row.summary or "").strip()
+        and row.scale == 5
+        and row.regulation == 5
+        and row.brand == 5
+        and row.cost_advantage == 5
+    )
 
 
 def ensure_moat_profiles(db: Session):
     for stock in db.query(Stock).all():
         row = db.query(MoatProfile).filter(MoatProfile.stock_id == stock.id).one_or_none()
-        seed = MOAT_SEED.get(stock.ticker, {})
+        seed = {**SECTOR_MOAT.get(stock.sector, {}), **MOAT_SEED.get(stock.ticker, {})}
         if not row:
             row = MoatProfile(stock_id=stock.id)
             db.add(row)
             for k, v in seed.items():
                 setattr(row, k, v)
-        elif not row.summary and seed:
+        elif _is_placeholder(row) and seed:
             for k, v in seed.items():
                 setattr(row, k, v)
+        elif not row.summary and seed.get("summary"):
+            row.summary = seed["summary"]
     db.commit()
 
 

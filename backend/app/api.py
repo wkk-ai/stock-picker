@@ -20,11 +20,13 @@ from app.db import (
     WatchlistItem,
     get_db,
 )
+from app.engine.advisor import analyze_stock
 from app.engine.moat import update_moat
 from app.engine.scores import WEIGHTS, fair_value_models, recompute_all_scores
 from app.ingest.bcb_sgs import ingest_bcb, latest_macros, macro_value
 from app.ingest.brapi_quotes import ingest_quotes
 from app.ingest.cvm_dfp_itr import ingest_cvm
+from app.ingest.fundamentus import ingest_fundamentus
 from app.ingest.news import ingest_news
 from app.schemas import (
     AlertIn,
@@ -111,9 +113,11 @@ def data_status(db: Session = Depends(get_db)):
         )
     ]
     annual = sorted(p for p in periods if p and p.isdigit() and len(p) == 4)
+    universe = db.query(Stock).filter(Stock.is_active.is_(True)).count()
     return {
         "live_bcb": any(m.get("value") is not None for m in macros),
         "live_cvm": cvm_rows > 0,
+        "universe": universe,
         "bcb": macros,
         "cvm": {
             "rows": cvm_rows,
@@ -164,6 +168,14 @@ def screener(
     return items
 
 
+@router.get("/sectors")
+def list_sectors(db: Session = Depends(get_db)):
+    buckets: dict[str, int] = {}
+    for s in db.query(Stock).filter(Stock.is_active.is_(True)).all():
+        buckets[s.sector] = buckets.get(s.sector, 0) + 1
+    return {"sectors": [{"sector": k, "count": v} for k, v in sorted(buckets.items())]}
+
+
 @router.get("/sectors/heatmap")
 def sector_heatmap(db: Session = Depends(get_db)):
     buckets: dict[str, list[float]] = {}
@@ -180,14 +192,18 @@ def sector_heatmap(db: Session = Depends(get_db)):
     }
 
 
-def _checklist(stock: Stock, ind: Indicator | None, sc: Score | None, moat: MoatProfile | None) -> list[dict]:
-    return [
-        {"key": "valuation", "label": "Valuation reasonable", "ok": bool(ind and ind.pe and ind.pe < 15)},
-        {"key": "moat", "label": "Moat score ≥ 60", "ok": bool(moat and sc and sc.moat >= 60)},
-        {"key": "balance", "label": "Debt under control", "ok": bool(ind and (ind.debt_equity is None or ind.debt_equity < 1.5))},
-        {"key": "macro", "label": "Macro fit ≥ 50", "ok": bool(sc and sc.macro_fit >= 50)},
-        {"key": "quality", "label": "Quality ≥ 60", "ok": bool(sc and sc.quality >= 60)},
-    ]
+def _checklist_from_analysis(analysis: dict) -> list[dict]:
+    items = []
+    for c in analysis.get("checklist") or []:
+        items.append(
+            {
+                "key": c.get("key"),
+                "label": c.get("question") or c.get("label"),
+                "ok": bool(c.get("ok")),
+                "detail": c.get("detail"),
+            }
+        )
+    return items
 
 
 @router.get("/stocks/{ticker}", response_model=StockDetail)
@@ -235,10 +251,13 @@ def stock_detail(ticker: str, db: Session = Depends(get_db)):
         .limit(15)
         .all()
     )
-    peers = [
+    peers_raw = [
         _list_item(p, db)
-        for p in db.query(Stock).filter(Stock.sector == stock.sector, Stock.id != stock.id).limit(6)
+        for p in db.query(Stock).filter(Stock.sector == stock.sector, Stock.id != stock.id).all()
     ]
+    analysis = analyze_stock(db, stock)
+    analysis_peers = analysis.get("peers") or []
+    peers = analysis_peers or [p.model_dump() for p in peers_raw]
     thesis = db.query(ThesisNote).filter(ThesisNote.ticker == stock.ticker).one_or_none()
     thesis_out = None
     if thesis:
@@ -301,7 +320,11 @@ def stock_detail(ticker: str, db: Session = Depends(get_db)):
         }
         if moat
         else None,
-        fair_value=fair_value_models(ind, q.price if q else None),
+        fair_value=fair_value_models(
+            ind,
+            q.price if q else None,
+            industry_pe=(analysis.get("implied") or {}).get("industry_pe"),
+        ),
         statements=[
             {
                 "period": s.period,
@@ -324,7 +347,8 @@ def stock_detail(ticker: str, db: Session = Depends(get_db)):
         ],
         peers=peers,
         thesis=thesis_out,
-        checklist=_checklist(stock, ind, sc, moat),
+        checklist=_checklist_from_analysis(analysis),
+        analysis=analysis,
     )
 
 
@@ -549,9 +573,19 @@ def run_ingest(
     include_bcb: bool = True,
     include_quotes: bool = True,
     include_news: bool = True,
+    include_fundamentus: bool = True,
     db: Session = Depends(get_db),
 ):
+    from app.bootstrap import seed_defaults, seed_stocks
+    from app.engine.indicators import refresh_computed_indicators, upsert_indicators_from_seed
+    from app.engine.moat import ensure_moat_profiles
+
+    seed_stocks(db)
+    seed_defaults(db)
+    ensure_moat_profiles(db)
     result = {}
+    if include_fundamentus:
+        result["fundamentus"] = ingest_fundamentus(db)
     if include_bcb:
         result["bcb"] = ingest_bcb(db)
     if include_cvm:
@@ -566,14 +600,13 @@ def run_ingest(
     macros = latest_macros(db)
     selic = macro_value(macros, "SELIC")
     ipca = macro_value(macros, "IPCA_12M") or macro_value(macros, "IPCA")
-    from app.engine.indicators import refresh_computed_indicators, upsert_indicators_from_seed
-
     upsert_indicators_from_seed(db, fill_missing_only=True)
     refresh_computed_indicators(db)
     recompute_all_scores(db, selic=selic, ipca=ipca)
     result["scores"] = "recomputed"
     result["selic"] = selic
     result["ipca_12m"] = ipca
+    result["universe"] = db.query(Stock).filter(Stock.is_active.is_(True)).count()
     return result
 
 

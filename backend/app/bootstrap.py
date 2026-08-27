@@ -1,13 +1,14 @@
 """Initialize DB, seed universe, run ingest + scores."""
 from __future__ import annotations
 
-from app.db import AlertRule, FinancialStatement, PortfolioPosition, SessionLocal, Stock, WatchlistItem, init_db
+from app.db import AlertRule, PortfolioPosition, SessionLocal, Stock, WatchlistItem, init_db
 from app.engine.indicators import refresh_computed_indicators, upsert_indicators_from_seed
 from app.engine.moat import ensure_moat_profiles
 from app.engine.scores import recompute_all_scores
 from app.ingest.bcb_sgs import ingest_bcb, latest_macros, macro_value
 from app.ingest.brapi_quotes import ingest_quotes
 from app.ingest.cvm_dfp_itr import ingest_cvm
+from app.ingest.fundamentus import ingest_fundamentus
 from app.ingest.news import ingest_news
 from app.seed_data import SEED_STOCKS
 
@@ -39,6 +40,16 @@ def seed_defaults(db):
     db.commit()
 
 
+def _recompute(db):
+    refresh_computed_indicators(db)
+    macros = latest_macros(db)
+    recompute_all_scores(
+        db,
+        selic=macro_value(macros, "SELIC"),
+        ipca=macro_value(macros, "IPCA_12M") or macro_value(macros, "IPCA"),
+    )
+
+
 def main():
     init_db()
     db = SessionLocal()
@@ -47,6 +58,7 @@ def main():
         seed_defaults(db)
         upsert_indicators_from_seed(db)
         ensure_moat_profiles(db)
+        print("Fundamentus ingest:", ingest_fundamentus(db))
         print("BCB ingest:", ingest_bcb(db))
         print("CVM ingest:", ingest_cvm(db))
         print("Quotes ingest:", ingest_quotes(db))
@@ -54,46 +66,41 @@ def main():
             print("News ingest:", ingest_news(db))
         except Exception as exc:  # noqa: BLE001
             print("News ingest skipped:", exc)
-        refresh_computed_indicators(db)
+        _recompute(db)
         macros = latest_macros(db)
-        selic = macro_value(macros, "SELIC")
-        ipca = macro_value(macros, "IPCA_12M") or macro_value(macros, "IPCA")
-        recompute_all_scores(db, selic=selic, ipca=ipca)
-        print("Bootstrap complete. Selic=", selic, "IPCA_12M=", ipca)
+        print(
+            "Bootstrap complete. Selic=",
+            macro_value(macros, "SELIC"),
+            "IPCA_12M=",
+            macro_value(macros, "IPCA_12M") or macro_value(macros, "IPCA"),
+        )
     finally:
         db.close()
 
 
-def fill_live_data(include_cvm: bool = True, include_bcb: bool = True, include_quotes: bool = True):
-    """Idempotent: seed universe if empty, then pull official BCB/CVM data."""
+def fill_live_data(
+    include_cvm: bool = True,
+    include_bcb: bool = True,
+    include_quotes: bool = True,
+    include_fundamentus: bool = True,
+):
+    """Idempotent: seed the full Ibovespa universe, then pull live feeds."""
     init_db()
     db = SessionLocal()
     try:
         seed_stocks(db)
         seed_defaults(db)
-        upsert_indicators_from_seed(db)
+        upsert_indicators_from_seed(db, fill_missing_only=True)
         ensure_moat_profiles(db)
+        if include_fundamentus:
+            print("Fundamentus ingest:", ingest_fundamentus(db))
         if include_bcb:
             print("BCB ingest:", ingest_bcb(db))
         if include_cvm:
-            existing = (
-                db.query(FinancialStatement)
-                .filter(FinancialStatement.source == "cvm")
-                .count()
-            )
-            if existing:
-                print("CVM already present:", existing, "rows")
-            else:
-                print("CVM ingest:", ingest_cvm(db))
+            print("CVM ingest:", ingest_cvm(db))
         if include_quotes:
             print("Quotes ingest:", ingest_quotes(db))
-        refresh_computed_indicators(db)
-        macros = latest_macros(db)
-        recompute_all_scores(
-            db,
-            selic=macro_value(macros, "SELIC"),
-            ipca=macro_value(macros, "IPCA_12M") or macro_value(macros, "IPCA"),
-        )
+        _recompute(db)
     finally:
         db.close()
 

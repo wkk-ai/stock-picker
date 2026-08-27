@@ -94,6 +94,15 @@ export async function GET(
     if (minScore != null) rows = rows.filter((s) => s.score && s.score.composite >= minScore!);
     return json(rows.map(listItem).sort((a, b) => (b.composite || 0) - (a.composite || 0)));
   }
+  if (parts[0] === "sectors" && !parts[1]) {
+    const buckets: Record<string, number> = {};
+    for (const s of snap.stocks) buckets[s.sector] = (buckets[s.sector] || 0) + 1;
+    return json({
+      sectors: Object.entries(buckets)
+        .sort(([a], [b]) => a.localeCompare(b))
+        .map(([sector, count]) => ({ sector, count })),
+    });
+  }
   if (parts[0] === "sectors" && parts[1] === "heatmap") {
     const buckets: Record<string, number[]> = {};
     for (const s of snap.stocks) {

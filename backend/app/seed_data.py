@@ -1,19 +1,6 @@
-SEED_STOCKS = [
-    {"ticker": "PETR4", "name": "Petrobras PN", "sector": "Oil & Gas", "cvm_code": "9512"},
-    {"ticker": "VALE3", "name": "Vale ON", "sector": "Mining", "cvm_code": "4170"},
-    {"ticker": "ITUB4", "name": "Itaú Unibanco PN", "sector": "Banks", "cvm_code": "19348"},
-    {"ticker": "BBAS3", "name": "Banco do Brasil ON", "sector": "Banks", "cvm_code": "1023"},
-    {"ticker": "WEGE3", "name": "WEG ON", "sector": "Industrials", "cvm_code": "5410"},
-    {"ticker": "ABEV3", "name": "Ambev ON", "sector": "Consumer", "cvm_code": "23264"},
-    {"ticker": "BBDC4", "name": "Bradesco PN", "sector": "Banks", "cvm_code": "906"},
-    {"ticker": "B3SA3", "name": "B3 ON", "sector": "Financial Services", "cvm_code": "21610"},
-    {"ticker": "RENT3", "name": "Localiza ON", "sector": "Consumer", "cvm_code": "19739"},
-    {"ticker": "MGLU3", "name": "Magazine Luiza ON", "sector": "Retail", "cvm_code": "22470"},
-    {"ticker": "SUZB3", "name": "Suzano ON", "sector": "Paper & Pulp", "cvm_code": "13986"},
-    {"ticker": "PRIO3", "name": "Prio ON", "sector": "Oil & Gas", "cvm_code": "22187"},
-]
+from app.universe import IBOV_ROWS, SECTOR_CAVEATS, SECTOR_GROUP, SECTOR_MACRO_SENSITIVITY, SECTOR_MOAT, SEED_STOCKS
 
-# Fallback fundamentals when CVM/brapi unavailable (order-of-magnitude realistic)
+# Fallback fundamentals when live feeds are unavailable (order-of-magnitude realistic)
 SEED_INDICATORS = {
     "PETR4": {"pe": 6.2, "pb": 1.1, "ev_ebitda": 3.4, "dividend_yield": 0.12, "roe": 0.28, "roa": 0.12, "roic": 0.18, "net_margin": 0.22, "ebitda_margin": 0.40, "debt_equity": 0.7, "current_ratio": 1.2, "revenue_growth": 0.05, "earnings_growth": 0.08},
     "VALE3": {"pe": 7.5, "pb": 1.4, "ev_ebitda": 4.1, "dividend_yield": 0.08, "roe": 0.22, "roa": 0.10, "roic": 0.15, "net_margin": 0.18, "ebitda_margin": 0.35, "debt_equity": 0.5, "current_ratio": 1.5, "revenue_growth": -0.02, "earnings_growth": -0.05},
@@ -31,12 +18,14 @@ SEED_INDICATORS = {
 
 MOAT_SEED = {
     "PETR4": {"scale": 9, "regulation": 9, "brand": 6, "cost_advantage": 8, "switching_costs": 5, "network": 3, "summary": "Dominant integrated oil producer with scale and state-linked competitive position in Brazil."},
+    "PETR3": {"scale": 9, "regulation": 9, "brand": 6, "cost_advantage": 8, "switching_costs": 5, "network": 3, "summary": "Same company as PETR4 — ordinary shares, usually a bit more volatile."},
     "VALE3": {"scale": 9, "regulation": 6, "brand": 5, "cost_advantage": 8, "switching_costs": 4, "network": 2, "summary": "World-class iron ore assets; cost curve advantage, commodity cyclical."},
     "ITUB4": {"scale": 8, "regulation": 8, "brand": 8, "cost_advantage": 7, "switching_costs": 7, "network": 6, "summary": "Large private bank franchise; deposit stickiness and brand."},
     "BBAS3": {"scale": 8, "regulation": 8, "brand": 7, "cost_advantage": 6, "switching_costs": 6, "network": 5, "summary": "Public bank with agribusiness reach and policy role."},
     "WEGE3": {"scale": 7, "regulation": 4, "brand": 8, "cost_advantage": 7, "switching_costs": 6, "network": 4, "summary": "Industrial compounder with global niche leadership in motors/automation."},
     "ABEV3": {"scale": 8, "regulation": 5, "brand": 9, "cost_advantage": 8, "switching_costs": 4, "network": 3, "summary": "Beverage scale and brand portfolio; distribution moat."},
     "BBDC4": {"scale": 8, "regulation": 8, "brand": 7, "cost_advantage": 6, "switching_costs": 7, "network": 5, "summary": "Large retail bank; franchise and switching costs."},
+    "BBDC3": {"scale": 8, "regulation": 8, "brand": 7, "cost_advantage": 6, "switching_costs": 7, "network": 5, "summary": "Same franchise as BBDC4 — ordinary shares."},
     "B3SA3": {"scale": 9, "regulation": 9, "brand": 7, "cost_advantage": 8, "switching_costs": 8, "network": 9, "summary": "Exchange monopoly-like infrastructure with network effects."},
     "RENT3": {"scale": 7, "regulation": 4, "brand": 7, "cost_advantage": 6, "switching_costs": 4, "network": 3, "summary": "Fleet scale in car rental; competitive industry."},
     "MGLU3": {"scale": 6, "regulation": 3, "brand": 7, "cost_advantage": 4, "switching_costs": 3, "network": 5, "summary": "Retail/e-commerce brand; thin moat, high competition."},
@@ -44,13 +33,13 @@ MOAT_SEED = {
     "PRIO3": {"scale": 5, "regulation": 6, "brand": 4, "cost_advantage": 7, "switching_costs": 3, "network": 2, "summary": "Efficient offshore oil operator; smaller scale than Petrobras."},
 }
 
-SECTOR_MACRO_SENSITIVITY = {
-    "Banks": {"selic": 0.8, "ipca": 0.2, "fx": 0.1},
-    "Oil & Gas": {"selic": -0.2, "ipca": 0.1, "fx": 0.7},
-    "Mining": {"selic": -0.1, "ipca": 0.1, "fx": 0.8},
-    "Industrials": {"selic": -0.3, "ipca": -0.2, "fx": 0.3},
-    "Consumer": {"selic": -0.5, "ipca": -0.4, "fx": 0.2},
-    "Retail": {"selic": -0.7, "ipca": -0.5, "fx": 0.2},
-    "Financial Services": {"selic": 0.4, "ipca": 0.1, "fx": 0.2},
-    "Paper & Pulp": {"selic": -0.2, "ipca": 0.1, "fx": 0.6},
-}
+__all__ = [
+    "IBOV_ROWS",
+    "MOAT_SEED",
+    "SECTOR_CAVEATS",
+    "SECTOR_GROUP",
+    "SECTOR_MACRO_SENSITIVITY",
+    "SECTOR_MOAT",
+    "SEED_INDICATORS",
+    "SEED_STOCKS",
+]

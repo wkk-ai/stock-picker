@@ -81,9 +81,10 @@ class StockDetail(BaseModel):
     fair_value: dict[str, Any] = {}
     statements: list[dict[str, Any]] = []
     news: list[dict[str, Any]] = []
-    peers: list[StockListItem] = []
+    peers: list[dict[str, Any]] = []
     thesis: Optional[dict[str, Any]] = None
     checklist: list[dict[str, Any]] = []
+    analysis: dict[str, Any] = {}
 
 
 class MacroOut(BaseModel):

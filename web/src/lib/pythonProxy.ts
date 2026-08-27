@@ -13,7 +13,7 @@ export async function proxyPython(req: NextRequest, parts: string[]): Promise<Ne
   const url = new URL(`/api/${path}`, PYTHON);
   url.search = req.nextUrl.search;
   const method = req.method.toUpperCase();
-  const timeout = path.includes("ingest") ? 180_000 : 20_000;
+  const timeout = path.includes("ingest") ? 300_000 : 20_000;
   try {
     const res = await fetch(url, {
       method,

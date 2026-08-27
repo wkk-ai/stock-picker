@@ -49,11 +49,12 @@ export function ScorePill({ value }: { value?: number | null }) {
 
 export function BandChip({ band }: { band?: string | null }) {
   if (!band) return null;
-  const soft = band === "Hold+" || band === "Watch";
+  const good = band === "Attractive" || band === "Fair" || band === "Hold+" || band === "Watch";
+  const bad = band === "Avoid";
   return (
     <span
       className={`inline-block rounded-[4px] px-2 py-0.5 text-[11px] tracking-wide ${
-        soft ? "bg-soft text-accent" : "bg-[#FDF0E7] text-watch"
+        bad ? "bg-red-50 text-down" : good ? "bg-soft text-accent" : "bg-[#FDF0E7] text-watch"
       }`}
     >
       {band}

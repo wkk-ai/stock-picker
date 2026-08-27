@@ -7,6 +7,7 @@ from sqlalchemy.orm import Session
 
 from app.db import FinancialStatement, Indicator, Stock
 from app.seed_data import SEED_INDICATORS
+from app.universe import BANK_LIKE
 
 CVM_RATIO_FIELDS = (
     "roe",
@@ -96,10 +97,11 @@ def compute_from_statements(db: Session, stock: Stock) -> Optional[dict]:
         out["net_margin"] = ni / revenue
     if ebit is not None and revenue:
         out["ebitda_margin"] = ebit / revenue
-    if liabilities is not None and equity and current_liab is not None:
-        out["debt_equity"] = liabilities / equity
-    if current_assets is not None and current_liab:
-        out["current_ratio"] = current_assets / current_liab
+    if getattr(stock, "sector", "") not in BANK_LIKE:
+        if liabilities is not None and equity and current_liab is not None:
+            out["debt_equity"] = liabilities / equity
+        if current_assets is not None and current_liab:
+            out["current_ratio"] = current_assets / current_liab
     if revenue is not None and prev_rev:
         out["revenue_growth"] = (revenue / prev_rev) - 1
     if ni is not None and prev_ni:

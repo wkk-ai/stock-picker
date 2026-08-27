@@ -52,7 +52,8 @@ export default function HomePage() {
       const ds = await api.dataStatus();
       const bcb = ds.live_bcb ? "Banco Central" : "sample";
       const cvm = ds.live_cvm ? `CVM filings ${ds.cvm.annual_years.join(", ")}` : "sample filings";
-      setStatus(`${bcb} · ${cvm}`);
+      const n = ds.universe ? ` · ${ds.universe} Ibovespa names` : "";
+      setStatus(`${bcb} · ${cvm}${n}`);
     } catch {
       setStatus("");
     }
@@ -86,7 +87,7 @@ export default function HomePage() {
           disabled={busy}
           onClick={async () => {
             setBusy(true);
-            setStatus("Updating from Banco Central and CVM…");
+            setStatus("Updating prices, filings and industry comparisons…");
             try {
               await api.ingest();
               await load();

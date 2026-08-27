@@ -22,6 +22,7 @@ export type MacroItem = {
 export type DataStatus = {
   live_bcb: boolean;
   live_cvm: boolean;
+  universe?: number;
   bcb: MacroItem[];
   cvm: { rows: number; tickers: string[]; periods: string[]; annual_years: string[] };
   disclaimer: string;
@@ -72,6 +73,7 @@ export const api = {
     getJSON("/api/alerts", { method: "POST", body: JSON.stringify(body) }),
   deleteAlert: (id: number) => getJSON(`/api/alerts/${id}`, { method: "DELETE" }),
   heatmap: () => getJSON<{ sectors: Array<{ sector: string; avg_score: number; count: number }> }>("/api/sectors/heatmap"),
+  sectors: () => getJSON<{ sectors: Array<{ sector: string; count: number }> }>("/api/sectors"),
   news: () => getJSON<Array<Record<string, unknown>>>("/api/news"),
   scenario: (selic_delta: number) =>
     getJSON<Record<string, unknown>>(`/api/scenario?selic_delta=${selic_delta}`),

@@ -482,11 +482,53 @@ def ingest_cvm(
         stats["tickers"][item["ticker"]] = stats["tickers"].get(item["ticker"], 0) + 1
     db.commit()
 
+    copied = _copy_cvm_to_siblings(db, by_ticker, matched_tickers)
+    matched_tickers |= copied
+    stats["copied_listings"] = sorted(copied)
+
     missing = allowed - matched_tickers
-    if missing:
-        seed_statements_from_indicators(db, only_tickers=missing)
+    seed_only = {t for t in missing if t in SEED_INDICATORS}
+    if seed_only:
+        seed_statements_from_indicators(db, only_tickers=seed_only)
     stats["matched_tickers"] = sorted(matched_tickers)
-    stats["seed_fallback"] = sorted(missing)
+    stats["seed_fallback"] = sorted(seed_only)
+    stats["unmatched"] = sorted(missing - seed_only)
     stats["rows"] = len(parsed_rows)
     stats["status"] = "ok" if matched_tickers else "no_matches"
     return stats
+
+
+def _copy_cvm_to_siblings(db: Session, by_ticker: dict[str, Stock], matched: set[str]) -> set[str]:
+    """ON/PN lines share CVM filings — copy the matched ticker onto its twins."""
+    by_code: dict[str, list[str]] = {}
+    for ticker, stock in by_ticker.items():
+        if stock.cvm_code:
+            by_code.setdefault(str(stock.cvm_code), []).append(ticker)
+    copied: set[str] = set()
+    for tickers in by_code.values():
+        if len(tickers) < 2:
+            continue
+        donor_ticker = next((t for t in tickers if t in matched), None)
+        if not donor_ticker:
+            continue
+        donor = by_ticker[donor_ticker]
+        stmts = (
+            db.query(FinancialStatement)
+            .filter(
+                FinancialStatement.stock_id == donor.id,
+                FinancialStatement.source == "cvm",
+            )
+            .all()
+        )
+        if not stmts:
+            continue
+        for ticker in tickers:
+            if ticker == donor_ticker:
+                continue
+            stock = by_ticker[ticker]
+            for s in stmts:
+                _upsert_statement(db, stock, s.period, s.statement_type, s.account, s.value, "cvm")
+            copied.add(ticker)
+    if copied:
+        db.commit()
+    return copied
