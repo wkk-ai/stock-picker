@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { NavTabs } from "@/components/NavTabs";
+import { MacroBar } from "@/components/MacroBar";
 import { getSnapshot } from "@/lib/store";
-import { fmtNum } from "@/lib/api";
 
 function BrandMark() {
   return (
@@ -16,8 +16,6 @@ function BrandMark() {
 
 export function Shell({ children }: { children: React.ReactNode }) {
   const macros = getSnapshot().macros;
-  const usd = macros.find((m) => m.code === "USD_BRL");
-  const selic = macros.find((m) => m.code === "SELIC");
 
   return (
     <div className="min-h-screen bg-bg">
@@ -26,10 +24,7 @@ export function Shell({ children }: { children: React.ReactNode }) {
           <BrandMark />
           STOCKPICKER <span className="font-normal text-gold">BR</span>
         </Link>
-        <div className="hidden font-mono text-[13px] text-[#9DFFC2] sm:block">
-          USD {usd?.value != null ? fmtNum(usd.value, 2) : "—"}
-          {selic?.value != null ? <span className="ml-4 text-[#E8EEF4]/80">SELIC {fmtNum(selic.value, 2)}%</span> : null}
-        </div>
+        <MacroBar initial={macros} />
         <div className="ml-auto text-[12px] text-white/70">Research desk · B3 delayed</div>
       </header>
       <div className="h-[3px] bg-gold" />

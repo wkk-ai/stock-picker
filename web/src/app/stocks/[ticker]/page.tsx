@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
-import { api, fmtNum, fmtPct } from "@/lib/api";
+import { api, fmtBRL, fmtNum, fmtPct } from "@/lib/api";
 import { BandChip, Card, Disclaimer, Label, PageHead, ScorePill } from "@/components/ui";
 
 type Detail = {
@@ -120,7 +120,7 @@ export default function StockPage() {
           </Card>
 
           <Card>
-            <Label>Key ratios</Label>
+            <Label>Key ratios {ind.source === "cvm" ? "· CVM" : ""}</Label>
             <table className="mt-2 w-full text-sm">
               <tbody>
                 {[
@@ -222,6 +222,14 @@ export default function StockPage() {
       {tab === "Financials" && (
         <Card>
           <Label>Statements</Label>
+          <p className="mt-1 text-[12px] text-faint">
+            {(data.statements || []).some((s) => s.source === "cvm")
+              ? "Official CVM DFP/ITR filings (consolidated when available)."
+              : "Sample figures — refresh official data from the home screen."}
+          </p>
+          {(data.statements || []).length === 0 ? (
+            <p className="mt-4 text-sm text-muted">No filings loaded yet.</p>
+          ) : (
           <table className="mt-3 w-full text-sm">
             <thead>
               <tr className="text-left text-muted">
@@ -238,12 +246,13 @@ export default function StockPage() {
                   <td className="py-3 font-mono">{s.period}</td>
                   <td className="py-3">{s.type}</td>
                   <td className="py-3">{s.account}</td>
-                  <td className="py-3 font-mono">{fmtNum(s.value, 0)}</td>
-                  <td className="py-3 text-faint">{s.source}</td>
+                  <td className="py-3 font-mono">{fmtBRL(s.value)}</td>
+                  <td className="py-3 text-faint">{s.source === "cvm" ? "CVM" : s.source}</td>
                 </tr>
               ))}
             </tbody>
           </table>
+          )}
         </Card>
       )}
 

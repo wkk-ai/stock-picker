@@ -22,7 +22,7 @@ from app.db import (
 )
 from app.engine.moat import update_moat
 from app.engine.scores import WEIGHTS, fair_value_models, recompute_all_scores
-from app.ingest.bcb_sgs import ingest_bcb, latest_macros
+from app.ingest.bcb_sgs import ingest_bcb, latest_macros, macro_value
 from app.ingest.brapi_quotes import ingest_quotes
 from app.ingest.cvm_dfp_itr import ingest_cvm
 from app.ingest.news import ingest_news
@@ -73,7 +73,56 @@ def disclaimer():
 
 @router.get("/macros")
 def macros(db: Session = Depends(get_db)):
-    return {"items": latest_macros(db), "disclaimer": DISCLAIMER}
+    items = latest_macros(db)
+    live = any(m.get("value") is not None for m in items)
+    return {
+        "items": items,
+        "disclaimer": DISCLAIMER,
+        "source": "BCB SGS",
+        "live": live,
+    }
+
+
+@router.get("/data-status")
+def data_status(db: Session = Depends(get_db)):
+    macros = latest_macros(db)
+    cvm_rows = (
+        db.query(FinancialStatement)
+        .filter(FinancialStatement.source == "cvm")
+        .count()
+    )
+    tickers = [
+        t[0]
+        for t in (
+            db.query(Stock.ticker)
+            .join(FinancialStatement, FinancialStatement.stock_id == Stock.id)
+            .filter(FinancialStatement.source == "cvm")
+            .distinct()
+            .all()
+        )
+    ]
+    periods = [
+        p[0]
+        for p in (
+            db.query(FinancialStatement.period)
+            .filter(FinancialStatement.source == "cvm")
+            .distinct()
+            .all()
+        )
+    ]
+    annual = sorted(p for p in periods if p and p.isdigit() and len(p) == 4)
+    return {
+        "live_bcb": any(m.get("value") is not None for m in macros),
+        "live_cvm": cvm_rows > 0,
+        "bcb": macros,
+        "cvm": {
+            "rows": cvm_rows,
+            "tickers": tickers,
+            "periods": sorted(periods),
+            "annual_years": annual,
+        },
+        "disclaimer": DISCLAIMER,
+    }
 
 
 @router.get("/stocks", response_model=list[StockListItem])
@@ -153,10 +202,32 @@ def stock_detail(ticker: str, db: Session = Depends(get_db)):
     stmts = (
         db.query(FinancialStatement)
         .filter(FinancialStatement.stock_id == stock.id)
-        .order_by(FinancialStatement.period.desc())
-        .limit(40)
         .all()
     )
+    account_rank = {
+        "NetRevenue": 0,
+        "GrossProfit": 1,
+        "EBIT": 2,
+        "NetIncome": 3,
+        "TotalAssets": 4,
+        "CurrentAssets": 5,
+        "CurrentLiabilities": 6,
+        "NonCurrentLiabilities": 7,
+        "TotalLiabilities": 8,
+        "Equity": 9,
+        "OperatingCF": 10,
+        "InvestingCF": 11,
+        "FinancingCF": 12,
+    }
+    stmts.sort(
+        key=lambda s: (
+            s.period or "",
+            -account_rank.get(s.account, 50),
+            s.account,
+        ),
+        reverse=True,
+    )
+    stmts = stmts[:80]
     news = (
         db.query(NewsItem)
         .filter((NewsItem.stock_id == stock.id) | (NewsItem.stock_id.is_(None)))
@@ -263,9 +334,11 @@ def put_moat(ticker: str, body: MoatUpdate, db: Session = Depends(get_db)):
     if not row:
         raise HTTPException(404, "Ticker not found")
     macros = latest_macros(db)
-    selic = next((m["value"] for m in macros if m["code"] == "SELIC"), None)
-    ipca = next((m["value"] for m in macros if m["code"] == "IPCA"), None)
-    recompute_all_scores(db, selic=selic, ipca=ipca)
+    recompute_all_scores(
+        db,
+        selic=macro_value(macros, "SELIC"),
+        ipca=macro_value(macros, "IPCA_12M") or macro_value(macros, "IPCA"),
+    )
     return {"ok": True}
 
 
@@ -491,14 +564,16 @@ def run_ingest(
         except Exception as exc:  # noqa: BLE001
             result["news"] = {"error": str(exc)}
     macros = latest_macros(db)
-    selic = next((m["value"] for m in macros if m["code"] == "SELIC"), None)
-    ipca = next((m["value"] for m in macros if m["code"] == "IPCA"), None)
+    selic = macro_value(macros, "SELIC")
+    ipca = macro_value(macros, "IPCA_12M") or macro_value(macros, "IPCA")
     from app.engine.indicators import refresh_computed_indicators, upsert_indicators_from_seed
 
-    upsert_indicators_from_seed(db)
+    upsert_indicators_from_seed(db, fill_missing_only=True)
     refresh_computed_indicators(db)
     recompute_all_scores(db, selic=selic, ipca=ipca)
     result["scores"] = "recomputed"
+    result["selic"] = selic
+    result["ipca_12m"] = ipca
     return result
 
 

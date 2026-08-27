@@ -10,6 +10,8 @@ class Settings(BaseSettings):
     cors_origins: str = "http://localhost:3000"
     data_dir: Path = Path(__file__).resolve().parents[1] / "data"
 
+    auto_ingest: bool = True
+
     class Config:
         env_file = ".env"
         extra = "ignore"

@@ -7,6 +7,7 @@ import {
   getStore,
   listItem,
 } from "@/lib/store";
+import { proxyPython } from "@/lib/pythonProxy";
 
 export const dynamic = "force-dynamic";
 
@@ -20,12 +21,23 @@ export async function GET(
 ) {
   const { path } = await ctx.params;
   const parts = path || [];
+  const live = await proxyPython(req.clone(), parts);
+  if (live) return live;
   const snap = getSnapshot();
   const st = getStore();
   const q = req.nextUrl.searchParams;
 
   if (parts[0] === "health") {
     return json({ ok: true, disclaimer: snap.disclaimer, mode: "hostinger-node" });
+  }
+  if (parts[0] === "data-status") {
+    return json({
+      live_bcb: false,
+      live_cvm: false,
+      bcb: snap.macros,
+      cvm: { rows: 0, tickers: [], periods: [], annual_years: [] },
+      disclaimer: snap.disclaimer,
+    });
   }
   if (parts[0] === "disclaimer") {
     return json({ disclaimer: snap.disclaimer, score_weights: snap.score_weights });
@@ -211,6 +223,8 @@ export async function POST(
 ) {
   const { path } = await ctx.params;
   const parts = path || [];
+  const live = await proxyPython(req.clone(), parts);
+  if (live) return live;
   const st = getStore();
   const body = await req.json().catch(() => ({}));
 
@@ -262,6 +276,8 @@ export async function PUT(
 ) {
   const { path } = await ctx.params;
   const parts = path || [];
+  const live = await proxyPython(req.clone(), parts);
+  if (live) return live;
   const st = getStore();
   const body = await req.json().catch(() => ({}));
 
@@ -286,11 +302,13 @@ export async function PUT(
 }
 
 export async function DELETE(
-  _req: NextRequest,
+  req: NextRequest,
   ctx: { params: Promise<{ path: string[] }> },
 ) {
   const { path } = await ctx.params;
   const parts = path || [];
+  const live = await proxyPython(req.clone(), parts);
+  if (live) return live;
   const st = getStore();
 
   if (parts[0] === "watchlist" && parts[1]) {

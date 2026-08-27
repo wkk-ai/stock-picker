@@ -1,11 +1,11 @@
 """Initialize DB, seed universe, run ingest + scores."""
 from __future__ import annotations
 
-from app.db import AlertRule, PortfolioPosition, SessionLocal, Stock, WatchlistItem, init_db
+from app.db import AlertRule, FinancialStatement, PortfolioPosition, SessionLocal, Stock, WatchlistItem, init_db
 from app.engine.indicators import refresh_computed_indicators, upsert_indicators_from_seed
 from app.engine.moat import ensure_moat_profiles
 from app.engine.scores import recompute_all_scores
-from app.ingest.bcb_sgs import ingest_bcb, latest_macros
+from app.ingest.bcb_sgs import ingest_bcb, latest_macros, macro_value
 from app.ingest.brapi_quotes import ingest_quotes
 from app.ingest.cvm_dfp_itr import ingest_cvm
 from app.ingest.news import ingest_news
@@ -14,8 +14,13 @@ from app.seed_data import SEED_STOCKS
 
 def seed_stocks(db):
     for row in SEED_STOCKS:
-        if not db.query(Stock).filter(Stock.ticker == row["ticker"]).one_or_none():
+        existing = db.query(Stock).filter(Stock.ticker == row["ticker"]).one_or_none()
+        if not existing:
             db.add(Stock(**row))
+        else:
+            existing.name = row["name"]
+            existing.sector = row["sector"]
+            existing.cvm_code = row["cvm_code"]
     db.commit()
 
 
@@ -51,10 +56,42 @@ def main():
             print("News ingest skipped:", exc)
         refresh_computed_indicators(db)
         macros = latest_macros(db)
-        selic = next((m["value"] for m in macros if m["code"] == "SELIC"), None)
-        ipca = next((m["value"] for m in macros if m["code"] == "IPCA"), None)
+        selic = macro_value(macros, "SELIC")
+        ipca = macro_value(macros, "IPCA_12M") or macro_value(macros, "IPCA")
         recompute_all_scores(db, selic=selic, ipca=ipca)
-        print("Bootstrap complete. Selic=", selic, "IPCA=", ipca)
+        print("Bootstrap complete. Selic=", selic, "IPCA_12M=", ipca)
+    finally:
+        db.close()
+
+
+def fill_live_data(include_cvm: bool = True, include_bcb: bool = True):
+    """Idempotent: seed universe if empty, then pull official BCB/CVM data."""
+    init_db()
+    db = SessionLocal()
+    try:
+        seed_stocks(db)
+        seed_defaults(db)
+        upsert_indicators_from_seed(db)
+        ensure_moat_profiles(db)
+        if include_bcb:
+            print("BCB ingest:", ingest_bcb(db))
+        if include_cvm:
+            existing = (
+                db.query(FinancialStatement)
+                .filter(FinancialStatement.source == "cvm")
+                .count()
+            )
+            if existing:
+                print("CVM already present:", existing, "rows")
+            else:
+                print("CVM ingest:", ingest_cvm(db))
+        refresh_computed_indicators(db)
+        macros = latest_macros(db)
+        recompute_all_scores(
+            db,
+            selic=macro_value(macros, "SELIC"),
+            ipca=macro_value(macros, "IPCA_12M") or macro_value(macros, "IPCA"),
+        )
     finally:
         db.close()
 

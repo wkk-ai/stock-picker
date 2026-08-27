@@ -16,6 +16,15 @@ export type MacroItem = {
   name: string;
   date?: string | null;
   value?: number | null;
+  source?: string | null;
+};
+
+export type DataStatus = {
+  live_bcb: boolean;
+  live_cvm: boolean;
+  bcb: MacroItem[];
+  cvm: { rows: number; tickers: string[]; periods: string[]; annual_years: string[] };
+  disclaimer: string;
 };
 
 const BASE =
@@ -73,6 +82,7 @@ export const api = {
   putThesis: (ticker: string, body: Record<string, unknown>) =>
     getJSON(`/api/stocks/${ticker}/thesis`, { method: "PUT", body: JSON.stringify(body) }),
   ingest: () => getJSON("/api/admin/ingest", { method: "POST" }),
+  dataStatus: () => getJSON<DataStatus>("/api/data-status"),
   disclaimer: () => getJSON<{ disclaimer: string; score_weights: Record<string, number> }>("/api/disclaimer"),
 };
 
@@ -80,6 +90,14 @@ export function fmtPct(v?: number | null, digits = 1) {
   if (v == null || Number.isNaN(v)) return "—";
   const pct = Math.abs(v) <= 1.5 && Math.abs(v) > 0 ? v * 100 : v;
   return `${pct.toFixed(digits)}%`;
+}
+
+export function fmtBRL(v?: number | null) {
+  if (v == null || Number.isNaN(v)) return "—";
+  const abs = Math.abs(v);
+  if (abs >= 1e9) return `R$ ${(v / 1e9).toLocaleString("pt-BR", { maximumFractionDigits: 1 })} bi`;
+  if (abs >= 1e6) return `R$ ${(v / 1e6).toLocaleString("pt-BR", { maximumFractionDigits: 1 })} mi`;
+  return `R$ ${v.toLocaleString("pt-BR", { maximumFractionDigits: 0 })}`;
 }
 
 export function fmtNum(v?: number | null, digits = 2) {
