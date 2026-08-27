@@ -64,7 +64,7 @@ def main():
         db.close()
 
 
-def fill_live_data(include_cvm: bool = True, include_bcb: bool = True):
+def fill_live_data(include_cvm: bool = True, include_bcb: bool = True, include_quotes: bool = True):
     """Idempotent: seed universe if empty, then pull official BCB/CVM data."""
     init_db()
     db = SessionLocal()
@@ -85,6 +85,8 @@ def fill_live_data(include_cvm: bool = True, include_bcb: bool = True):
                 print("CVM already present:", existing, "rows")
             else:
                 print("CVM ingest:", ingest_cvm(db))
+        if include_quotes:
+            print("Quotes ingest:", ingest_quotes(db))
         refresh_computed_indicators(db)
         macros = latest_macros(db)
         recompute_all_scores(
