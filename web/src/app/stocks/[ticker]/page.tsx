@@ -301,7 +301,7 @@ export default function StockPage() {
               {analysis.peer_count != null ? ` (${analysis.peer_count} other companies)` : ""}. Green is cheaper or stronger than the typical peer.
             </p>
             {metrics.length === 0 ? (
-              <p className="mt-4 text-sm text-muted">No industry sample yet. Refresh official data from the home screen.</p>
+              <p className="mt-4 text-sm text-muted">No industry sample yet for this name.</p>
             ) : (
               <div className="mt-2">
                 {metrics.map((m) => (
@@ -343,7 +343,7 @@ export default function StockPage() {
             <Label>Last reported years</Label>
             <p className="mt-1 text-[12px] text-faint">{analysis.trend_note || "Official CVM annual filings."}</p>
             {trends.length === 0 ? (
-              <p className="mt-4 text-sm text-muted">No CVM years loaded for this name yet.</p>
+              <p className="mt-4 text-sm text-muted">No official yearly filing on file for this name yet.</p>
             ) : (
               <div className="mt-3 overflow-x-auto">
                 <table className="w-full min-w-[560px] text-sm">

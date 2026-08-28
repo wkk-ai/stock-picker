@@ -7,6 +7,7 @@ import {
   getStore,
   listItem,
 } from "@/lib/store";
+import { analyzeSnapshotStock } from "@/lib/advisor";
 import { proxyPython } from "@/lib/pythonProxy";
 
 export const dynamic = "force-dynamic";
@@ -31,11 +32,17 @@ export async function GET(
     return json({ ok: true, disclaimer: snap.disclaimer, mode: "hostinger-node" });
   }
   if (parts[0] === "data-status") {
+    const cvmRows = snap.stocks.flatMap((s) =>
+      (s.statements || []).filter((st) => st.source === "cvm" && /^\d{4}$/.test(st.period)),
+    );
+    const tickers = [...new Set(snap.stocks.filter((s) => (s.statements || []).some((st) => st.source === "cvm")).map((s) => s.ticker))];
+    const annualYears = [...new Set(cvmRows.map((st) => st.period))].sort();
     return json({
-      live_bcb: false,
-      live_cvm: false,
+      live_bcb: true,
+      live_cvm: cvmRows.length > 0,
+      universe: snap.stocks.length,
       bcb: snap.macros,
-      cvm: { rows: 0, tickers: [], periods: [], annual_years: [] },
+      cvm: { rows: cvmRows.length, tickers, periods: annualYears, annual_years: annualYears },
       disclaimer: snap.disclaimer,
     });
   }
@@ -58,6 +65,17 @@ export async function GET(
       .slice(0, 15)
       .map(({ title, url, source, published_at, summary }) => ({ title, url, source, published_at, summary }));
     const thesis = st.thesis[s.ticker] || s.thesis || null;
+    const analysis = analyzeSnapshotStock(s.ticker, snap.stocks);
+    const analysisPeers = (analysis.peers || []).map((p) => ({
+      ticker: p.ticker,
+      name: p.name,
+      pe: p.pe,
+      pb: p.pb,
+      roe: p.roe,
+      dividend_yield: p.dividend_yield,
+      composite: p.composite,
+      is_self: p.is_self,
+    }));
     return json({
       ticker: s.ticker,
       name: s.name,
@@ -69,9 +87,10 @@ export async function GET(
       fair_value: fairValue(s.indicators, s.quote?.price),
       statements: s.statements,
       news,
-      peers,
+      peers: analysisPeers.length ? analysisPeers : peers,
       thesis,
-      checklist: checklist(s),
+      checklist: analysis.checklist?.length ? analysis.checklist : checklist(s),
+      analysis,
     });
   }
   if (parts[0] === "screener") {

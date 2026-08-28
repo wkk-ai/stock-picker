@@ -39,7 +39,7 @@ def head_ok(url: str, timeout: float = 8.0) -> bool:
         return False
 
 
-def download_file(url: str, dest: Path, timeout: float = 180.0) -> Optional[Path]:
+def download_file(url: str, dest: Path, timeout: float = 600.0) -> Optional[Path]:
     dest.parent.mkdir(parents=True, exist_ok=True)
     tmp = dest.with_suffix(dest.suffix + ".partial")
     try:

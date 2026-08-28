@@ -132,8 +132,66 @@
         "network": 3,
         "summary": "Beverage scale and brand portfolio; distribution moat."
       },
-      "statements": [],
-      "thesis": null
+      "statements": [
+        {
+          "period": "2024",
+          "type": "balance",
+          "account": "Equity",
+          "value": 99580514000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 14437238000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 89452669000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 26099035000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "balance",
+          "account": "Equity",
+          "value": 88774781000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 15503400000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 88242467000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 24450283000.0,
+          "source": "cvm"
+        }
+      ],
+      "thesis": null,
+      "cvm_code": "23264"
     },
     {
       "ticker": "ALOS3",
@@ -180,8 +238,66 @@
         "network": 4,
         "summary": ""
       },
-      "statements": [],
-      "thesis": null
+      "statements": [
+        {
+          "period": "2024",
+          "type": "balance",
+          "account": "Equity",
+          "value": 14134520000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 698511000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 2739848000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 1679910000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "balance",
+          "account": "Equity",
+          "value": 13899006000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 834166000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 2859106000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 1726228000.0,
+          "source": "cvm"
+        }
+      ],
+      "thesis": null,
+      "cvm_code": "22357"
     },
     {
       "ticker": "ASAI3",
@@ -228,8 +344,66 @@
         "network": 4,
         "summary": ""
       },
-      "statements": [],
-      "thesis": null
+      "statements": [
+        {
+          "period": "2024",
+          "type": "balance",
+          "account": "Equity",
+          "value": 5255000000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 769000000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 73819000000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 4932000000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "balance",
+          "account": "Equity",
+          "value": 5554000000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 497000000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 77307000000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 5649000000.0,
+          "source": "cvm"
+        }
+      ],
+      "thesis": null,
+      "cvm_code": "25372"
     },
     {
       "ticker": "AURE3",
@@ -276,8 +450,66 @@
         "network": 3,
         "summary": ""
       },
-      "statements": [],
-      "thesis": null
+      "statements": [
+        {
+          "period": "2024",
+          "type": "balance",
+          "account": "Equity",
+          "value": 6321027000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetIncome",
+          "value": -420737000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 3880966000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 720525000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "balance",
+          "account": "Equity",
+          "value": 5284857000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetIncome",
+          "value": -479371000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 4095677000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 1237675000.0,
+          "source": "cvm"
+        }
+      ],
+      "thesis": null,
+      "cvm_code": "25640"
     },
     {
       "ticker": "AXIA3",
@@ -324,8 +556,66 @@
         "network": 3,
         "summary": ""
       },
-      "statements": [],
-      "thesis": null
+      "statements": [
+        {
+          "period": "2024",
+          "type": "balance",
+          "account": "Equity",
+          "value": 121999776000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 10378122000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 40181552000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 12385583000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "balance",
+          "account": "Equity",
+          "value": 118501657000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 6558475000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 41281596000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 14509829000.0,
+          "source": "cvm"
+        }
+      ],
+      "thesis": null,
+      "cvm_code": "2437"
     },
     {
       "ticker": "AZZA3",
@@ -372,8 +662,66 @@
         "network": 4,
         "summary": ""
       },
-      "statements": [],
-      "thesis": null
+      "statements": [
+        {
+          "period": "2024",
+          "type": "balance",
+          "account": "Equity",
+          "value": 7721515000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 341727000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 8379753000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 363955000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "balance",
+          "account": "Equity",
+          "value": 7977304000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 911249000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 11819492000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 1074977000.0,
+          "source": "cvm"
+        }
+      ],
+      "thesis": null,
+      "cvm_code": "22349"
     },
     {
       "ticker": "B3SA3",
@@ -420,8 +768,66 @@
         "network": 9,
         "summary": "Exchange monopoly-like infrastructure with network effects."
       },
-      "statements": [],
-      "thesis": null
+      "statements": [
+        {
+          "period": "2024",
+          "type": "balance",
+          "account": "Equity",
+          "value": 18383454000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 4576581000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 10572738000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 9297325000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "balance",
+          "account": "Equity",
+          "value": 17464079000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 4585619000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 11121545000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 4358630000.0,
+          "source": "cvm"
+        }
+      ],
+      "thesis": null,
+      "cvm_code": "21610"
     },
     {
       "ticker": "BBAS3",
@@ -468,8 +874,66 @@
         "network": 5,
         "summary": "Public bank with agribusiness reach and policy role."
       },
-      "statements": [],
-      "thesis": null
+      "statements": [
+        {
+          "period": "2024",
+          "type": "balance",
+          "account": "Equity",
+          "value": 184236344000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 26358860000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 273505274000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 127208098000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "balance",
+          "account": "Equity",
+          "value": 193567416000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 13698124000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 319462104000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 159254089000.0,
+          "source": "cvm"
+        }
+      ],
+      "thesis": null,
+      "cvm_code": "1023"
     },
     {
       "ticker": "BBDC3",
@@ -516,8 +980,66 @@
         "network": 5,
         "summary": "Same franchise as BBDC4 — ordinary shares."
       },
-      "statements": [],
-      "thesis": null
+      "statements": [
+        {
+          "period": "2024",
+          "type": "balance",
+          "account": "Equity",
+          "value": 0.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 0.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 0.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 0.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "balance",
+          "account": "Equity",
+          "value": 4502331000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 466215000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 2288012000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 6424624000.0,
+          "source": "cvm"
+        }
+      ],
+      "thesis": null,
+      "cvm_code": "906"
     },
     {
       "ticker": "BBDC4",
@@ -564,8 +1086,66 @@
         "network": 5,
         "summary": "Large retail bank; franchise and switching costs."
       },
-      "statements": [],
-      "thesis": null
+      "statements": [
+        {
+          "period": "2024",
+          "type": "balance",
+          "account": "Equity",
+          "value": 0.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 0.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 0.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 0.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "balance",
+          "account": "Equity",
+          "value": 4502331000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 466215000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 2288012000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 6424624000.0,
+          "source": "cvm"
+        }
+      ],
+      "thesis": null,
+      "cvm_code": "906"
     },
     {
       "ticker": "BBSE3",
@@ -612,8 +1192,66 @@
         "network": 4,
         "summary": ""
       },
-      "statements": [],
-      "thesis": null
+      "statements": [
+        {
+          "period": "2024",
+          "type": "balance",
+          "account": "Equity",
+          "value": 9695421000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 8703353000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 0.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 4223583000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "balance",
+          "account": "Equity",
+          "value": 10384393000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 9017329000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 0.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 3710770000.0,
+          "source": "cvm"
+        }
+      ],
+      "thesis": null,
+      "cvm_code": "23159"
     },
     {
       "ticker": "BEEF3",
@@ -660,8 +1298,66 @@
         "network": 2,
         "summary": ""
       },
-      "statements": [],
-      "thesis": null
+      "statements": [
+        {
+          "period": "2024",
+          "type": "balance",
+          "account": "Equity",
+          "value": 87217000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetIncome",
+          "value": -1558712000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 34068866000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 6556461000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "balance",
+          "account": "Equity",
+          "value": 1893220000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 810488000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 54830072000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 4702753000.0,
+          "source": "cvm"
+        }
+      ],
+      "thesis": null,
+      "cvm_code": "20931"
     },
     {
       "ticker": "BPAC11",
@@ -708,8 +1404,66 @@
         "network": 6,
         "summary": ""
       },
-      "statements": [],
-      "thesis": null
+      "statements": [
+        {
+          "period": "2024",
+          "type": "balance",
+          "account": "Equity",
+          "value": 65838406000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 11069908000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 21807485000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 7913948000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "balance",
+          "account": "Equity",
+          "value": 80293552000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 16663803000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 28145817000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": -26619145000.0,
+          "source": "cvm"
+        }
+      ],
+      "thesis": null,
+      "cvm_code": "22616"
     },
     {
       "ticker": "BRAP4",
@@ -756,8 +1510,66 @@
         "network": 2,
         "summary": ""
       },
-      "statements": [],
-      "thesis": null
+      "statements": [
+        {
+          "period": "2024",
+          "type": "balance",
+          "account": "Equity",
+          "value": 8483367000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 1192208000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 0.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 790041000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "balance",
+          "account": "Equity",
+          "value": 7647771000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 546993000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 0.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 670015000.0,
+          "source": "cvm"
+        }
+      ],
+      "thesis": null,
+      "cvm_code": "18724"
     },
     {
       "ticker": "BRAV3",
@@ -804,8 +1616,66 @@
         "network": 2,
         "summary": ""
       },
-      "statements": [],
-      "thesis": null
+      "statements": [
+        {
+          "period": "2024",
+          "type": "balance",
+          "account": "Equity",
+          "value": 10523671000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetIncome",
+          "value": -909691000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 8726361000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 1854060000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "balance",
+          "account": "Equity",
+          "value": 11774188000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 1411225000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 11622991000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 4871974000.0,
+          "source": "cvm"
+        }
+      ],
+      "thesis": null,
+      "cvm_code": "25291"
     },
     {
       "ticker": "BRKM5",
@@ -852,8 +1722,66 @@
         "network": 2,
         "summary": ""
       },
-      "statements": [],
-      "thesis": null
+      "statements": [
+        {
+          "period": "2024",
+          "type": "balance",
+          "account": "Equity",
+          "value": -4278000000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetIncome",
+          "value": -11320000000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 77411000000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 2435000000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "balance",
+          "account": "Equity",
+          "value": -16502000000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetIncome",
+          "value": -9880000000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 70717000000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": -4200000000.0,
+          "source": "cvm"
+        }
+      ],
+      "thesis": null,
+      "cvm_code": "4820"
     },
     {
       "ticker": "CEAB3",
@@ -900,8 +1828,66 @@
         "network": 4,
         "summary": ""
       },
-      "statements": [],
-      "thesis": null
+      "statements": [
+        {
+          "period": "2024",
+          "type": "balance",
+          "account": "Equity",
+          "value": 3308488000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 452477000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 7636539000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 1485047000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "balance",
+          "account": "Equity",
+          "value": 3707056000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 587087000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 7982958000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 1312329000.0,
+          "source": "cvm"
+        }
+      ],
+      "thesis": null,
+      "cvm_code": "24848"
     },
     {
       "ticker": "CMIG4",
@@ -948,8 +1934,66 @@
         "network": 3,
         "summary": ""
       },
-      "statements": [],
-      "thesis": null
+      "statements": [
+        {
+          "period": "2024",
+          "type": "balance",
+          "account": "Equity",
+          "value": 11665044000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 3692313000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 6108966000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 2306542000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "balance",
+          "account": "Equity",
+          "value": 10892445000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 1817262000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 7225809000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 1694416000.0,
+          "source": "cvm"
+        }
+      ],
+      "thesis": null,
+      "cvm_code": "20320"
     },
     {
       "ticker": "CMIN3",
@@ -996,8 +2040,52 @@
         "network": 2,
         "summary": ""
       },
-      "statements": [],
-      "thesis": null
+      "statements": [
+        {
+          "period": "2024",
+          "type": "balance",
+          "account": "Equity",
+          "value": 375759000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 0.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 708431000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "balance",
+          "account": "Equity",
+          "value": 371197000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 0.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 1088657000.0,
+          "source": "cvm"
+        }
+      ],
+      "thesis": null,
+      "cvm_code": "26590"
     },
     {
       "ticker": "COGN3",
@@ -1044,8 +2132,66 @@
         "network": 3,
         "summary": ""
       },
-      "statements": [],
-      "thesis": null
+      "statements": [
+        {
+          "period": "2024",
+          "type": "balance",
+          "account": "Equity",
+          "value": 13545135000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 879871000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 6390593000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 867436000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "balance",
+          "account": "Equity",
+          "value": 13454750000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 625519000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 7016663000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 1285616000.0,
+          "source": "cvm"
+        }
+      ],
+      "thesis": null,
+      "cvm_code": "17973"
     },
     {
       "ticker": "CPFE3",
@@ -1092,8 +2238,66 @@
         "network": 3,
         "summary": ""
       },
-      "statements": [],
-      "thesis": null
+      "statements": [
+        {
+          "period": "2024",
+          "type": "balance",
+          "account": "Equity",
+          "value": 2832020000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 516339000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 2065573000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": -268599000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "balance",
+          "account": "Equity",
+          "value": 3503785000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 318026000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 2106957000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": -358624000.0,
+          "source": "cvm"
+        }
+      ],
+      "thesis": null,
+      "cvm_code": "3204"
     },
     {
       "ticker": "CPLE3",
@@ -1140,8 +2344,66 @@
         "network": 3,
         "summary": ""
       },
-      "statements": [],
-      "thesis": null
+      "statements": [
+        {
+          "period": "2024",
+          "type": "balance",
+          "account": "Equity",
+          "value": 25636935000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 2809631000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 22651036000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 3393536000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "balance",
+          "account": "Equity",
+          "value": 23091978000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 2688614000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 26116856000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 3028446000.0,
+          "source": "cvm"
+        }
+      ],
+      "thesis": null,
+      "cvm_code": "14311"
     },
     {
       "ticker": "CSAN3",
@@ -1188,8 +2450,66 @@
         "network": 4,
         "summary": ""
       },
-      "statements": [],
-      "thesis": null
+      "statements": [
+        {
+          "period": "2024",
+          "type": "balance",
+          "account": "Equity",
+          "value": 39398362000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetIncome",
+          "value": -9423795000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 43950742000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 13081286000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "balance",
+          "account": "Equity",
+          "value": 31009632000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetIncome",
+          "value": -9722125000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 40418596000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 13026784000.0,
+          "source": "cvm"
+        }
+      ],
+      "thesis": null,
+      "cvm_code": "19836"
     },
     {
       "ticker": "CSMG3",
@@ -1236,8 +2556,66 @@
         "network": 3,
         "summary": ""
       },
-      "statements": [],
-      "thesis": null
+      "statements": [
+        {
+          "period": "2024",
+          "type": "balance",
+          "account": "Equity",
+          "value": 8048229000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 1316920000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 7878006000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 2050527000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "balance",
+          "account": "Equity",
+          "value": 8578303000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 1415744000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 8330190000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 2331554000.0,
+          "source": "cvm"
+        }
+      ],
+      "thesis": null,
+      "cvm_code": "19445"
     },
     {
       "ticker": "CSNA3",
@@ -1284,8 +2662,66 @@
         "network": 2,
         "summary": ""
       },
-      "statements": [],
-      "thesis": null
+      "statements": [
+        {
+          "period": "2024",
+          "type": "balance",
+          "account": "Equity",
+          "value": 15459116000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetIncome",
+          "value": -2591851000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 43687460000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 8650505000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "balance",
+          "account": "Equity",
+          "value": 15736350000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetIncome",
+          "value": -2002374000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 44797946000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": -973179000.0,
+          "source": "cvm"
+        }
+      ],
+      "thesis": null,
+      "cvm_code": "4030"
     },
     {
       "ticker": "CURY3",
@@ -1332,8 +2768,66 @@
         "network": 2,
         "summary": ""
       },
-      "statements": [],
-      "thesis": null
+      "statements": [
+        {
+          "period": "2024",
+          "type": "balance",
+          "account": "Equity",
+          "value": 1309539000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 649843000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 3926310000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 479564000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "balance",
+          "account": "Equity",
+          "value": 1662054000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 975536000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 5399424000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 747046000.0,
+          "source": "cvm"
+        }
+      ],
+      "thesis": null,
+      "cvm_code": "25100"
     },
     {
       "ticker": "CXSE3",
@@ -1380,8 +2874,66 @@
         "network": 4,
         "summary": ""
       },
-      "statements": [],
-      "thesis": null
+      "statements": [
+        {
+          "period": "2024",
+          "type": "balance",
+          "account": "Equity",
+          "value": 12889324000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 0.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 0.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 3599712000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "balance",
+          "account": "Equity",
+          "value": 13550484000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 4291560000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 0.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 4273412000.0,
+          "source": "cvm"
+        }
+      ],
+      "thesis": null,
+      "cvm_code": "23795"
     },
     {
       "ticker": "CYRE3",
@@ -1428,8 +2980,66 @@
         "network": 2,
         "summary": ""
       },
-      "statements": [],
-      "thesis": null
+      "statements": [
+        {
+          "period": "2024",
+          "type": "balance",
+          "account": "Equity",
+          "value": 9949274000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 1648996000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 7965688000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 63449000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "balance",
+          "account": "Equity",
+          "value": 11466784000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 2006756000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 9423494000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": -358387000.0,
+          "source": "cvm"
+        }
+      ],
+      "thesis": null,
+      "cvm_code": "14460"
     },
     {
       "ticker": "DIRR3",
@@ -1476,8 +3086,66 @@
         "network": 2,
         "summary": ""
       },
-      "statements": [],
-      "thesis": null
+      "statements": [
+        {
+          "period": "2024",
+          "type": "balance",
+          "account": "Equity",
+          "value": 2223751000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 638378000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 3348470000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 76254000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "balance",
+          "account": "Equity",
+          "value": 2320151000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 789342000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 4343008000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 398423000.0,
+          "source": "cvm"
+        }
+      ],
+      "thesis": null,
+      "cvm_code": "21350"
     },
     {
       "ticker": "EGIE3",
@@ -1524,8 +3192,66 @@
         "network": 3,
         "summary": ""
       },
-      "statements": [],
-      "thesis": null
+      "statements": [
+        {
+          "period": "2024",
+          "type": "balance",
+          "account": "Equity",
+          "value": 12280398000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 4279349000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 11218635000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 4154242000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "balance",
+          "account": "Equity",
+          "value": 13914493000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 2582841000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 12860075000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 3345511000.0,
+          "source": "cvm"
+        }
+      ],
+      "thesis": null,
+      "cvm_code": "17329"
     },
     {
       "ticker": "EMBJ3",
@@ -1572,8 +3298,66 @@
         "network": 3,
         "summary": ""
       },
-      "statements": [],
-      "thesis": null
+      "statements": [
+        {
+          "period": "2024",
+          "type": "balance",
+          "account": "Equity",
+          "value": 20710908000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 1918850000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 35424174000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 5532441000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "balance",
+          "account": "Equity",
+          "value": 20974950000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 1952951000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 41883234000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 4483900000.0,
+          "source": "cvm"
+        }
+      ],
+      "thesis": null,
+      "cvm_code": "20087"
     },
     {
       "ticker": "ENEV3",
@@ -1620,8 +3404,66 @@
         "network": 3,
         "summary": ""
       },
-      "statements": [],
-      "thesis": null
+      "statements": [
+        {
+          "period": "2024",
+          "type": "balance",
+          "account": "Equity",
+          "value": 20214767000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 42013000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 11387505000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 4155634000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "balance",
+          "account": "Equity",
+          "value": 21406342000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 1157575000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 18416056000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 5135586000.0,
+          "source": "cvm"
+        }
+      ],
+      "thesis": null,
+      "cvm_code": "21237"
     },
     {
       "ticker": "ENGI11",
@@ -1668,8 +3510,66 @@
         "network": 3,
         "summary": ""
       },
-      "statements": [],
-      "thesis": null
+      "statements": [
+        {
+          "period": "2024",
+          "type": "balance",
+          "account": "Equity",
+          "value": 22143222000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 3789678000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 33715476000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 7218141000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "balance",
+          "account": "Equity",
+          "value": 21184544000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 2214439000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 35441353000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 6065954000.0,
+          "source": "cvm"
+        }
+      ],
+      "thesis": null,
+      "cvm_code": "15253"
     },
     {
       "ticker": "EQTL3",
@@ -1716,8 +3616,66 @@
         "network": 3,
         "summary": ""
       },
-      "statements": [],
-      "thesis": null
+      "statements": [
+        {
+          "period": "2024",
+          "type": "balance",
+          "account": "Equity",
+          "value": 4837561000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 356892000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 10855406000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": -283172000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "balance",
+          "account": "Equity",
+          "value": 4518918000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetIncome",
+          "value": -352952000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 12711891000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": -665936000.0,
+          "source": "cvm"
+        }
+      ],
+      "thesis": null,
+      "cvm_code": "25577"
     },
     {
       "ticker": "FLRY3",
@@ -1764,8 +3722,66 @@
         "network": 3,
         "summary": ""
       },
-      "statements": [],
-      "thesis": null
+      "statements": [
+        {
+          "period": "2024",
+          "type": "balance",
+          "account": "Equity",
+          "value": 5374831000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 616172000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 7684659000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 1930488000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "balance",
+          "account": "Equity",
+          "value": 5096268000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 612831000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 8291182000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 2133775000.0,
+          "source": "cvm"
+        }
+      ],
+      "thesis": null,
+      "cvm_code": "21881"
     },
     {
       "ticker": "GGBR4",
@@ -1812,8 +3828,66 @@
         "network": 2,
         "summary": ""
       },
-      "statements": [],
-      "thesis": null
+      "statements": [
+        {
+          "period": "2024",
+          "type": "balance",
+          "account": "Equity",
+          "value": 58173786000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 4566317000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 67026656000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 11381243000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "balance",
+          "account": "Equity",
+          "value": 53798489000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 1387020000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 69858532000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 7987454000.0,
+          "source": "cvm"
+        }
+      ],
+      "thesis": null,
+      "cvm_code": "3980"
     },
     {
       "ticker": "GOAU4",
@@ -1860,8 +3934,66 @@
         "network": 2,
         "summary": ""
       },
-      "statements": [],
-      "thesis": null
+      "statements": [
+        {
+          "period": "2024",
+          "type": "balance",
+          "account": "Equity",
+          "value": 58253714000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 1544820000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 67026656000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 11688689000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "balance",
+          "account": "Equity",
+          "value": 53858747000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 476492000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 69858532000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 7983723000.0,
+          "source": "cvm"
+        }
+      ],
+      "thesis": null,
+      "cvm_code": "8656"
     },
     {
       "ticker": "HAPV3",
@@ -1908,8 +4040,66 @@
         "network": 3,
         "summary": ""
       },
-      "statements": [],
-      "thesis": null
+      "statements": [
+        {
+          "period": "2024",
+          "type": "balance",
+          "account": "Equity",
+          "value": 48676923000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetIncome",
+          "value": -649301000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 28914698000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 2726232000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "balance",
+          "account": "Equity",
+          "value": 48250270000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetIncome",
+          "value": -141747000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 31577240000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 2063160000.0,
+          "source": "cvm"
+        }
+      ],
+      "thesis": null,
+      "cvm_code": "24392"
     },
     {
       "ticker": "HYPE3",
@@ -1956,8 +4146,66 @@
         "network": 3,
         "summary": ""
       },
-      "statements": [],
-      "thesis": null
+      "statements": [
+        {
+          "period": "2024",
+          "type": "balance",
+          "account": "Equity",
+          "value": 12101819000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 1340990000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 7442466000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 2539599000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "balance",
+          "account": "Equity",
+          "value": 12524374000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 1195369000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 7699157000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 2574431000.0,
+          "source": "cvm"
+        }
+      ],
+      "thesis": null,
+      "cvm_code": "21431"
     },
     {
       "ticker": "IGTI11",
@@ -2004,8 +4252,66 @@
         "network": 4,
         "summary": ""
       },
-      "statements": [],
-      "thesis": null
+      "statements": [
+        {
+          "period": "2024",
+          "type": "balance",
+          "account": "Equity",
+          "value": 3789189000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 370601000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 1064876000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 426583000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "balance",
+          "account": "Equity",
+          "value": 3895653000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 569568000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 1188409000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 325442000.0,
+          "source": "cvm"
+        }
+      ],
+      "thesis": null,
+      "cvm_code": "20494"
     },
     {
       "ticker": "ISAE4",
@@ -2052,8 +4358,66 @@
         "network": 3,
         "summary": ""
       },
-      "statements": [],
-      "thesis": null
+      "statements": [
+        {
+          "period": "2024",
+          "type": "balance",
+          "account": "Equity",
+          "value": 35497000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 22994000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 59038000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 28600000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "balance",
+          "account": "Equity",
+          "value": 34103000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 20206000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 59837000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 24992000.0,
+          "source": "cvm"
+        }
+      ],
+      "thesis": null,
+      "cvm_code": "22683"
     },
     {
       "ticker": "ITSA4",
@@ -2100,8 +4464,66 @@
         "network": 4,
         "summary": ""
       },
-      "statements": [],
-      "thesis": null
+      "statements": [
+        {
+          "period": "2024",
+          "type": "balance",
+          "account": "Equity",
+          "value": 94997000000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 14778000000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 8235000000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 613000000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "balance",
+          "account": "Equity",
+          "value": 93379000000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 16487000000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 8249000000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 166000000.0,
+          "source": "cvm"
+        }
+      ],
+      "thesis": null,
+      "cvm_code": "7617"
     },
     {
       "ticker": "ITUB4",
@@ -2148,8 +4570,66 @@
         "network": 6,
         "summary": "Large private bank franchise; deposit stickiness and brand."
       },
-      "statements": [],
-      "thesis": null
+      "statements": [
+        {
+          "period": "2024",
+          "type": "balance",
+          "account": "Equity",
+          "value": 221284000000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 42128000000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 335328000000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 7069000000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "balance",
+          "account": "Equity",
+          "value": 215076000000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 45849000000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 387118000000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 34466000000.0,
+          "source": "cvm"
+        }
+      ],
+      "thesis": null,
+      "cvm_code": "19348"
     },
     {
       "ticker": "KLBN11",
@@ -2196,8 +4676,66 @@
         "network": 2,
         "summary": ""
       },
-      "statements": [],
-      "thesis": null
+      "statements": [
+        {
+          "period": "2024",
+          "type": "balance",
+          "account": "Equity",
+          "value": 8637200000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 1831011000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 19645264000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 7540941000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "balance",
+          "account": "Equity",
+          "value": 14401101000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 0.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 20697507000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 6396244000.0,
+          "source": "cvm"
+        }
+      ],
+      "thesis": null,
+      "cvm_code": "12653"
     },
     {
       "ticker": "LREN3",
@@ -2244,8 +4782,66 @@
         "network": 4,
         "summary": ""
       },
-      "statements": [],
-      "thesis": null
+      "statements": [
+        {
+          "period": "2024",
+          "type": "balance",
+          "account": "Equity",
+          "value": 10772951000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 1196668000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 14436366000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 2487007000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "balance",
+          "account": "Equity",
+          "value": 10456281000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 1457566000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 15829460000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 2801957000.0,
+          "source": "cvm"
+        }
+      ],
+      "thesis": null,
+      "cvm_code": "8133"
     },
     {
       "ticker": "MBRF3",
@@ -2292,8 +4888,66 @@
         "network": 2,
         "summary": ""
       },
-      "statements": [],
-      "thesis": null
+      "statements": [
+        {
+          "period": "2024",
+          "type": "balance",
+          "account": "Equity",
+          "value": 19938112000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 2795401000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 149135143000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 12662338000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "balance",
+          "account": "Equity",
+          "value": 14317085000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 358228000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 163962737000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 13078140000.0,
+          "source": "cvm"
+        }
+      ],
+      "thesis": null,
+      "cvm_code": "20788"
     },
     {
       "ticker": "MGLU3",
@@ -2340,8 +4994,66 @@
         "network": 5,
         "summary": "Retail/e-commerce brand; thin moat, high competition."
       },
-      "statements": [],
-      "thesis": null
+      "statements": [
+        {
+          "period": "2024",
+          "type": "balance",
+          "account": "Equity",
+          "value": 11319262000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 448717000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 38038068000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 15835331000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "balance",
+          "account": "Equity",
+          "value": 11278030000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 204603000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 38703387000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 15719373000.0,
+          "source": "cvm"
+        }
+      ],
+      "thesis": null,
+      "cvm_code": "22470"
     },
     {
       "ticker": "MOTV3",
@@ -2388,8 +5100,66 @@
         "network": 4,
         "summary": ""
       },
-      "statements": [],
-      "thesis": null
+      "statements": [
+        {
+          "period": "2024",
+          "type": "balance",
+          "account": "Equity",
+          "value": 14002086000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 1248695000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 18115933000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 7172545000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "balance",
+          "account": "Equity",
+          "value": 16282437000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 3279585000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 18850645000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 5747434000.0,
+          "source": "cvm"
+        }
+      ],
+      "thesis": null,
+      "cvm_code": "18821"
     },
     {
       "ticker": "MRVE3",
@@ -2436,8 +5206,66 @@
         "network": 2,
         "summary": ""
       },
-      "statements": [],
-      "thesis": null
+      "statements": [
+        {
+          "period": "2024",
+          "type": "balance",
+          "account": "Equity",
+          "value": 7470423000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetIncome",
+          "value": -503202000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 9009035000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": -400705000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "balance",
+          "account": "Equity",
+          "value": 6155197000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetIncome",
+          "value": -1042256000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 10906236000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 541982000.0,
+          "source": "cvm"
+        }
+      ],
+      "thesis": null,
+      "cvm_code": "20915"
     },
     {
       "ticker": "MULT3",
@@ -2484,8 +5312,66 @@
         "network": 4,
         "summary": ""
       },
-      "statements": [],
-      "thesis": null
+      "statements": [
+        {
+          "period": "2024",
+          "type": "balance",
+          "account": "Equity",
+          "value": 5645769000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 1340814000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 2544789000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 1489466000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "balance",
+          "account": "Equity",
+          "value": 6299379000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 1141120000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 2739082000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 1463917000.0,
+          "source": "cvm"
+        }
+      ],
+      "thesis": null,
+      "cvm_code": "20982"
     },
     {
       "ticker": "NATU3",
@@ -2532,8 +5418,66 @@
         "network": 3,
         "summary": ""
       },
-      "statements": [],
-      "thesis": null
+      "statements": [
+        {
+          "period": "2024",
+          "type": "balance",
+          "account": "Equity",
+          "value": 9209915000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 760639000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 21271580000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 1909139000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "balance",
+          "account": "Equity",
+          "value": 12976710000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetIncome",
+          "value": -1785238000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 21823488000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": -114984000.0,
+          "source": "cvm"
+        }
+      ],
+      "thesis": null,
+      "cvm_code": "19550"
     },
     {
       "ticker": "PETR3",
@@ -2580,8 +5524,66 @@
         "network": 3,
         "summary": "Same company as PETR4 — ordinary shares, usually a bit more volatile."
       },
-      "statements": [],
-      "thesis": null
+      "statements": [
+        {
+          "period": "2024",
+          "type": "balance",
+          "account": "Equity",
+          "value": 367514000000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 36606000000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 490829000000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 204037000000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "balance",
+          "account": "Equity",
+          "value": 417587000000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 110129000000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 497549000000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 200333000000.0,
+          "source": "cvm"
+        }
+      ],
+      "thesis": null,
+      "cvm_code": "9512"
     },
     {
       "ticker": "PETR4",
@@ -2628,8 +5630,66 @@
         "network": 3,
         "summary": "Dominant integrated oil producer with scale and state-linked competitive position in Brazil."
       },
-      "statements": [],
-      "thesis": null
+      "statements": [
+        {
+          "period": "2024",
+          "type": "balance",
+          "account": "Equity",
+          "value": 367514000000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 36606000000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 490829000000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 204037000000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "balance",
+          "account": "Equity",
+          "value": 417587000000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 110129000000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 497549000000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 200333000000.0,
+          "source": "cvm"
+        }
+      ],
+      "thesis": null,
+      "cvm_code": "9512"
     },
     {
       "ticker": "POMO4",
@@ -2676,8 +5736,66 @@
         "network": 3,
         "summary": ""
       },
-      "statements": [],
-      "thesis": null
+      "statements": [
+        {
+          "period": "2024",
+          "type": "balance",
+          "account": "Equity",
+          "value": 4082336000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 1200019000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 8593837000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 1244148000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "balance",
+          "account": "Equity",
+          "value": 3895529000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 1223349000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 9057548000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 1438765000.0,
+          "source": "cvm"
+        }
+      ],
+      "thesis": null,
+      "cvm_code": "8451"
     },
     {
       "ticker": "PRIO3",
@@ -2724,8 +5842,66 @@
         "network": 2,
         "summary": "Efficient offshore oil operator; smaller scale than Petrobras."
       },
-      "statements": [],
-      "thesis": null
+      "statements": [
+        {
+          "period": "2024",
+          "type": "balance",
+          "account": "Equity",
+          "value": 25924192000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 10301606000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 14360653000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 9669485000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "balance",
+          "account": "Equity",
+          "value": 25779881000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 2251479000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 15583960000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 8176080000.0,
+          "source": "cvm"
+        }
+      ],
+      "thesis": null,
+      "cvm_code": "22187"
     },
     {
       "ticker": "PSSA3",
@@ -2772,8 +5948,66 @@
         "network": 4,
         "summary": ""
       },
-      "statements": [],
-      "thesis": null
+      "statements": [
+        {
+          "period": "2024",
+          "type": "balance",
+          "account": "Equity",
+          "value": 14145398000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 2644845000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 35243466000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 2415087000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "balance",
+          "account": "Equity",
+          "value": 15871223000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 3380884000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 40883141000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 1368371000.0,
+          "source": "cvm"
+        }
+      ],
+      "thesis": null,
+      "cvm_code": "16659"
     },
     {
       "ticker": "RADL3",
@@ -2820,8 +6054,66 @@
         "network": 4,
         "summary": ""
       },
-      "statements": [],
-      "thesis": null
+      "statements": [
+        {
+          "period": "2024",
+          "type": "balance",
+          "account": "Equity",
+          "value": 6446887000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 1199864000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 38871522000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 2771263000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "balance",
+          "account": "Equity",
+          "value": 7335968000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 1296861000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 44250449000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 2430654000.0,
+          "source": "cvm"
+        }
+      ],
+      "thesis": null,
+      "cvm_code": "5258"
     },
     {
       "ticker": "RAIL3",
@@ -2868,8 +6160,66 @@
         "network": 4,
         "summary": ""
       },
-      "statements": [],
-      "thesis": null
+      "statements": [
+        {
+          "period": "2024",
+          "type": "balance",
+          "account": "Equity",
+          "value": 14935155000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetIncome",
+          "value": -959247000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 13936389000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 7664727000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "balance",
+          "account": "Equity",
+          "value": 14048438000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 847057000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 13847776000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 7141811000.0,
+          "source": "cvm"
+        }
+      ],
+      "thesis": null,
+      "cvm_code": "17450"
     },
     {
       "ticker": "RDOR3",
@@ -2916,8 +6266,66 @@
         "network": 3,
         "summary": ""
       },
-      "statements": [],
-      "thesis": null
+      "statements": [
+        {
+          "period": "2024",
+          "type": "balance",
+          "account": "Equity",
+          "value": 26701868000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 3846945000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 50571261000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 6420407000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "balance",
+          "account": "Equity",
+          "value": 21621087000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 4688418000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 55725852000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 538367000.0,
+          "source": "cvm"
+        }
+      ],
+      "thesis": null,
+      "cvm_code": "24821"
     },
     {
       "ticker": "RECV3",
@@ -2964,8 +6372,66 @@
         "network": 2,
         "summary": ""
       },
-      "statements": [],
-      "thesis": null
+      "statements": [
+        {
+          "period": "2024",
+          "type": "balance",
+          "account": "Equity",
+          "value": 4235277000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 437498000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 3264554000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 2219127000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "balance",
+          "account": "Equity",
+          "value": 4330716000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 638352000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 3157609000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 1504449000.0,
+          "source": "cvm"
+        }
+      ],
+      "thesis": null,
+      "cvm_code": "25780"
     },
     {
       "ticker": "RENT3",
@@ -3012,8 +6478,66 @@
         "network": 3,
         "summary": "Fleet scale in car rental; competitive industry."
       },
-      "statements": [],
-      "thesis": null
+      "statements": [
+        {
+          "period": "2024",
+          "type": "balance",
+          "account": "Equity",
+          "value": 26342714000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 1813627000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 37271558000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 650353000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "balance",
+          "account": "Equity",
+          "value": 25539012000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 1875473000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 41781588000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 2146418000.0,
+          "source": "cvm"
+        }
+      ],
+      "thesis": null,
+      "cvm_code": "19739"
     },
     {
       "ticker": "SANB11",
@@ -3060,8 +6584,66 @@
         "network": 6,
         "summary": ""
       },
-      "statements": [],
-      "thesis": null
+      "statements": [
+        {
+          "period": "2024",
+          "type": "balance",
+          "account": "Equity",
+          "value": 119827132000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 13365506000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 137183478000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 0.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "balance",
+          "account": "Equity",
+          "value": 126553144000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 12766035000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 162494639000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 3970136000.0,
+          "source": "cvm"
+        }
+      ],
+      "thesis": null,
+      "cvm_code": "20532"
     },
     {
       "ticker": "SBSP3",
@@ -3108,8 +6690,66 @@
         "network": 3,
         "summary": ""
       },
-      "statements": [],
-      "thesis": null
+      "statements": [
+        {
+          "period": "2024",
+          "type": "balance",
+          "account": "Equity",
+          "value": 36928054000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 0.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 36145477000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 7404568000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "balance",
+          "account": "Equity",
+          "value": 42401124000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 0.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 38092050000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 8361115000.0,
+          "source": "cvm"
+        }
+      ],
+      "thesis": null,
+      "cvm_code": "14443"
     },
     {
       "ticker": "SLCE3",
@@ -3156,8 +6796,66 @@
         "network": 2,
         "summary": ""
       },
-      "statements": [],
-      "thesis": null
+      "statements": [
+        {
+          "period": "2024",
+          "type": "balance",
+          "account": "Equity",
+          "value": 4104542000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 509410000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 7803627000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 1480131000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "balance",
+          "account": "Equity",
+          "value": 5655435000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 555573000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 9759214000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 1808281000.0,
+          "source": "cvm"
+        }
+      ],
+      "thesis": null,
+      "cvm_code": "20745"
     },
     {
       "ticker": "SMFT3",
@@ -3204,8 +6902,66 @@
         "network": 4,
         "summary": ""
       },
-      "statements": [],
-      "thesis": null
+      "statements": [
+        {
+          "period": "2024",
+          "type": "balance",
+          "account": "Equity",
+          "value": 5471778000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 436440000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 5580304000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 1375542000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "balance",
+          "account": "Equity",
+          "value": 5663406000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 638688000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 7241694000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 2092680000.0,
+          "source": "cvm"
+        }
+      ],
+      "thesis": null,
+      "cvm_code": "24260"
     },
     {
       "ticker": "SUZB3",
@@ -3252,8 +7008,66 @@
         "network": 2,
         "summary": "Pulp cost leadership and forestry assets."
       },
-      "statements": [],
-      "thesis": null
+      "statements": [
+        {
+          "period": "2024",
+          "type": "balance",
+          "account": "Equity",
+          "value": 32479559000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetIncome",
+          "value": -2111606000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 47405389000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 20567711000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "balance",
+          "account": "Equity",
+          "value": 42648767000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 3989587000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 50116256000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 18088228000.0,
+          "source": "cvm"
+        }
+      ],
+      "thesis": null,
+      "cvm_code": "13986"
     },
     {
       "ticker": "TAEE11",
@@ -3300,8 +7114,66 @@
         "network": 3,
         "summary": ""
       },
-      "statements": [],
-      "thesis": null
+      "statements": [
+        {
+          "period": "2024",
+          "type": "balance",
+          "account": "Equity",
+          "value": 6939504000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 1693915000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 3718138000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 1540337000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "balance",
+          "account": "Equity",
+          "value": 7608982000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 1579863000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 4624113000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 1531430000.0,
+          "source": "cvm"
+        }
+      ],
+      "thesis": null,
+      "cvm_code": "20257"
     },
     {
       "ticker": "TEND3",
@@ -3348,8 +7220,66 @@
         "network": 2,
         "summary": ""
       },
-      "statements": [],
-      "thesis": null
+      "statements": [
+        {
+          "period": "2024",
+          "type": "balance",
+          "account": "Equity",
+          "value": 956355000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 106413000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 3284401000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 542184000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "balance",
+          "account": "Equity",
+          "value": 1204864000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 505670000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 4173389000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 290321000.0,
+          "source": "cvm"
+        }
+      ],
+      "thesis": null,
+      "cvm_code": "21148"
     },
     {
       "ticker": "TIMS3",
@@ -3396,8 +7326,66 @@
         "network": 6,
         "summary": ""
       },
-      "statements": [],
-      "thesis": null
+      "statements": [
+        {
+          "period": "2024",
+          "type": "balance",
+          "account": "Equity",
+          "value": 0.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 0.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 0.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 0.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "balance",
+          "account": "Equity",
+          "value": 0.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 0.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 0.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 0.0,
+          "source": "cvm"
+        }
+      ],
+      "thesis": null,
+      "cvm_code": "24929"
     },
     {
       "ticker": "TOTS3",
@@ -3444,8 +7432,66 @@
         "network": 6,
         "summary": ""
       },
-      "statements": [],
-      "thesis": null
+      "statements": [
+        {
+          "period": "2024",
+          "type": "balance",
+          "account": "Equity",
+          "value": 4987121000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 717513000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 4914747000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 1032985000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "balance",
+          "account": "Equity",
+          "value": 5443457000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 891741000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 5771867000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 1203183000.0,
+          "source": "cvm"
+        }
+      ],
+      "thesis": null,
+      "cvm_code": "19992"
     },
     {
       "ticker": "UGPA3",
@@ -3492,8 +7538,66 @@
         "network": 4,
         "summary": ""
       },
-      "statements": [],
-      "thesis": null
+      "statements": [
+        {
+          "period": "2024",
+          "type": "balance",
+          "account": "Equity",
+          "value": 15823444000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 2362740000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 133498913000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 3735576000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "balance",
+          "account": "Equity",
+          "value": 17730617000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 2453853000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 142369540000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 5452502000.0,
+          "source": "cvm"
+        }
+      ],
+      "thesis": null,
+      "cvm_code": "18465"
     },
     {
       "ticker": "USIM5",
@@ -3540,8 +7644,66 @@
         "network": 2,
         "summary": ""
       },
-      "statements": [],
-      "thesis": null
+      "statements": [
+        {
+          "period": "2024",
+          "type": "balance",
+          "account": "Equity",
+          "value": 26683688000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetIncome",
+          "value": -145946000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 25869799000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 989165000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "balance",
+          "account": "Equity",
+          "value": 23701381000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetIncome",
+          "value": -3078192000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 26263450000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 2179444000.0,
+          "source": "cvm"
+        }
+      ],
+      "thesis": null,
+      "cvm_code": "14320"
     },
     {
       "ticker": "VALE3",
@@ -3588,8 +7750,66 @@
         "network": 2,
         "summary": "World-class iron ore assets; cost curve advantage, commodity cyclical."
       },
-      "statements": [],
-      "thesis": null
+      "statements": [
+        {
+          "period": "2024",
+          "type": "balance",
+          "account": "Equity",
+          "value": 213720000000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 31592000000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 206005000000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 50199000000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "balance",
+          "account": "Equity",
+          "value": 188926000000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 13814000000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 213595000000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 48765000000.0,
+          "source": "cvm"
+        }
+      ],
+      "thesis": null,
+      "cvm_code": "4170"
     },
     {
       "ticker": "VAMO3",
@@ -3636,8 +7856,66 @@
         "network": 3,
         "summary": ""
       },
-      "statements": [],
-      "thesis": null
+      "statements": [
+        {
+          "period": "2024",
+          "type": "balance",
+          "account": "Equity",
+          "value": 2442373000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 0.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 4699312000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": -725386000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "balance",
+          "account": "Equity",
+          "value": 2562076000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 0.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 5755712000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": -874643000.0,
+          "source": "cvm"
+        }
+      ],
+      "thesis": null,
+      "cvm_code": "24716"
     },
     {
       "ticker": "VBBR3",
@@ -3684,8 +7962,66 @@
         "network": 4,
         "summary": ""
       },
-      "statements": [],
-      "thesis": null
+      "statements": [
+        {
+          "period": "2024",
+          "type": "balance",
+          "account": "Equity",
+          "value": 20385000000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 6367000000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 172272000000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 4148000000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "balance",
+          "account": "Equity",
+          "value": 20741000000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 2004000000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 189075000000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 6666000000.0,
+          "source": "cvm"
+        }
+      ],
+      "thesis": null,
+      "cvm_code": "24295"
     },
     {
       "ticker": "VIVA3",
@@ -3732,8 +8068,66 @@
         "network": 4,
         "summary": ""
       },
-      "statements": [],
-      "thesis": null
+      "statements": [
+        {
+          "period": "2024",
+          "type": "balance",
+          "account": "Equity",
+          "value": 2496942987.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 653393946.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 2577113417.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 150681232.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "balance",
+          "account": "Equity",
+          "value": 2949566841.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 619502299.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 3026581564.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 468874311.0,
+          "source": "cvm"
+        }
+      ],
+      "thesis": null,
+      "cvm_code": "24805"
     },
     {
       "ticker": "VIVT3",
@@ -3780,8 +8174,66 @@
         "network": 6,
         "summary": ""
       },
-      "statements": [],
-      "thesis": null
+      "statements": [
+        {
+          "period": "2024",
+          "type": "balance",
+          "account": "Equity",
+          "value": 69799495000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 5547948000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 55845048000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 19876568000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "balance",
+          "account": "Equity",
+          "value": 69002726000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 6167906000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 59595000000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 20717402000.0,
+          "source": "cvm"
+        }
+      ],
+      "thesis": null,
+      "cvm_code": "17671"
     },
     {
       "ticker": "WEGE3",
@@ -3828,8 +8280,66 @@
         "network": 4,
         "summary": "Industrial compounder with global niche leadership in motors/automation."
       },
-      "statements": [],
-      "thesis": null
+      "statements": [
+        {
+          "period": "2024",
+          "type": "balance",
+          "account": "Equity",
+          "value": 23125217000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 6042593000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 37986941000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 7252269000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "balance",
+          "account": "Equity",
+          "value": 18553364000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 6376219000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 40804110000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 6451033000.0,
+          "source": "cvm"
+        }
+      ],
+      "thesis": null,
+      "cvm_code": "5410"
     },
     {
       "ticker": "YDUQ3",
@@ -3876,8 +8386,66 @@
         "network": 3,
         "summary": ""
       },
-      "statements": [],
-      "thesis": null
+      "statements": [
+        {
+          "period": "2024",
+          "type": "balance",
+          "account": "Equity",
+          "value": 3138960000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 341378000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 5351785000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2024",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 1218469000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "balance",
+          "account": "Equity",
+          "value": 2968042000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetIncome",
+          "value": 181491000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "income",
+          "account": "NetRevenue",
+          "value": 5521740000.0,
+          "source": "cvm"
+        },
+        {
+          "period": "2025",
+          "type": "cashflow",
+          "account": "OperatingCF",
+          "value": 1372642000.0,
+          "source": "cvm"
+        }
+      ],
+      "thesis": null,
+      "cvm_code": "21016"
     }
   ],
   "watchlist": [
