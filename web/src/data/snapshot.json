@@ -52,13 +52,13 @@
     {
       "code": "SELIC",
       "name": "Selic meta % a.a.",
-      "date": "20/08/2026",
+      "date": "27/08/2026",
       "value": 14.0
     },
     {
       "code": "CDI",
       "name": "CDI diário %",
-      "date": "19/08/2026",
+      "date": "26/08/2026",
       "value": 0.05166
     },
     {
@@ -68,10 +68,16 @@
       "value": 0.07
     },
     {
+      "code": "IPCA_12M",
+      "name": "IPCA 12 meses %",
+      "date": "01/07/2026",
+      "value": 4.44
+    },
+    {
       "code": "USD_BRL",
       "name": "USD/BRL venda",
-      "date": "20/08/2026",
-      "value": 5.1862
+      "date": "27/08/2026",
+      "value": 5.1642
     },
     {
       "code": "IBC_BR",
@@ -82,551 +88,40 @@
   ],
   "stocks": [
     {
-      "ticker": "PETR4",
-      "name": "Petrobras PN",
-      "sector": "Oil & Gas",
-      "quote": {
-        "price": 44.37,
-        "change_percent": 2.92,
-        "market_cap": 587237695843.0,
-        "volume": 33806000.0,
-        "fetched_at": "2026-08-20T17:48:32.228372"
-      },
-      "indicators": {
-        "pe": 6.2,
-        "pb": 1.1,
-        "ev_ebitda": 3.4,
-        "dividend_yield": 0.12,
-        "roe": 0.28,
-        "roa": 0.12,
-        "roic": 0.18,
-        "net_margin": 0.22,
-        "ebitda_margin": 0.4,
-        "debt_equity": 0.7,
-        "current_ratio": 1.2,
-        "revenue_growth": 0.05,
-        "earnings_growth": 0.08,
-        "source": "cvm+seed"
-      },
-      "score": {
-        "quality": 100.0,
-        "value": 86.1,
-        "moat": 66.7,
-        "macro_fit": 54.7,
-        "composite": 79.7,
-        "band": "Watch",
-        "rationale": "Weights Q0.3/V0.25/M0.3/X0.15. Transparent rule score — not licensed advice."
-      },
-      "moat": {
-        "scale": 9,
-        "regulation": 9,
-        "brand": 6,
-        "cost_advantage": 8,
-        "switching_costs": 5,
-        "network": 3,
-        "summary": "Dominant integrated oil producer with scale and state-linked competitive position in Brazil."
-      },
-      "statements": [
-        {
-          "period": "2024",
-          "type": "income",
-          "account": "NetRevenue",
-          "value": 127272727.2727273,
-          "source": "seed"
-        },
-        {
-          "period": "2024",
-          "type": "income",
-          "account": "NetIncome",
-          "value": 28000000.000000004,
-          "source": "seed"
-        },
-        {
-          "period": "2024",
-          "type": "balance",
-          "account": "Equity",
-          "value": 100000000.0,
-          "source": "seed"
-        },
-        {
-          "period": "2024",
-          "type": "balance",
-          "account": "TotalAssets",
-          "value": 220000000.00000003,
-          "source": "seed"
-        },
-        {
-          "period": "2024",
-          "type": "cashflow",
-          "account": "OperatingCF",
-          "value": 30800000.000000007,
-          "source": "seed"
-        },
-        {
-          "period": "2023",
-          "type": "income",
-          "account": "NetRevenue",
-          "value": 117090909.09090912,
-          "source": "seed"
-        },
-        {
-          "period": "2023",
-          "type": "income",
-          "account": "NetIncome",
-          "value": 25200000.000000004,
-          "source": "seed"
-        },
-        {
-          "period": "2024",
-          "type": "income",
-          "account": "Receita de Venda de Bens e/ou Serviços",
-          "value": 511994000.0,
-          "source": "cvm"
-        }
-      ],
-      "thesis": null
-    },
-    {
-      "ticker": "VALE3",
-      "name": "Vale ON",
-      "sector": "Mining",
-      "quote": {
-        "price": 73.81,
-        "change_percent": 2.33,
-        "market_cap": 300704993434.0,
-        "volume": 15387100.0,
-        "fetched_at": "2026-08-20T17:48:32.897078"
-      },
-      "indicators": {
-        "pe": 7.5,
-        "pb": 1.4,
-        "ev_ebitda": 4.1,
-        "dividend_yield": 0.08,
-        "roe": 0.22,
-        "roa": 0.1,
-        "roic": 0.15,
-        "net_margin": 0.18,
-        "ebitda_margin": 0.35,
-        "debt_equity": 0.5,
-        "current_ratio": 1.5,
-        "revenue_growth": -0.02,
-        "earnings_growth": -0.05,
-        "source": "cvm+seed"
-      },
-      "score": {
-        "quality": 92.2,
-        "value": 79.2,
-        "moat": 56.7,
-        "macro_fit": 55.3,
-        "composite": 72.8,
-        "band": "Watch",
-        "rationale": "Weights Q0.3/V0.25/M0.3/X0.15. Transparent rule score — not licensed advice."
-      },
-      "moat": {
-        "scale": 9,
-        "regulation": 6,
-        "brand": 5,
-        "cost_advantage": 8,
-        "switching_costs": 4,
-        "network": 2,
-        "summary": "World-class iron ore assets; cost curve advantage, commodity cyclical."
-      },
-      "statements": [
-        {
-          "period": "2024",
-          "type": "income",
-          "account": "NetRevenue",
-          "value": 122222222.22222222,
-          "source": "seed"
-        },
-        {
-          "period": "2024",
-          "type": "income",
-          "account": "NetIncome",
-          "value": 22000000.0,
-          "source": "seed"
-        },
-        {
-          "period": "2024",
-          "type": "balance",
-          "account": "Equity",
-          "value": 100000000.0,
-          "source": "seed"
-        },
-        {
-          "period": "2024",
-          "type": "balance",
-          "account": "TotalAssets",
-          "value": 220000000.00000003,
-          "source": "seed"
-        },
-        {
-          "period": "2024",
-          "type": "cashflow",
-          "account": "OperatingCF",
-          "value": 24200000.000000004,
-          "source": "seed"
-        },
-        {
-          "period": "2023",
-          "type": "income",
-          "account": "NetRevenue",
-          "value": 112444444.44444445,
-          "source": "seed"
-        },
-        {
-          "period": "2023",
-          "type": "income",
-          "account": "NetIncome",
-          "value": 19800000.0,
-          "source": "seed"
-        },
-        {
-          "period": "2024",
-          "type": "income",
-          "account": "Receita de Venda de Bens e/ou Serviços",
-          "value": 208066000.0,
-          "source": "cvm"
-        }
-      ],
-      "thesis": null
-    },
-    {
-      "ticker": "ITUB4",
-      "name": "Itaú Unibanco PN",
-      "sector": "Banks",
-      "quote": {
-        "price": 37.46,
-        "change_percent": -2.37,
-        "market_cap": 438911431672.0,
-        "volume": 17189300.0,
-        "fetched_at": "2026-08-20T17:48:33.462323"
-      },
-      "indicators": {
-        "pe": 8.5,
-        "pb": 1.6,
-        "ev_ebitda": null,
-        "dividend_yield": 0.06,
-        "roe": 0.2,
-        "roa": 0.015,
-        "roic": null,
-        "net_margin": 0.28,
-        "ebitda_margin": null,
-        "debt_equity": null,
-        "current_ratio": null,
-        "revenue_growth": 0.1,
-        "earnings_growth": 0.12,
-        "source": "cvm+seed"
-      },
-      "score": {
-        "quality": 88.0,
-        "value": 69.7,
-        "moat": 73.3,
-        "macro_fit": 61.6,
-        "composite": 75.1,
-        "band": "Watch",
-        "rationale": "Weights Q0.3/V0.25/M0.3/X0.15. Transparent rule score — not licensed advice."
-      },
-      "moat": {
-        "scale": 8,
-        "regulation": 8,
-        "brand": 8,
-        "cost_advantage": 7,
-        "switching_costs": 7,
-        "network": 6,
-        "summary": "Large private bank franchise; deposit stickiness and brand."
-      },
-      "statements": [
-        {
-          "period": "2024",
-          "type": "income",
-          "account": "NetRevenue",
-          "value": 71428571.42857142,
-          "source": "seed"
-        },
-        {
-          "period": "2024",
-          "type": "income",
-          "account": "NetIncome",
-          "value": 20000000.0,
-          "source": "seed"
-        },
-        {
-          "period": "2024",
-          "type": "balance",
-          "account": "Equity",
-          "value": 100000000.0,
-          "source": "seed"
-        },
-        {
-          "period": "2024",
-          "type": "balance",
-          "account": "TotalAssets",
-          "value": 220000000.00000003,
-          "source": "seed"
-        },
-        {
-          "period": "2024",
-          "type": "cashflow",
-          "account": "OperatingCF",
-          "value": 22000000.0,
-          "source": "seed"
-        },
-        {
-          "period": "2023",
-          "type": "income",
-          "account": "NetRevenue",
-          "value": 65714285.71428571,
-          "source": "seed"
-        },
-        {
-          "period": "2023",
-          "type": "income",
-          "account": "NetIncome",
-          "value": 18000000.0,
-          "source": "seed"
-        }
-      ],
-      "thesis": null
-    },
-    {
-      "ticker": "BBAS3",
-      "name": "Banco do Brasil ON",
-      "sector": "Banks",
-      "quote": {
-        "price": 27.8,
-        "change_percent": 0.0,
-        "market_cap": null,
-        "volume": null,
-        "fetched_at": "2026-08-20T17:48:34.044006"
-      },
-      "indicators": {
-        "pe": 5.1,
-        "pb": 0.9,
-        "ev_ebitda": null,
-        "dividend_yield": 0.08,
-        "roe": 0.18,
-        "roa": 0.012,
-        "roic": null,
-        "net_margin": 0.22,
-        "ebitda_margin": null,
-        "debt_equity": null,
-        "current_ratio": null,
-        "revenue_growth": 0.08,
-        "earnings_growth": 0.09,
-        "source": "cvm+seed"
-      },
-      "score": {
-        "quality": 82.2,
-        "value": 77.2,
-        "moat": 66.7,
-        "macro_fit": 61.6,
-        "composite": 73.2,
-        "band": "Watch",
-        "rationale": "Weights Q0.3/V0.25/M0.3/X0.15. Transparent rule score — not licensed advice."
-      },
-      "moat": {
-        "scale": 8,
-        "regulation": 8,
-        "brand": 7,
-        "cost_advantage": 6,
-        "switching_costs": 6,
-        "network": 5,
-        "summary": "Public bank with agribusiness reach and policy role."
-      },
-      "statements": [
-        {
-          "period": "2024",
-          "type": "income",
-          "account": "NetRevenue",
-          "value": 81818181.81818181,
-          "source": "seed"
-        },
-        {
-          "period": "2024",
-          "type": "income",
-          "account": "NetIncome",
-          "value": 18000000.0,
-          "source": "seed"
-        },
-        {
-          "period": "2024",
-          "type": "balance",
-          "account": "Equity",
-          "value": 100000000.0,
-          "source": "seed"
-        },
-        {
-          "period": "2024",
-          "type": "balance",
-          "account": "TotalAssets",
-          "value": 220000000.00000003,
-          "source": "seed"
-        },
-        {
-          "period": "2024",
-          "type": "cashflow",
-          "account": "OperatingCF",
-          "value": 19800000.0,
-          "source": "seed"
-        },
-        {
-          "period": "2023",
-          "type": "income",
-          "account": "NetRevenue",
-          "value": 75272727.27272727,
-          "source": "seed"
-        },
-        {
-          "period": "2023",
-          "type": "income",
-          "account": "NetIncome",
-          "value": 16200000.0,
-          "source": "seed"
-        }
-      ],
-      "thesis": null
-    },
-    {
-      "ticker": "WEGE3",
-      "name": "WEG ON",
-      "sector": "Industrials",
-      "quote": {
-        "price": 52.0,
-        "change_percent": 0.0,
-        "market_cap": null,
-        "volume": null,
-        "fetched_at": "2026-08-20T17:48:34.607121"
-      },
-      "indicators": {
-        "pe": 28.0,
-        "pb": 8.5,
-        "ev_ebitda": 20.0,
-        "dividend_yield": 0.015,
-        "roe": 0.32,
-        "roa": 0.18,
-        "roic": 0.25,
-        "net_margin": 0.16,
-        "ebitda_margin": 0.2,
-        "debt_equity": 0.2,
-        "current_ratio": 2.0,
-        "revenue_growth": 0.14,
-        "earnings_growth": 0.16,
-        "source": "cvm+seed"
-      },
-      "score": {
-        "quality": 100.0,
-        "value": 15.0,
-        "moat": 60.0,
-        "macro_fit": 51.4,
-        "composite": 59.5,
-        "band": "Caution",
-        "rationale": "Weights Q0.3/V0.25/M0.3/X0.15. Transparent rule score — not licensed advice."
-      },
-      "moat": {
-        "scale": 7,
-        "regulation": 4,
-        "brand": 8,
-        "cost_advantage": 7,
-        "switching_costs": 6,
-        "network": 4,
-        "summary": "Industrial compounder with global niche leadership in motors/automation."
-      },
-      "statements": [
-        {
-          "period": "2024",
-          "type": "income",
-          "account": "NetRevenue",
-          "value": 200000000.0,
-          "source": "seed"
-        },
-        {
-          "period": "2024",
-          "type": "income",
-          "account": "NetIncome",
-          "value": 32000000.0,
-          "source": "seed"
-        },
-        {
-          "period": "2024",
-          "type": "balance",
-          "account": "Equity",
-          "value": 100000000.0,
-          "source": "seed"
-        },
-        {
-          "period": "2024",
-          "type": "balance",
-          "account": "TotalAssets",
-          "value": 220000000.00000003,
-          "source": "seed"
-        },
-        {
-          "period": "2024",
-          "type": "cashflow",
-          "account": "OperatingCF",
-          "value": 35200000.0,
-          "source": "seed"
-        },
-        {
-          "period": "2023",
-          "type": "income",
-          "account": "NetRevenue",
-          "value": 184000000.0,
-          "source": "seed"
-        },
-        {
-          "period": "2023",
-          "type": "income",
-          "account": "NetIncome",
-          "value": 28800000.0,
-          "source": "seed"
-        },
-        {
-          "period": "2024",
-          "type": "income",
-          "account": "Receita de Venda de Bens e/ou Serviços",
-          "value": 32503601.0,
-          "source": "cvm"
-        }
-      ],
-      "thesis": null
-    },
-    {
       "ticker": "ABEV3",
       "name": "Ambev ON",
-      "sector": "Consumer",
+      "sector": "Consumer Staples",
       "quote": {
-        "price": 12.4,
-        "change_percent": 0.0,
+        "price": 15.13,
+        "change_percent": -0.7217847769028785,
         "market_cap": null,
-        "volume": null,
-        "fetched_at": "2026-08-20T17:48:35.220727"
+        "volume": 19701600.0,
+        "fetched_at": "2026-08-27T20:05:49.427991"
       },
       "indicators": {
-        "pe": 14.0,
-        "pb": 2.4,
-        "ev_ebitda": 9.0,
-        "dividend_yield": 0.05,
-        "roe": 0.18,
-        "roa": 0.1,
-        "roic": 0.16,
-        "net_margin": 0.18,
-        "ebitda_margin": 0.3,
-        "debt_equity": 0.1,
-        "current_ratio": 1.1,
-        "revenue_growth": 0.04,
-        "earnings_growth": 0.03,
-        "source": "cvm+seed"
+        "pe": 14.53,
+        "pb": 2.67,
+        "ev_ebitda": 8.21,
+        "dividend_yield": 0.0518,
+        "roe": 0.17463743447590144,
+        "roa": 0.10685577525745199,
+        "roic": 0.20620000000000002,
+        "net_margin": 0.1756909176167978,
+        "ebitda_margin": 0.26544346272639907,
+        "debt_equity": 0.6343284586644038,
+        "current_ratio": 0.9621987456958502,
+        "revenue_growth": -0.013528964686341571,
+        "earnings_growth": 0.07384805874918743,
+        "source": "cvm"
       },
       "score": {
-        "quality": 96.4,
-        "value": 61.8,
+        "quality": 75.6,
+        "value": 39.5,
         "moat": 61.7,
-        "macro_fit": 48.5,
-        "composite": 70.1,
-        "band": "Watch",
-        "rationale": "Weights Q0.3/V0.25/M0.3/X0.15. Transparent rule score — not licensed advice."
+        "macro_fit": 52.6,
+        "composite": 58.9,
+        "band": "Caution",
+        "rationale": "Score mixes how cheap and how profitable this name is versus its industry, plus a simple moat and macro check. Not licensed advice."
       },
       "moat": {
         "scale": 8,
@@ -637,162 +132,247 @@
         "network": 3,
         "summary": "Beverage scale and brand portfolio; distribution moat."
       },
-      "statements": [
-        {
-          "period": "2024",
-          "type": "income",
-          "account": "NetRevenue",
-          "value": 100000000.0,
-          "source": "seed"
-        },
-        {
-          "period": "2024",
-          "type": "income",
-          "account": "NetIncome",
-          "value": 18000000.0,
-          "source": "seed"
-        },
-        {
-          "period": "2024",
-          "type": "balance",
-          "account": "Equity",
-          "value": 100000000.0,
-          "source": "seed"
-        },
-        {
-          "period": "2024",
-          "type": "balance",
-          "account": "TotalAssets",
-          "value": 220000000.00000003,
-          "source": "seed"
-        },
-        {
-          "period": "2024",
-          "type": "cashflow",
-          "account": "OperatingCF",
-          "value": 19800000.0,
-          "source": "seed"
-        },
-        {
-          "period": "2023",
-          "type": "income",
-          "account": "NetRevenue",
-          "value": 92000000.0,
-          "source": "seed"
-        },
-        {
-          "period": "2023",
-          "type": "income",
-          "account": "NetIncome",
-          "value": 16200000.0,
-          "source": "seed"
-        },
-        {
-          "period": "2024",
-          "type": "income",
-          "account": "Receita de Venda de Bens e/ou Serviços",
-          "value": 79736856.0,
-          "source": "cvm"
-        }
-      ],
+      "statements": [],
       "thesis": null
     },
     {
-      "ticker": "BBDC4",
-      "name": "Bradesco PN",
-      "sector": "Banks",
+      "ticker": "ALOS3",
+      "name": "Allos ON",
+      "sector": "Real Estate",
       "quote": {
-        "price": 13.1,
-        "change_percent": 0.0,
+        "price": 26.25,
+        "change_percent": -0.6810442678774065,
         "market_cap": null,
-        "volume": null,
-        "fetched_at": "2026-08-20T17:48:35.813328"
+        "volume": 2820100.0,
+        "fetched_at": "2026-08-27T20:05:49.429912"
       },
       "indicators": {
-        "pe": 7.8,
-        "pb": 1.1,
-        "ev_ebitda": null,
-        "dividend_yield": 0.07,
-        "roe": 0.14,
-        "roa": 0.01,
-        "roic": null,
-        "net_margin": 0.18,
-        "ebitda_margin": null,
-        "debt_equity": null,
-        "current_ratio": null,
-        "revenue_growth": 0.06,
-        "earnings_growth": 0.05,
-        "source": "cvm+seed"
+        "pe": 14.26,
+        "pb": 1.04,
+        "ev_ebitda": 4.9,
+        "dividend_yield": 0.1184,
+        "roe": 0.06001623425444956,
+        "roa": 0.0320753641050203,
+        "roic": 0.0639,
+        "net_margin": 0.2917576333301389,
+        "ebitda_margin": 0.5384060611953527,
+        "debt_equity": 0.8711006384197546,
+        "current_ratio": 2.582123448716152,
+        "revenue_growth": 0.043527232167623886,
+        "earnings_growth": 0.19420596096553955,
+        "source": "cvm"
       },
       "score": {
-        "quality": 75.4,
-        "value": 72.9,
-        "moat": 68.3,
-        "macro_fit": 61.6,
-        "composite": 70.6,
-        "band": "Watch",
-        "rationale": "Weights Q0.3/V0.25/M0.3/X0.15. Transparent rule score — not licensed advice."
+        "quality": 47.7,
+        "value": 69.8,
+        "moat": 51.7,
+        "macro_fit": 50.8,
+        "composite": 54.9,
+        "band": "Caution",
+        "rationale": "Score mixes how cheap and how profitable this name is versus its industry, plus a simple moat and macro check. Not licensed advice."
       },
       "moat": {
-        "scale": 8,
-        "regulation": 8,
-        "brand": 7,
-        "cost_advantage": 6,
-        "switching_costs": 7,
-        "network": 5,
-        "summary": "Large retail bank; franchise and switching costs."
+        "scale": 6,
+        "regulation": 5,
+        "brand": 6,
+        "cost_advantage": 5,
+        "switching_costs": 5,
+        "network": 4,
+        "summary": ""
       },
-      "statements": [
-        {
-          "period": "2024",
-          "type": "income",
-          "account": "NetRevenue",
-          "value": 77777777.77777779,
-          "source": "seed"
-        },
-        {
-          "period": "2024",
-          "type": "income",
-          "account": "NetIncome",
-          "value": 14000000.000000002,
-          "source": "seed"
-        },
-        {
-          "period": "2024",
-          "type": "balance",
-          "account": "Equity",
-          "value": 100000000.0,
-          "source": "seed"
-        },
-        {
-          "period": "2024",
-          "type": "balance",
-          "account": "TotalAssets",
-          "value": 220000000.00000003,
-          "source": "seed"
-        },
-        {
-          "period": "2024",
-          "type": "cashflow",
-          "account": "OperatingCF",
-          "value": 15400000.000000004,
-          "source": "seed"
-        },
-        {
-          "period": "2023",
-          "type": "income",
-          "account": "NetRevenue",
-          "value": 71555555.55555557,
-          "source": "seed"
-        },
-        {
-          "period": "2023",
-          "type": "income",
-          "account": "NetIncome",
-          "value": 12600000.000000002,
-          "source": "seed"
-        }
-      ],
+      "statements": [],
+      "thesis": null
+    },
+    {
+      "ticker": "ASAI3",
+      "name": "Assaí ON",
+      "sector": "Retail",
+      "quote": {
+        "price": 8.22,
+        "change_percent": -1.7921146953404854,
+        "market_cap": null,
+        "volume": 13789500.0,
+        "fetched_at": "2026-08-27T20:05:49.430232"
+      },
+      "indicators": {
+        "pe": 11.75,
+        "pb": 1.79,
+        "ev_ebitda": 2.73,
+        "dividend_yield": 0.0125,
+        "roe": 0.08948505581562838,
+        "roa": 0.010392054364871929,
+        "roic": 0.2118,
+        "net_margin": 0.00642891329375089,
+        "ebitda_margin": 0.046865096304345016,
+        "debt_equity": 7.610911055095427,
+        "current_ratio": 1.0584527561396206,
+        "revenue_growth": 0.047250707812351855,
+        "earnings_growth": -0.35370611183355005,
+        "source": "cvm"
+      },
+      "score": {
+        "quality": 37.3,
+        "value": 38.4,
+        "moat": 43.3,
+        "macro_fit": 50.7,
+        "composite": 41.4,
+        "band": "Avoid",
+        "rationale": "Score mixes how cheap and how profitable this name is versus its industry, plus a simple moat and macro check. Not licensed advice."
+      },
+      "moat": {
+        "scale": 6,
+        "regulation": 3,
+        "brand": 6,
+        "cost_advantage": 4,
+        "switching_costs": 3,
+        "network": 4,
+        "summary": ""
+      },
+      "statements": [],
+      "thesis": null
+    },
+    {
+      "ticker": "AURE3",
+      "name": "Auren ON",
+      "sector": "Utilities",
+      "quote": {
+        "price": 10.85,
+        "change_percent": 0.0,
+        "market_cap": null,
+        "volume": 2970700.0,
+        "fetched_at": "2026-08-27T20:05:49.430499"
+      },
+      "indicators": {
+        "pe": null,
+        "pb": 0.99,
+        "ev_ebitda": 11.82,
+        "dividend_yield": 0.0,
+        "roe": -0.0907065224281376,
+        "roa": -0.023949394077147395,
+        "roic": 0.0264,
+        "net_margin": -0.11704316526913622,
+        "ebitda_margin": 0.2277245007357758,
+        "debt_equity": 2.7874245225556717,
+        "current_ratio": 0.9740883617643169,
+        "revenue_growth": 0.05532411260495462,
+        "earnings_growth": 0.13936021790334574,
+        "source": "cvm"
+      },
+      "score": {
+        "quality": 14.2,
+        "value": 43.8,
+        "moat": 60.0,
+        "macro_fit": 53.2,
+        "composite": 41.2,
+        "band": "Avoid",
+        "rationale": "Score mixes how cheap and how profitable this name is versus its industry, plus a simple moat and macro check. Not licensed advice."
+      },
+      "moat": {
+        "scale": 7,
+        "regulation": 8,
+        "brand": 4,
+        "cost_advantage": 6,
+        "switching_costs": 8,
+        "network": 3,
+        "summary": ""
+      },
+      "statements": [],
+      "thesis": null
+    },
+    {
+      "ticker": "AXIA3",
+      "name": "Axia Energia ON",
+      "sector": "Utilities",
+      "quote": {
+        "price": 52.77,
+        "change_percent": -1.1982774761280512,
+        "market_cap": null,
+        "volume": 7240700.0,
+        "fetched_at": "2026-08-27T20:05:49.430772"
+      },
+      "indicators": {
+        "pe": 13.04,
+        "pb": 1.29,
+        "ev_ebitda": 15.66,
+        "dividend_yield": 0.0278,
+        "roe": 0.055345006694716516,
+        "roa": 0.023449455975374463,
+        "roic": 0.0325,
+        "net_margin": 0.1588716434316154,
+        "ebitda_margin": 0.09560148788821052,
+        "debt_equity": 1.3601829719562486,
+        "current_ratio": 1.6815131188182735,
+        "revenue_growth": 0.027376841989577683,
+        "earnings_growth": -0.36804799558147416,
+        "source": "cvm"
+      },
+      "score": {
+        "quality": 42.2,
+        "value": 44.0,
+        "moat": 60.0,
+        "macro_fit": 53.2,
+        "composite": 49.6,
+        "band": "Avoid",
+        "rationale": "Score mixes how cheap and how profitable this name is versus its industry, plus a simple moat and macro check. Not licensed advice."
+      },
+      "moat": {
+        "scale": 7,
+        "regulation": 8,
+        "brand": 4,
+        "cost_advantage": 6,
+        "switching_costs": 8,
+        "network": 3,
+        "summary": ""
+      },
+      "statements": [],
+      "thesis": null
+    },
+    {
+      "ticker": "AZZA3",
+      "name": "Azzas 2154 ON",
+      "sector": "Retail",
+      "quote": {
+        "price": 14.83,
+        "change_percent": -0.4029550033579632,
+        "market_cap": null,
+        "volume": 1121200.0,
+        "fetched_at": "2026-08-27T20:05:49.431036"
+      },
+      "indicators": {
+        "pe": 9.48,
+        "pb": 0.38,
+        "ev_ebitda": 3.63,
+        "dividend_yield": 0.16620000000000001,
+        "roe": 0.11423019606623992,
+        "roa": 0.05898585897842788,
+        "roic": 0.0588,
+        "net_margin": 0.07709713750810948,
+        "ebitda_margin": 0.09629787811523541,
+        "debt_equity": 0.936569171740227,
+        "current_ratio": 1.8389388253496224,
+        "revenue_growth": 0.41048214666947813,
+        "earnings_growth": 1.6665993614786072,
+        "source": "cvm"
+      },
+      "score": {
+        "quality": 63.7,
+        "value": 71.6,
+        "moat": 43.3,
+        "macro_fit": 50.7,
+        "composite": 57.6,
+        "band": "Caution",
+        "rationale": "Score mixes how cheap and how profitable this name is versus its industry, plus a simple moat and macro check. Not licensed advice."
+      },
+      "moat": {
+        "scale": 6,
+        "regulation": 3,
+        "brand": 6,
+        "cost_advantage": 4,
+        "switching_costs": 3,
+        "network": 4,
+        "summary": ""
+      },
+      "statements": [],
       "thesis": null
     },
     {
@@ -800,36 +380,36 @@
       "name": "B3 ON",
       "sector": "Financial Services",
       "quote": {
-        "price": 11.2,
-        "change_percent": 0.0,
+        "price": 15.72,
+        "change_percent": -0.19047619047618536,
         "market_cap": null,
-        "volume": null,
-        "fetched_at": "2026-08-20T17:48:36.347253"
+        "volume": 14674300.0,
+        "fetched_at": "2026-08-27T20:05:49.428513"
       },
       "indicators": {
-        "pe": 16.0,
-        "pb": 3.2,
-        "ev_ebitda": 11.0,
-        "dividend_yield": 0.04,
-        "roe": 0.22,
-        "roa": 0.12,
-        "roic": 0.2,
-        "net_margin": 0.45,
-        "ebitda_margin": 0.65,
-        "debt_equity": 0.3,
-        "current_ratio": 1.8,
-        "revenue_growth": 0.07,
-        "earnings_growth": 0.08,
-        "source": "cvm+seed"
+        "pe": 14.91,
+        "pb": 4.25,
+        "ev_ebitda": 10.38,
+        "dividend_yield": 0.049100000000000005,
+        "roe": 0.2625743390189657,
+        "roa": 0.09457293318440468,
+        "roic": 0.222,
+        "net_margin": 0.412318522291642,
+        "ebitda_margin": 0.5968628459445158,
+        "debt_equity": 1.7764216481155404,
+        "current_ratio": 1.9061747131553057,
+        "revenue_growth": 0.05190774612971594,
+        "earnings_growth": 0.0019748366739276157,
+        "source": "cvm"
       },
       "score": {
-        "quality": 100.0,
-        "value": 54.4,
+        "quality": 74.9,
+        "value": 33.5,
         "moat": 83.3,
-        "macro_fit": 58.3,
-        "composite": 77.3,
-        "band": "Watch",
-        "rationale": "Weights Q0.3/V0.25/M0.3/X0.15. Transparent rule score — not licensed advice."
+        "macro_fit": 57.4,
+        "composite": 64.5,
+        "band": "Caution",
+        "rationale": "Score mixes how cheap and how profitable this name is versus its industry, plus a simple moat and macro check. Not licensed advice."
       },
       "moat": {
         "scale": 9,
@@ -840,169 +420,1879 @@
         "network": 9,
         "summary": "Exchange monopoly-like infrastructure with network effects."
       },
-      "statements": [
-        {
-          "period": "2024",
-          "type": "income",
-          "account": "NetRevenue",
-          "value": 48888888.88888889,
-          "source": "seed"
-        },
-        {
-          "period": "2024",
-          "type": "income",
-          "account": "NetIncome",
-          "value": 22000000.0,
-          "source": "seed"
-        },
-        {
-          "period": "2024",
-          "type": "balance",
-          "account": "Equity",
-          "value": 100000000.0,
-          "source": "seed"
-        },
-        {
-          "period": "2024",
-          "type": "balance",
-          "account": "TotalAssets",
-          "value": 220000000.00000003,
-          "source": "seed"
-        },
-        {
-          "period": "2024",
-          "type": "cashflow",
-          "account": "OperatingCF",
-          "value": 24200000.000000004,
-          "source": "seed"
-        },
-        {
-          "period": "2023",
-          "type": "income",
-          "account": "NetRevenue",
-          "value": 44977777.777777776,
-          "source": "seed"
-        },
-        {
-          "period": "2023",
-          "type": "income",
-          "account": "NetIncome",
-          "value": 19800000.0,
-          "source": "seed"
-        },
-        {
-          "period": "2024",
-          "type": "income",
-          "account": "Receita de Venda de Bens e/ou Serviços",
-          "value": 9921251.0,
-          "source": "cvm"
-        }
-      ],
+      "statements": [],
       "thesis": null
     },
     {
-      "ticker": "RENT3",
-      "name": "Localiza ON",
-      "sector": "Consumer",
+      "ticker": "BBAS3",
+      "name": "Banco do Brasil ON",
+      "sector": "Banks",
       "quote": {
-        "price": 42.0,
-        "change_percent": 0.0,
+        "price": 20.03,
+        "change_percent": 2.6127049180328044,
         "market_cap": null,
-        "volume": null,
-        "fetched_at": "2026-08-20T17:48:36.872308"
+        "volume": 23474100.0,
+        "fetched_at": "2026-08-27T20:05:49.427431"
       },
       "indicators": {
-        "pe": 18.0,
-        "pb": 2.8,
-        "ev_ebitda": 7.5,
-        "dividend_yield": 0.02,
-        "roe": 0.16,
-        "roa": 0.05,
-        "roic": 0.08,
-        "net_margin": 0.1,
-        "ebitda_margin": 0.4,
-        "debt_equity": 1.5,
-        "current_ratio": 1.0,
-        "revenue_growth": 0.12,
-        "earnings_growth": 0.1,
-        "source": "cvm+seed"
+        "pe": 7.72,
+        "pb": 0.62,
+        "ev_ebitda": null,
+        "dividend_yield": 0.0282,
+        "roe": 0.07076668316944418,
+        "roa": 0.005579358346305017,
+        "roic": null,
+        "net_margin": 0.04287871340132412,
+        "ebitda_margin": 0.017572149966181904,
+        "debt_equity": null,
+        "current_ratio": null,
+        "revenue_growth": 0.16802904502675142,
+        "earnings_growth": -0.48032183485932245,
+        "source": "cvm"
       },
       "score": {
-        "quality": 67.2,
-        "value": 55.1,
-        "moat": 51.7,
-        "macro_fit": 48.5,
-        "composite": 56.7,
+        "quality": 50.0,
+        "value": 54.2,
+        "moat": 66.7,
+        "macro_fit": 59.8,
+        "composite": 57.5,
         "band": "Caution",
-        "rationale": "Weights Q0.3/V0.25/M0.3/X0.15. Transparent rule score — not licensed advice."
+        "rationale": "Score mixes how cheap and how profitable this name is versus its industry, plus a simple moat and macro check. Not licensed advice."
+      },
+      "moat": {
+        "scale": 8,
+        "regulation": 8,
+        "brand": 7,
+        "cost_advantage": 6,
+        "switching_costs": 6,
+        "network": 5,
+        "summary": "Public bank with agribusiness reach and policy role."
+      },
+      "statements": [],
+      "thesis": null
+    },
+    {
+      "ticker": "BBDC3",
+      "name": "Bradesco ON",
+      "sector": "Banks",
+      "quote": {
+        "price": 14.96,
+        "change_percent": 0.2680965147453085,
+        "market_cap": null,
+        "volume": 4766300.0,
+        "fetched_at": "2026-08-27T20:05:49.431578"
+      },
+      "indicators": {
+        "pe": 6.38,
+        "pb": 0.9,
+        "ev_ebitda": null,
+        "dividend_yield": 0.09480000000000001,
+        "roe": 0.10354969459153492,
+        "roa": 0.026203402567030243,
+        "roic": null,
+        "net_margin": 0.20376422850929105,
+        "ebitda_margin": 0.32358746370211344,
+        "debt_equity": null,
+        "current_ratio": null,
+        "revenue_growth": 0.0919,
+        "earnings_growth": null,
+        "source": "cvm"
+      },
+      "score": {
+        "quality": 60.0,
+        "value": 62.4,
+        "moat": 68.3,
+        "macro_fit": 59.8,
+        "composite": 63.1,
+        "band": "Caution",
+        "rationale": "Score mixes how cheap and how profitable this name is versus its industry, plus a simple moat and macro check. Not licensed advice."
+      },
+      "moat": {
+        "scale": 8,
+        "regulation": 8,
+        "brand": 7,
+        "cost_advantage": 6,
+        "switching_costs": 7,
+        "network": 5,
+        "summary": "Same franchise as BBDC4 — ordinary shares."
+      },
+      "statements": [],
+      "thesis": null
+    },
+    {
+      "ticker": "BBDC4",
+      "name": "Bradesco PN",
+      "sector": "Banks",
+      "quote": {
+        "price": 16.96,
+        "change_percent": -0.17657445556208407,
+        "market_cap": null,
+        "volume": 21307200.0,
+        "fetched_at": "2026-08-27T20:05:49.428257"
+      },
+      "indicators": {
+        "pe": 7.27,
+        "pb": 1.03,
+        "ev_ebitda": null,
+        "dividend_yield": 0.0915,
+        "roe": 0.10354969459153492,
+        "roa": 0.026203402567030243,
+        "roic": null,
+        "net_margin": 0.20376422850929105,
+        "ebitda_margin": 0.32358746370211344,
+        "debt_equity": null,
+        "current_ratio": null,
+        "revenue_growth": 0.0919,
+        "earnings_growth": 0.3721001107060262,
+        "source": "cvm"
+      },
+      "score": {
+        "quality": 60.0,
+        "value": 59.7,
+        "moat": 68.3,
+        "macro_fit": 59.8,
+        "composite": 62.4,
+        "band": "Caution",
+        "rationale": "Score mixes how cheap and how profitable this name is versus its industry, plus a simple moat and macro check. Not licensed advice."
+      },
+      "moat": {
+        "scale": 8,
+        "regulation": 8,
+        "brand": 7,
+        "cost_advantage": 6,
+        "switching_costs": 7,
+        "network": 5,
+        "summary": "Large retail bank; franchise and switching costs."
+      },
+      "statements": [],
+      "thesis": null
+    },
+    {
+      "ticker": "BBSE3",
+      "name": "BB Seguridade ON",
+      "sector": "Insurance",
+      "quote": {
+        "price": 39.41,
+        "change_percent": 0.0,
+        "market_cap": null,
+        "volume": 3799000.0,
+        "fetched_at": "2026-08-27T20:05:49.431320"
+      },
+      "indicators": {
+        "pe": 8.33,
+        "pb": 7.03,
+        "ev_ebitda": null,
+        "dividend_yield": 0.11810000000000001,
+        "roe": 0.8683539808248782,
+        "roa": 0.3903995013182267,
+        "roic": null,
+        "net_margin": null,
+        "ebitda_margin": null,
+        "debt_equity": null,
+        "current_ratio": null,
+        "revenue_growth": 0.0,
+        "earnings_growth": 0.03607529190186809,
+        "source": "cvm"
+      },
+      "score": {
+        "quality": 67.0,
+        "value": 53.0,
+        "moat": 55.0,
+        "macro_fit": 58.0,
+        "composite": 58.5,
+        "band": "Caution",
+        "rationale": "Score mixes how cheap and how profitable this name is versus its industry, plus a simple moat and macro check. Not licensed advice."
+      },
+      "moat": {
+        "scale": 6,
+        "regulation": 7,
+        "brand": 6,
+        "cost_advantage": 5,
+        "switching_costs": 5,
+        "network": 4,
+        "summary": ""
+      },
+      "statements": [],
+      "thesis": null
+    },
+    {
+      "ticker": "BEEF3",
+      "name": "Minerva ON",
+      "sector": "Protein",
+      "quote": {
+        "price": 3.97,
+        "change_percent": -3.170731707317065,
+        "market_cap": null,
+        "volume": 9990000.0,
+        "fetched_at": "2026-08-27T20:05:49.442887"
+      },
+      "indicators": {
+        "pe": 8.94,
+        "pb": 2.6,
+        "ev_ebitda": 3.84,
+        "dividend_yield": 0.04769999999999999,
+        "roe": 0.42810027360792724,
+        "roa": 0.017666712972086683,
+        "roic": 0.1655,
+        "net_margin": 0.01478181535125469,
+        "ebitda_margin": 0.07018686752773186,
+        "debt_equity": 23.232027445304826,
+        "current_ratio": 1.3423087565685141,
+        "revenue_growth": 0.6093894055645996,
+        "earnings_growth": -1.5199729007026312,
+        "source": "cvm"
+      },
+      "score": {
+        "quality": 66.4,
+        "value": 53.5,
+        "moat": 40.0,
+        "macro_fit": 53.2,
+        "composite": 53.3,
+        "band": "Caution",
+        "rationale": "Score mixes how cheap and how profitable this name is versus its industry, plus a simple moat and macro check. Not licensed advice."
+      },
+      "moat": {
+        "scale": 6,
+        "regulation": 5,
+        "brand": 4,
+        "cost_advantage": 5,
+        "switching_costs": 2,
+        "network": 2,
+        "summary": ""
+      },
+      "statements": [],
+      "thesis": null
+    },
+    {
+      "ticker": "BPAC11",
+      "name": "BTG Pactual UNT",
+      "sector": "Banks",
+      "quote": {
+        "price": 53.63,
+        "change_percent": -0.8137599408174601,
+        "market_cap": null,
+        "volume": 13383700.0,
+        "fetched_at": "2026-08-27T20:05:49.432629"
+      },
+      "indicators": {
+        "pe": 11.56,
+        "pb": 2.64,
+        "ev_ebitda": null,
+        "dividend_yield": 0.026099999999999998,
+        "roe": 0.20753600488367982,
+        "roa": 0.02059035181422908,
+        "roic": null,
+        "net_margin": 0.5920525597107378,
+        "ebitda_margin": 0.6854190802135891,
+        "debt_equity": null,
+        "current_ratio": null,
+        "revenue_growth": 0.290649380247195,
+        "earnings_growth": 0.5053244344939452,
+        "source": "cvm"
+      },
+      "score": {
+        "quality": 83.2,
+        "value": 34.8,
+        "moat": 70.0,
+        "macro_fit": 59.8,
+        "composite": 63.6,
+        "band": "Caution",
+        "rationale": "Score mixes how cheap and how profitable this name is versus its industry, plus a simple moat and macro check. Not licensed advice."
+      },
+      "moat": {
+        "scale": 8,
+        "regulation": 8,
+        "brand": 7,
+        "cost_advantage": 6,
+        "switching_costs": 7,
+        "network": 6,
+        "summary": ""
+      },
+      "statements": [],
+      "thesis": null
+    },
+    {
+      "ticker": "BRAP4",
+      "name": "Bradespar PN",
+      "sector": "Mining",
+      "quote": {
+        "price": 22.34,
+        "change_percent": 1.7767653758542057,
+        "market_cap": null,
+        "volume": 1182500.0,
+        "fetched_at": "2026-08-27T20:05:49.431848"
+      },
+      "indicators": {
+        "pe": 14.76,
+        "pb": 1.07,
+        "ev_ebitda": -225.0,
+        "dividend_yield": 0.1074,
+        "roe": 0.07152319283618717,
+        "roa": 0.0683778857837181,
+        "roic": -0.004699999999999999,
+        "net_margin": null,
+        "ebitda_margin": null,
+        "debt_equity": 0.045998893010787065,
+        "current_ratio": 1.6247667622138975,
+        "revenue_growth": 0.0,
+        "earnings_growth": -0.5411933152604244,
+        "source": "cvm"
+      },
+      "score": {
+        "quality": 47.9,
+        "value": 67.8,
+        "moat": 51.7,
+        "macro_fit": 54.4,
+        "composite": 55.0,
+        "band": "Caution",
+        "rationale": "Score mixes how cheap and how profitable this name is versus its industry, plus a simple moat and macro check. Not licensed advice."
+      },
+      "moat": {
+        "scale": 8,
+        "regulation": 6,
+        "brand": 4,
+        "cost_advantage": 8,
+        "switching_costs": 3,
+        "network": 2,
+        "summary": ""
+      },
+      "statements": [],
+      "thesis": null
+    },
+    {
+      "ticker": "BRAV3",
+      "name": "Brava ON",
+      "sector": "Oil & Gas",
+      "quote": {
+        "price": 17.61,
+        "change_percent": -0.6207674943566555,
+        "market_cap": null,
+        "volume": 2761600.0,
+        "fetched_at": "2026-08-27T20:05:49.432362"
+      },
+      "indicators": {
+        "pe": 151.16,
+        "pb": 0.67,
+        "ev_ebitda": 3.16,
+        "dividend_yield": 0.006999999999999999,
+        "roe": 0.11985752223422966,
+        "roa": 0.03304336220556789,
+        "roic": 0.083,
+        "net_margin": 0.12141668181623817,
+        "ebitda_margin": 0.19067234931180796,
+        "debt_equity": 2.6272798599784544,
+        "current_ratio": 1.422166998149557,
+        "revenue_growth": 0.33194019821091514,
+        "earnings_growth": -2.551323471376544,
+        "source": "cvm"
+      },
+      "score": {
+        "quality": 54.3,
+        "value": 34.6,
+        "moat": 50.0,
+        "macro_fit": 53.8,
+        "composite": 48.0,
+        "band": "Avoid",
+        "rationale": "Score mixes how cheap and how profitable this name is versus its industry, plus a simple moat and macro check. Not licensed advice."
       },
       "moat": {
         "scale": 7,
+        "regulation": 7,
+        "brand": 4,
+        "cost_advantage": 7,
+        "switching_costs": 3,
+        "network": 2,
+        "summary": ""
+      },
+      "statements": [],
+      "thesis": null
+    },
+    {
+      "ticker": "BRKM5",
+      "name": "Braskem PNA",
+      "sector": "Chemicals",
+      "quote": {
+        "price": 4.22,
+        "change_percent": 19.886363636363626,
+        "market_cap": null,
+        "volume": 17081900.0,
+        "fetched_at": "2026-08-27T20:05:49.432114"
+      },
+      "indicators": {
+        "pe": null,
+        "pb": null,
+        "ev_ebitda": 8.06,
+        "dividend_yield": 0.0,
+        "roe": 0.5987153072354866,
+        "roa": -0.12066586059917683,
+        "roic": 0.018500000000000003,
+        "net_margin": -0.13971180904167316,
+        "ebitda_margin": -0.025552554548411273,
+        "debt_equity": -5.961762210641134,
+        "current_ratio": 0.7570739469889104,
+        "revenue_growth": -0.08647349859839037,
+        "earnings_growth": -0.12720848056537104,
+        "source": "cvm"
+      },
+      "score": {
+        "quality": 61.4,
+        "value": 37.3,
+        "moat": 40.0,
+        "macro_fit": 53.2,
+        "composite": 47.7,
+        "band": "Avoid",
+        "rationale": "Score mixes how cheap and how profitable this name is versus its industry, plus a simple moat and macro check. Not licensed advice."
+      },
+      "moat": {
+        "scale": 6,
+        "regulation": 5,
+        "brand": 3,
+        "cost_advantage": 5,
+        "switching_costs": 3,
+        "network": 2,
+        "summary": ""
+      },
+      "statements": [],
+      "thesis": null
+    },
+    {
+      "ticker": "CEAB3",
+      "name": "C&A ON",
+      "sector": "Retail",
+      "quote": {
+        "price": 8.13,
+        "change_percent": 3.566878980891741,
+        "market_cap": null,
+        "volume": 12993300.0,
+        "fetched_at": "2026-08-27T20:05:49.433171"
+      },
+      "indicators": {
+        "pe": 4.3,
+        "pb": 0.64,
+        "ev_ebitda": 1.94,
+        "dividend_yield": 0.0664,
+        "roe": 0.15837014601344032,
+        "roa": 0.0630014080391405,
+        "roic": 0.1493,
+        "net_margin": 0.07354253899369131,
+        "ebitda_margin": 0.1308473625941662,
+        "debt_equity": 1.5137556594774937,
+        "current_ratio": 1.4632841499524576,
+        "revenue_growth": 0.045363351120186746,
+        "earnings_growth": 0.2974957843161088,
+        "source": "cvm"
+      },
+      "score": {
+        "quality": 53.7,
+        "value": 71.7,
+        "moat": 43.3,
+        "macro_fit": 50.7,
+        "composite": 54.6,
+        "band": "Caution",
+        "rationale": "Score mixes how cheap and how profitable this name is versus its industry, plus a simple moat and macro check. Not licensed advice."
+      },
+      "moat": {
+        "scale": 6,
+        "regulation": 3,
+        "brand": 6,
+        "cost_advantage": 4,
+        "switching_costs": 3,
+        "network": 4,
+        "summary": ""
+      },
+      "statements": [],
+      "thesis": null
+    },
+    {
+      "ticker": "CMIG4",
+      "name": "Cemig PN",
+      "sector": "Utilities",
+      "quote": {
+        "price": 10.41,
+        "change_percent": -0.8571428571428563,
+        "market_cap": null,
+        "volume": 11965200.0,
+        "fetched_at": "2026-08-27T20:05:49.433450"
+      },
+      "indicators": {
+        "pe": 6.54,
+        "pb": 1.03,
+        "ev_ebitda": 6.47,
+        "dividend_yield": 0.10060000000000001,
+        "roe": 0.16683692228879743,
+        "roa": 0.0948812844436759,
+        "roic": 0.09300000000000001,
+        "net_margin": 0.2514959916598958,
+        "ebitda_margin": 0.29430877566788716,
+        "debt_equity": 0.7583754611567927,
+        "current_ratio": 1.2162694529620408,
+        "revenue_growth": 0.18282030052221598,
+        "earnings_growth": -0.5078255825007252,
+        "source": "cvm"
+      },
+      "score": {
+        "quality": 76.3,
+        "value": 76.5,
+        "moat": 60.0,
+        "macro_fit": 53.2,
+        "composite": 68.0,
+        "band": "Fair",
+        "rationale": "Score mixes how cheap and how profitable this name is versus its industry, plus a simple moat and macro check. Not licensed advice."
+      },
+      "moat": {
+        "scale": 7,
+        "regulation": 8,
+        "brand": 4,
+        "cost_advantage": 6,
+        "switching_costs": 8,
+        "network": 3,
+        "summary": ""
+      },
+      "statements": [],
+      "thesis": null
+    },
+    {
+      "ticker": "CMIN3",
+      "name": "CSN Mineração ON",
+      "sector": "Mining",
+      "quote": {
+        "price": 5.99,
+        "change_percent": 0.0,
+        "market_cap": null,
+        "volume": 5035100.0,
+        "fetched_at": "2026-08-27T20:05:49.437289"
+      },
+      "indicators": {
+        "pe": 13.95,
+        "pb": 4.43,
+        "ev_ebitda": 5.42,
+        "dividend_yield": 0.1819,
+        "roe": 0.0,
+        "roa": 0.0,
+        "roic": 0.20329999999999998,
+        "net_margin": 0.0,
+        "ebitda_margin": 0.6182746264434069,
+        "debt_equity": 3.983943835752983,
+        "current_ratio": 1.1264354292168675,
+        "revenue_growth": 0.5367156434430453,
+        "earnings_growth": null,
+        "source": "cvm"
+      },
+      "score": {
+        "quality": 41.2,
+        "value": 52.5,
+        "moat": 51.7,
+        "macro_fit": 54.4,
+        "composite": 49.2,
+        "band": "Avoid",
+        "rationale": "Score mixes how cheap and how profitable this name is versus its industry, plus a simple moat and macro check. Not licensed advice."
+      },
+      "moat": {
+        "scale": 8,
+        "regulation": 6,
+        "brand": 4,
+        "cost_advantage": 8,
+        "switching_costs": 3,
+        "network": 2,
+        "summary": ""
+      },
+      "statements": [],
+      "thesis": null
+    },
+    {
+      "ticker": "COGN3",
+      "name": "Cogna ON",
+      "sector": "Education",
+      "quote": {
+        "price": 2.24,
+        "change_percent": 0.4484304932735439,
+        "market_cap": null,
+        "volume": 20920000.0,
+        "fetched_at": "2026-08-27T20:05:49.433706"
+      },
+      "indicators": {
+        "pe": 6.56,
+        "pb": 0.34,
+        "ev_ebitda": 3.34,
+        "dividend_yield": 0.053200000000000004,
+        "roe": 0.046490570244709116,
+        "roa": 0.02593041234901797,
+        "roic": 0.1024,
+        "net_margin": 0.08914764753558778,
+        "ebitda_margin": 0.1862735890265786,
+        "debt_equity": 0.7928974525725115,
+        "current_ratio": 1.6611819861578738,
+        "revenue_growth": 0.09796743432104038,
+        "earnings_growth": -0.289078739951652,
+        "source": "cvm"
+      },
+      "score": {
+        "quality": 56.1,
+        "value": 71.6,
+        "moat": 43.3,
+        "macro_fit": 51.4,
+        "composite": 55.4,
+        "band": "Caution",
+        "rationale": "Score mixes how cheap and how profitable this name is versus its industry, plus a simple moat and macro check. Not licensed advice."
+      },
+      "moat": {
+        "scale": 5,
+        "regulation": 5,
+        "brand": 5,
+        "cost_advantage": 4,
+        "switching_costs": 4,
+        "network": 3,
+        "summary": ""
+      },
+      "statements": [],
+      "thesis": null
+    },
+    {
+      "ticker": "CPFE3",
+      "name": "CPFL Energia ON",
+      "sector": "Utilities",
+      "quote": {
+        "price": 44.24,
+        "change_percent": -0.6958473625140238,
+        "market_cap": null,
+        "volume": 1074400.0,
+        "fetched_at": "2026-08-27T20:05:49.437000"
+      },
+      "indicators": {
+        "pe": 8.55,
+        "pb": 2.26,
+        "ev_ebitda": 5.66,
+        "dividend_yield": 0.08380000000000001,
+        "roe": 0.09076641403510775,
+        "roa": 0.036871626391572716,
+        "roic": 0.1557,
+        "net_margin": 0.1509409067199758,
+        "ebitda_margin": 0.41472085097132977,
+        "debt_equity": 1.46168728960253,
+        "current_ratio": 2.400894448998525,
+        "revenue_growth": 0.020035118584528444,
+        "earnings_growth": -0.3840751909113973,
+        "source": "cvm"
+      },
+      "score": {
+        "quality": 54.7,
+        "value": 66.9,
+        "moat": 60.0,
+        "macro_fit": 53.2,
+        "composite": 59.1,
+        "band": "Caution",
+        "rationale": "Score mixes how cheap and how profitable this name is versus its industry, plus a simple moat and macro check. Not licensed advice."
+      },
+      "moat": {
+        "scale": 7,
+        "regulation": 8,
+        "brand": 4,
+        "cost_advantage": 6,
+        "switching_costs": 8,
+        "network": 3,
+        "summary": ""
+      },
+      "statements": [],
+      "thesis": null
+    },
+    {
+      "ticker": "CPLE3",
+      "name": "Copel ON",
+      "sector": "Utilities",
+      "quote": {
+        "price": 14.56,
+        "change_percent": -0.6143344709897636,
+        "market_cap": null,
+        "volume": 9954200.0,
+        "fetched_at": "2026-08-27T20:05:49.436394"
+      },
+      "indicators": {
+        "pe": 13.94,
+        "pb": 1.81,
+        "ev_ebitda": 9.1,
+        "dividend_yield": 0.0725,
+        "roe": 0.11643064963945488,
+        "roa": 0.04450282561511437,
+        "roic": 0.09820000000000001,
+        "net_margin": 0.10294554597230234,
+        "ebitda_margin": 0.19317068639502397,
+        "debt_equity": 1.6162529688881568,
+        "current_ratio": 0.9836686111960089,
+        "revenue_growth": 0.15300933696807517,
+        "earnings_growth": -0.04307220414353341,
+        "source": "cvm"
+      },
+      "score": {
+        "quality": 55.1,
+        "value": 57.6,
+        "moat": 60.0,
+        "macro_fit": 53.2,
+        "composite": 56.9,
+        "band": "Caution",
+        "rationale": "Score mixes how cheap and how profitable this name is versus its industry, plus a simple moat and macro check. Not licensed advice."
+      },
+      "moat": {
+        "scale": 7,
+        "regulation": 8,
+        "brand": 4,
+        "cost_advantage": 6,
+        "switching_costs": 8,
+        "network": 3,
+        "summary": ""
+      },
+      "statements": [],
+      "thesis": null
+    },
+    {
+      "ticker": "CSAN3",
+      "name": "Cosan ON",
+      "sector": "Fuel Distribution",
+      "quote": {
+        "price": 3.67,
+        "change_percent": -1.0781671159029615,
+        "market_cap": null,
+        "volume": 18704200.0,
+        "fetched_at": "2026-08-27T20:05:49.436718"
+      },
+      "indicators": {
+        "pe": null,
+        "pb": 2.96,
+        "ev_ebitda": 4.69,
+        "dividend_yield": 0.0,
+        "roe": -0.31351952193434607,
+        "roa": -0.07195310529608752,
+        "roic": 0.0859,
+        "net_margin": -0.24053594043692167,
+        "ebitda_margin": -0.0049448526119017094,
+        "debt_equity": 3.357275765155807,
+        "current_ratio": 2.5782520952670556,
+        "revenue_growth": -0.08036601520857145,
+        "earnings_growth": 0.031657097804016265,
+        "source": "cvm"
+      },
+      "score": {
+        "quality": 6.0,
+        "value": 41.0,
+        "moat": 50.0,
+        "macro_fit": 53.8,
+        "composite": 35.1,
+        "band": "Avoid",
+        "rationale": "Score mixes how cheap and how profitable this name is versus its industry, plus a simple moat and macro check. Not licensed advice."
+      },
+      "moat": {
+        "scale": 7,
+        "regulation": 5,
+        "brand": 6,
+        "cost_advantage": 5,
+        "switching_costs": 3,
+        "network": 4,
+        "summary": ""
+      },
+      "statements": [],
+      "thesis": null
+    },
+    {
+      "ticker": "CSMG3",
+      "name": "Copasa ON",
+      "sector": "Sanitation",
+      "quote": {
+        "price": 55.05,
+        "change_percent": -0.09074410163339985,
+        "market_cap": null,
+        "volume": 1921500.0,
+        "fetched_at": "2026-08-27T20:05:49.435817"
+      },
+      "indicators": {
+        "pe": 16.2,
+        "pb": 2.37,
+        "ev_ebitda": 8.87,
+        "dividend_yield": 0.0397,
+        "roe": 0.1650377702909305,
+        "roa": 0.0798175725917331,
+        "roic": 0.1159,
+        "net_margin": 0.16995338641735663,
+        "ebitda_margin": 0.24093796179919066,
+        "debt_equity": 1.06768716376654,
+        "current_ratio": 1.3759175295797745,
+        "revenue_growth": 0.05739828073245956,
+        "earnings_growth": 0.07504176411627128,
+        "source": "cvm"
+      },
+      "score": {
+        "quality": 67.2,
+        "value": 42.4,
+        "moat": 61.7,
+        "macro_fit": 53.2,
+        "composite": 57.3,
+        "band": "Caution",
+        "rationale": "Score mixes how cheap and how profitable this name is versus its industry, plus a simple moat and macro check. Not licensed advice."
+      },
+      "moat": {
+        "scale": 7,
+        "regulation": 8,
+        "brand": 4,
+        "cost_advantage": 6,
+        "switching_costs": 9,
+        "network": 3,
+        "summary": ""
+      },
+      "statements": [],
+      "thesis": null
+    },
+    {
+      "ticker": "CSNA3",
+      "name": "CSN ON",
+      "sector": "Steel",
+      "quote": {
+        "price": 5.38,
+        "change_percent": 2.0872865275142427,
+        "market_cap": null,
+        "volume": 15966800.0,
+        "fetched_at": "2026-08-27T20:05:49.446246"
+      },
+      "indicators": {
+        "pe": null,
+        "pb": 0.57,
+        "ev_ebitda": 4.28,
+        "dividend_yield": 0.0,
+        "roe": -0.12724513626094996,
+        "roa": -0.019909188700068303,
+        "roic": 0.08070000000000001,
+        "net_margin": -0.04469789753306993,
+        "ebitda_margin": 0.10751997424167617,
+        "debt_equity": 5.391276820863796,
+        "current_ratio": 1.0803661015147643,
+        "revenue_growth": 0.025418873058767888,
+        "earnings_growth": -0.2274347560874448,
+        "source": "cvm"
+      },
+      "score": {
+        "quality": 17.0,
+        "value": 46.0,
+        "moat": 40.0,
+        "macro_fit": 53.8,
+        "composite": 36.7,
+        "band": "Avoid",
+        "rationale": "Score mixes how cheap and how profitable this name is versus its industry, plus a simple moat and macro check. Not licensed advice."
+      },
+      "moat": {
+        "scale": 6,
+        "regulation": 4,
+        "brand": 4,
+        "cost_advantage": 5,
+        "switching_costs": 3,
+        "network": 2,
+        "summary": ""
+      },
+      "statements": [],
+      "thesis": null
+    },
+    {
+      "ticker": "CURY3",
+      "name": "Cury ON",
+      "sector": "Homebuilders",
+      "quote": {
+        "price": 32.78,
+        "change_percent": 2.4695217255392476,
+        "market_cap": null,
+        "volume": 2849100.0,
+        "fetched_at": "2026-08-27T20:05:49.437565"
+      },
+      "indicators": {
+        "pe": 8.97,
+        "pb": 5.95,
+        "ev_ebitda": 5.78,
+        "dividend_yield": 0.1505,
+        "roe": 0.5869460318377141,
+        "roa": 0.17252703428041374,
+        "roic": 0.3772,
+        "net_margin": 0.180674086717398,
+        "ebitda_margin": 0.23485097669677357,
+        "debt_equity": 2.4020525205558907,
+        "current_ratio": 1.8419865802603659,
+        "revenue_growth": 0.37519044599127427,
+        "earnings_growth": 0.5011872098337598,
+        "source": "cvm"
+      },
+      "score": {
+        "quality": 82.1,
+        "value": 48.5,
+        "moat": 36.7,
+        "macro_fit": 50.2,
+        "composite": 55.3,
+        "band": "Caution",
+        "rationale": "Score mixes how cheap and how profitable this name is versus its industry, plus a simple moat and macro check. Not licensed advice."
+      },
+      "moat": {
+        "scale": 5,
+        "regulation": 4,
+        "brand": 5,
+        "cost_advantage": 4,
+        "switching_costs": 2,
+        "network": 2,
+        "summary": ""
+      },
+      "statements": [],
+      "thesis": null
+    },
+    {
+      "ticker": "CXSE3",
+      "name": "Caixa Seguridade ON",
+      "sector": "Insurance",
+      "quote": {
+        "price": 19.37,
+        "change_percent": 0.8328995314940135,
+        "market_cap": null,
+        "volume": 3351000.0,
+        "fetched_at": "2026-08-27T20:05:49.432919"
+      },
+      "indicators": {
+        "pe": 12.74,
+        "pb": 4.18,
+        "ev_ebitda": null,
+        "dividend_yield": 0.0704,
+        "roe": 0.31670898249833734,
+        "roa": 0.2906576166164838,
+        "roic": -0.0121,
+        "net_margin": null,
+        "ebitda_margin": null,
+        "debt_equity": null,
+        "current_ratio": null,
+        "revenue_growth": 0.0,
+        "earnings_growth": null,
+        "source": "cvm"
+      },
+      "score": {
+        "quality": 54.1,
+        "value": 48.7,
+        "moat": 55.0,
+        "macro_fit": 58.0,
+        "composite": 53.6,
+        "band": "Caution",
+        "rationale": "Score mixes how cheap and how profitable this name is versus its industry, plus a simple moat and macro check. Not licensed advice."
+      },
+      "moat": {
+        "scale": 6,
+        "regulation": 7,
+        "brand": 6,
+        "cost_advantage": 5,
+        "switching_costs": 5,
+        "network": 4,
+        "summary": ""
+      },
+      "statements": [],
+      "thesis": null
+    },
+    {
+      "ticker": "CYRE3",
+      "name": "Cyrela ON",
+      "sector": "Homebuilders",
+      "quote": {
+        "price": 23.8,
+        "change_percent": -1.2038190120381875,
+        "market_cap": null,
+        "volume": 9446900.0,
+        "fetched_at": "2026-08-27T20:05:49.437841"
+      },
+      "indicators": {
+        "pe": 5.36,
+        "pb": 0.98,
+        "ev_ebitda": 8.61,
+        "dividend_yield": 0.096,
+        "roe": 0.17500599993860527,
+        "roa": 0.07685829433427281,
+        "roic": 0.0703,
+        "net_margin": 0.21295243568892813,
+        "ebitda_margin": 0.2436655660840873,
+        "debt_equity": 1.276995624928489,
+        "current_ratio": 3.843173027370332,
+        "revenue_growth": 0.1830106828186091,
+        "earnings_growth": 0.21695625701942278,
+        "source": "cvm"
+      },
+      "score": {
+        "quality": 58.7,
+        "value": 60.6,
+        "moat": 36.7,
+        "macro_fit": 50.2,
+        "composite": 51.3,
+        "band": "Caution",
+        "rationale": "Score mixes how cheap and how profitable this name is versus its industry, plus a simple moat and macro check. Not licensed advice."
+      },
+      "moat": {
+        "scale": 5,
+        "regulation": 4,
+        "brand": 5,
+        "cost_advantage": 4,
+        "switching_costs": 2,
+        "network": 2,
+        "summary": ""
+      },
+      "statements": [],
+      "thesis": null
+    },
+    {
+      "ticker": "DIRR3",
+      "name": "Direcional ON",
+      "sector": "Homebuilders",
+      "quote": {
+        "price": 10.94,
+        "change_percent": -0.6357856494096259,
+        "market_cap": null,
+        "volume": 7680900.0,
+        "fetched_at": "2026-08-27T20:05:49.438105"
+      },
+      "indicators": {
+        "pe": 6.7,
+        "pb": 2.46,
+        "ev_ebitda": 4.91,
+        "dividend_yield": 0.1408,
+        "roe": 0.34021147761503456,
+        "roa": 0.05970981800934746,
+        "roic": 0.0999,
+        "net_margin": 0.18175006815552722,
+        "ebitda_margin": 0.23097700948282848,
+        "debt_equity": 4.697747689697783,
+        "current_ratio": 3.7804701875112188,
+        "revenue_growth": 0.2970126654860279,
+        "earnings_growth": 0.23648058047113163,
+        "source": "cvm"
+      },
+      "score": {
+        "quality": 60.8,
+        "value": 64.1,
+        "moat": 36.7,
+        "macro_fit": 50.2,
+        "composite": 52.8,
+        "band": "Caution",
+        "rationale": "Score mixes how cheap and how profitable this name is versus its industry, plus a simple moat and macro check. Not licensed advice."
+      },
+      "moat": {
+        "scale": 5,
+        "regulation": 4,
+        "brand": 5,
+        "cost_advantage": 4,
+        "switching_costs": 2,
+        "network": 2,
+        "summary": ""
+      },
+      "statements": [],
+      "thesis": null
+    },
+    {
+      "ticker": "EGIE3",
+      "name": "Engie Brasil ON",
+      "sector": "Utilities",
+      "quote": {
+        "price": 28.83,
+        "change_percent": -0.03467406380027738,
+        "market_cap": null,
+        "volume": 1425100.0,
+        "fetched_at": "2026-08-27T20:05:49.439143"
+      },
+      "indicators": {
+        "pe": 10.32,
+        "pb": 2.72,
+        "ev_ebitda": 8.75,
+        "dividend_yield": 0.0313,
+        "roe": 0.1856223579256535,
+        "roa": 0.04669508522865792,
+        "roic": 0.1159,
+        "net_margin": 0.20084183023815957,
+        "ebitda_margin": 0.48742522885753,
+        "debt_equity": 2.975201180524508,
+        "current_ratio": 1.12227137488637,
+        "revenue_growth": 0.1463137003744217,
+        "earnings_growth": -0.39644067356974155,
+        "source": "cvm"
+      },
+      "score": {
+        "quality": 61.2,
+        "value": 47.6,
+        "moat": 60.0,
+        "macro_fit": 53.2,
+        "composite": 56.2,
+        "band": "Caution",
+        "rationale": "Score mixes how cheap and how profitable this name is versus its industry, plus a simple moat and macro check. Not licensed advice."
+      },
+      "moat": {
+        "scale": 7,
+        "regulation": 8,
+        "brand": 4,
+        "cost_advantage": 6,
+        "switching_costs": 8,
+        "network": 3,
+        "summary": ""
+      },
+      "statements": [],
+      "thesis": null
+    },
+    {
+      "ticker": "EMBJ3",
+      "name": "Embraer ON",
+      "sector": "Industrials",
+      "quote": {
+        "price": 97.48,
+        "change_percent": 0.25712228735987885,
+        "market_cap": null,
+        "volume": 2460700.0,
+        "fetched_at": "2026-08-27T20:05:49.438352"
+      },
+      "indicators": {
+        "pe": 30.91,
+        "pb": 4.02,
+        "ev_ebitda": 11.75,
+        "dividend_yield": 0.0101,
+        "roe": 0.093108732082794,
+        "roa": 0.02747072219907228,
+        "roic": 0.09609999999999999,
+        "net_margin": 0.046628467133173146,
+        "ebitda_margin": 0.07993924251408094,
+        "debt_equity": 2.389380570633065,
+        "current_ratio": 1.5015833636344935,
+        "revenue_growth": 0.18233480899230003,
+        "earnings_growth": 0.017771581937097825,
+        "source": "cvm"
+      },
+      "score": {
+        "quality": 42.8,
+        "value": 39.1,
+        "moat": 51.7,
+        "macro_fit": 53.2,
+        "composite": 46.1,
+        "band": "Avoid",
+        "rationale": "Score mixes how cheap and how profitable this name is versus its industry, plus a simple moat and macro check. Not licensed advice."
+      },
+      "moat": {
+        "scale": 6,
         "regulation": 4,
         "brand": 7,
         "cost_advantage": 6,
-        "switching_costs": 4,
+        "switching_costs": 5,
         "network": 3,
-        "summary": "Fleet scale in car rental; competitive industry."
+        "summary": ""
       },
-      "statements": [
-        {
-          "period": "2024",
-          "type": "income",
-          "account": "NetRevenue",
-          "value": 160000000.0,
-          "source": "seed"
-        },
-        {
-          "period": "2024",
-          "type": "income",
-          "account": "NetIncome",
-          "value": 16000000.0,
-          "source": "seed"
-        },
-        {
-          "period": "2024",
-          "type": "balance",
-          "account": "Equity",
-          "value": 100000000.0,
-          "source": "seed"
-        },
-        {
-          "period": "2024",
-          "type": "balance",
-          "account": "TotalAssets",
-          "value": 220000000.00000003,
-          "source": "seed"
-        },
-        {
-          "period": "2024",
-          "type": "cashflow",
-          "account": "OperatingCF",
-          "value": 17600000.0,
-          "source": "seed"
-        },
-        {
-          "period": "2023",
-          "type": "income",
-          "account": "NetRevenue",
-          "value": 147200000.0,
-          "source": "seed"
-        },
-        {
-          "period": "2023",
-          "type": "income",
-          "account": "NetIncome",
-          "value": 14400000.0,
-          "source": "seed"
-        },
-        {
-          "period": "2024",
-          "type": "income",
-          "account": "Receita de Venda de Bens e/ou Serviços",
-          "value": 5157876.0,
-          "source": "cvm"
-        }
-      ],
+      "statements": [],
+      "thesis": null
+    },
+    {
+      "ticker": "ENEV3",
+      "name": "Eneva ON",
+      "sector": "Utilities",
+      "quote": {
+        "price": 26.24,
+        "change_percent": -0.5307050796057644,
+        "market_cap": null,
+        "volume": 8574000.0,
+        "fetched_at": "2026-08-27T20:05:49.438882"
+      },
+      "indicators": {
+        "pe": 53.28,
+        "pb": 2.52,
+        "ev_ebitda": 12.28,
+        "dividend_yield": 0.0,
+        "roe": 0.05407626394084519,
+        "roa": 0.020365328026176556,
+        "roic": 0.058499999999999996,
+        "net_margin": 0.06285683536149109,
+        "ebitda_margin": 0.20162835082604005,
+        "debt_equity": 1.6553102346958672,
+        "current_ratio": 1.1307390313687367,
+        "revenue_growth": 0.6172160626932766,
+        "earnings_growth": 26.55278128198415,
+        "source": "cvm"
+      },
+      "score": {
+        "quality": 52.7,
+        "value": 18.4,
+        "moat": 60.0,
+        "macro_fit": 53.2,
+        "composite": 46.4,
+        "band": "Avoid",
+        "rationale": "Score mixes how cheap and how profitable this name is versus its industry, plus a simple moat and macro check. Not licensed advice."
+      },
+      "moat": {
+        "scale": 7,
+        "regulation": 8,
+        "brand": 4,
+        "cost_advantage": 6,
+        "switching_costs": 8,
+        "network": 3,
+        "summary": ""
+      },
+      "statements": [],
+      "thesis": null
+    },
+    {
+      "ticker": "ENGI11",
+      "name": "Energisa UNT",
+      "sector": "Utilities",
+      "quote": {
+        "price": 47.48,
+        "change_percent": -0.1891948707168467,
+        "market_cap": null,
+        "volume": 1777600.0,
+        "fetched_at": "2026-08-27T20:05:49.438624"
+      },
+      "indicators": {
+        "pe": 15.8,
+        "pb": 1.23,
+        "ev_ebitda": 5.83,
+        "dividend_yield": 0.0239,
+        "roe": 0.1045308787387635,
+        "roa": 0.026529235729588516,
+        "roic": 0.1025,
+        "net_margin": 0.06248178504923331,
+        "ebitda_margin": 0.1905386343461549,
+        "debt_equity": 2.9402144790088474,
+        "current_ratio": 1.5564111692723217,
+        "revenue_growth": 0.05118945970093969,
+        "earnings_growth": -0.41566565813770984,
+        "source": "cvm"
+      },
+      "score": {
+        "quality": 39.8,
+        "value": 52.6,
+        "moat": 60.0,
+        "macro_fit": 53.2,
+        "composite": 51.1,
+        "band": "Caution",
+        "rationale": "Score mixes how cheap and how profitable this name is versus its industry, plus a simple moat and macro check. Not licensed advice."
+      },
+      "moat": {
+        "scale": 7,
+        "regulation": 8,
+        "brand": 4,
+        "cost_advantage": 6,
+        "switching_costs": 8,
+        "network": 3,
+        "summary": ""
+      },
+      "statements": [],
+      "thesis": null
+    },
+    {
+      "ticker": "EQTL3",
+      "name": "Equatorial ON",
+      "sector": "Utilities",
+      "quote": {
+        "price": 36.68,
+        "change_percent": -0.4072766766223146,
+        "market_cap": null,
+        "volume": 4026600.0,
+        "fetched_at": "2026-08-27T20:05:49.439415"
+      },
+      "indicators": {
+        "pe": 48.4,
+        "pb": 1.78,
+        "ev_ebitda": 7.96,
+        "dividend_yield": 0.0429,
+        "roe": -0.07810542258124623,
+        "roa": -0.013457197052739941,
+        "roic": 0.09179999999999999,
+        "net_margin": -0.027765499247908908,
+        "ebitda_margin": 0.12113799591264589,
+        "debt_equity": 4.803988919471431,
+        "current_ratio": 1.04351146709529,
+        "revenue_growth": 0.17101939807686595,
+        "earnings_growth": -1.9889602456765632,
+        "source": "cvm"
+      },
+      "score": {
+        "quality": 24.2,
+        "value": 36.9,
+        "moat": 60.0,
+        "macro_fit": 53.2,
+        "composite": 42.5,
+        "band": "Avoid",
+        "rationale": "Score mixes how cheap and how profitable this name is versus its industry, plus a simple moat and macro check. Not licensed advice."
+      },
+      "moat": {
+        "scale": 7,
+        "regulation": 8,
+        "brand": 4,
+        "cost_advantage": 6,
+        "switching_costs": 8,
+        "network": 3,
+        "summary": ""
+      },
+      "statements": [],
+      "thesis": null
+    },
+    {
+      "ticker": "FLRY3",
+      "name": "Fleury ON",
+      "sector": "Health",
+      "quote": {
+        "price": 18.7,
+        "change_percent": 0.2143622722400762,
+        "market_cap": null,
+        "volume": 2747400.0,
+        "fetched_at": "2026-08-27T20:05:49.439671"
+      },
+      "indicators": {
+        "pe": 14.5,
+        "pb": 1.88,
+        "ev_ebitda": 5.99,
+        "dividend_yield": 0.06269999999999999,
+        "roe": 0.12025093656770013,
+        "roa": 0.04635466742851489,
+        "roic": 0.127,
+        "net_margin": 0.07391358674794499,
+        "ebitda_margin": 0.14728273966245103,
+        "debt_equity": 1.5941494835043997,
+        "current_ratio": 1.9688757970859605,
+        "revenue_growth": 0.07892646895587685,
+        "earnings_growth": -0.005422187311335147,
+        "source": "cvm"
+      },
+      "score": {
+        "quality": 53.4,
+        "value": 54.6,
+        "moat": 51.7,
+        "macro_fit": 52.6,
+        "composite": 53.1,
+        "band": "Caution",
+        "rationale": "Score mixes how cheap and how profitable this name is versus its industry, plus a simple moat and macro check. Not licensed advice."
+      },
+      "moat": {
+        "scale": 6,
+        "regulation": 6,
+        "brand": 6,
+        "cost_advantage": 5,
+        "switching_costs": 5,
+        "network": 3,
+        "summary": ""
+      },
+      "statements": [],
+      "thesis": null
+    },
+    {
+      "ticker": "GGBR4",
+      "name": "Gerdau PN",
+      "sector": "Steel",
+      "quote": {
+        "price": 24.09,
+        "change_percent": 5.288461538461542,
+        "market_cap": null,
+        "volume": 11431000.0,
+        "fetched_at": "2026-08-27T20:05:49.439954"
+      },
+      "indicators": {
+        "pe": 20.23,
+        "pb": 0.85,
+        "ev_ebitda": 4.97,
+        "dividend_yield": 0.0349,
+        "roe": 0.025781764986001744,
+        "roa": 0.01697944653556038,
+        "roic": 0.1003,
+        "net_margin": 0.019854697204344345,
+        "ebitda_margin": 0.053523426458488996,
+        "debt_equity": 0.5184102103685477,
+        "current_ratio": 2.893078376361073,
+        "revenue_growth": 0.04224999677740149,
+        "earnings_growth": -0.6962497347424631,
+        "source": "cvm"
+      },
+      "score": {
+        "quality": 69.7,
+        "value": 56.0,
+        "moat": 40.0,
+        "macro_fit": 53.8,
+        "composite": 55.0,
+        "band": "Caution",
+        "rationale": "Score mixes how cheap and how profitable this name is versus its industry, plus a simple moat and macro check. Not licensed advice."
+      },
+      "moat": {
+        "scale": 6,
+        "regulation": 4,
+        "brand": 4,
+        "cost_advantage": 5,
+        "switching_costs": 3,
+        "network": 2,
+        "summary": ""
+      },
+      "statements": [],
+      "thesis": null
+    },
+    {
+      "ticker": "GOAU4",
+      "name": "Metalúrgica Gerdau PN",
+      "sector": "Steel",
+      "quote": {
+        "price": 10.47,
+        "change_percent": 5.33199195171028,
+        "market_cap": null,
+        "volume": 10905100.0,
+        "fetched_at": "2026-08-27T20:05:49.440248"
+      },
+      "indicators": {
+        "pe": 16.55,
+        "pb": 0.68,
+        "ev_ebitda": 1.98,
+        "dividend_yield": 0.0385,
+        "roe": 0.00884706805377407,
+        "roa": 0.005828048403335608,
+        "roic": 0.1,
+        "net_margin": 0.006820813240106448,
+        "ebitda_margin": 0.053363245594682696,
+        "debt_equity": 0.5180155416538005,
+        "current_ratio": 2.8972344982975153,
+        "revenue_growth": 0.04224999677740149,
+        "earnings_growth": -0.6915550031718906,
+        "source": "cvm"
+      },
+      "score": {
+        "quality": 68.8,
+        "value": 68.8,
+        "moat": 40.0,
+        "macro_fit": 53.8,
+        "composite": 57.9,
+        "band": "Caution",
+        "rationale": "Score mixes how cheap and how profitable this name is versus its industry, plus a simple moat and macro check. Not licensed advice."
+      },
+      "moat": {
+        "scale": 6,
+        "regulation": 4,
+        "brand": 4,
+        "cost_advantage": 5,
+        "switching_costs": 3,
+        "network": 2,
+        "summary": ""
+      },
+      "statements": [],
+      "thesis": null
+    },
+    {
+      "ticker": "HAPV3",
+      "name": "Hapvida ON",
+      "sector": "Health",
+      "quote": {
+        "price": 6.56,
+        "change_percent": 2.8213166144200663,
+        "market_cap": null,
+        "volume": 6590300.0,
+        "fetched_at": "2026-08-27T20:05:49.440498"
+      },
+      "indicators": {
+        "pe": null,
+        "pb": 0.07,
+        "ev_ebitda": 4.14,
+        "dividend_yield": 0.0,
+        "roe": -0.002937745218835045,
+        "roa": -0.001960815397752248,
+        "roic": 0.0212,
+        "net_margin": -0.004488897699735633,
+        "ebitda_margin": 0.04612898404040378,
+        "debt_equity": 0.4982263104434442,
+        "current_ratio": 1.898895040366595,
+        "revenue_growth": 0.0920826494539213,
+        "earnings_growth": -0.7816929282412933,
+        "source": "cvm"
+      },
+      "score": {
+        "quality": 38.8,
+        "value": 56.9,
+        "moat": 51.7,
+        "macro_fit": 52.6,
+        "composite": 49.2,
+        "band": "Avoid",
+        "rationale": "Score mixes how cheap and how profitable this name is versus its industry, plus a simple moat and macro check. Not licensed advice."
+      },
+      "moat": {
+        "scale": 6,
+        "regulation": 6,
+        "brand": 6,
+        "cost_advantage": 5,
+        "switching_costs": 5,
+        "network": 3,
+        "summary": ""
+      },
+      "statements": [],
+      "thesis": null
+    },
+    {
+      "ticker": "HYPE3",
+      "name": "Hypera ON",
+      "sector": "Health",
+      "quote": {
+        "price": 21.26,
+        "change_percent": -3.407542026351662,
+        "market_cap": null,
+        "volume": 4486400.0,
+        "fetched_at": "2026-08-27T20:05:49.440804"
+      },
+      "indicators": {
+        "pe": 8.87,
+        "pb": 1.07,
+        "ev_ebitda": 7.57,
+        "dividend_yield": 0.0478,
+        "roe": 0.09544341298016172,
+        "roa": 0.04751446100414007,
+        "roic": 0.1074,
+        "net_margin": 0.15525972518809528,
+        "ebitda_margin": 0.2291518409093359,
+        "debt_equity": 1.008723469931511,
+        "current_ratio": 1.4712750065860416,
+        "revenue_growth": 0.03449004671301159,
+        "earnings_growth": -0.10859215952393386,
+        "source": "cvm"
+      },
+      "score": {
+        "quality": 59.2,
+        "value": 59.5,
+        "moat": 51.7,
+        "macro_fit": 52.6,
+        "composite": 56.0,
+        "band": "Caution",
+        "rationale": "Score mixes how cheap and how profitable this name is versus its industry, plus a simple moat and macro check. Not licensed advice."
+      },
+      "moat": {
+        "scale": 6,
+        "regulation": 6,
+        "brand": 6,
+        "cost_advantage": 5,
+        "switching_costs": 5,
+        "network": 3,
+        "summary": ""
+      },
+      "statements": [],
+      "thesis": null
+    },
+    {
+      "ticker": "IGTI11",
+      "name": "Iguatemi UNT",
+      "sector": "Real Estate",
+      "quote": {
+        "price": 24.38,
+        "change_percent": -0.4897959183673528,
+        "market_cap": null,
+        "volume": 1433500.0,
+        "fetched_at": "2026-08-27T20:05:49.441062"
+      },
+      "indicators": {
+        "pe": 11.38,
+        "pb": 1.47,
+        "ev_ebitda": 8.69,
+        "dividend_yield": 0.012,
+        "roe": 0.1462060404250584,
+        "roa": 0.07466392464078093,
+        "roic": 0.1216,
+        "net_margin": 0.4792693424570161,
+        "ebitda_margin": 0.7403368705555075,
+        "debt_equity": 0.9581885244912727,
+        "current_ratio": 2.5084296477061185,
+        "revenue_growth": 0.11600693414068863,
+        "earnings_growth": 0.5368765869493066,
+        "source": "cvm"
+      },
+      "score": {
+        "quality": 66.9,
+        "value": 47.4,
+        "moat": 51.7,
+        "macro_fit": 50.8,
+        "composite": 55.0,
+        "band": "Caution",
+        "rationale": "Score mixes how cheap and how profitable this name is versus its industry, plus a simple moat and macro check. Not licensed advice."
+      },
+      "moat": {
+        "scale": 6,
+        "regulation": 5,
+        "brand": 6,
+        "cost_advantage": 5,
+        "switching_costs": 5,
+        "network": 4,
+        "summary": ""
+      },
+      "statements": [],
+      "thesis": null
+    },
+    {
+      "ticker": "ISAE4",
+      "name": "ISA Energia PN",
+      "sector": "Utilities",
+      "quote": {
+        "price": 26.65,
+        "change_percent": -0.37383177570093906,
+        "market_cap": null,
+        "volume": 1428800.0,
+        "fetched_at": "2026-08-27T20:05:49.441336"
+      },
+      "indicators": {
+        "pe": 6.68,
+        "pb": 0.85,
+        "ev_ebitda": 7.47,
+        "dividend_yield": 0.06480000000000001,
+        "roe": 0.5924991936193297,
+        "roa": 0.07338669843391347,
+        "roic": 0.09630000000000001,
+        "net_margin": 0.3376840416464729,
+        "ebitda_margin": 0.845881310894597,
+        "debt_equity": 7.073659208867255,
+        "current_ratio": 1.6059694373612665,
+        "revenue_growth": 0.013533656289169693,
+        "earnings_growth": -0.1212490214838654,
+        "source": "cvm"
+      },
+      "score": {
+        "quality": 61.1,
+        "value": 70.4,
+        "moat": 60.0,
+        "macro_fit": 53.2,
+        "composite": 61.9,
+        "band": "Caution",
+        "rationale": "Score mixes how cheap and how profitable this name is versus its industry, plus a simple moat and macro check. Not licensed advice."
+      },
+      "moat": {
+        "scale": 7,
+        "regulation": 8,
+        "brand": 4,
+        "cost_advantage": 6,
+        "switching_costs": 8,
+        "network": 3,
+        "summary": ""
+      },
+      "statements": [],
+      "thesis": null
+    },
+    {
+      "ticker": "ITSA4",
+      "name": "Itaúsa PN",
+      "sector": "Bank Holdings",
+      "quote": {
+        "price": 12.85,
+        "change_percent": -0.3875968992248069,
+        "market_cap": null,
+        "volume": 14881600.0,
+        "fetched_at": "2026-08-27T20:05:49.441597"
+      },
+      "indicators": {
+        "pe": 7.97,
+        "pb": 1.54,
+        "ev_ebitda": null,
+        "dividend_yield": 0.0873,
+        "roe": 0.1765600402660127,
+        "roa": 0.14828172358279296,
+        "roic": 0.0038,
+        "net_margin": 1.998666505030913,
+        "ebitda_margin": 2.196508667717299,
+        "debt_equity": null,
+        "current_ratio": null,
+        "revenue_growth": 0.0017000607164541215,
+        "earnings_growth": 0.11564487752063868,
+        "source": "cvm"
+      },
+      "score": {
+        "quality": 55.7,
+        "value": 60.4,
+        "moat": 56.7,
+        "macro_fit": 58.6,
+        "composite": 57.6,
+        "band": "Caution",
+        "rationale": "Score mixes how cheap and how profitable this name is versus its industry, plus a simple moat and macro check. Not licensed advice."
+      },
+      "moat": {
+        "scale": 7,
+        "regulation": 7,
+        "brand": 6,
+        "cost_advantage": 5,
+        "switching_costs": 5,
+        "network": 4,
+        "summary": ""
+      },
+      "statements": [],
+      "thesis": null
+    },
+    {
+      "ticker": "ITUB4",
+      "name": "Itaú Unibanco PN",
+      "sector": "Banks",
+      "quote": {
+        "price": 39.1,
+        "change_percent": -0.8871989860583018,
+        "market_cap": 451749288652.0,
+        "volume": 21167700.0,
+        "fetched_at": "2026-08-27T20:05:49.427153"
+      },
+      "indicators": {
+        "pe": 9.33,
+        "pb": 2.09,
+        "ev_ebitda": null,
+        "dividend_yield": 0.0789,
+        "roe": 0.21317580762149194,
+        "roa": 0.014953187511842955,
+        "roic": null,
+        "net_margin": 0.1184367557178948,
+        "ebitda_margin": 0.1298053823382018,
+        "debt_equity": null,
+        "current_ratio": null,
+        "revenue_growth": 0.15444579635461397,
+        "earnings_growth": 0.08832605393087722,
+        "source": "cvm"
+      },
+      "score": {
+        "quality": 67.4,
+        "value": 46.6,
+        "moat": 73.3,
+        "macro_fit": 59.8,
+        "composite": 62.8,
+        "band": "Caution",
+        "rationale": "Score mixes how cheap and how profitable this name is versus its industry, plus a simple moat and macro check. Not licensed advice."
+      },
+      "moat": {
+        "scale": 8,
+        "regulation": 8,
+        "brand": 8,
+        "cost_advantage": 7,
+        "switching_costs": 7,
+        "network": 6,
+        "summary": "Large private bank franchise; deposit stickiness and brand."
+      },
+      "statements": [],
+      "thesis": null
+    },
+    {
+      "ticker": "KLBN11",
+      "name": "Klabin UNT",
+      "sector": "Pulp & Paper",
+      "quote": {
+        "price": 18.73,
+        "change_percent": 0.1068947087119243,
+        "market_cap": null,
+        "volume": 3346800.0,
+        "fetched_at": "2026-08-27T20:05:49.441870"
+      },
+      "indicators": {
+        "pe": 41.6,
+        "pb": 2.46,
+        "ev_ebitda": 6.35,
+        "dividend_yield": 0.0621,
+        "roe": 0.0,
+        "roa": 0.0,
+        "roic": 0.0545,
+        "net_margin": 0.0,
+        "ebitda_margin": 0.21646805095898747,
+        "debt_equity": 3.4299930262276472,
+        "current_ratio": 2.0587276863671526,
+        "revenue_growth": 0.05356217152388476,
+        "earnings_growth": -1.0,
+        "source": "cvm"
+      },
+      "score": {
+        "quality": 32.1,
+        "value": 31.7,
+        "moat": 45.0,
+        "macro_fit": 53.8,
+        "composite": 39.1,
+        "band": "Avoid",
+        "rationale": "Score mixes how cheap and how profitable this name is versus its industry, plus a simple moat and macro check. Not licensed advice."
+      },
+      "moat": {
+        "scale": 7,
+        "regulation": 5,
+        "brand": 3,
+        "cost_advantage": 7,
+        "switching_costs": 3,
+        "network": 2,
+        "summary": ""
+      },
+      "statements": [],
+      "thesis": null
+    },
+    {
+      "ticker": "LREN3",
+      "name": "Lojas Renner ON",
+      "sector": "Retail",
+      "quote": {
+        "price": 10.69,
+        "change_percent": -1.0185185185185297,
+        "market_cap": null,
+        "volume": 10184700.0,
+        "fetched_at": "2026-08-27T20:05:49.442131"
+      },
+      "indicators": {
+        "pe": 7.28,
+        "pb": 1.05,
+        "ev_ebitda": 1.95,
+        "dividend_yield": 0.08439999999999999,
+        "roe": 0.13939621553781884,
+        "roa": 0.07426699249929698,
+        "roic": 0.2353,
+        "net_margin": 0.09207932551078811,
+        "ebitda_margin": 0.11353261576832059,
+        "debt_equity": 0.8769605560523861,
+        "current_ratio": 1.6942198430869755,
+        "revenue_growth": 0.0964989388603752,
+        "earnings_growth": 0.2180203698937382,
+        "source": "cvm"
+      },
+      "score": {
+        "quality": 70.7,
+        "value": 67.5,
+        "moat": 43.3,
+        "macro_fit": 50.7,
+        "composite": 58.7,
+        "band": "Caution",
+        "rationale": "Score mixes how cheap and how profitable this name is versus its industry, plus a simple moat and macro check. Not licensed advice."
+      },
+      "moat": {
+        "scale": 6,
+        "regulation": 3,
+        "brand": 6,
+        "cost_advantage": 4,
+        "switching_costs": 3,
+        "network": 4,
+        "summary": ""
+      },
+      "statements": [],
+      "thesis": null
+    },
+    {
+      "ticker": "MBRF3",
+      "name": "Marfrig ON",
+      "sector": "Protein",
+      "quote": {
+        "price": 18.65,
+        "change_percent": 0.4849137931034475,
+        "market_cap": null,
+        "volume": 2527000.0,
+        "fetched_at": "2026-08-27T20:05:49.442635"
+      },
+      "indicators": {
+        "pe": 70.23,
+        "pb": 2.25,
+        "ev_ebitda": 5.99,
+        "dividend_yield": 0.0941,
+        "roe": 0.02502101510188701,
+        "roa": 0.002522938049351558,
+        "roic": 0.0629,
+        "net_margin": 0.0021848134921046117,
+        "ebitda_margin": 0.03401617405301059,
+        "debt_equity": 8.917411609975074,
+        "current_ratio": 1.0781186816277923,
+        "revenue_growth": 0.0994238762355295,
+        "earnings_growth": -0.8718509437465323,
+        "source": "cvm"
+      },
+      "score": {
+        "quality": 26.2,
+        "value": 37.4,
+        "moat": 40.0,
+        "macro_fit": 53.2,
+        "composite": 37.2,
+        "band": "Avoid",
+        "rationale": "Score mixes how cheap and how profitable this name is versus its industry, plus a simple moat and macro check. Not licensed advice."
+      },
+      "moat": {
+        "scale": 6,
+        "regulation": 5,
+        "brand": 4,
+        "cost_advantage": 5,
+        "switching_costs": 2,
+        "network": 2,
+        "summary": ""
+      },
+      "statements": [],
       "thesis": null
     },
     {
@@ -1010,36 +2300,36 @@
       "name": "Magazine Luiza ON",
       "sector": "Retail",
       "quote": {
-        "price": 3.86,
-        "change_percent": -4.69,
-        "market_cap": 2854686041.0,
-        "volume": 26134000.0,
-        "fetched_at": "2026-08-20T17:48:37.439134"
+        "price": 4.84,
+        "change_percent": 2.7600849256900206,
+        "market_cap": 3319894008.0,
+        "volume": 15936400.0,
+        "fetched_at": "2026-08-27T20:05:49.429095"
       },
       "indicators": {
-        "pe": null,
-        "pb": 1.8,
-        "ev_ebitda": 12.0,
-        "dividend_yield": 0.0,
-        "roe": -0.05,
-        "roa": -0.02,
-        "roic": -0.03,
-        "net_margin": -0.02,
-        "ebitda_margin": 0.04,
-        "debt_equity": 1.2,
-        "current_ratio": 1.3,
-        "revenue_growth": 0.02,
-        "earnings_growth": -0.1,
-        "source": "cvm+seed"
+        "pe": 41.29,
+        "pb": 0.33,
+        "ev_ebitda": 2.45,
+        "dividend_yield": 0.0173,
+        "roe": 0.01814173219968381,
+        "roa": 0.0053969071585732095,
+        "roic": 0.060700000000000004,
+        "net_margin": 0.0052864365591569545,
+        "ebitda_margin": 0.04957403340436329,
+        "debt_equity": 2.361505333821598,
+        "current_ratio": 1.1545884976085377,
+        "revenue_growth": 0.01749087256482107,
+        "earnings_growth": -0.5440266359420303,
+        "source": "cvm"
       },
       "score": {
-        "quality": 31.9,
-        "value": 51.6,
+        "quality": 20.0,
+        "value": 39.6,
         "moat": 46.7,
-        "macro_fit": 46.4,
-        "composite": 43.4,
+        "macro_fit": 50.7,
+        "composite": 37.5,
         "band": "Avoid",
-        "rationale": "Weights Q0.3/V0.25/M0.3/X0.15. Transparent rule score — not licensed advice."
+        "rationale": "Score mixes how cheap and how profitable this name is versus its industry, plus a simple moat and macro check. Not licensed advice."
       },
       "moat": {
         "scale": 6,
@@ -1050,169 +2340,343 @@
         "network": 5,
         "summary": "Retail/e-commerce brand; thin moat, high competition."
       },
-      "statements": [
-        {
-          "period": "2024",
-          "type": "income",
-          "account": "NetRevenue",
-          "value": 250000000.0,
-          "source": "seed"
-        },
-        {
-          "period": "2024",
-          "type": "income",
-          "account": "NetIncome",
-          "value": -5000000.0,
-          "source": "seed"
-        },
-        {
-          "period": "2024",
-          "type": "balance",
-          "account": "Equity",
-          "value": 100000000.0,
-          "source": "seed"
-        },
-        {
-          "period": "2024",
-          "type": "balance",
-          "account": "TotalAssets",
-          "value": 220000000.00000003,
-          "source": "seed"
-        },
-        {
-          "period": "2024",
-          "type": "cashflow",
-          "account": "OperatingCF",
-          "value": -5500000.0,
-          "source": "seed"
-        },
-        {
-          "period": "2023",
-          "type": "income",
-          "account": "NetRevenue",
-          "value": 230000000.0,
-          "source": "seed"
-        },
-        {
-          "period": "2023",
-          "type": "income",
-          "account": "NetIncome",
-          "value": -4500000.0,
-          "source": "seed"
-        },
-        {
-          "period": "2024",
-          "type": "income",
-          "account": "Receita de Venda de Bens e/ou Serviços",
-          "value": 36768149.0,
-          "source": "cvm"
-        }
-      ],
+      "statements": [],
       "thesis": null
     },
     {
-      "ticker": "SUZB3",
-      "name": "Suzano ON",
-      "sector": "Paper & Pulp",
+      "ticker": "MOTV3",
+      "name": "Motiva ON",
+      "sector": "Transport",
       "quote": {
-        "price": 55.0,
-        "change_percent": 0.0,
+        "price": 15.08,
+        "change_percent": -0.13245033112582183,
         "market_cap": null,
-        "volume": null,
-        "fetched_at": "2026-08-20T17:48:37.959552"
+        "volume": 10401600.0,
+        "fetched_at": "2026-08-27T20:05:49.443146"
       },
       "indicators": {
-        "pe": 9.0,
-        "pb": 1.5,
-        "ev_ebitda": 5.5,
-        "dividend_yield": 0.03,
-        "roe": 0.15,
-        "roa": 0.06,
-        "roic": 0.09,
-        "net_margin": 0.12,
-        "ebitda_margin": 0.35,
-        "debt_equity": 1.0,
-        "current_ratio": 1.4,
-        "revenue_growth": 0.03,
-        "earnings_growth": 0.04,
-        "source": "cvm+seed"
+        "pe": 7.87,
+        "pb": 1.72,
+        "ev_ebitda": 6.66,
+        "dividend_yield": 0.0138,
+        "roe": 0.20141855915057433,
+        "roa": 0.04618231621512812,
+        "roic": 0.11720000000000001,
+        "net_margin": 0.1739773360540183,
+        "ebitda_margin": 0.3855676556425523,
+        "debt_equity": 3.3613784595021,
+        "current_ratio": 1.5426819954892448,
+        "revenue_growth": 0.04055612261317143,
+        "earnings_growth": 1.6264099720107792,
+        "source": "cvm"
       },
       "score": {
-        "quality": 71.9,
-        "value": 71.0,
-        "moat": 50.0,
-        "macro_fit": 54.7,
-        "composite": 62.5,
+        "quality": 56.3,
+        "value": 54.2,
+        "moat": 55.0,
+        "macro_fit": 52.6,
+        "composite": 54.8,
         "band": "Caution",
-        "rationale": "Weights Q0.3/V0.25/M0.3/X0.15. Transparent rule score — not licensed advice."
+        "rationale": "Score mixes how cheap and how profitable this name is versus its industry, plus a simple moat and macro check. Not licensed advice."
+      },
+      "moat": {
+        "scale": 7,
+        "regulation": 6,
+        "brand": 4,
+        "cost_advantage": 6,
+        "switching_costs": 6,
+        "network": 4,
+        "summary": ""
+      },
+      "statements": [],
+      "thesis": null
+    },
+    {
+      "ticker": "MRVE3",
+      "name": "MRV ON",
+      "sector": "Homebuilders",
+      "quote": {
+        "price": 5.5,
+        "change_percent": -0.1814882032667886,
+        "market_cap": null,
+        "volume": 13389900.0,
+        "fetched_at": "2026-08-27T20:05:49.443403"
+      },
+      "indicators": {
+        "pe": null,
+        "pb": 0.68,
+        "ev_ebitda": 5.43,
+        "dividend_yield": 0.0,
+        "roe": -0.169329430073481,
+        "roa": -0.036532844301366524,
+        "roic": 0.0684,
+        "net_margin": -0.09556514273118609,
+        "ebitda_margin": 0.018447794454475402,
+        "debt_equity": 3.6349916988846984,
+        "current_ratio": 2.026286562863622,
+        "revenue_growth": 0.21058870345159053,
+        "earnings_growth": 1.0712477295400258,
+        "source": "cvm"
+      },
+      "score": {
+        "quality": 22.4,
+        "value": 51.3,
+        "moat": 36.7,
+        "macro_fit": 50.2,
+        "composite": 38.1,
+        "band": "Avoid",
+        "rationale": "Score mixes how cheap and how profitable this name is versus its industry, plus a simple moat and macro check. Not licensed advice."
+      },
+      "moat": {
+        "scale": 5,
+        "regulation": 4,
+        "brand": 5,
+        "cost_advantage": 4,
+        "switching_costs": 2,
+        "network": 2,
+        "summary": ""
+      },
+      "statements": [],
+      "thesis": null
+    },
+    {
+      "ticker": "MULT3",
+      "name": "Multiplan ON",
+      "sector": "Real Estate",
+      "quote": {
+        "price": 27.47,
+        "change_percent": 0.18234865061996786,
+        "market_cap": null,
+        "volume": 5189500.0,
+        "fetched_at": "2026-08-27T20:05:49.443655"
+      },
+      "indicators": {
+        "pe": 10.15,
+        "pb": 2.08,
+        "ev_ebitda": 7.55,
+        "dividend_yield": 0.0409,
+        "roe": 0.1811480147487554,
+        "roa": 0.08674465871390735,
+        "roic": 0.187,
+        "net_margin": 0.41660673174443114,
+        "ebitda_margin": 0.6811022817133624,
+        "debt_equity": 1.0882901314558149,
+        "current_ratio": 1.2535347005344537,
+        "revenue_growth": 0.07634935548683996,
+        "earnings_growth": -0.14893490073940163,
+        "source": "cvm"
+      },
+      "score": {
+        "quality": 68.6,
+        "value": 52.7,
+        "moat": 51.7,
+        "macro_fit": 50.8,
+        "composite": 56.9,
+        "band": "Caution",
+        "rationale": "Score mixes how cheap and how profitable this name is versus its industry, plus a simple moat and macro check. Not licensed advice."
+      },
+      "moat": {
+        "scale": 6,
+        "regulation": 5,
+        "brand": 6,
+        "cost_advantage": 5,
+        "switching_costs": 5,
+        "network": 4,
+        "summary": ""
+      },
+      "statements": [],
+      "thesis": null
+    },
+    {
+      "ticker": "NATU3",
+      "name": "Natura ON",
+      "sector": "Consumer Staples",
+      "quote": {
+        "price": 8.91,
+        "change_percent": -0.3355704697986517,
+        "market_cap": null,
+        "volume": 3287500.0,
+        "fetched_at": "2026-08-27T20:05:49.443929"
+      },
+      "indicators": {
+        "pe": null,
+        "pb": 0.98,
+        "ev_ebitda": 5.25,
+        "dividend_yield": 0.0,
+        "roe": -0.13757246636474113,
+        "roa": -0.06162086982502455,
+        "roic": 0.1018,
+        "net_margin": -0.08180351371879692,
+        "ebitda_margin": 0.06488275384759759,
+        "debt_equity": 1.2325628761065015,
+        "current_ratio": 1.6541942477348166,
+        "revenue_growth": 0.025945792461114836,
+        "earnings_growth": -3.3470240153344752,
+        "source": "cvm"
+      },
+      "score": {
+        "quality": 26.6,
+        "value": 46.0,
+        "moat": 56.7,
+        "macro_fit": 52.6,
+        "composite": 44.4,
+        "band": "Avoid",
+        "rationale": "Score mixes how cheap and how profitable this name is versus its industry, plus a simple moat and macro check. Not licensed advice."
       },
       "moat": {
         "scale": 8,
-        "regulation": 5,
-        "brand": 4,
-        "cost_advantage": 8,
-        "switching_costs": 3,
-        "network": 2,
-        "summary": "Pulp cost leadership and forestry assets."
+        "regulation": 4,
+        "brand": 8,
+        "cost_advantage": 7,
+        "switching_costs": 4,
+        "network": 3,
+        "summary": ""
       },
-      "statements": [
-        {
-          "period": "2024",
-          "type": "income",
-          "account": "NetRevenue",
-          "value": 125000000.0,
-          "source": "seed"
-        },
-        {
-          "period": "2024",
-          "type": "income",
-          "account": "NetIncome",
-          "value": 15000000.0,
-          "source": "seed"
-        },
-        {
-          "period": "2024",
-          "type": "balance",
-          "account": "Equity",
-          "value": 100000000.0,
-          "source": "seed"
-        },
-        {
-          "period": "2024",
-          "type": "balance",
-          "account": "TotalAssets",
-          "value": 220000000.00000003,
-          "source": "seed"
-        },
-        {
-          "period": "2024",
-          "type": "cashflow",
-          "account": "OperatingCF",
-          "value": 16500000.000000002,
-          "source": "seed"
-        },
-        {
-          "period": "2023",
-          "type": "income",
-          "account": "NetRevenue",
-          "value": 115000000.0,
-          "source": "seed"
-        },
-        {
-          "period": "2023",
-          "type": "income",
-          "account": "NetIncome",
-          "value": 13500000.0,
-          "source": "seed"
-        },
-        {
-          "period": "2024",
-          "type": "income",
-          "account": "Receita de Venda de Bens e/ou Serviços",
-          "value": 39755575.0,
-          "source": "cvm"
-        }
-      ],
+      "statements": [],
+      "thesis": null
+    },
+    {
+      "ticker": "PETR3",
+      "name": "Petrobras ON",
+      "sector": "Oil & Gas",
+      "quote": {
+        "price": 47.32,
+        "change_percent": 3.026344437187034,
+        "market_cap": null,
+        "volume": 6257500.0,
+        "fetched_at": "2026-08-27T20:05:49.444180"
+      },
+      "indicators": {
+        "pe": 4.44,
+        "pb": 1.23,
+        "ev_ebitda": 2.81,
+        "dividend_yield": 0.0794,
+        "roe": 0.2637270796265209,
+        "roa": 0.09001960946191277,
+        "roic": 0.19690000000000002,
+        "net_margin": 0.22134302350120288,
+        "ebitda_margin": 0.29269077015530126,
+        "debt_equity": 1.9296625613345244,
+        "current_ratio": 0.7058900629133731,
+        "revenue_growth": 0.013691122570182346,
+        "earnings_growth": 2.0084958749931707,
+        "source": "cvm"
+      },
+      "score": {
+        "quality": 68.7,
+        "value": 69.0,
+        "moat": 66.7,
+        "macro_fit": 53.8,
+        "composite": 65.9,
+        "band": "Fair",
+        "rationale": "Score mixes how cheap and how profitable this name is versus its industry, plus a simple moat and macro check. Not licensed advice."
+      },
+      "moat": {
+        "scale": 9,
+        "regulation": 9,
+        "brand": 6,
+        "cost_advantage": 8,
+        "switching_costs": 5,
+        "network": 3,
+        "summary": "Same company as PETR4 — ordinary shares, usually a bit more volatile."
+      },
+      "statements": [],
+      "thesis": null
+    },
+    {
+      "ticker": "PETR4",
+      "name": "Petrobras PN",
+      "sector": "Oil & Gas",
+      "quote": {
+        "price": 42.81,
+        "change_percent": 3.2810615199035054,
+        "market_cap": 561973749995.0,
+        "volume": 39810900.0,
+        "fetched_at": "2026-08-27T20:05:49.426484"
+      },
+      "indicators": {
+        "pe": 4.01,
+        "pb": 1.11,
+        "ev_ebitda": 2.63,
+        "dividend_yield": 0.08789999999999999,
+        "roe": 0.2637270796265209,
+        "roa": 0.09001960946191277,
+        "roic": 0.19690000000000002,
+        "net_margin": 0.22134302350120288,
+        "ebitda_margin": 0.29269077015530126,
+        "debt_equity": 1.9296625613345244,
+        "current_ratio": 0.7058900629133731,
+        "revenue_growth": 0.013691122570182346,
+        "earnings_growth": 2.0084958749931707,
+        "source": "cvm"
+      },
+      "score": {
+        "quality": 68.7,
+        "value": 72.9,
+        "moat": 66.7,
+        "macro_fit": 53.8,
+        "composite": 66.9,
+        "band": "Fair",
+        "rationale": "Score mixes how cheap and how profitable this name is versus its industry, plus a simple moat and macro check. Not licensed advice."
+      },
+      "moat": {
+        "scale": 9,
+        "regulation": 9,
+        "brand": 6,
+        "cost_advantage": 8,
+        "switching_costs": 5,
+        "network": 3,
+        "summary": "Dominant integrated oil producer with scale and state-linked competitive position in Brazil."
+      },
+      "statements": [],
+      "thesis": null
+    },
+    {
+      "ticker": "POMO4",
+      "name": "Marcopolo PN",
+      "sector": "Industrials",
+      "quote": {
+        "price": 4.45,
+        "change_percent": 0.9070294784580435,
+        "market_cap": null,
+        "volume": 7105300.0,
+        "fetched_at": "2026-08-27T20:05:49.442375"
+      },
+      "indicators": {
+        "pe": 4.59,
+        "pb": 1.3,
+        "ev_ebitda": 4.79,
+        "dividend_yield": 0.2095,
+        "roe": 0.31403924858472365,
+        "roa": 0.12582469833829185,
+        "roic": 0.1839,
+        "net_margin": 0.1350640371985884,
+        "ebitda_margin": 0.1490050066530147,
+        "debt_equity": 1.4958474189256452,
+        "current_ratio": 1.8906912789794124,
+        "revenue_growth": 0.05395855192505983,
+        "earnings_growth": 0.019441358845151635,
+        "source": "cvm"
+      },
+      "score": {
+        "quality": 61.9,
+        "value": 88.6,
+        "moat": 51.7,
+        "macro_fit": 53.2,
+        "composite": 64.2,
+        "band": "Caution",
+        "rationale": "Score mixes how cheap and how profitable this name is versus its industry, plus a simple moat and macro check. Not licensed advice."
+      },
+      "moat": {
+        "scale": 6,
+        "regulation": 4,
+        "brand": 7,
+        "cost_advantage": 6,
+        "switching_costs": 5,
+        "network": 3,
+        "summary": ""
+      },
+      "statements": [],
       "thesis": null
     },
     {
@@ -1220,36 +2684,36 @@
       "name": "Prio ON",
       "sector": "Oil & Gas",
       "quote": {
-        "price": 44.0,
-        "change_percent": 0.0,
+        "price": 61.29,
+        "change_percent": 0.8722843976300299,
         "market_cap": null,
-        "volume": null,
-        "fetched_at": "2026-08-20T17:48:38.477854"
+        "volume": 5887600.0,
+        "fetched_at": "2026-08-27T20:05:49.429653"
       },
       "indicators": {
-        "pe": 8.0,
-        "pb": 2.0,
-        "ev_ebitda": 4.0,
-        "dividend_yield": 0.01,
-        "roe": 0.3,
-        "roa": 0.15,
-        "roic": 0.22,
-        "net_margin": 0.35,
-        "ebitda_margin": 0.55,
-        "debt_equity": 0.6,
-        "current_ratio": 1.6,
-        "revenue_growth": 0.2,
-        "earnings_growth": 0.25,
-        "source": "cvm+seed"
+        "pe": 13.7,
+        "pb": 1.88,
+        "ev_ebitda": 5.79,
+        "dividend_yield": 0.0,
+        "roe": 0.08733473207265774,
+        "roa": 0.03508091082829195,
+        "roic": 0.1092,
+        "net_margin": 0.14447412596028225,
+        "ebitda_margin": 0.11610155570214503,
+        "debt_equity": 1.489522934570567,
+        "current_ratio": 1.8191494718759829,
+        "revenue_growth": 0.08518463610255056,
+        "earnings_growth": -0.7814438836041682,
+        "source": "cvm"
       },
       "score": {
-        "quality": 100.0,
-        "value": 70.0,
+        "quality": 56.8,
+        "value": 24.9,
         "moat": 45.0,
-        "macro_fit": 54.7,
-        "composite": 69.2,
-        "band": "Watch",
-        "rationale": "Weights Q0.3/V0.25/M0.3/X0.15. Transparent rule score — not licensed advice."
+        "macro_fit": 53.8,
+        "composite": 44.9,
+        "band": "Avoid",
+        "rationale": "Score mixes how cheap and how profitable this name is versus its industry, plus a simple moat and macro check. Not licensed advice."
       },
       "moat": {
         "scale": 5,
@@ -1260,64 +2724,1159 @@
         "network": 2,
         "summary": "Efficient offshore oil operator; smaller scale than Petrobras."
       },
-      "statements": [
-        {
-          "period": "2024",
-          "type": "income",
-          "account": "NetRevenue",
-          "value": 85714285.71428572,
-          "source": "seed"
-        },
-        {
-          "period": "2024",
-          "type": "income",
-          "account": "NetIncome",
-          "value": 30000000.0,
-          "source": "seed"
-        },
-        {
-          "period": "2024",
-          "type": "balance",
-          "account": "Equity",
-          "value": 100000000.0,
-          "source": "seed"
-        },
-        {
-          "period": "2024",
-          "type": "balance",
-          "account": "TotalAssets",
-          "value": 220000000.00000003,
-          "source": "seed"
-        },
-        {
-          "period": "2024",
-          "type": "cashflow",
-          "account": "OperatingCF",
-          "value": 33000000.000000004,
-          "source": "seed"
-        },
-        {
-          "period": "2023",
-          "type": "income",
-          "account": "NetRevenue",
-          "value": 78857142.85714287,
-          "source": "seed"
-        },
-        {
-          "period": "2023",
-          "type": "income",
-          "account": "NetIncome",
-          "value": 27000000.0,
-          "source": "seed"
-        },
-        {
-          "period": "2024",
-          "type": "income",
-          "account": "Receita de Venda de Bens e/ou Serviços",
-          "value": 3542587.0,
-          "source": "cvm"
-        }
-      ],
+      "statements": [],
+      "thesis": null
+    },
+    {
+      "ticker": "PSSA3",
+      "name": "Porto Seguro ON",
+      "sector": "Insurance",
+      "quote": {
+        "price": 48.41,
+        "change_percent": -0.2678203543469371,
+        "market_cap": null,
+        "volume": 634800.0,
+        "fetched_at": "2026-08-27T20:05:49.444718"
+      },
+      "indicators": {
+        "pe": 8.52,
+        "pb": 1.95,
+        "ev_ebitda": null,
+        "dividend_yield": 0.0621,
+        "roe": 0.21301975279409785,
+        "roa": 0.06051882974370014,
+        "roic": 0.7928000000000001,
+        "net_margin": 0.08269628793932443,
+        "ebitda_margin": 0.07518120978033464,
+        "debt_equity": null,
+        "current_ratio": null,
+        "revenue_growth": 0.16002044180331176,
+        "earnings_growth": 0.27829192258903634,
+        "source": "cvm"
+      },
+      "score": {
+        "quality": 71.6,
+        "value": 58.9,
+        "moat": 55.0,
+        "macro_fit": 58.0,
+        "composite": 61.4,
+        "band": "Caution",
+        "rationale": "Score mixes how cheap and how profitable this name is versus its industry, plus a simple moat and macro check. Not licensed advice."
+      },
+      "moat": {
+        "scale": 6,
+        "regulation": 7,
+        "brand": 6,
+        "cost_advantage": 5,
+        "switching_costs": 5,
+        "network": 4,
+        "summary": ""
+      },
+      "statements": [],
+      "thesis": null
+    },
+    {
+      "ticker": "RADL3",
+      "name": "Raia Drogasil ON",
+      "sector": "Pharmacies",
+      "quote": {
+        "price": 19.41,
+        "change_percent": 0.5178663904712666,
+        "market_cap": null,
+        "volume": 8589800.0,
+        "fetched_at": "2026-08-27T20:05:49.444963"
+      },
+      "indicators": {
+        "pe": 25.21,
+        "pb": 4.64,
+        "ev_ebitda": 7.23,
+        "dividend_yield": 0.022799999999999997,
+        "roe": 0.1767811691654053,
+        "roa": 0.05152310395413674,
+        "roic": 0.1671,
+        "net_margin": 0.02930729584235405,
+        "ebitda_margin": 0.06200088500796907,
+        "debt_equity": 2.4311047976218,
+        "current_ratio": 1.462094782173653,
+        "revenue_growth": 0.1383770617471578,
+        "earnings_growth": 0.08083999519945584,
+        "source": "cvm"
+      },
+      "score": {
+        "quality": 56.6,
+        "value": 23.0,
+        "moat": 51.7,
+        "macro_fit": 52.6,
+        "composite": 46.1,
+        "band": "Avoid",
+        "rationale": "Score mixes how cheap and how profitable this name is versus its industry, plus a simple moat and macro check. Not licensed advice."
+      },
+      "moat": {
+        "scale": 7,
+        "regulation": 5,
+        "brand": 6,
+        "cost_advantage": 6,
+        "switching_costs": 3,
+        "network": 4,
+        "summary": ""
+      },
+      "statements": [],
+      "thesis": null
+    },
+    {
+      "ticker": "RAIL3",
+      "name": "Rumo ON",
+      "sector": "Transport",
+      "quote": {
+        "price": 14.8,
+        "change_percent": 1.439342015078826,
+        "market_cap": null,
+        "volume": 6903900.0,
+        "fetched_at": "2026-08-27T20:05:49.445484"
+      },
+      "indicators": {
+        "pe": 22.1,
+        "pb": 1.87,
+        "ev_ebitda": 6.08,
+        "dividend_yield": 0.0074,
+        "roe": 0.06029545775836431,
+        "roa": 0.015749503580047054,
+        "roic": 0.1206,
+        "net_margin": 0.06116917258049235,
+        "ebitda_margin": 0.3307147660389654,
+        "debt_equity": 2.8284036986887795,
+        "current_ratio": 1.5724038736706967,
+        "revenue_growth": -0.006358390254462609,
+        "earnings_growth": -1.8830436790524234,
+        "source": "cvm"
+      },
+      "score": {
+        "quality": 34.3,
+        "value": 39.2,
+        "moat": 55.0,
+        "macro_fit": 52.6,
+        "composite": 44.5,
+        "band": "Avoid",
+        "rationale": "Score mixes how cheap and how profitable this name is versus its industry, plus a simple moat and macro check. Not licensed advice."
+      },
+      "moat": {
+        "scale": 7,
+        "regulation": 6,
+        "brand": 4,
+        "cost_advantage": 6,
+        "switching_costs": 6,
+        "network": 4,
+        "summary": ""
+      },
+      "statements": [],
+      "thesis": null
+    },
+    {
+      "ticker": "RDOR3",
+      "name": "Rede D'Or ON",
+      "sector": "Health",
+      "quote": {
+        "price": 35.27,
+        "change_percent": -0.08498583569402918,
+        "market_cap": null,
+        "volume": 5610800.0,
+        "fetched_at": "2026-08-27T20:05:49.445237"
+      },
+      "indicators": {
+        "pe": 16.4,
+        "pb": 3.81,
+        "ev_ebitda": 6.94,
+        "dividend_yield": 0.12300000000000001,
+        "roe": 0.21684469425612135,
+        "roa": 0.04400265223738606,
+        "roic": 0.1563,
+        "net_margin": 0.08413362616690005,
+        "ebitda_margin": 0.17740782141832484,
+        "debt_equity": 3.9279914557487325,
+        "current_ratio": 2.790430190328668,
+        "revenue_growth": 0.10192727842004978,
+        "earnings_growth": 0.21873798559636293,
+        "source": "cvm"
+      },
+      "score": {
+        "quality": 59.0,
+        "value": 52.7,
+        "moat": 51.7,
+        "macro_fit": 52.6,
+        "composite": 54.3,
+        "band": "Caution",
+        "rationale": "Score mixes how cheap and how profitable this name is versus its industry, plus a simple moat and macro check. Not licensed advice."
+      },
+      "moat": {
+        "scale": 6,
+        "regulation": 6,
+        "brand": 6,
+        "cost_advantage": 5,
+        "switching_costs": 5,
+        "network": 3,
+        "summary": ""
+      },
+      "statements": [],
+      "thesis": null
+    },
+    {
+      "ticker": "RECV3",
+      "name": "PetroRecôncavo ON",
+      "sector": "Oil & Gas",
+      "quote": {
+        "price": 10.62,
+        "change_percent": 2.4108003857280513,
+        "market_cap": null,
+        "volume": 1445700.0,
+        "fetched_at": "2026-08-27T20:05:49.444446"
+      },
+      "indicators": {
+        "pe": 6.1,
+        "pb": 0.69,
+        "ev_ebitda": 3.23,
+        "dividend_yield": 0.16449999999999998,
+        "roe": 0.14740103022225423,
+        "roa": 0.07364454260865953,
+        "roic": 0.1015,
+        "net_margin": 0.20216309239047647,
+        "ebitda_margin": 0.2285206939807937,
+        "debt_equity": 1.0015200719696236,
+        "current_ratio": 3.4845271942613305,
+        "revenue_growth": -0.032759451980270526,
+        "earnings_growth": 0.45909695587179833,
+        "source": "cvm"
+      },
+      "score": {
+        "quality": 55.7,
+        "value": 74.2,
+        "moat": 50.0,
+        "macro_fit": 53.8,
+        "composite": 58.3,
+        "band": "Caution",
+        "rationale": "Score mixes how cheap and how profitable this name is versus its industry, plus a simple moat and macro check. Not licensed advice."
+      },
+      "moat": {
+        "scale": 7,
+        "regulation": 7,
+        "brand": 4,
+        "cost_advantage": 7,
+        "switching_costs": 3,
+        "network": 2,
+        "summary": ""
+      },
+      "statements": [],
+      "thesis": null
+    },
+    {
+      "ticker": "RENT3",
+      "name": "Localiza ON",
+      "sector": "Car Rental",
+      "quote": {
+        "price": 35.2,
+        "change_percent": -0.5649717514124131,
+        "market_cap": null,
+        "volume": 4569200.0,
+        "fetched_at": "2026-08-27T20:05:49.428832"
+      },
+      "indicators": {
+        "pe": 11.62,
+        "pb": 1.47,
+        "ev_ebitda": 5.05,
+        "dividend_yield": 0.0579,
+        "roe": 0.0734356129360055,
+        "roa": 0.021918289683579253,
+        "roic": 0.12269999999999999,
+        "net_margin": 0.04488754711764426,
+        "ebitda_margin": 0.18696407613803478,
+        "debt_equity": 2.3504262420175066,
+        "current_ratio": 1.1986153257240197,
+        "revenue_growth": 0.12100460088091847,
+        "earnings_growth": 0.03410072743733972,
+        "source": "cvm"
+      },
+      "score": {
+        "quality": 44.8,
+        "value": 67.1,
+        "moat": 51.7,
+        "macro_fit": 51.4,
+        "composite": 53.4,
+        "band": "Caution",
+        "rationale": "Score mixes how cheap and how profitable this name is versus its industry, plus a simple moat and macro check. Not licensed advice."
+      },
+      "moat": {
+        "scale": 7,
+        "regulation": 4,
+        "brand": 7,
+        "cost_advantage": 6,
+        "switching_costs": 4,
+        "network": 3,
+        "summary": "Fleet scale in car rental; competitive industry."
+      },
+      "statements": [],
+      "thesis": null
+    },
+    {
+      "ticker": "SANB11",
+      "name": "Santander Brasil UNT",
+      "sector": "Banks",
+      "quote": {
+        "price": 29.42,
+        "change_percent": -1.0427177934746013,
+        "market_cap": null,
+        "volume": 1692500.0,
+        "fetched_at": "2026-08-27T20:05:49.446004"
+      },
+      "indicators": {
+        "pe": 7.19,
+        "pb": 1.13,
+        "ev_ebitda": null,
+        "dividend_yield": 0.0776,
+        "roe": 0.10087489410772758,
+        "roa": 0.010051762854179136,
+        "roic": null,
+        "net_margin": 0.0785628072320589,
+        "ebitda_margin": 0.10295105181900802,
+        "debt_equity": null,
+        "current_ratio": null,
+        "revenue_growth": 0.18450589946407403,
+        "earnings_growth": -0.044852099127410505,
+        "source": "cvm"
+      },
+      "score": {
+        "quality": 55.9,
+        "value": 57.2,
+        "moat": 70.0,
+        "macro_fit": 59.8,
+        "composite": 61.1,
+        "band": "Caution",
+        "rationale": "Score mixes how cheap and how profitable this name is versus its industry, plus a simple moat and macro check. Not licensed advice."
+      },
+      "moat": {
+        "scale": 8,
+        "regulation": 8,
+        "brand": 7,
+        "cost_advantage": 6,
+        "switching_costs": 7,
+        "network": 6,
+        "summary": ""
+      },
+      "statements": [],
+      "thesis": null
+    },
+    {
+      "ticker": "SBSP3",
+      "name": "Sabesp ON",
+      "sector": "Sanitation",
+      "quote": {
+        "price": 25.09,
+        "change_percent": 0.11971268954509284,
+        "market_cap": null,
+        "volume": 12893100.0,
+        "fetched_at": "2026-08-27T20:05:49.445745"
+      },
+      "indicators": {
+        "pe": 10.99,
+        "pb": 1.96,
+        "ev_ebitda": 8.08,
+        "dividend_yield": 0.027000000000000003,
+        "roe": 0.0,
+        "roa": 0.0,
+        "roic": 0.1272,
+        "net_margin": 0.0,
+        "ebitda_margin": 0.3307677323746031,
+        "debt_equity": 1.4575472810579266,
+        "current_ratio": 1.1210418902677801,
+        "revenue_growth": 0.05385384732922471,
+        "earnings_growth": null,
+        "source": "cvm"
+      },
+      "score": {
+        "quality": 39.5,
+        "value": 48.4,
+        "moat": 61.7,
+        "macro_fit": 53.2,
+        "composite": 50.5,
+        "band": "Caution",
+        "rationale": "Score mixes how cheap and how profitable this name is versus its industry, plus a simple moat and macro check. Not licensed advice."
+      },
+      "moat": {
+        "scale": 7,
+        "regulation": 8,
+        "brand": 4,
+        "cost_advantage": 6,
+        "switching_costs": 9,
+        "network": 3,
+        "summary": ""
+      },
+      "statements": [],
+      "thesis": null
+    },
+    {
+      "ticker": "SLCE3",
+      "name": "SLC Agrícola ON",
+      "sector": "Agribusiness",
+      "quote": {
+        "price": 16.01,
+        "change_percent": -1.7188459177409299,
+        "market_cap": null,
+        "volume": 2924800.0,
+        "fetched_at": "2026-08-27T20:05:49.446516"
+      },
+      "indicators": {
+        "pe": 20.92,
+        "pb": 1.5,
+        "ev_ebitda": 6.59,
+        "dividend_yield": 0.049400000000000006,
+        "roe": 0.09823700564147586,
+        "roa": 0.0260326017485612,
+        "roic": 0.1084,
+        "net_margin": 0.056928047689086436,
+        "ebitda_margin": 0.18572622754250495,
+        "debt_equity": 2.7736145849081457,
+        "current_ratio": 1.8012921934173696,
+        "revenue_growth": 0.25059975316605976,
+        "earnings_growth": 0.0906205217800986,
+        "source": "cvm"
+      },
+      "score": {
+        "quality": 52.1,
+        "value": 44.5,
+        "moat": 36.7,
+        "macro_fit": 53.2,
+        "composite": 45.7,
+        "band": "Avoid",
+        "rationale": "Score mixes how cheap and how profitable this name is versus its industry, plus a simple moat and macro check. Not licensed advice."
+      },
+      "moat": {
+        "scale": 5,
+        "regulation": 4,
+        "brand": 3,
+        "cost_advantage": 6,
+        "switching_costs": 2,
+        "network": 2,
+        "summary": ""
+      },
+      "statements": [],
+      "thesis": null
+    },
+    {
+      "ticker": "SMFT3",
+      "name": "Smart Fit ON",
+      "sector": "Fitness",
+      "quote": {
+        "price": 17.1,
+        "change_percent": -1.1560693641618491,
+        "market_cap": null,
+        "volume": 4654400.0,
+        "fetched_at": "2026-08-27T20:05:49.446763"
+      },
+      "indicators": {
+        "pe": 15.53,
+        "pb": 1.75,
+        "ev_ebitda": 3.92,
+        "dividend_yield": 0.0583,
+        "roe": 0.11277453885524011,
+        "roa": 0.0297096687042229,
+        "roic": 0.106,
+        "net_margin": 0.08819593868506458,
+        "ebitda_margin": 0.2344541208175877,
+        "debt_equity": 2.795886786149536,
+        "current_ratio": 1.3159525927941311,
+        "revenue_growth": 0.2977239232844662,
+        "earnings_growth": 0.4634039043167446,
+        "source": "cvm"
+      },
+      "score": {
+        "quality": 56.7,
+        "value": 55.0,
+        "moat": 43.3,
+        "macro_fit": 52.0,
+        "composite": 51.6,
+        "band": "Caution",
+        "rationale": "Score mixes how cheap and how profitable this name is versus its industry, plus a simple moat and macro check. Not licensed advice."
+      },
+      "moat": {
+        "scale": 5,
+        "regulation": 3,
+        "brand": 6,
+        "cost_advantage": 4,
+        "switching_costs": 4,
+        "network": 4,
+        "summary": ""
+      },
+      "statements": [],
+      "thesis": null
+    },
+    {
+      "ticker": "SUZB3",
+      "name": "Suzano ON",
+      "sector": "Pulp & Paper",
+      "quote": {
+        "price": 46.41,
+        "change_percent": 0.5633802816901401,
+        "market_cap": null,
+        "volume": 8600700.0,
+        "fetched_at": "2026-08-27T20:05:49.429381"
+      },
+      "indicators": {
+        "pe": 7.14,
+        "pb": 1.17,
+        "ev_ebitda": 6.36,
+        "dividend_yield": 0.0001,
+        "roe": 0.09354518971204959,
+        "roa": 0.0237503734745897,
+        "roic": 0.0554,
+        "net_margin": 0.07960664499758321,
+        "ebitda_margin": 0.21244404210881196,
+        "debt_equity": 2.9386828932240876,
+        "current_ratio": 3.1868350262686853,
+        "revenue_growth": 0.057184785468166854,
+        "earnings_growth": -2.8893614623182544,
+        "source": "cvm"
+      },
+      "score": {
+        "quality": 49.8,
+        "value": 49.3,
+        "moat": 50.0,
+        "macro_fit": 53.8,
+        "composite": 50.3,
+        "band": "Caution",
+        "rationale": "Score mixes how cheap and how profitable this name is versus its industry, plus a simple moat and macro check. Not licensed advice."
+      },
+      "moat": {
+        "scale": 8,
+        "regulation": 5,
+        "brand": 4,
+        "cost_advantage": 8,
+        "switching_costs": 3,
+        "network": 2,
+        "summary": "Pulp cost leadership and forestry assets."
+      },
+      "statements": [],
+      "thesis": null
+    },
+    {
+      "ticker": "TAEE11",
+      "name": "Taesa UNT",
+      "sector": "Utilities",
+      "quote": {
+        "price": 38.73,
+        "change_percent": -0.5392912172573205,
+        "market_cap": null,
+        "volume": 1221000.0,
+        "fetched_at": "2026-08-27T20:05:49.447028"
+      },
+      "indicators": {
+        "pe": 8.25,
+        "pb": 1.66,
+        "ev_ebitda": 9.45,
+        "dividend_yield": 0.07719999999999999,
+        "roe": 0.20763132308632087,
+        "roa": 0.07019583581742986,
+        "roic": 0.11109999999999999,
+        "net_margin": 0.3416575243727824,
+        "ebitda_margin": 0.591742243323206,
+        "debt_equity": 1.9578866134786492,
+        "current_ratio": 1.5663772890342536,
+        "revenue_growth": 0.24366362948335962,
+        "earnings_growth": -0.06733041504443849,
+        "source": "cvm"
+      },
+      "score": {
+        "quality": 78.4,
+        "value": 64.6,
+        "moat": 60.0,
+        "macro_fit": 53.2,
+        "composite": 65.7,
+        "band": "Fair",
+        "rationale": "Score mixes how cheap and how profitable this name is versus its industry, plus a simple moat and macro check. Not licensed advice."
+      },
+      "moat": {
+        "scale": 7,
+        "regulation": 8,
+        "brand": 4,
+        "cost_advantage": 6,
+        "switching_costs": 8,
+        "network": 3,
+        "summary": ""
+      },
+      "statements": [],
+      "thesis": null
+    },
+    {
+      "ticker": "TEND3",
+      "name": "Tenda ON",
+      "sector": "Homebuilders",
+      "quote": {
+        "price": 33.32,
+        "change_percent": 3.9301310043668103,
+        "market_cap": null,
+        "volume": 3927800.0,
+        "fetched_at": "2026-08-27T20:05:49.447542"
+      },
+      "indicators": {
+        "pe": 6.79,
+        "pb": 2.55,
+        "ev_ebitda": 4.66,
+        "dividend_yield": 0.045599999999999995,
+        "roe": 0.4196905210878572,
+        "roa": 0.07632139537733865,
+        "roic": 0.1439,
+        "net_margin": 0.12116531672460919,
+        "ebitda_margin": 0.12428747955199,
+        "debt_equity": 4.4989890975247,
+        "current_ratio": 2.103123707286705,
+        "revenue_growth": 0.27066975073993715,
+        "earnings_growth": 3.751956997735239,
+        "source": "cvm"
+      },
+      "score": {
+        "quality": 62.3,
+        "value": 53.4,
+        "moat": 36.7,
+        "macro_fit": 50.2,
+        "composite": 50.6,
+        "band": "Caution",
+        "rationale": "Score mixes how cheap and how profitable this name is versus its industry, plus a simple moat and macro check. Not licensed advice."
+      },
+      "moat": {
+        "scale": 5,
+        "regulation": 4,
+        "brand": 5,
+        "cost_advantage": 4,
+        "switching_costs": 2,
+        "network": 2,
+        "summary": ""
+      },
+      "statements": [],
+      "thesis": null
+    },
+    {
+      "ticker": "TIMS3",
+      "name": "TIM ON",
+      "sector": "Telecom",
+      "quote": {
+        "price": 18.34,
+        "change_percent": -2.134471718249731,
+        "market_cap": null,
+        "volume": 5704400.0,
+        "fetched_at": "2026-08-27T20:05:49.447799"
+      },
+      "indicators": {
+        "pe": null,
+        "pb": 1.79,
+        "ev_ebitda": 114.52,
+        "dividend_yield": 0.0783,
+        "roe": 0.0005,
+        "roa": null,
+        "roic": 0.0076,
+        "net_margin": 0.0176,
+        "ebitda_margin": 0.46520000000000006,
+        "debt_equity": -0.08,
+        "current_ratio": 0.85,
+        "revenue_growth": -0.534,
+        "earnings_growth": null,
+        "source": "fundamentus"
+      },
+      "score": {
+        "quality": 32.6,
+        "value": 44.3,
+        "moat": 63.3,
+        "macro_fit": 53.8,
+        "composite": 47.9,
+        "band": "Avoid",
+        "rationale": "Score mixes how cheap and how profitable this name is versus its industry, plus a simple moat and macro check. Not licensed advice."
+      },
+      "moat": {
+        "scale": 8,
+        "regulation": 7,
+        "brand": 6,
+        "cost_advantage": 6,
+        "switching_costs": 5,
+        "network": 6,
+        "summary": ""
+      },
+      "statements": [],
+      "thesis": null
+    },
+    {
+      "ticker": "TOTS3",
+      "name": "Totvs ON",
+      "sector": "Tech",
+      "quote": {
+        "price": 34.78,
+        "change_percent": 6.687116564417184,
+        "market_cap": null,
+        "volume": 5629600.0,
+        "fetched_at": "2026-08-27T20:05:49.448043"
+      },
+      "indicators": {
+        "pe": 13.25,
+        "pb": 3.46,
+        "ev_ebitda": 7.62,
+        "dividend_yield": 0.0216,
+        "roe": 0.1638188746599817,
+        "roa": 0.09434245317821693,
+        "roic": 0.23370000000000002,
+        "net_margin": 0.15449784272575928,
+        "ebitda_margin": 0.19451730263361924,
+        "debt_equity": 0.7364279721507858,
+        "current_ratio": 1.9592189349830302,
+        "revenue_growth": 0.1743975834361362,
+        "earnings_growth": 0.24282208127239513,
+        "source": "cvm"
+      },
+      "score": {
+        "quality": 83.8,
+        "value": 40.7,
+        "moat": 51.7,
+        "macro_fit": 52.6,
+        "composite": 58.7,
+        "band": "Caution",
+        "rationale": "Score mixes how cheap and how profitable this name is versus its industry, plus a simple moat and macro check. Not licensed advice."
+      },
+      "moat": {
+        "scale": 5,
+        "regulation": 3,
+        "brand": 6,
+        "cost_advantage": 5,
+        "switching_costs": 6,
+        "network": 6,
+        "summary": ""
+      },
+      "statements": [],
+      "thesis": null
+    },
+    {
+      "ticker": "UGPA3",
+      "name": "Ultrapar ON",
+      "sector": "Fuel Distribution",
+      "quote": {
+        "price": 33.22,
+        "change_percent": -0.7172743574417328,
+        "market_cap": null,
+        "volume": 6967200.0,
+        "fetched_at": "2026-08-27T20:05:49.448316"
+      },
+      "indicators": {
+        "pe": 10.8,
+        "pb": 2.08,
+        "ev_ebitda": 5.07,
+        "dividend_yield": 0.059800000000000006,
+        "roe": 0.1383963682707714,
+        "roa": 0.04972447867934248,
+        "roic": 0.215,
+        "net_margin": 0.017235800579253117,
+        "ebitda_margin": 0.034974215692485905,
+        "debt_equity": 1.7832643387424139,
+        "current_ratio": 1.6186303022854742,
+        "revenue_growth": 0.06644718522914106,
+        "earnings_growth": 0.0385624317529647,
+        "source": "cvm"
+      },
+      "score": {
+        "quality": 64.0,
+        "value": 57.7,
+        "moat": 50.0,
+        "macro_fit": 53.8,
+        "composite": 56.7,
+        "band": "Caution",
+        "rationale": "Score mixes how cheap and how profitable this name is versus its industry, plus a simple moat and macro check. Not licensed advice."
+      },
+      "moat": {
+        "scale": 7,
+        "regulation": 5,
+        "brand": 6,
+        "cost_advantage": 5,
+        "switching_costs": 3,
+        "network": 4,
+        "summary": ""
+      },
+      "statements": [],
+      "thesis": null
+    },
+    {
+      "ticker": "USIM5",
+      "name": "Usiminas PNA",
+      "sector": "Steel",
+      "quote": {
+        "price": 7.19,
+        "change_percent": 0.8415147265077305,
+        "market_cap": null,
+        "volume": 7572600.0,
+        "fetched_at": "2026-08-27T20:05:49.448567"
+      },
+      "indicators": {
+        "pe": null,
+        "pb": 0.43,
+        "ev_ebitda": 3.57,
+        "dividend_yield": 0.0,
+        "roe": -0.12987395122672388,
+        "roa": -0.08626067493338754,
+        "roic": 0.0467,
+        "net_margin": -0.11720440383879498,
+        "ebitda_margin": -0.05193095347336317,
+        "debt_equity": 0.5055985978201017,
+        "current_ratio": 4.1194604504141585,
+        "revenue_growth": 0.015216623832291942,
+        "earnings_growth": 20.091307743960094,
+        "source": "cvm"
+      },
+      "score": {
+        "quality": 26.0,
+        "value": 49.5,
+        "moat": 40.0,
+        "macro_fit": 53.8,
+        "composite": 40.3,
+        "band": "Avoid",
+        "rationale": "Score mixes how cheap and how profitable this name is versus its industry, plus a simple moat and macro check. Not licensed advice."
+      },
+      "moat": {
+        "scale": 6,
+        "regulation": 4,
+        "brand": 4,
+        "cost_advantage": 5,
+        "switching_costs": 3,
+        "network": 2,
+        "summary": ""
+      },
+      "statements": [],
+      "thesis": null
+    },
+    {
+      "ticker": "VALE3",
+      "name": "Vale ON",
+      "sector": "Mining",
+      "quote": {
+        "price": 79.23,
+        "change_percent": 0.9942638623327005,
+        "market_cap": 327052637120.0,
+        "volume": 9983800.0,
+        "fetched_at": "2026-08-27T20:05:49.426842"
+      },
+      "indicators": {
+        "pe": 33.59,
+        "pb": 1.77,
+        "ev_ebitda": 4.61,
+        "dividend_yield": 0.07150000000000001,
+        "roe": 0.07311857552692588,
+        "roa": 0.029015278495423173,
+        "roic": 0.18109999999999998,
+        "net_margin": 0.06467379854397341,
+        "ebitda_margin": 0.14967110653339263,
+        "debt_equity": 1.5200025406773021,
+        "current_ratio": 1.152599633531837,
+        "revenue_growth": 0.03684376592801142,
+        "earnings_growth": -0.5627374018738922,
+        "source": "cvm"
+      },
+      "score": {
+        "quality": 59.9,
+        "value": 38.8,
+        "moat": 56.7,
+        "macro_fit": 54.4,
+        "composite": 52.8,
+        "band": "Caution",
+        "rationale": "Score mixes how cheap and how profitable this name is versus its industry, plus a simple moat and macro check. Not licensed advice."
+      },
+      "moat": {
+        "scale": 9,
+        "regulation": 6,
+        "brand": 5,
+        "cost_advantage": 8,
+        "switching_costs": 4,
+        "network": 2,
+        "summary": "World-class iron ore assets; cost curve advantage, commodity cyclical."
+      },
+      "statements": [],
+      "thesis": null
+    },
+    {
+      "ticker": "VAMO3",
+      "name": "Vamos ON",
+      "sector": "Car Rental",
+      "quote": {
+        "price": 3.01,
+        "change_percent": -1.3114754098360715,
+        "market_cap": null,
+        "volume": 12287800.0,
+        "fetched_at": "2026-08-27T20:05:49.448843"
+      },
+      "indicators": {
+        "pe": 11.8,
+        "pb": 1.13,
+        "ev_ebitda": 3.9,
+        "dividend_yield": 0.0408,
+        "roe": 0.0,
+        "roa": 0.0,
+        "roic": 0.1552,
+        "net_margin": 0.0,
+        "ebitda_margin": 0.45380137157661815,
+        "debt_equity": 7.963273142560954,
+        "current_ratio": 1.810205017390886,
+        "revenue_growth": 0.22479886417416006,
+        "earnings_growth": null,
+        "source": "cvm"
+      },
+      "score": {
+        "quality": 37.7,
+        "value": 65.6,
+        "moat": 43.3,
+        "macro_fit": 51.4,
+        "composite": 48.4,
+        "band": "Avoid",
+        "rationale": "Score mixes how cheap and how profitable this name is versus its industry, plus a simple moat and macro check. Not licensed advice."
+      },
+      "moat": {
+        "scale": 6,
+        "regulation": 3,
+        "brand": 6,
+        "cost_advantage": 5,
+        "switching_costs": 3,
+        "network": 3,
+        "summary": ""
+      },
+      "statements": [],
+      "thesis": null
+    },
+    {
+      "ticker": "VBBR3",
+      "name": "Vibra ON",
+      "sector": "Fuel Distribution",
+      "quote": {
+        "price": 33.35,
+        "change_percent": -0.7735792918774131,
+        "market_cap": null,
+        "volume": 8397800.0,
+        "fetched_at": "2026-08-27T20:05:49.449101"
+      },
+      "indicators": {
+        "pe": 7.97,
+        "pb": 1.71,
+        "ev_ebitda": 5.89,
+        "dividend_yield": 0.0449,
+        "roe": 0.09662022081866833,
+        "roa": 0.03287239801190886,
+        "roic": 0.1606,
+        "net_margin": 0.010598968663228877,
+        "ebitda_margin": 0.025524262858653973,
+        "debt_equity": 1.939250759365508,
+        "current_ratio": 1.946563588480163,
+        "revenue_growth": 0.09753761493452218,
+        "earnings_growth": -0.6852520810428773,
+        "source": "cvm"
+      },
+      "score": {
+        "quality": 54.6,
+        "value": 58.1,
+        "moat": 50.0,
+        "macro_fit": 53.8,
+        "composite": 54.0,
+        "band": "Caution",
+        "rationale": "Score mixes how cheap and how profitable this name is versus its industry, plus a simple moat and macro check. Not licensed advice."
+      },
+      "moat": {
+        "scale": 7,
+        "regulation": 5,
+        "brand": 6,
+        "cost_advantage": 5,
+        "switching_costs": 3,
+        "network": 4,
+        "summary": ""
+      },
+      "statements": [],
+      "thesis": null
+    },
+    {
+      "ticker": "VIVA3",
+      "name": "Vivara ON",
+      "sector": "Retail",
+      "quote": {
+        "price": 22.63,
+        "change_percent": -0.3083700440528636,
+        "market_cap": null,
+        "volume": 2195700.0,
+        "fetched_at": "2026-08-27T20:05:49.449359"
+      },
+      "indicators": {
+        "pe": 9.15,
+        "pb": 1.68,
+        "ev_ebitda": 6.04,
+        "dividend_yield": 0.030699999999999998,
+        "roe": 0.21003161901222364,
+        "roa": 0.13117563392408824,
+        "roic": 0.1732,
+        "net_margin": 0.2046871316368066,
+        "ebitda_margin": 0.23998072433907153,
+        "debt_equity": 0.6011481151581064,
+        "current_ratio": 3.631264849998475,
+        "revenue_growth": 0.17440759263254413,
+        "earnings_growth": -0.0518701576705457,
+        "source": "cvm"
+      },
+      "score": {
+        "quality": 87.8,
+        "value": 36.7,
+        "moat": 43.3,
+        "macro_fit": 50.7,
+        "composite": 56.1,
+        "band": "Caution",
+        "rationale": "Score mixes how cheap and how profitable this name is versus its industry, plus a simple moat and macro check. Not licensed advice."
+      },
+      "moat": {
+        "scale": 6,
+        "regulation": 3,
+        "brand": 6,
+        "cost_advantage": 4,
+        "switching_costs": 3,
+        "network": 4,
+        "summary": ""
+      },
+      "statements": [],
+      "thesis": null
+    },
+    {
+      "ticker": "VIVT3",
+      "name": "Telefônica Brasil ON",
+      "sector": "Telecom",
+      "quote": {
+        "price": 29.34,
+        "change_percent": -2.10079547274572,
+        "market_cap": null,
+        "volume": 2750900.0,
+        "fetched_at": "2026-08-27T20:05:49.447274"
+      },
+      "indicators": {
+        "pe": 14.7,
+        "pb": 1.48,
+        "ev_ebitda": 4.25,
+        "dividend_yield": 0.0801,
+        "roe": 0.08938641061803848,
+        "roa": 0.04815978561010524,
+        "roic": 0.091,
+        "net_margin": 0.1034970383421428,
+        "ebitda_margin": 0.16543800654417318,
+        "debt_equity": 0.8560383831792384,
+        "current_ratio": 0.998975922939845,
+        "revenue_growth": 0.06714923049220056,
+        "earnings_growth": 0.11174545976278072,
+        "source": "cvm"
+      },
+      "score": {
+        "quality": 58.7,
+        "value": 62.2,
+        "moat": 63.3,
+        "macro_fit": 53.8,
+        "composite": 60.2,
+        "band": "Caution",
+        "rationale": "Score mixes how cheap and how profitable this name is versus its industry, plus a simple moat and macro check. Not licensed advice."
+      },
+      "moat": {
+        "scale": 8,
+        "regulation": 7,
+        "brand": 6,
+        "cost_advantage": 6,
+        "switching_costs": 5,
+        "network": 6,
+        "summary": ""
+      },
+      "statements": [],
+      "thesis": null
+    },
+    {
+      "ticker": "WEGE3",
+      "name": "WEG ON",
+      "sector": "Industrials",
+      "quote": {
+        "price": 50.18,
+        "change_percent": -0.47600158667195913,
+        "market_cap": null,
+        "volume": 7118500.0,
+        "fetched_at": "2026-08-27T20:05:49.427698"
+      },
+      "indicators": {
+        "pe": 33.84,
+        "pb": 11.22,
+        "ev_ebitda": 22.01,
+        "dividend_yield": 0.0398,
+        "roe": 0.3436691588652063,
+        "roa": 0.14951845502277758,
+        "roic": 0.2433,
+        "net_margin": 0.15626413613726656,
+        "ebitda_margin": 0.1960278266086431,
+        "debt_equity": 1.298506621225132,
+        "current_ratio": 1.5478099809155443,
+        "revenue_growth": 0.07416151250504743,
+        "earnings_growth": 0.05521238978034759,
+        "source": "cvm"
+      },
+      "score": {
+        "quality": 71.0,
+        "value": 19.1,
+        "moat": 60.0,
+        "macro_fit": 53.2,
+        "composite": 52.1,
+        "band": "Caution",
+        "rationale": "Score mixes how cheap and how profitable this name is versus its industry, plus a simple moat and macro check. Not licensed advice."
+      },
+      "moat": {
+        "scale": 7,
+        "regulation": 4,
+        "brand": 8,
+        "cost_advantage": 7,
+        "switching_costs": 6,
+        "network": 4,
+        "summary": "Industrial compounder with global niche leadership in motors/automation."
+      },
+      "statements": [],
+      "thesis": null
+    },
+    {
+      "ticker": "YDUQ3",
+      "name": "Yduqs ON",
+      "sector": "Education",
+      "quote": {
+        "price": 8.84,
+        "change_percent": 2.5522041763341052,
+        "market_cap": null,
+        "volume": 3418300.0,
+        "fetched_at": "2026-08-27T20:05:49.449618"
+      },
+      "indicators": {
+        "pe": 20.81,
+        "pb": 0.81,
+        "ev_ebitda": 3.85,
+        "dividend_yield": 0.066,
+        "roe": 0.0611483934526533,
+        "roa": 0.01829699829663133,
+        "roic": 0.11349999999999999,
+        "net_margin": 0.03286844364276478,
+        "ebitda_margin": 0.16070061248809253,
+        "debt_equity": 2.3419904435314596,
+        "current_ratio": 1.4060398713983122,
+        "revenue_growth": 0.03175669426182104,
+        "earnings_growth": -0.4683576563223172,
+        "source": "cvm"
+      },
+      "score": {
+        "quality": 35.0,
+        "value": 57.9,
+        "moat": 43.3,
+        "macro_fit": 51.4,
+        "composite": 45.7,
+        "band": "Avoid",
+        "rationale": "Score mixes how cheap and how profitable this name is versus its industry, plus a simple moat and macro check. Not licensed advice."
+      },
+      "moat": {
+        "scale": 5,
+        "regulation": 5,
+        "brand": 5,
+        "cost_advantage": 4,
+        "switching_costs": 4,
+        "network": 3,
+        "summary": ""
+      },
+      "statements": [],
       "thesis": null
     }
   ],
