@@ -4,6 +4,12 @@
 
 :root {
   color-scheme: light;
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-top: env(safe-area-inset-top, 0px);
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
@@ -13,18 +19,37 @@ body {
 input,
 select,
 textarea {
-  @apply rounded-[4px] border border-line bg-elev outline-none focus:border-navy;
+  @apply rounded-xl border border-line bg-elev outline-none focus:border-navy focus-visible:ring-2 focus-visible:ring-navy/20;
+  font-size: 16px;
+}
+
+@media (min-width: 768px) {
+  input,
+  select,
+  textarea {
+    font-size: 14px;
+  }
 }
 
 button {
-  @apply rounded-[4px];
+  @apply rounded-pill;
+}
+
+button:focus-visible,
+a:focus-visible {
+  @apply outline-none ring-2 ring-navy/30 ring-offset-2;
 }
 
 @keyframes fade-up {
-  from { opacity: 0; transform: translateY(4px); }
+  from { opacity: 0; transform: translateY(6px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
 .animate-fade-up {
-  animation: fade-up 180ms ease-out both;
+  animation: fade-up 200ms ease-out both;
+}
+
+.tap {
+  min-height: 44px;
+  min-width: 44px;
 }

@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 
 const PYTHON =
   process.env.SNAPSHOT_ONLY === "1"
@@ -7,11 +7,11 @@ const PYTHON =
 
 let pythonDownUntil = 0;
 
-export async function proxyPython(req: NextRequest, parts: string[]): Promise<NextResponse | null> {
+export async function proxyPython(req: Request, parts: string[]): Promise<NextResponse | null> {
   if (!PYTHON || Date.now() < pythonDownUntil) return null;
   const path = parts.join("/");
   const url = new URL(`/api/${path}`, PYTHON);
-  url.search = req.nextUrl.search;
+  url.search = new URL(req.url).search;
   const method = req.method.toUpperCase();
   const timeout = path.includes("ingest") ? 300_000 : 20_000;
   try {

@@ -2,7 +2,9 @@
 
 import { useEffect, useState } from "react";
 import { api } from "@/lib/api";
-import { Card, Disclaimer, Label, PageHead } from "@/components/ui";
+import { Card, Disclaimer, Flash, Label, PageHead, PrimaryButton, GhostButton } from "@/components/ui";
+import { InfoTip } from "@/components/InfoTip";
+import { GLOSSARY } from "@/lib/glossary";
 
 type Alert = {
   id: number;
@@ -21,6 +23,7 @@ export default function AlertsPage() {
   const [threshold, setThreshold] = useState("36");
   const [scenario, setScenario] = useState<Record<string, unknown> | null>(null);
   const [delta, setDelta] = useState("1");
+  const [flash, setFlash] = useState("");
 
   const load = () => api.alerts().then((a) => setAlerts(a as Alert[]));
 
@@ -31,41 +34,56 @@ export default function AlertsPage() {
 
   return (
     <div>
-      <PageHead title="Alerts" subtitle="Price, indicator, filings, and macro regime nudges." />
+      <PageHead title="Alerts" subtitle="Price, metric, filings, and economy/rates nudges. You turn them on here." />
 
       <Card className="mb-6">
         <Label>New alert</Label>
-        <div className="mt-3 flex flex-wrap gap-3">
+        <div className="mt-3 grid gap-3 sm:flex sm:flex-wrap">
+          <label className="sr-only" htmlFor="al-kind">
+            Alert type
+          </label>
           <select
-            className="border border-line px-3 py-2 text-sm"
+            id="al-kind"
+            className="border border-line px-3 py-2.5 text-sm"
             value={kind}
             onChange={(e) => setKind(e.target.value)}
           >
             <option value="price">Price</option>
-            <option value="indicator">Indicator</option>
-            <option value="filing">Filing</option>
-            <option value="macro">Macro</option>
+            <option value="indicator">Metric (e.g. P/L)</option>
+            <option value="filing">Company filing (CVM)</option>
+            <option value="macro">Economy / rates</option>
           </select>
+          <label className="sr-only" htmlFor="al-ticker">
+            Ticker
+          </label>
           <input
-            className="border border-line px-3 py-2 text-sm"
+            id="al-ticker"
+            className="border border-line px-3 py-2.5 text-sm"
             value={ticker}
             onChange={(e) => setTicker(e.target.value.toUpperCase())}
             placeholder="Ticker"
           />
+          <label className="sr-only" htmlFor="al-rule">
+            Rule
+          </label>
           <input
-            className="border border-line px-3 py-2 text-sm min-w-[220px]"
+            id="al-rule"
+            className="min-w-[220px] border border-line px-3 py-2.5 text-sm"
             value={rule}
             onChange={(e) => setRule(e.target.value)}
             placeholder="Rule text"
           />
+          <label className="sr-only" htmlFor="al-th">
+            Trigger level
+          </label>
           <input
-            className="border border-line px-3 py-2 text-sm w-24"
+            id="al-th"
+            className="w-24 border border-line px-3 py-2.5 text-sm"
             value={threshold}
             onChange={(e) => setThreshold(e.target.value)}
-            placeholder="Threshold"
+            placeholder="Trigger"
           />
-          <button
-            className="bg-navy px-4 py-2 text-sm text-white"
+          <PrimaryButton
             onClick={async () => {
               await api.createAlert({
                 kind,
@@ -74,70 +92,68 @@ export default function AlertsPage() {
                 threshold: threshold ? Number(threshold) : null,
               });
               await load();
+              setFlash("Alert turned on.");
             }}
           >
-            Arm
-          </button>
+            Turn on
+          </PrimaryButton>
         </div>
+        <Flash text={flash} />
       </Card>
 
-      <Card className="mb-6">
-        <div className="overflow-x-auto">
-        <table className="w-full text-sm">
-          <thead>
-              <tr className="text-left text-muted">
-              <th className="pb-3 font-medium">Type</th>
-              <th className="pb-3 font-medium">Rule</th>
-              <th className="pb-3 font-medium">Status</th>
-              <th className="pb-3 font-medium"></th>
-            </tr>
-          </thead>
-          <tbody>
+      <Card className="mb-6" pad={false}>
+        {alerts.length === 0 ? (
+          <p className="p-5 text-sm text-muted">No alerts yet. Turn one on above.</p>
+        ) : (
+          <ul className="divide-y divide-line">
             {alerts.map((a) => (
-              <tr key={a.id} className="border-t border-line">
-                <td className="py-4 capitalize">{a.kind}</td>
-                <td className="py-4 font-mono text-[13px]">{a.rule}</td>
-                <td className="py-4">
+              <li key={a.id} className="flex flex-wrap items-center justify-between gap-2 px-4 py-4">
+                <div>
+                  <div className="capitalize text-muted">{a.kind}</div>
+                  <div className="font-mono text-[13px]">{a.rule}</div>
+                </div>
+                <div className="flex items-center gap-3">
                   <span
-                    className={`rounded-[4px] px-2.5 py-1 text-xs ${
+                    className={`rounded-pill px-2.5 py-1 text-xs ${
                       a.status === "Triggered" ? "bg-soft text-accent" : "bg-[#FDF0E7] text-watch"
                     }`}
                   >
-                    {a.status}
+                    {a.status === "Armed" ? "On" : a.status}
                   </span>
-                </td>
-                <td className="py-4">
                   <button
-                    className="text-xs text-faint hover:text-down"
+                    className="tap text-[13px] text-faint hover:text-down"
                     onClick={async () => {
+                      if (!window.confirm("Delete this alert?")) return;
                       await api.deleteAlert(a.id);
                       await load();
+                      setFlash("Alert deleted.");
                     }}
                   >
                     Delete
                   </button>
-                </td>
-              </tr>
+                </div>
+              </li>
             ))}
-          </tbody>
-        </table>
-        </div>
+          </ul>
+        )}
       </Card>
 
       <Card>
-        <Label>Selic scenario (heuristic)</Label>
-        <div className="mt-3 flex items-center gap-3">
+        <Label hint="A rough what-if if Brazil’s key rate moves. Not a forecast.">
+          What-if: Selic rate change
+        </Label>
+        <div className="mt-3 flex flex-wrap items-center gap-3">
+          <label className="sr-only" htmlFor="selic-delta">
+            Selic change in percentage points
+          </label>
           <input
-            className="w-24 border border-line px-3 py-2 text-sm"
+            id="selic-delta"
+            className="w-24 border border-line px-3 py-2.5 text-sm"
             value={delta}
             onChange={(e) => setDelta(e.target.value)}
           />
-          <button
-            className="border border-line px-3 py-2 text-sm"
-            onClick={() => api.scenario(Number(delta)).then(setScenario)}
-          >
-            Simulate Δ Selic
-          </button>
+          <GhostButton onClick={() => api.scenario(Number(delta)).then(setScenario)}>Run Selic change</GhostButton>
+          <InfoTip label="Selic">{GLOSSARY.selic.short}</InfoTip>
         </div>
         <ul className="mt-4 space-y-2 text-sm">
           {((scenario?.impacts as Array<{ sector: string; score_nudge: number }>) || []).map((i) => (

@@ -12,30 +12,73 @@ from app.universe import BANK_LIKE, SECTOR_CAVEATS, SECTOR_GROUP
 METRIC_SPECS = [
     {
         "key": "pe",
-        "label": "P/L",
+        "label": "Price / profit (P/L)",
         "plain": "Years of profit you pay for the stock today",
         "unit": "x",
         "higher_better": False,
         "kind": "value",
         "skip_sectors": set(),
+        "peer": True,
     },
     {
         "key": "pb",
-        "label": "P/VP",
+        "label": "Price / book value (P/VP)",
         "plain": "Price versus the equity sitting on the books",
         "unit": "x",
         "higher_better": False,
         "kind": "value",
         "skip_sectors": set(),
+        "peer": True,
     },
     {
         "key": "ev_ebitda",
-        "label": "EV/EBITDA",
+        "label": "Company value / operating profit (EV/EBITDA)",
         "plain": "Enterprise value versus operating cash profit",
         "unit": "x",
         "higher_better": False,
         "kind": "value",
         "skip_sectors": BANK_LIKE,
+        "peer": True,
+    },
+    {
+        "key": "ps",
+        "label": "Price / sales (P/S)",
+        "plain": "How many years of sales the market price buys",
+        "unit": "x",
+        "higher_better": False,
+        "kind": "value",
+        "skip_sectors": BANK_LIKE,
+        "peer": True,
+    },
+    {
+        "key": "peg",
+        "label": "PEG (P/L ÷ growth)",
+        "plain": "P/L adjusted for profit growth",
+        "unit": "x",
+        "higher_better": False,
+        "kind": "value",
+        "skip_sectors": set(),
+        "peer": True,
+    },
+    {
+        "key": "earnings_yield",
+        "label": "Earnings yield (1 ÷ P/L)",
+        "plain": "Profit return at today’s price if earnings hold",
+        "unit": "%",
+        "higher_better": True,
+        "kind": "value",
+        "skip_sectors": set(),
+        "peer": True,
+    },
+    {
+        "key": "earnings_vs_selic",
+        "label": "Earnings yield vs Selic",
+        "plain": "Profit yield minus Brazil’s key interest rate",
+        "unit": "pp",
+        "higher_better": True,
+        "kind": "macro",
+        "skip_sectors": set(),
+        "peer": True,
     },
     {
         "key": "dividend_yield",
@@ -45,24 +88,67 @@ METRIC_SPECS = [
         "higher_better": True,
         "kind": "income",
         "skip_sectors": set(),
+        "peer": True,
+    },
+    {
+        "key": "dy_vs_selic",
+        "label": "Dividend vs Selic",
+        "plain": "Dividend yield minus the Selic rate",
+        "unit": "pp",
+        "higher_better": True,
+        "kind": "income",
+        "skip_sectors": set(),
+        "peer": True,
+    },
+    {
+        "key": "payout",
+        "label": "Dividend payout",
+        "plain": "Share of yearly profit paid as dividends",
+        "unit": "%",
+        "higher_better": False,
+        "kind": "income",
+        "skip_sectors": set(),
+        "peer": True,
+    },
+    {
+        "key": "div_coverage",
+        "label": "Dividend coverage",
+        "plain": "How many times earnings cover the dividend",
+        "unit": "x",
+        "higher_better": True,
+        "kind": "income",
+        "skip_sectors": set(),
+        "peer": True,
     },
     {
         "key": "roe",
-        "label": "ROE",
+        "label": "Return on equity (ROE)",
         "plain": "Profit the company earns on its own equity",
         "unit": "%",
         "higher_better": True,
         "kind": "quality",
         "skip_sectors": set(),
+        "peer": True,
+    },
+    {
+        "key": "roa",
+        "label": "Return on assets (ROA)",
+        "plain": "Profit earned on all assets, not just equity",
+        "unit": "%",
+        "higher_better": True,
+        "kind": "quality",
+        "skip_sectors": set(),
+        "peer": True,
     },
     {
         "key": "roic",
-        "label": "ROIC",
+        "label": "Return on invested capital (ROIC)",
         "plain": "Return on the capital actually used in the business",
         "unit": "%",
         "higher_better": True,
         "kind": "quality",
         "skip_sectors": BANK_LIKE,
+        "peer": True,
     },
     {
         "key": "net_margin",
@@ -72,6 +158,27 @@ METRIC_SPECS = [
         "higher_better": True,
         "kind": "quality",
         "skip_sectors": BANK_LIKE,
+        "peer": True,
+    },
+    {
+        "key": "ebitda_margin",
+        "label": "Operating margin (EBIT)",
+        "plain": "Operating profit from each real of sales",
+        "unit": "%",
+        "higher_better": True,
+        "kind": "quality",
+        "skip_sectors": BANK_LIKE,
+        "peer": True,
+    },
+    {
+        "key": "asset_turnover",
+        "label": "Asset turnover",
+        "plain": "How hard the company’s assets work to generate sales",
+        "unit": "x",
+        "higher_better": True,
+        "kind": "quality",
+        "skip_sectors": BANK_LIKE,
+        "peer": True,
     },
     {
         "key": "revenue_growth",
@@ -81,6 +188,7 @@ METRIC_SPECS = [
         "higher_better": True,
         "kind": "growth",
         "skip_sectors": set(),
+        "peer": True,
     },
     {
         "key": "earnings_growth",
@@ -90,26 +198,81 @@ METRIC_SPECS = [
         "higher_better": True,
         "kind": "growth",
         "skip_sectors": set(),
+        "peer": True,
     },
     {
         "key": "debt_equity",
-        "label": "Net debt / equity",
+        "label": "Debt / equity",
         "plain": "How leveraged the balance sheet is",
         "unit": "x",
         "higher_better": False,
         "kind": "risk",
         "skip_sectors": BANK_LIKE,
+        "peer": True,
     },
     {
         "key": "current_ratio",
-        "label": "Current ratio",
+        "label": "Short-term safety (current ratio)",
         "plain": "Short-term assets versus short-term bills",
         "unit": "x",
         "higher_better": True,
         "kind": "risk",
         "skip_sectors": BANK_LIKE,
+        "peer": True,
+    },
+    {
+        "key": "lpa",
+        "label": "Profit per share (LPA)",
+        "plain": "Last year’s profit in reais per share",
+        "unit": "R$",
+        "higher_better": True,
+        "kind": "fact",
+        "skip_sectors": set(),
+        "peer": False,
+    },
+    {
+        "key": "vpa",
+        "label": "Book value per share (VPA)",
+        "plain": "Book equity in reais per share",
+        "unit": "R$",
+        "higher_better": True,
+        "kind": "fact",
+        "skip_sectors": set(),
+        "peer": False,
     },
 ]
+
+
+def enrich_derived(row: dict, selic: float | None = None) -> dict:
+    pe = row.get("pe")
+    pb = row.get("pb")
+    price = row.get("price")
+    dy = row.get("dividend_yield")
+    eg = row.get("earnings_growth")
+    nm = row.get("net_margin")
+    roa = row.get("roa")
+    selic_dec = selic / 100.0 if selic is not None else None
+    if pe and pe > 0:
+        row["earnings_yield"] = 1.0 / pe
+        if price:
+            row["lpa"] = price / pe
+        if dy is not None:
+            row["payout"] = dy * pe
+            if row["payout"]:
+                row["div_coverage"] = 1.0 / row["payout"]
+        if nm is not None:
+            row["ps"] = pe * nm
+        if selic_dec is not None:
+            row["earnings_vs_selic"] = row["earnings_yield"] - selic_dec
+    if pb and pb > 0 and price:
+        row["vpa"] = price / pb
+    if pe and pe > 0 and eg is not None and eg > 0.02:
+        row["peg"] = pe / (eg * 100.0)
+    if roa is not None and nm:
+        row["asset_turnover"] = roa / nm
+    if dy is not None and selic_dec is not None:
+        row["dy_vs_selic"] = dy - selic_dec
+    return row
 
 
 def _median(values: list[float]) -> Optional[float]:
@@ -120,12 +283,27 @@ def _median(values: list[float]) -> Optional[float]:
 
 
 def _ind_map(ind: Indicator | None) -> dict[str, Optional[float]]:
+    keys = (
+        "pe",
+        "pb",
+        "ev_ebitda",
+        "dividend_yield",
+        "roe",
+        "roa",
+        "roic",
+        "net_margin",
+        "ebitda_margin",
+        "debt_equity",
+        "current_ratio",
+        "revenue_growth",
+        "earnings_growth",
+    )
     if not ind:
-        return {s["key"]: None for s in METRIC_SPECS}
-    return {s["key"]: getattr(ind, s["key"], None) for s in METRIC_SPECS}
+        return {k: None for k in keys}
+    return {k: getattr(ind, k, None) for k in keys}
 
 
-def collect_universe(db: Session) -> list[dict]:
+def collect_universe(db: Session, selic: float | None = None) -> list[dict]:
     stocks = db.query(Stock).filter(Stock.is_active.is_(True)).all()
     inds = {r.stock_id: r for r in db.query(Indicator).all()}
     scores = {r.stock_id: r for r in db.query(Score).all()}
@@ -135,20 +313,20 @@ def collect_universe(db: Session) -> list[dict]:
         ind = inds.get(stock.id)
         sc = scores.get(stock.id)
         q = quotes.get(stock.id)
-        rows.append(
-            {
-                "ticker": stock.ticker,
-                "name": stock.name,
-                "sector": stock.sector,
-                "group": SECTOR_GROUP.get(stock.sector, "Index"),
-                "cvm_code": stock.cvm_code or stock.ticker,
-                "price": q.price if q else None,
-                "change_percent": q.change_percent if q else None,
-                "composite": sc.composite if sc else None,
-                "band": sc.band if sc else None,
-                **_ind_map(ind),
-            }
-        )
+        row = {
+            "ticker": stock.ticker,
+            "name": stock.name,
+            "sector": stock.sector,
+            "group": SECTOR_GROUP.get(stock.sector, "Index"),
+            "cvm_code": stock.cvm_code or stock.ticker,
+            "price": q.price if q else None,
+            "change_percent": q.change_percent if q else None,
+            "composite": sc.composite if sc else None,
+            "band": sc.band if sc else None,
+            **_ind_map(ind),
+        }
+        enrich_derived(row, selic)
+        rows.append(row)
     return rows
 
 
@@ -165,7 +343,9 @@ def _scope_rows(universe: list[dict], sector: str) -> tuple[list[dict], str, str
     return universe, "index", "the whole Ibovespa"
 
 
-def industry_medians(rows: list[dict], sector: str) -> dict[str, Any]:
+def industry_medians(rows: list[dict], sector: str, selic: float | None = None) -> dict[str, Any]:
+    for r in rows:
+        enrich_derived(r, selic)
     scoped, scope, label = _scope_rows(rows, sector)
     # quality metrics: one per company
     by_cvm: dict[str, dict] = {}
@@ -174,6 +354,9 @@ def industry_medians(rows: list[dict], sector: str) -> dict[str, Any]:
     unique = list(by_cvm.values())
     med: dict[str, Optional[float]] = {}
     for spec in METRIC_SPECS:
+        if not spec.get("peer", True):
+            med[spec["key"]] = None
+            continue
         sample = unique if spec["kind"] != "value" else scoped
         m = _median([r.get(spec["key"]) for r in sample])  # type: ignore[arg-type]
         if m is None:
@@ -213,6 +396,10 @@ def _fmt_num(value: Optional[float], unit: str) -> str:
         return "—"
     if unit == "%":
         return f"{value * 100:.1f}%"
+    if unit == "pp":
+        return f"{value * 100:+.1f} pp"
+    if unit == "R$":
+        return f"R$ {value:.2f}"
     if unit == "x":
         return f"{value:.1f}x"
     return f"{value:.1f}"
@@ -221,7 +408,11 @@ def _fmt_num(value: Optional[float], unit: str) -> str:
 def _explain(spec: dict, value: Optional[float], industry: Optional[float], tag: str) -> str:
     v = _fmt_num(value, spec["unit"])
     i = _fmt_num(industry, spec["unit"])
-    if tag == "na":
+    if tag == "na" or not spec.get("peer", True):
+        if spec["key"] == "lpa":
+            return f"Profit per share is {v}. This is a fact about this stock, not a peer multiple."
+        if spec["key"] == "vpa":
+            return f"Book value per share is {v}. Price / book (P/VP) is the price divided by this."
         return f"{spec['plain']}. We do not have a clean industry read yet."
     if spec["key"] == "pe":
         if tag == "cheap":
@@ -323,13 +514,18 @@ def statement_trends(db: Session, stock: Stock) -> tuple[list[dict], Optional[fl
 
 
 def build_metrics(stock_row: dict, medians: dict[str, Optional[float]]) -> list[dict]:
+    enrich_derived(stock_row)
     out = []
     for spec in METRIC_SPECS:
         if stock_row["sector"] in spec["skip_sectors"]:
             continue
+        peer = spec.get("peer", True)
         value = stock_row.get(spec["key"])
-        industry = medians.get(spec["key"])
-        tag, label, delta = _verdict(value, industry, spec["higher_better"])
+        industry = medians.get(spec["key"]) if peer else None
+        if peer:
+            tag, label, delta = _verdict(value, industry, spec["higher_better"])
+        else:
+            tag, label, delta = "na", "Per-share fact", None
         out.append(
             {
                 "key": spec["key"],
@@ -343,6 +539,8 @@ def build_metrics(stock_row: dict, medians: dict[str, Optional[float]]) -> list[
                 "verdict_label": label,
                 "explain": _explain(spec, value, industry, tag),
                 "higher_better": spec["higher_better"],
+                "kind": spec["kind"],
+                "peer": peer,
             }
         )
     return out
@@ -475,8 +673,8 @@ def _checklist(metrics: list[dict], cash: Optional[float], payout: Optional[floa
     return items
 
 
-def analyze_stock(db: Session, stock: Stock) -> dict:
-    universe = collect_universe(db)
+def analyze_stock(db: Session, stock: Stock, selic: float | None = None) -> dict:
+    universe = collect_universe(db, selic)
     self_row = next((r for r in universe if r["ticker"] == stock.ticker), None)
     if not self_row:
         return {"stance": "—", "metrics": [], "peers": []}
