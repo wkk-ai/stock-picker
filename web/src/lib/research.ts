@@ -23,17 +23,21 @@ function selicValue() {
   return getSnapshot().macros.find((m) => m.code === "SELIC")?.value ?? null;
 }
 
+function ipcaValue() {
+  return getSnapshot().macros.find((m) => m.code === "IPCA_12M")?.value ?? null;
+}
+
 export function analyzeTicker(ticker: string) {
   const s = findStock(ticker);
   if (!s) return null;
-  return analyzeSnapshot(s as SnapStock, snapshot.stocks as SnapStock[], selicValue());
+  return analyzeSnapshot(s as SnapStock, snapshot.stocks as SnapStock[], selicValue(), ipcaValue());
 }
 
 export function stockDetailPayload(ticker: string) {
   const s = findStock(ticker);
   if (!s) return null;
   const st = getStore();
-  const analysis = analyzeSnapshot(s as SnapStock, snapshot.stocks as SnapStock[], selicValue());
+  const analysis = analyzeSnapshot(s as SnapStock, snapshot.stocks as SnapStock[], selicValue(), ipcaValue());
   const moat = { ...(s.moat || {}), ...(st.moatOverrides[s.ticker] || {}) };
   const news = snapshot.news
     .filter((n) => !n.ticker || n.ticker === s.ticker)

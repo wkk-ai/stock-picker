@@ -256,7 +256,12 @@ def stock_detail(ticker: str, db: Session = Depends(get_db)):
         for p in db.query(Stock).filter(Stock.sector == stock.sector, Stock.id != stock.id).all()
     ]
     macros = latest_macros(db)
-    analysis = analyze_stock(db, stock, selic=macro_value(macros, "SELIC"))
+    analysis = analyze_stock(
+        db,
+        stock,
+        selic=macro_value(macros, "SELIC"),
+        ipca=macro_value(macros, "IPCA_12M"),
+    )
     analysis_peers = analysis.get("peers") or []
     peers = analysis_peers or [p.model_dump() for p in peers_raw]
     thesis = db.query(ThesisNote).filter(ThesisNote.ticker == stock.ticker).one_or_none()

@@ -10,240 +10,41 @@ from app.db import FinancialStatement, Indicator, Quote, Score, Stock
 from app.universe import BANK_LIKE, SECTOR_CAVEATS, SECTOR_GROUP
 
 METRIC_SPECS = [
-    {
-        "key": "pe",
-        "label": "Price / profit (P/L)",
-        "plain": "Years of profit you pay for the stock today",
-        "unit": "x",
-        "higher_better": False,
-        "kind": "value",
-        "skip_sectors": set(),
-        "peer": True,
-    },
-    {
-        "key": "pb",
-        "label": "Price / book value (P/VP)",
-        "plain": "Price versus the equity sitting on the books",
-        "unit": "x",
-        "higher_better": False,
-        "kind": "value",
-        "skip_sectors": set(),
-        "peer": True,
-    },
-    {
-        "key": "ev_ebitda",
-        "label": "Company value / operating profit (EV/EBITDA)",
-        "plain": "Enterprise value versus operating cash profit",
-        "unit": "x",
-        "higher_better": False,
-        "kind": "value",
-        "skip_sectors": BANK_LIKE,
-        "peer": True,
-    },
-    {
-        "key": "ps",
-        "label": "Price / sales (P/S)",
-        "plain": "How many years of sales the market price buys",
-        "unit": "x",
-        "higher_better": False,
-        "kind": "value",
-        "skip_sectors": BANK_LIKE,
-        "peer": True,
-    },
-    {
-        "key": "peg",
-        "label": "PEG (P/L ÷ growth)",
-        "plain": "P/L adjusted for profit growth",
-        "unit": "x",
-        "higher_better": False,
-        "kind": "value",
-        "skip_sectors": set(),
-        "peer": True,
-    },
-    {
-        "key": "earnings_yield",
-        "label": "Earnings yield (1 ÷ P/L)",
-        "plain": "Profit return at today’s price if earnings hold",
-        "unit": "%",
-        "higher_better": True,
-        "kind": "value",
-        "skip_sectors": set(),
-        "peer": True,
-    },
-    {
-        "key": "earnings_vs_selic",
-        "label": "Earnings yield vs Selic",
-        "plain": "Profit yield minus Brazil’s key interest rate",
-        "unit": "pp",
-        "higher_better": True,
-        "kind": "macro",
-        "skip_sectors": set(),
-        "peer": True,
-    },
-    {
-        "key": "dividend_yield",
-        "label": "Dividend yield",
-        "plain": "Cash returned to you as a % of the price",
-        "unit": "%",
-        "higher_better": True,
-        "kind": "income",
-        "skip_sectors": set(),
-        "peer": True,
-    },
-    {
-        "key": "dy_vs_selic",
-        "label": "Dividend vs Selic",
-        "plain": "Dividend yield minus the Selic rate",
-        "unit": "pp",
-        "higher_better": True,
-        "kind": "income",
-        "skip_sectors": set(),
-        "peer": True,
-    },
-    {
-        "key": "payout",
-        "label": "Dividend payout",
-        "plain": "Share of yearly profit paid as dividends",
-        "unit": "%",
-        "higher_better": False,
-        "kind": "income",
-        "skip_sectors": set(),
-        "peer": True,
-    },
-    {
-        "key": "div_coverage",
-        "label": "Dividend coverage",
-        "plain": "How many times earnings cover the dividend",
-        "unit": "x",
-        "higher_better": True,
-        "kind": "income",
-        "skip_sectors": set(),
-        "peer": True,
-    },
-    {
-        "key": "roe",
-        "label": "Return on equity (ROE)",
-        "plain": "Profit the company earns on its own equity",
-        "unit": "%",
-        "higher_better": True,
-        "kind": "quality",
-        "skip_sectors": set(),
-        "peer": True,
-    },
-    {
-        "key": "roa",
-        "label": "Return on assets (ROA)",
-        "plain": "Profit earned on all assets, not just equity",
-        "unit": "%",
-        "higher_better": True,
-        "kind": "quality",
-        "skip_sectors": set(),
-        "peer": True,
-    },
-    {
-        "key": "roic",
-        "label": "Return on invested capital (ROIC)",
-        "plain": "Return on the capital actually used in the business",
-        "unit": "%",
-        "higher_better": True,
-        "kind": "quality",
-        "skip_sectors": BANK_LIKE,
-        "peer": True,
-    },
-    {
-        "key": "net_margin",
-        "label": "Net margin",
-        "plain": "How many cents of profit remain from each real of sales",
-        "unit": "%",
-        "higher_better": True,
-        "kind": "quality",
-        "skip_sectors": BANK_LIKE,
-        "peer": True,
-    },
-    {
-        "key": "ebitda_margin",
-        "label": "Operating margin (EBIT)",
-        "plain": "Operating profit from each real of sales",
-        "unit": "%",
-        "higher_better": True,
-        "kind": "quality",
-        "skip_sectors": BANK_LIKE,
-        "peer": True,
-    },
-    {
-        "key": "asset_turnover",
-        "label": "Asset turnover",
-        "plain": "How hard the company’s assets work to generate sales",
-        "unit": "x",
-        "higher_better": True,
-        "kind": "quality",
-        "skip_sectors": BANK_LIKE,
-        "peer": True,
-    },
-    {
-        "key": "revenue_growth",
-        "label": "Sales growth",
-        "plain": "Whether the top line is expanding",
-        "unit": "%",
-        "higher_better": True,
-        "kind": "growth",
-        "skip_sectors": set(),
-        "peer": True,
-    },
-    {
-        "key": "earnings_growth",
-        "label": "Profit growth",
-        "plain": "Whether last year's profit beat the year before",
-        "unit": "%",
-        "higher_better": True,
-        "kind": "growth",
-        "skip_sectors": set(),
-        "peer": True,
-    },
-    {
-        "key": "debt_equity",
-        "label": "Debt / equity",
-        "plain": "How leveraged the balance sheet is",
-        "unit": "x",
-        "higher_better": False,
-        "kind": "risk",
-        "skip_sectors": BANK_LIKE,
-        "peer": True,
-    },
-    {
-        "key": "current_ratio",
-        "label": "Short-term safety (current ratio)",
-        "plain": "Short-term assets versus short-term bills",
-        "unit": "x",
-        "higher_better": True,
-        "kind": "risk",
-        "skip_sectors": BANK_LIKE,
-        "peer": True,
-    },
-    {
-        "key": "lpa",
-        "label": "Profit per share (LPA)",
-        "plain": "Last year’s profit in reais per share",
-        "unit": "R$",
-        "higher_better": True,
-        "kind": "fact",
-        "skip_sectors": set(),
-        "peer": False,
-    },
-    {
-        "key": "vpa",
-        "label": "Book value per share (VPA)",
-        "plain": "Book equity in reais per share",
-        "unit": "R$",
-        "higher_better": True,
-        "kind": "fact",
-        "skip_sectors": set(),
-        "peer": False,
-    },
+    {"key": "pe", "label": "Years of profit you pay (P/L)", "plain": "How many years of this year’s profit today’s price buys", "unit": "x", "higher_better": False, "kind": "value", "skip_sectors": set(), "peer": True},
+    {"key": "pb", "label": "Price vs book equity (P/VP)", "plain": "Price compared with the equity sitting on the books", "unit": "x", "higher_better": False, "kind": "value", "skip_sectors": set(), "peer": True},
+    {"key": "ev_ebitda", "label": "Whole-company price vs operating profit", "plain": "Price of shares plus net debt, versus operating profit", "unit": "x", "higher_better": False, "kind": "value", "skip_sectors": BANK_LIKE, "peer": True},
+    {"key": "ps", "label": "Years of sales the price buys (P/S)", "plain": "How many years of sales the market price buys", "unit": "x", "higher_better": False, "kind": "value", "skip_sectors": BANK_LIKE, "peer": True},
+    {"key": "ev_sales", "label": "Whole-company price vs sales", "plain": "Price of shares plus net debt, versus a year of sales", "unit": "x", "higher_better": False, "kind": "value", "skip_sectors": BANK_LIKE, "peer": True},
+    {"key": "peg", "label": "Price vs profit, adjusted for growth", "plain": "P/L divided by profit growth", "unit": "x", "higher_better": False, "kind": "value", "skip_sectors": set(), "peer": True},
+    {"key": "earnings_yield", "label": "Yearly profit as a % of the price", "plain": "The profit return you get at today’s price if earnings hold", "unit": "%", "higher_better": True, "kind": "value", "skip_sectors": set(), "peer": True},
+    {"key": "ebitda_yield", "label": "Operating profit as a % of company value", "plain": "Operating profit divided by whole-company price", "unit": "%", "higher_better": True, "kind": "value", "skip_sectors": BANK_LIKE, "peer": True},
+    {"key": "earnings_vs_selic", "label": "Profit yield vs Brazil’s interest rate", "plain": "How the stock’s profit yield compares with Brazil’s key rate", "unit": "pp", "higher_better": True, "kind": "macro", "skip_sectors": set(), "peer": True},
+    {"key": "real_earnings_yield", "label": "Profit yield after inflation", "plain": "Earnings yield minus 12-month inflation", "unit": "pp", "higher_better": True, "kind": "macro", "skip_sectors": set(), "peer": True},
+    {"key": "roic_vs_selic", "label": "Business return vs Brazil’s interest rate", "plain": "Profit on invested capital minus Brazil’s key rate", "unit": "pp", "higher_better": True, "kind": "macro", "skip_sectors": BANK_LIKE, "peer": True},
+    {"key": "dividend_yield", "label": "Cash dividend vs the price", "plain": "Cash dividends over the last year as a % of the share price", "unit": "%", "higher_better": True, "kind": "income", "skip_sectors": set(), "peer": True},
+    {"key": "dy_vs_selic", "label": "Dividend vs Brazil’s interest rate", "plain": "Dividend yield minus Brazil’s key rate", "unit": "pp", "higher_better": True, "kind": "income", "skip_sectors": set(), "peer": True},
+    {"key": "payout", "label": "Share of profit paid as dividends", "plain": "Share of yearly profit paid as dividends", "unit": "%", "higher_better": False, "kind": "income", "skip_sectors": set(), "peer": True},
+    {"key": "div_coverage", "label": "How many times profit covers the dividend", "plain": "How many times earnings cover the dividend", "unit": "x", "higher_better": True, "kind": "income", "skip_sectors": set(), "peer": True},
+    {"key": "retention", "label": "Share of profit kept in the business", "plain": "The part of profit not paid as dividends", "unit": "%", "higher_better": True, "kind": "income", "skip_sectors": set(), "peer": True},
+    {"key": "roe", "label": "Profit on owners’ money (ROE)", "plain": "Profit the company earns on its own equity", "unit": "%", "higher_better": True, "kind": "quality", "skip_sectors": set(), "peer": True},
+    {"key": "roa", "label": "Profit on all assets (ROA)", "plain": "Profit earned on everything the company owns", "unit": "%", "higher_better": True, "kind": "quality", "skip_sectors": set(), "peer": True},
+    {"key": "roic", "label": "Profit on money used in the business (ROIC)", "plain": "Return on the capital actually used to run the business", "unit": "%", "higher_better": True, "kind": "quality", "skip_sectors": BANK_LIKE, "peer": True},
+    {"key": "net_margin", "label": "Profit left from each real of sales", "plain": "How many cents of profit remain from each real of sales", "unit": "%", "higher_better": True, "kind": "quality", "skip_sectors": BANK_LIKE, "peer": True},
+    {"key": "ebitda_margin", "label": "Operating profit from each real of sales", "plain": "Operating profit from each real of sales, before interest and tax", "unit": "%", "higher_better": True, "kind": "quality", "skip_sectors": BANK_LIKE, "peer": True},
+    {"key": "asset_turnover", "label": "Sales generated from the company’s assets", "plain": "How much sales the company gets from the assets it owns", "unit": "x", "higher_better": True, "kind": "quality", "skip_sectors": BANK_LIKE, "peer": True},
+    {"key": "revenue_growth", "label": "Did sales grow last year?", "plain": "Whether last year’s sales beat the year before", "unit": "%", "higher_better": True, "kind": "growth", "skip_sectors": set(), "peer": True},
+    {"key": "earnings_growth", "label": "Did profit grow last year?", "plain": "Whether last year’s profit beat the year before", "unit": "%", "higher_better": True, "kind": "growth", "skip_sectors": set(), "peer": True},
+    {"key": "sustainable_growth", "label": "Growth the dividend still allows", "plain": "ROE times the share of profit kept in the business", "unit": "%", "higher_better": True, "kind": "growth", "skip_sectors": set(), "peer": True},
+    {"key": "debt_equity", "label": "Borrowed money vs owners’ money", "plain": "How leveraged the balance sheet is", "unit": "x", "higher_better": False, "kind": "risk", "skip_sectors": BANK_LIKE, "peer": True},
+    {"key": "current_ratio", "label": "Can it pay bills due soon?", "plain": "Short-term assets versus bills due soon", "unit": "x", "higher_better": True, "kind": "risk", "skip_sectors": BANK_LIKE, "peer": True},
+    {"key": "financial_leverage", "label": "How much ROE rides on borrowed money", "plain": "ROE divided by ROA", "unit": "x", "higher_better": False, "kind": "risk", "skip_sectors": BANK_LIKE, "peer": True},
+    {"key": "lpa", "label": "Profit for one share, in reais", "plain": "Last year’s profit in reais per share", "unit": "R$", "higher_better": True, "kind": "fact", "skip_sectors": set(), "peer": False},
+    {"key": "vpa", "label": "Book equity for one share, in reais", "plain": "Book equity in reais per share", "unit": "R$", "higher_better": True, "kind": "fact", "skip_sectors": set(), "peer": False},
+    {"key": "graham", "label": "Graham textbook price", "plain": "A classic shortcut from profit-per-share and book-per-share", "unit": "R$", "higher_better": True, "kind": "fact", "skip_sectors": set(), "peer": False},
 ]
 
 
-def enrich_derived(row: dict, selic: float | None = None) -> dict:
+def enrich_derived(row: dict, selic: float | None = None, ipca: float | None = None) -> dict:
     pe = row.get("pe")
     pb = row.get("pb")
     price = row.get("price")
@@ -251,7 +52,12 @@ def enrich_derived(row: dict, selic: float | None = None) -> dict:
     eg = row.get("earnings_growth")
     nm = row.get("net_margin")
     roa = row.get("roa")
+    roe = row.get("roe")
+    roic = row.get("roic")
+    ev = row.get("ev_ebitda")
+    ebitda_m = row.get("ebitda_margin")
     selic_dec = selic / 100.0 if selic is not None else None
+    ipca_dec = ipca / 100.0 if ipca is not None else None
     if pe and pe > 0:
         row["earnings_yield"] = 1.0 / pe
         if price:
@@ -264,6 +70,8 @@ def enrich_derived(row: dict, selic: float | None = None) -> dict:
             row["ps"] = pe * nm
         if selic_dec is not None:
             row["earnings_vs_selic"] = row["earnings_yield"] - selic_dec
+        if ipca_dec is not None:
+            row["real_earnings_yield"] = row["earnings_yield"] - ipca_dec
     if pb and pb > 0 and price:
         row["vpa"] = price / pb
     if pe and pe > 0 and eg is not None and eg > 0.02:
@@ -272,6 +80,23 @@ def enrich_derived(row: dict, selic: float | None = None) -> dict:
         row["asset_turnover"] = roa / nm
     if dy is not None and selic_dec is not None:
         row["dy_vs_selic"] = dy - selic_dec
+    if ev and ev > 0:
+        row["ebitda_yield"] = 1.0 / ev
+        if ebitda_m is not None:
+            row["ev_sales"] = ev * ebitda_m
+    if roic is not None and selic_dec is not None:
+        row["roic_vs_selic"] = roic - selic_dec
+    payout = row.get("payout")
+    if payout is not None:
+        row["retention"] = 1.0 - payout
+        if roe is not None:
+            row["sustainable_growth"] = roe * (1.0 - payout)
+    if roe is not None and roa:
+        row["financial_leverage"] = roe / roa
+    lpa = row.get("lpa")
+    vpa = row.get("vpa")
+    if lpa and vpa and lpa > 0 and vpa > 0:
+        row["graham"] = round((22.5 * lpa * vpa) ** 0.5, 2)
     return row
 
 
@@ -303,7 +128,7 @@ def _ind_map(ind: Indicator | None) -> dict[str, Optional[float]]:
     return {k: getattr(ind, k, None) for k in keys}
 
 
-def collect_universe(db: Session, selic: float | None = None) -> list[dict]:
+def collect_universe(db: Session, selic: float | None = None, ipca: float | None = None) -> list[dict]:
     stocks = db.query(Stock).filter(Stock.is_active.is_(True)).all()
     inds = {r.stock_id: r for r in db.query(Indicator).all()}
     scores = {r.stock_id: r for r in db.query(Score).all()}
@@ -325,7 +150,7 @@ def collect_universe(db: Session, selic: float | None = None) -> list[dict]:
             "band": sc.band if sc else None,
             **_ind_map(ind),
         }
-        enrich_derived(row, selic)
+        enrich_derived(row, selic, ipca)
         rows.append(row)
     return rows
 
@@ -343,9 +168,9 @@ def _scope_rows(universe: list[dict], sector: str) -> tuple[list[dict], str, str
     return universe, "index", "the whole Ibovespa"
 
 
-def industry_medians(rows: list[dict], sector: str, selic: float | None = None) -> dict[str, Any]:
+def industry_medians(rows: list[dict], sector: str, selic: float | None = None, ipca: float | None = None) -> dict[str, Any]:
     for r in rows:
-        enrich_derived(r, selic)
+        enrich_derived(r, selic, ipca)
     scoped, scope, label = _scope_rows(rows, sector)
     # quality metrics: one per company
     by_cvm: dict[str, dict] = {}
@@ -412,7 +237,9 @@ def _explain(spec: dict, value: Optional[float], industry: Optional[float], tag:
         if spec["key"] == "lpa":
             return f"Profit per share is {v}. This is a fact about this stock, not a peer multiple."
         if spec["key"] == "vpa":
-            return f"Book value per share is {v}. Price / book (P/VP) is the price divided by this."
+            return f"Book value per share is {v}. Price / book is the price divided by this."
+        if spec["key"] == "graham":
+            return f"The Graham textbook shortcut is {v}. Compare it with the last price — a study aid, not a target."
         return f"{spec['plain']}. We do not have a clean industry read yet."
     if spec["key"] == "pe":
         if tag == "cheap":
@@ -633,34 +460,39 @@ def _checklist(metrics: list[dict], cash: Optional[float], payout: Optional[floa
     items = [
         {
             "key": "cheap",
+            "label": "Is it cheaper than its industry?",
             "question": "Is it cheaper than its industry?",
             "ok": bool(pe and pe["verdict"] in {"cheap", "inline"}),
             "detail": pe["explain"] if pe else "No P/L yet.",
         },
         {
             "key": "quality",
+            "label": "Does it earn more than peers?",
             "question": "Does it earn more than peers?",
             "ok": bool(roe and roe["verdict"] in {"strong", "inline"}),
             "detail": roe["explain"] if roe else "No ROE yet.",
         },
         {
             "key": "balance",
+            "label": "Is the balance sheet safer than peers?",
             "question": "Is the balance sheet safer than peers?",
             "ok": bool(debt is None or debt["verdict"] in {"cheap", "inline", "strong", "na"}),
             "detail": debt["explain"] if debt else "Leverage is not the right lens for this type of company (banks/insurers).",
         },
         {
             "key": "cash",
+            "label": "Do profits turn into cash?",
             "question": "Do profits turn into cash?",
             "ok": cash is None or cash >= 0.7,
             "detail": (
                 f"Operating cash / profit = {cash:.2f}. Above 1 is healthy; below 0.7 needs a reason."
                 if cash is not None
-                else "Cash conversion needs a CVM cash-flow line."
+                else "We still need the company’s cash-flow filing to check this."
             ),
         },
         {
             "key": "dividend",
+            "label": "If it pays a dividend, does it look payable?",
             "question": "If it pays a dividend, does it look payable?",
             "ok": payout is None or payout <= 1.0,
             "detail": (
@@ -673,8 +505,8 @@ def _checklist(metrics: list[dict], cash: Optional[float], payout: Optional[floa
     return items
 
 
-def analyze_stock(db: Session, stock: Stock, selic: float | None = None) -> dict:
-    universe = collect_universe(db, selic)
+def analyze_stock(db: Session, stock: Stock, selic: float | None = None, ipca: float | None = None) -> dict:
+    universe = collect_universe(db, selic, ipca)
     self_row = next((r for r in universe if r["ticker"] == stock.ticker), None)
     if not self_row:
         return {"stance": "—", "metrics": [], "peers": []}

@@ -46,13 +46,18 @@ export const METRIC_SPECS: MetricSpec[] = [
   { key: "pb", label: GLOSSARY.pb.label, plain: GLOSSARY.pb.short, unit: "x", higher_better: false, kind: "value", skip_sectors: [], peer: true },
   { key: "ev_ebitda", label: GLOSSARY.ev_ebitda.label, plain: GLOSSARY.ev_ebitda.short, unit: "x", higher_better: false, kind: "value", skip_sectors: [...BANK_LIKE], peer: true },
   { key: "ps", label: GLOSSARY.ps.label, plain: GLOSSARY.ps.short, unit: "x", higher_better: false, kind: "value", skip_sectors: [...BANK_LIKE], peer: true },
+  { key: "ev_sales", label: GLOSSARY.ev_sales.label, plain: GLOSSARY.ev_sales.short, unit: "x", higher_better: false, kind: "value", skip_sectors: [...BANK_LIKE], peer: true },
   { key: "peg", label: GLOSSARY.peg.label, plain: GLOSSARY.peg.short, unit: "x", higher_better: false, kind: "value", skip_sectors: [], peer: true },
   { key: "earnings_yield", label: GLOSSARY.earnings_yield.label, plain: GLOSSARY.earnings_yield.short, unit: "%", higher_better: true, kind: "value", skip_sectors: [], peer: true },
+  { key: "ebitda_yield", label: GLOSSARY.ebitda_yield.label, plain: GLOSSARY.ebitda_yield.short, unit: "%", higher_better: true, kind: "value", skip_sectors: [...BANK_LIKE], peer: true },
   { key: "earnings_vs_selic", label: GLOSSARY.earnings_vs_selic.label, plain: GLOSSARY.earnings_vs_selic.short, unit: "pp", higher_better: true, kind: "macro", skip_sectors: [], peer: true },
+  { key: "real_earnings_yield", label: GLOSSARY.real_earnings_yield.label, plain: GLOSSARY.real_earnings_yield.short, unit: "pp", higher_better: true, kind: "macro", skip_sectors: [], peer: true },
+  { key: "roic_vs_selic", label: GLOSSARY.roic_vs_selic.label, plain: GLOSSARY.roic_vs_selic.short, unit: "pp", higher_better: true, kind: "macro", skip_sectors: [...BANK_LIKE], peer: true },
   { key: "dividend_yield", label: GLOSSARY.dividend_yield.label, plain: GLOSSARY.dividend_yield.short, unit: "%", higher_better: true, kind: "income", skip_sectors: [], peer: true },
   { key: "dy_vs_selic", label: GLOSSARY.dy_vs_selic.label, plain: GLOSSARY.dy_vs_selic.short, unit: "pp", higher_better: true, kind: "income", skip_sectors: [], peer: true },
   { key: "payout", label: GLOSSARY.payout.label, plain: GLOSSARY.payout.short, unit: "%", higher_better: false, kind: "income", skip_sectors: [], peer: true },
   { key: "div_coverage", label: GLOSSARY.div_coverage.label, plain: GLOSSARY.div_coverage.short, unit: "x", higher_better: true, kind: "income", skip_sectors: [], peer: true },
+  { key: "retention", label: GLOSSARY.retention.label, plain: GLOSSARY.retention.short, unit: "%", higher_better: true, kind: "income", skip_sectors: [], peer: true },
   { key: "roe", label: GLOSSARY.roe.label, plain: GLOSSARY.roe.short, unit: "%", higher_better: true, kind: "quality", skip_sectors: [], peer: true },
   { key: "roa", label: GLOSSARY.roa.label, plain: GLOSSARY.roa.short, unit: "%", higher_better: true, kind: "quality", skip_sectors: [], peer: true },
   { key: "roic", label: GLOSSARY.roic.label, plain: GLOSSARY.roic.short, unit: "%", higher_better: true, kind: "quality", skip_sectors: [...BANK_LIKE], peer: true },
@@ -61,10 +66,13 @@ export const METRIC_SPECS: MetricSpec[] = [
   { key: "asset_turnover", label: GLOSSARY.asset_turnover.label, plain: GLOSSARY.asset_turnover.short, unit: "x", higher_better: true, kind: "quality", skip_sectors: [...BANK_LIKE], peer: true },
   { key: "revenue_growth", label: GLOSSARY.revenue_growth.label, plain: GLOSSARY.revenue_growth.short, unit: "%", higher_better: true, kind: "growth", skip_sectors: [], peer: true },
   { key: "earnings_growth", label: GLOSSARY.earnings_growth.label, plain: GLOSSARY.earnings_growth.short, unit: "%", higher_better: true, kind: "growth", skip_sectors: [], peer: true },
+  { key: "sustainable_growth", label: GLOSSARY.sustainable_growth.label, plain: GLOSSARY.sustainable_growth.short, unit: "%", higher_better: true, kind: "growth", skip_sectors: [], peer: true },
   { key: "debt_equity", label: GLOSSARY.debt_equity.label, plain: GLOSSARY.debt_equity.short, unit: "x", higher_better: false, kind: "risk", skip_sectors: [...BANK_LIKE], peer: true },
   { key: "current_ratio", label: GLOSSARY.current_ratio.label, plain: GLOSSARY.current_ratio.short, unit: "x", higher_better: true, kind: "risk", skip_sectors: [...BANK_LIKE], peer: true },
+  { key: "financial_leverage", label: GLOSSARY.financial_leverage.label, plain: GLOSSARY.financial_leverage.short, unit: "x", higher_better: false, kind: "risk", skip_sectors: [...BANK_LIKE], peer: true },
   { key: "lpa", label: GLOSSARY.lpa.label, plain: GLOSSARY.lpa.short, unit: "R$", higher_better: true, kind: "fact", skip_sectors: [], peer: false },
   { key: "vpa", label: GLOSSARY.vpa.label, plain: GLOSSARY.vpa.short, unit: "R$", higher_better: true, kind: "fact", skip_sectors: [], peer: false },
+  { key: "graham", label: GLOSSARY.graham.label, plain: GLOSSARY.graham.short, unit: "R$", higher_better: true, kind: "fact", skip_sectors: [], peer: false },
 ];
 
 export const KIND_ORDER = ["value", "income", "quality", "growth", "risk", "macro", "fact"] as const;
@@ -84,7 +92,11 @@ function num(v: unknown): number | null {
   return Number.isFinite(n) ? n : null;
 }
 
-export function enrichDerived(row: UniverseRow, selicPct?: number | null): UniverseRow {
+export function enrichDerived(
+  row: UniverseRow,
+  selicPct?: number | null,
+  ipcaPct?: number | null,
+): UniverseRow {
   const pe = num(row.pe);
   const pb = num(row.pb);
   const price = num(row.price);
@@ -92,7 +104,12 @@ export function enrichDerived(row: UniverseRow, selicPct?: number | null): Unive
   const eg = num(row.earnings_growth);
   const nm = num(row.net_margin);
   const roa = num(row.roa);
+  const roe = num(row.roe);
+  const roic = num(row.roic);
+  const ev = num(row.ev_ebitda);
+  const ebitdaM = num(row.ebitda_margin);
   const selic = selicPct != null ? selicPct / 100 : null;
+  const ipca = ipcaPct != null ? ipcaPct / 100 : null;
 
   if (pe && pe > 0) {
     row.earnings_yield = 1 / pe;
@@ -103,11 +120,28 @@ export function enrichDerived(row: UniverseRow, selicPct?: number | null): Unive
     }
     if (nm != null) row.ps = pe * nm;
     if (selic != null) row.earnings_vs_selic = (row.earnings_yield as number) - selic;
+    if (ipca != null) row.real_earnings_yield = (row.earnings_yield as number) - ipca;
   }
   if (pb && pb > 0 && price) row.vpa = price / pb;
   if (pe && pe > 0 && eg != null && eg > 0.02) row.peg = pe / (eg * 100);
   if (roa != null && nm && nm !== 0) row.asset_turnover = roa / nm;
   if (dy != null && selic != null) row.dy_vs_selic = dy - selic;
+  if (ev && ev > 0) {
+    row.ebitda_yield = 1 / ev;
+    if (ebitdaM != null) row.ev_sales = ev * ebitdaM;
+  }
+  if (roic != null && selic != null) row.roic_vs_selic = roic - selic;
+  const payout = num(row.payout);
+  if (payout != null) {
+    row.retention = 1 - payout;
+    if (roe != null) row.sustainable_growth = roe * (1 - payout);
+  }
+  if (roe != null && roa && roa !== 0) row.financial_leverage = roe / roa;
+  const lpa = num(row.lpa);
+  const vpa = num(row.vpa);
+  if (lpa && vpa && lpa > 0 && vpa > 0) {
+    row.graham = Math.round(Math.sqrt(22.5 * lpa * vpa) * 100) / 100;
+  }
   return row;
 }
 
@@ -130,8 +164,13 @@ function scopeRows(universe: UniverseRow[], sector: string) {
   return { rows: universe, scope: "index", label: "the whole Ibovespa" };
 }
 
-export function industryMedians(universe: UniverseRow[], sector: string, selic?: number | null) {
-  const enriched = universe.map((r) => enrichDerived({ ...r }, selic));
+export function industryMedians(
+  universe: UniverseRow[],
+  sector: string,
+  selic?: number | null,
+  ipca?: number | null,
+) {
+  const enriched = universe.map((r) => enrichDerived({ ...r }, selic, ipca));
   const packed = scopeRows(enriched, sector);
   const byCvm: Record<string, UniverseRow> = {};
   for (const r of packed.rows) byCvm[r.cvm_code] = r;
@@ -168,7 +207,8 @@ function explain(spec: MetricSpec, value: number | null, industry: number | null
   const i = fmtMetric(industry, spec.unit);
   if (tag === "na" || !spec.peer) {
     if (spec.key === "lpa") return `Profit per share is ${v}. This is a fact about this stock, not a peer multiple.`;
-    if (spec.key === "vpa") return `Book value per share is ${v}. Price / book (P/VP) is the price divided by this.`;
+    if (spec.key === "vpa") return `Book value per share is ${v}. Price / book is the price divided by this.`;
+    if (spec.key === "graham") return `The Graham textbook shortcut is ${v}. Compare it with the last price — a study aid, not a target.`;
     return `${spec.plain} We do not have a clean industry read yet.`;
   }
   if (spec.key === "pe") {
@@ -203,6 +243,12 @@ export function buildMetrics(stockRow: UniverseRow, medians: Record<string, numb
     const value = num(stockRow[spec.key]);
     const industry = spec.peer ? (medians[spec.key] ?? null) : null;
     const v = spec.peer ? verdict(value, industry, spec.higher_better) : { tag: "na", label: "Per-share fact", delta: null };
+    let text = explain(spec, value, industry, v.tag);
+    if (spec.key === "graham" && value && num(stockRow.price)) {
+      const price = num(stockRow.price)!;
+      const gap = ((value - price) / value) * 100;
+      text = `The Graham textbook shortcut is ${fmtMetric(value, "R$")}. Last price is ${fmtMetric(price, "R$")} (${gap >= 0 ? "below" : "above"} that shortcut by ${Math.abs(gap).toFixed(0)}%).`;
+    }
     out.push({
       key: spec.key,
       label: spec.label,
@@ -213,7 +259,7 @@ export function buildMetrics(stockRow: UniverseRow, medians: Record<string, numb
       delta_pct: v.delta == null ? null : Math.round(v.delta * 1000) / 10,
       verdict: v.tag,
       verdict_label: v.label,
-      explain: explain(spec, value, industry, v.tag),
+      explain: text,
       higher_better: spec.higher_better,
       kind: spec.kind,
       peer: spec.peer,
@@ -310,7 +356,7 @@ function checklist(metrics: MetricRow[], cash: number | null, payout: number | n
       key: "cash",
       label: "Do profits turn into cash?",
       ok: cash == null || cash >= 0.7,
-      detail: cash != null ? `Operating cash / profit = ${cash.toFixed(2)}. Above 1 is healthy; below 0.7 needs a reason.` : "Cash conversion needs a CVM cash-flow line.",
+      detail: cash != null ? `Operating cash / profit = ${cash.toFixed(2)}. Above 1 is healthy; below 0.7 needs a reason.` : "We still need the company’s cash-flow filing to check this.",
     },
     {
       key: "dividend",
@@ -401,11 +447,16 @@ function statementTrends(s: SnapStock) {
   return { trends, cash, note };
 }
 
-export function analyzeSnapshot(stock: SnapStock, universeStocks: SnapStock[], selic?: number | null) {
-  const universe = universeStocks.map(toRow).map((r) => enrichDerived(r, selic));
+export function analyzeSnapshot(
+  stock: SnapStock,
+  universeStocks: SnapStock[],
+  selic?: number | null,
+  ipca?: number | null,
+) {
+  const universe = universeStocks.map(toRow).map((r) => enrichDerived(r, selic, ipca));
   const selfRow = universe.find((r) => r.ticker === stock.ticker);
   if (!selfRow) return { stance: "—", metrics: [] as MetricRow[], peers: [] as UniverseRow[] };
-  const packed = industryMedians(universe, stock.sector, selic);
+  const packed = industryMedians(universe, stock.sector, selic, ipca);
   const metrics = buildMetrics(selfRow, packed.medians);
   const { trends, cash, note } = statementTrends(stock);
   const impliedOut = implied(selfRow, packed.medians);

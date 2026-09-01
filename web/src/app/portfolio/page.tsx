@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { api, fmtNum } from "@/lib/api";
-import { Card, Disclaimer, Flash, Label, PageHead, PrimaryButton } from "@/components/ui";
+import { Card, Disclaimer, Field, Flash, Label, PageHead, PrimaryButton } from "@/components/ui";
 import { InfoTip } from "@/components/InfoTip";
 
 type Pos = {
@@ -91,39 +91,38 @@ export default function PortfolioPage() {
 
       <Card className="mb-6">
         <Label>Add / update position</Label>
-        <div className="mt-3 grid gap-3 sm:flex sm:flex-wrap">
-          <label className="sr-only" htmlFor="pos-ticker">
-            Ticker
-          </label>
-          <input
-            id="pos-ticker"
-            className="border border-line px-3 py-2.5 text-sm"
-            value={ticker}
-            onChange={(e) => setTicker(e.target.value.toUpperCase())}
-            placeholder="Ticker"
-          />
-          <label className="sr-only" htmlFor="pos-qty">
-            Shares
-          </label>
-          <input
-            id="pos-qty"
-            className="border border-line px-3 py-2.5 text-sm"
-            value={qty}
-            onChange={(e) => setQty(e.target.value)}
-            placeholder="Shares"
-          />
-          <label className="sr-only" htmlFor="pos-avg">
-            Average buy price
-          </label>
-          <input
-            id="pos-avg"
-            className="border border-line px-3 py-2.5 text-sm"
-            value={avg}
-            onChange={(e) => setAvg(e.target.value)}
-            placeholder="Average buy price"
-          />
-          <PrimaryButton onClick={add}>Save</PrimaryButton>
+        <div className="mt-3 grid gap-3 sm:grid-cols-3">
+          <Field id="pos-ticker" label="Ticker">
+            <input
+              id="pos-ticker"
+              className="w-full border border-line px-3 py-2.5"
+              value={ticker}
+              onChange={(e) => setTicker(e.target.value.toUpperCase())}
+              placeholder="PETR4"
+            />
+          </Field>
+          <Field id="pos-qty" label="Shares">
+            <input
+              id="pos-qty"
+              className="w-full border border-line px-3 py-2.5"
+              inputMode="decimal"
+              value={qty}
+              onChange={(e) => setQty(e.target.value)}
+              placeholder="100"
+            />
+          </Field>
+          <Field id="pos-avg" label="Average buy price">
+            <input
+              id="pos-avg"
+              className="w-full border border-line px-3 py-2.5"
+              inputMode="decimal"
+              value={avg}
+              onChange={(e) => setAvg(e.target.value)}
+              placeholder="30"
+            />
+          </Field>
         </div>
+        <PrimaryButton className="mt-3" onClick={add}>Save</PrimaryButton>
         <Flash text={flash} tone={tone} />
       </Card>
 
@@ -134,29 +133,35 @@ export default function PortfolioPage() {
           <>
             <ul className="divide-y divide-line md:hidden">
               {data.positions.map((p) => (
-                <li key={p.ticker} className="px-4 py-3">
-                  <div className="flex items-center justify-between">
+                <li key={p.ticker} className="flex items-center gap-3 px-4 py-3">
+                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-navy text-[10px] font-semibold tracking-wide text-white">
+                    {p.ticker.slice(0, 4)}
+                  </span>
+                  <div className="min-w-0 flex-1">
                     <Link href={`/stocks/${p.ticker}`} className="font-mono hover:text-accent">
                       {p.ticker}
                     </Link>
-                    <span className={`font-mono text-sm ${p.pnl_pct >= 0 ? "text-accent" : "text-down"}`}>
+                    <div className="mt-0.5 text-[12px] text-muted">
+                      {fmtNum(p.quantity, 0)} shares · avg {fmtNum(p.avg_price)} · now {fmtNum(p.price)}
+                    </div>
+                    <button
+                      className="tap mt-1 text-[13px] text-down"
+                      onClick={async () => {
+                        if (!window.confirm(`Remove ${p.ticker}?`)) return;
+                        await api.deletePortfolio(p.ticker);
+                        await load();
+                        setFlash(`${p.ticker} removed.`);
+                      }}
+                    >
+                      Remove
+                    </button>
+                  </div>
+                  <div className="text-right">
+                    <div className={`font-mono text-sm ${p.pnl_pct >= 0 ? "text-accent" : "text-down"}`}>
                       {fmtNum(p.pnl_pct, 1)}%
-                    </span>
+                    </div>
+                    <div className="text-[12px] text-muted">{fmtNum(p.weight, 1)}% of wallet</div>
                   </div>
-                  <div className="mt-1 text-[12px] text-muted">
-                    {fmtNum(p.quantity, 0)} shares · avg {fmtNum(p.avg_price)} · now {fmtNum(p.price)} · {fmtNum(p.weight, 1)}% of wallet
-                  </div>
-                  <button
-                    className="tap mt-2 text-[13px] text-down"
-                    onClick={async () => {
-                      if (!window.confirm(`Remove ${p.ticker}?`)) return;
-                      await api.deletePortfolio(p.ticker);
-                      await load();
-                      setFlash(`${p.ticker} removed.`);
-                    }}
-                  >
-                    Remove
-                  </button>
                 </li>
               ))}
             </ul>
@@ -195,7 +200,7 @@ export default function PortfolioPage() {
                       <td className="py-4 font-mono">{fmtNum(p.weight, 1)}%</td>
                       <td className="py-4 pr-4">
                         <button
-                          className="text-[13px] text-faint hover:text-down"
+                          className="tap text-[13px] text-down"
                           onClick={async () => {
                             if (!window.confirm(`Remove ${p.ticker}?`)) return;
                             await api.deletePortfolio(p.ticker);

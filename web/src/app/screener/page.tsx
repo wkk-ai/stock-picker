@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { api, type StockListItem } from "@/lib/api";
-import { Card, Disclaimer, Flash, GhostButton, PageHead } from "@/components/ui";
+import { Card, Disclaimer, Field, Flash, GhostButton, PageHead } from "@/components/ui";
 import { TickerList } from "@/components/TickerList";
 import { InfoTip } from "@/components/InfoTip";
 import { GLOSSARY } from "@/lib/glossary";
@@ -74,59 +74,66 @@ export default function ScreenerPage() {
         subtitle="Filter every Ibovespa name. Open a company to see each metric against its industry."
       />
 
-      <div className="mb-4 grid gap-3 sm:flex sm:flex-wrap">
-        <label className="sr-only" htmlFor="scr-sector">
-          Sector
-        </label>
-        <select
-          id="scr-sector"
-          className="border border-line bg-elev px-3 py-2.5 text-sm"
-          value={sector}
-          onChange={(e) => setSector(e.target.value)}
-        >
-          <option value="">All sectors</option>
-          {sectors.map((s) => (
-            <option key={s.sector} value={s.sector}>
-              {s.sector} ({s.count})
-            </option>
-          ))}
-        </select>
-        <label className="sr-only" htmlFor="scr-pe">
-          Max price / profit (P/L)
-        </label>
-        <input
-          id="scr-pe"
-          className="border border-line bg-elev px-3 py-2.5 text-sm"
-          placeholder="Max price/profit (P/L)"
-          value={maxPe}
-          onChange={(e) => setMaxPe(e.target.value)}
-        />
-        <label className="sr-only" htmlFor="scr-roe">
-          Min return on equity %
-        </label>
-        <input
-          id="scr-roe"
-          className="border border-line bg-elev px-3 py-2.5 text-sm"
-          placeholder="Min ROE %"
-          value={minRoe}
-          onChange={(e) => setMinRoe(e.target.value)}
-        />
-        <label className="sr-only" htmlFor="scr-preset">
-          Preset
-        </label>
-        <select
-          id="scr-preset"
-          className="border border-line bg-elev px-3 py-2.5 text-sm"
-          value={preset}
-          onChange={(e) => setPreset(e.target.value)}
-        >
-          <option value="">No preset</option>
-          <option value="quality">Steady growers (quality)</option>
-          <option value="value">Cheap stocks (value)</option>
-          <option value="income">Income names (yield)</option>
-        </select>
-        <GhostButton onClick={clear}>Clear</GhostButton>
-        <GhostButton onClick={exportCsv}>Export CSV</GhostButton>
+      <div className="mb-3 flex flex-wrap gap-2">
+        {[
+          ["", "All names"],
+          ["quality", "Steady growers"],
+          ["value", "Cheaper names"],
+          ["income", "Income names"],
+        ].map(([id, label]) => (
+          <button
+            key={id || "all"}
+            type="button"
+            className={`tap px-4 py-2 text-[13px] ${
+              preset === id ? "bg-navy text-white" : "border border-line bg-elev text-ink"
+            }`}
+            onClick={() => setPreset(id)}
+          >
+            {label}
+          </button>
+        ))}
+      </div>
+
+      <div className="mb-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+        <Field id="scr-sector" label="Sector">
+          <select
+            id="scr-sector"
+            className="w-full border border-line bg-elev px-3 py-2.5"
+            value={sector}
+            onChange={(e) => setSector(e.target.value)}
+          >
+            <option value="">All sectors</option>
+            {sectors.map((s) => (
+              <option key={s.sector} value={s.sector}>
+                {s.sector} ({s.count})
+              </option>
+            ))}
+          </select>
+        </Field>
+        <Field id="scr-pe" label="Max years of profit (P/L)" hint={GLOSSARY.pe.short}>
+          <input
+            id="scr-pe"
+            className="w-full border border-line bg-elev px-3 py-2.5"
+            inputMode="decimal"
+            placeholder="e.g. 12"
+            value={maxPe}
+            onChange={(e) => setMaxPe(e.target.value)}
+          />
+        </Field>
+        <Field id="scr-roe" label="Min profit on owners’ money %" hint={GLOSSARY.roe.short}>
+          <input
+            id="scr-roe"
+            className="w-full border border-line bg-elev px-3 py-2.5"
+            inputMode="decimal"
+            placeholder="e.g. 15"
+            value={minRoe}
+            onChange={(e) => setMinRoe(e.target.value)}
+          />
+        </Field>
+        <div className="flex items-end gap-2">
+          <GhostButton onClick={clear}>Clear</GhostButton>
+          <GhostButton onClick={exportCsv}>Export CSV</GhostButton>
+        </div>
       </div>
       <p className="mb-2 text-[12px] text-muted">
         {preset === "quality" ? "Keeps higher-quality names (ROE and score)." : null}

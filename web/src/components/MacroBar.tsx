@@ -21,17 +21,15 @@ export function MacroBar({ initial }: { initial: MacroItem[] }) {
   const selic = macros.find((m) => m.code === "SELIC");
 
   return (
-    <div className="flex items-center gap-3 font-mono text-[12px] text-[#9DFFC2] sm:text-[13px]">
+    <div className="ml-auto flex items-center gap-2 font-mono text-[11px] text-[#9DFFC2] sm:gap-3 sm:text-[13px]">
       <span className="inline-flex items-center">
         USD {usd?.value != null ? fmtNum(usd.value, 2) : "—"}
-        <span className="hidden sm:inline">
+        <span className="hidden md:inline">
           <InfoTip label="USD/BRL">{GLOSSARY.usd_brl.short}</InfoTip>
         </span>
       </span>
       {selic?.value != null ? (
-        <span className="text-[#E8EEF4]/85">
-          SELIC {fmtNum(selic.value, 2)}%
-        </span>
+        <span className="hidden text-[#E8EEF4]/85 sm:inline">SELIC {fmtNum(selic.value, 2)}%</span>
       ) : null}
     </div>
   );

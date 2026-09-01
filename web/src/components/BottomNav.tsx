@@ -55,6 +55,7 @@ export function BottomNav() {
             <li key={item.href}>
               <Link
                 href={item.href}
+                aria-current={on ? "page" : undefined}
                 className={`flex min-h-[56px] flex-col items-center justify-center gap-0.5 text-[11px] ${
                   on ? "text-gold" : "text-white/70"
                 }`}

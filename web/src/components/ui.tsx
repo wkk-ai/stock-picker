@@ -81,6 +81,30 @@ export function Disclaimer({ text }: { text?: string }) {
   );
 }
 
+export function Field({
+  id,
+  label,
+  hint,
+  className = "",
+  children,
+}: {
+  id?: string;
+  label: string;
+  hint?: React.ReactNode;
+  className?: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <div className={`min-w-0 ${className}`}>
+      <label htmlFor={id} className="mb-1 flex items-center text-[12px] text-muted">
+        {label}
+        {hint ? <InfoTip label={label}>{hint}</InfoTip> : null}
+      </label>
+      {children}
+    </div>
+  );
+}
+
 export function Sparkline({ up = true }: { up?: boolean }) {
   const pts = up
     ? "0,170 50,160 100,150 150,155 210,120 270,128 330,96 390,108 450,78 520,88 600,62 700,48"
@@ -88,7 +112,7 @@ export function Sparkline({ up = true }: { up?: boolean }) {
   const stroke = up ? "#0F7A4A" : "#B42318";
   const fill = up ? "url(#upFill)" : "url(#dnFill)";
   return (
-    <svg viewBox="0 0 700 220" className="block h-[180px] w-full md:h-[220px]" preserveAspectRatio="none">
+    <svg viewBox="0 0 700 220" className="block h-[88px] w-full md:h-[160px]" preserveAspectRatio="none">
       <defs>
         <linearGradient id="upFill" x1="0" y1="0" x2="0" y2="1">
           <stop offset="0%" stopColor="#0F7A4A" stopOpacity="0.22" />

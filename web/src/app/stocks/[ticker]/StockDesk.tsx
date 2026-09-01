@@ -4,9 +4,9 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import { api, fmtBRL, fmtNum, fmtPct } from "@/lib/api";
-import { BandChip, Card, Disclaimer, Flash, Label, PageHead, PrimaryButton, ScorePill } from "@/components/ui";
+import { BandChip, Card, Disclaimer, Flash, Label, PrimaryButton, ScorePill } from "@/components/ui";
 import { InfoTip } from "@/components/InfoTip";
-import { MetricBlock } from "@/components/MetricBlock";
+import { MetricBlock, MissingMetrics } from "@/components/MetricBlock";
 import { GLOSSARY } from "@/lib/glossary";
 import type { MetricRow } from "@/lib/advisor";
 
@@ -145,26 +145,62 @@ export function StockDesk({ initial, ticker: tickerProp }: { initial?: Detail | 
 
   return (
     <div>
-      <div className="mb-4 flex flex-wrap items-start justify-between gap-3">
-        <PageHead
-          title={`${data.ticker} · ${data.name}`}
-          subtitle={`${data.sector}${analysis.benchmark_label ? ` · compared with ${analysis.benchmark_label}` : ""}`}
-        />
-        <button
-          className={`tap shrink-0 border px-4 py-2.5 text-[14px] ${
-            watching ? "border-navy bg-navy text-white" : "border-line text-ink"
-          }`}
-          onClick={toggleWatch}
-        >
-          {watching ? "Watching" : "+ Watchlist"}
-        </button>
+      <Link href="/" className="mb-3 inline-flex min-h-[44px] items-center text-[13px] text-muted hover:text-navy">
+        ← All stocks
+      </Link>
+      <div className="mb-4 overflow-hidden rounded-card border border-line bg-elev shadow-card">
+        <div className="bg-gradient-to-b from-sky to-white px-5 pb-5 pt-5">
+          <div className="flex flex-wrap items-start justify-between gap-3">
+            <div>
+              <div className="font-mono text-[13px] tracking-wide text-muted">{data.ticker}</div>
+              <div className="mt-0.5 text-[15px] font-medium text-navy">{data.name}</div>
+              <div className="mt-1 text-[12px] text-muted">
+                {data.sector}
+                {analysis.benchmark_label ? ` · vs ${analysis.benchmark_label}` : ""}
+              </div>
+            </div>
+            <button
+              className={`tap shrink-0 border px-4 py-2.5 text-[14px] ${
+                watching ? "border-navy bg-navy text-white" : "border-navy text-navy"
+              }`}
+              onClick={toggleWatch}
+            >
+              {watching ? "Watching" : "+ Watchlist"}
+            </button>
+          </div>
+          <div className="mt-4 font-mono text-[36px] font-semibold leading-none text-navy md:text-[40px]">
+            {fmtNum(data.quote?.price) === "—" ? "—" : `R$ ${fmtNum(data.quote?.price)}`}
+            {data.quote?.change_percent != null && (
+              <span className={`ml-2 text-[16px] font-medium ${up ? "text-accent" : "text-down"}`}>
+                {up ? "+" : ""}
+                {fmtNum(data.quote.change_percent, 2)}%
+              </span>
+            )}
+          </div>
+          <div className="mt-3 flex flex-wrap items-center gap-2">
+            <span className={`text-[18px] font-semibold ${stanceTone(analysis.stance || data.score?.band)}`}>
+              {analysis.stance || data.score?.band || "—"}
+            </span>
+            <BandChip band={data.score?.band} />
+            <span className="inline-flex items-center text-[13px] text-muted">
+              Score {data.score?.composite ?? "—"}
+              <InfoTip label="Overall score">{GLOSSARY.score.short}</InfoTip>
+            </span>
+          </div>
+        </div>
       </div>
       <Flash text={flash} />
 
-      <div className="mb-5 -mx-4 flex gap-1 overflow-x-auto border-b border-line px-4 md:mx-0 md:px-0">
+      <div
+        className="mb-5 -mx-4 flex gap-1 overflow-x-auto border-b border-line px-4 md:mx-0 md:px-0"
+        role="tablist"
+        aria-label="Company sections"
+      >
         {tabs.map((t) => (
           <button
             key={t}
+            role="tab"
+            aria-selected={tab === t}
             onClick={() => setTab(t)}
             className={`tap whitespace-nowrap px-3.5 py-3 text-[13px] ${
               tab === t ? "border-b-2 border-gold font-semibold text-navy" : "text-muted hover:text-ink"
@@ -176,29 +212,10 @@ export function StockDesk({ initial, ticker: tickerProp }: { initial?: Detail | 
       </div>
 
       {tab === "The call" && (
-        <div className="grid gap-6 lg:grid-cols-[1.25fr_1fr]">
+        <div className="grid gap-6 lg:grid-cols-[1.25fr_1fr]" role="tabpanel">
           <Card className="animate-fade-up">
             <Label hint="A plain-language call from industry checks — not licensed advice.">Advisor take</Label>
-            <div className={`mt-1 text-[32px] font-semibold leading-none ${stanceTone(analysis.stance || data.score?.band)}`}>
-              {analysis.stance || data.score?.band || "—"}
-            </div>
-            <div className="mt-3 flex flex-wrap items-center gap-3">
-              <BandChip band={data.score?.band} />
-              <span className="inline-flex items-center font-mono text-sm">
-                {fmtNum(data.quote?.price)}
-                {data.quote?.change_percent != null && (
-                  <span className={`ml-2 ${up ? "text-accent" : "text-down"}`}>
-                    {up ? "+" : ""}
-                    {fmtNum(data.quote.change_percent, 2)}%
-                  </span>
-                )}
-              </span>
-              <span className="inline-flex items-center text-[13px] text-muted">
-                Score {data.score?.composite ?? "—"}
-                <InfoTip label="Overall score">{GLOSSARY.score.short}</InfoTip>
-              </span>
-            </div>
-            <p className="mt-4 text-[15px] leading-relaxed text-ink">
+            <p className="mt-3 text-[15px] leading-relaxed text-ink">
               {analysis.headline || analysis.stance_reason || "Industry comparison is still loading."}
             </p>
             <p className="mt-3 text-sm leading-relaxed text-muted">{analysis.summary}</p>
@@ -277,7 +294,7 @@ export function StockDesk({ initial, ticker: tickerProp }: { initial?: Detail | 
       )}
 
       {tab === "Numbers" && (
-        <div className="grid gap-6">
+        <div className="grid gap-6" role="tabpanel">
           <Card>
             <Label hint="Green means cheaper or stronger than the typical peer. Tap i on any row.">
               Every metric vs the industry
@@ -301,8 +318,22 @@ export function StockDesk({ initial, ticker: tickerProp }: { initial?: Detail | 
             {trends.length === 0 ? (
               <p className="mt-4 text-sm text-muted">No CVM years loaded for this name yet.</p>
             ) : (
-              <div className="mt-3 overflow-x-auto">
-                <table className="w-full min-w-[560px] text-sm">
+              <>
+                <ul className="mt-3 space-y-3 md:hidden">
+                  {trends.map((t) => (
+                    <li key={t.period} className="rounded-2xl border border-line px-4 py-3">
+                      <div className="font-mono text-[15px] text-navy">{t.period}</div>
+                      <div className="mt-2 grid grid-cols-2 gap-2 text-[13px]">
+                        <span className="text-muted">Sales {fmtBRL(t.revenue)}</span>
+                        <span className="text-muted">Profit {fmtBRL(t.net_income)}</span>
+                        <span className="text-muted">Cash {fmtBRL(t.operating_cf)}</span>
+                        <span className="text-muted">Margin {fmtPct(t.margin)}</span>
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+                <div className="mt-3 hidden overflow-x-auto md:block">
+                <table className="w-full text-sm">
                   <thead>
                     <tr className="text-left text-muted">
                       <th className="pb-2 font-medium">Year</th>
@@ -325,7 +356,17 @@ export function StockDesk({ initial, ticker: tickerProp }: { initial?: Detail | 
                   </tbody>
                 </table>
               </div>
+              </>
             )}
+          </Card>
+
+          <Card>
+            <Label hint="These need extra filings we do not have in this public copy. Tap i for what they mean.">
+              Not on this snapshot yet
+            </Label>
+            <div className="mt-3">
+              <MissingMetrics />
+            </div>
           </Card>
 
           <Card>
@@ -351,6 +392,7 @@ export function StockDesk({ initial, ticker: tickerProp }: { initial?: Detail | 
       )}
 
       {tab === "Peers" && (
+        <div role="tabpanel">
         <Card>
           <Label>Same industry on the Ibovespa</Label>
           <p className="mt-1 text-[12px] text-faint">
@@ -415,10 +457,11 @@ export function StockDesk({ initial, ticker: tickerProp }: { initial?: Detail | 
             </table>
           </div>
         </Card>
+        </div>
       )}
 
       {tab === "Risks" && (
-        <div className="grid gap-6 lg:grid-cols-2">
+        <div className="grid gap-6 lg:grid-cols-2" role="tabpanel">
           <Card>
             <Label>What can go wrong here</Label>
             <p className="mt-3 text-sm leading-relaxed text-ink">
@@ -430,7 +473,7 @@ export function StockDesk({ initial, ticker: tickerProp }: { initial?: Detail | 
                 <p className="mt-1 text-muted">
                   {analysis.cash?.ocf_to_earnings != null
                     ? `Operating cash was ${fmtNum(analysis.cash.ocf_to_earnings, 2)}× last year's profit. Above 1 is healthy.`
-                    : "Need a CVM cash-flow line to check this."}
+                    : "Need the company’s cash-flow filing to check this."}
                 </p>
               </div>
               <div className="border-t border-line pt-3">
@@ -509,7 +552,7 @@ export function StockDesk({ initial, ticker: tickerProp }: { initial?: Detail | 
       )}
 
       {tab === "Notes" && (
-        <div className="grid gap-6">
+        <div className="grid gap-6" role="tabpanel">
           <Card>
             <Label>Your thesis</Label>
             <div className="mt-3 grid gap-3 md:grid-cols-3">

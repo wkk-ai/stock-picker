@@ -21,13 +21,14 @@ export function Shell({ children }: { children: React.ReactNode }) {
   return (
     <div className="min-h-screen bg-bg">
       <header className="sticky top-0 z-30 bg-navy pt-[var(--safe-top)] text-[#E8EEF4]">
-        <div className="flex h-14 items-center gap-3 px-4 md:h-[52px] md:gap-6 md:px-5">
+        <div className="flex h-12 items-center gap-3 px-4 md:h-[52px] md:gap-6 md:px-5">
           <Link href="/" className="flex items-center gap-2.5 text-[13px] font-semibold tracking-[0.04em]">
             <BrandMark />
-            STOCKPICKER <span className="font-normal text-gold">BR</span>
+            <span className="hidden sm:inline">STOCKPICKER </span>
+            <span className="font-normal text-gold">BR</span>
           </Link>
           <MacroBar initial={macros} />
-          <div className="ml-auto hidden text-[12px] text-white/70 md:block">Research desk · B3 delayed</div>
+          <div className="hidden text-[12px] text-white/70 md:block">Research desk · B3 delayed</div>
         </div>
         <div className="h-[3px] bg-gold" />
       </header>

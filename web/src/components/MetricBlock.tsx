@@ -1,6 +1,7 @@
 import { fmtMetric } from "@/lib/format";
 import type { MetricRow } from "@/lib/advisor";
 import { KIND_LABEL } from "@/lib/advisor";
+import { MISSING_METRICS } from "@/lib/glossary";
 import { InfoTip } from "./InfoTip";
 
 function verdictTone(tag?: string) {
@@ -61,19 +62,16 @@ export function MetricBlock({ metrics }: { metrics: MetricRow[] }) {
         if (!rows?.length) return null;
         return (
           <section key={kind}>
-            <h3 className="mb-1 text-[13px] font-semibold text-navy">{KIND_LABEL[kind] || kind}</h3>
-            <div className="divide-y divide-line">
+            <h3 className="mb-3 text-[13px] font-semibold text-navy">{KIND_LABEL[kind] || kind}</h3>
+            <div className="space-y-3">
               {rows.map((m) => (
-                <div key={m.key} className="py-4">
-                  <div className="flex flex-wrap items-start justify-between gap-2">
-                    <div className="min-w-0">
-                      <div className="flex items-center font-medium text-ink">
-                        {m.label}
-                        <InfoTip label={m.label}>{m.plain}</InfoTip>
-                      </div>
-                      <div className="mt-0.5 text-[12px] text-muted">{m.plain}</div>
+                <div key={m.key} className="rounded-2xl border border-line bg-mist/60 px-4 py-4">
+                  <div className="flex items-start justify-between gap-3">
+                    <div className="min-w-0 font-medium leading-snug text-ink">
+                      {m.label}
+                      <InfoTip label={m.label}>{m.plain}</InfoTip>
                     </div>
-                    <span className={`rounded-pill px-2.5 py-0.5 text-[11px] ${verdictTone(m.verdict)}`}>
+                    <span className={`shrink-0 rounded-pill px-2.5 py-0.5 text-[11px] ${verdictTone(m.verdict)}`}>
                       {m.verdict_label}
                     </span>
                   </div>
@@ -95,7 +93,7 @@ export function MetricBlock({ metrics }: { metrics: MetricRow[] }) {
                       </div>
                     </div>
                   ) : (
-                    <div className="mt-3 font-mono text-[20px] text-navy">{fmtMetric(m.value, m.unit)}</div>
+                    <div className="mt-3 font-mono text-[22px] text-navy">{fmtMetric(m.value, m.unit)}</div>
                   )}
                   {m.peer ? <PeerTrack value={m.value} industry={m.industry} higherBetter={m.higher_better} /> : null}
                   <p className="mt-3 text-sm leading-relaxed text-muted">{m.explain}</p>
@@ -105,6 +103,25 @@ export function MetricBlock({ metrics }: { metrics: MetricRow[] }) {
           </section>
         );
       })}
+    </div>
+  );
+}
+
+export function MissingMetrics() {
+  return (
+    <div className="space-y-3">
+      {MISSING_METRICS.map((m) => (
+        <div key={m.key} className="rounded-2xl border border-dashed border-line px-4 py-3">
+          <div className="flex items-center justify-between gap-3">
+            <div className="font-medium text-ink">
+              {m.label}
+              <InfoTip label={m.label}>{m.short}</InfoTip>
+            </div>
+            <span className="shrink-0 rounded-pill bg-mist px-2.5 py-0.5 text-[11px] text-faint">Not in this snapshot</span>
+          </div>
+          <p className="mt-2 text-sm leading-relaxed text-muted">{m.short}</p>
+        </div>
+      ))}
     </div>
   );
 }

@@ -166,7 +166,7 @@ export default function HomePage() {
               {featured?.name} · {featured?.sector}
             </div>
             <div className="mt-1 font-mono text-[40px] font-semibold leading-none text-navy">
-              {fmtNum(featuredItem?.price)}{" "}
+              {featuredItem?.price == null ? "—" : `R$ ${fmtNum(featuredItem.price)}`}{" "}
               <span className={`text-[16px] ${up ? "text-accent" : "text-down"}`}>
                 {featuredItem?.change_percent == null
                   ? ""

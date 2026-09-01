@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useId, useRef, useState } from "react";
+import { useEffect, useId, useLayoutEffect, useRef, useState } from "react";
 
 export function InfoTip({
   label,
@@ -10,6 +10,7 @@ export function InfoTip({
   children: React.ReactNode;
 }) {
   const [open, setOpen] = useState(false);
+  const [below, setBelow] = useState(false);
   const id = useId();
   const ref = useRef<HTMLSpanElement>(null);
 
@@ -18,27 +19,42 @@ export function InfoTip({
     function onDoc(e: MouseEvent) {
       if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
     }
+    function onKey(e: KeyboardEvent) {
+      if (e.key === "Escape") setOpen(false);
+    }
     document.addEventListener("mousedown", onDoc);
-    return () => document.removeEventListener("mousedown", onDoc);
+    document.addEventListener("keydown", onKey);
+    return () => {
+      document.removeEventListener("mousedown", onDoc);
+      document.removeEventListener("keydown", onKey);
+    };
+  }, [open]);
+
+  useLayoutEffect(() => {
+    if (!open || !ref.current) return;
+    const top = ref.current.getBoundingClientRect().top;
+    setBelow(top < 150);
   }, [open]);
 
   return (
     <span ref={ref} className="relative inline-flex align-middle">
       <button
         type="button"
-        className="ml-1 inline-flex h-6 w-6 items-center justify-center rounded-full border border-line bg-mist text-[11px] font-semibold text-muted hover:border-navy hover:text-navy"
+        className="tap ml-0.5 inline-flex items-center justify-center text-[11px] font-semibold text-muted hover:text-navy"
         aria-label={`About ${label}`}
         aria-expanded={open}
         aria-controls={id}
         onClick={() => setOpen((v) => !v)}
       >
-        i
+        <span className="inline-flex h-6 w-6 items-center justify-center rounded-full border border-line bg-mist">i</span>
       </button>
       {open ? (
         <span
           id={id}
           role="tooltip"
-          className="absolute left-1/2 top-[calc(100%+8px)] z-50 w-[min(280px,70vw)] -translate-x-1/2 rounded-2xl bg-navy px-3.5 py-3 text-[13px] font-normal leading-relaxed text-white shadow-float"
+          className={`absolute right-0 z-50 w-[min(260px,calc(100vw-2.5rem))] rounded-2xl bg-navy px-3.5 py-3 text-left text-[13px] font-normal leading-relaxed text-white shadow-float ${
+            below ? "top-[calc(100%+8px)]" : "bottom-[calc(100%+8px)]"
+          }`}
         >
           {children}
         </span>

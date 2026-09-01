@@ -41,8 +41,11 @@ export function TickerList({
                       ? "—"
                       : `${row.change_percent >= 0 ? "+" : ""}${fmtNum(row.change_percent, 2)}%`}
                   </span>
+                  <span className="mt-1 flex items-center justify-end gap-1">
+                    <ScorePill value={row.composite} />
+                    <BandChip band={row.band} />
+                  </span>
                 </span>
-                <ScorePill value={row.composite} />
               </Link>
             </li>
           );
