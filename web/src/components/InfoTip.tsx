@@ -11,6 +11,7 @@ export function InfoTip({
 }) {
   const [open, setOpen] = useState(false);
   const [below, setBelow] = useState(false);
+  const [align, setAlign] = useState<"left" | "right">("right");
   const id = useId();
   const ref = useRef<HTMLSpanElement>(null);
 
@@ -32,8 +33,9 @@ export function InfoTip({
 
   useLayoutEffect(() => {
     if (!open || !ref.current) return;
-    const top = ref.current.getBoundingClientRect().top;
-    setBelow(top < 150);
+    const box = ref.current.getBoundingClientRect();
+    setBelow(box.top < 150);
+    setAlign(box.left < 120 ? "left" : "right");
   }, [open]);
 
   return (
@@ -52,9 +54,9 @@ export function InfoTip({
         <span
           id={id}
           role="tooltip"
-          className={`absolute right-0 z-50 w-[min(260px,calc(100vw-2.5rem))] rounded-2xl bg-navy px-3.5 py-3 text-left text-[13px] font-normal leading-relaxed text-white shadow-float ${
+          className={`absolute z-50 w-[min(260px,calc(100vw-2rem))] rounded-2xl bg-navy px-3.5 py-3 text-left text-[13px] font-normal leading-relaxed text-white shadow-float ${
             below ? "top-[calc(100%+8px)]" : "bottom-[calc(100%+8px)]"
-          }`}
+          } ${align === "left" ? "left-0" : "right-0"}`}
         >
           {children}
         </span>
