@@ -1,8 +1,8 @@
+import { useState } from "react";
 import { fmtMetric } from "@/lib/format";
 import type { MetricRow } from "@/lib/advisor";
 import { KIND_LABEL } from "@/lib/advisor";
 import { MISSING_METRICS } from "@/lib/glossary";
-import { InfoTip } from "./InfoTip";
 
 function verdictTone(tag?: string) {
   if (tag === "cheap" || tag === "strong") return "bg-soft text-accent";
@@ -47,7 +47,30 @@ function PeerTrack({
   );
 }
 
+function TipButton({
+  label,
+  open,
+  onToggle,
+}: {
+  label: string;
+  open: boolean;
+  onToggle: () => void;
+}) {
+  return (
+    <button
+      type="button"
+      className="tap ml-0.5 inline-flex items-center justify-center text-[11px] font-semibold text-muted hover:text-navy"
+      aria-label={`About ${label}`}
+      aria-expanded={open}
+      onClick={onToggle}
+    >
+      <span className="inline-flex h-6 w-6 items-center justify-center rounded-full border border-line bg-elev">i</span>
+    </button>
+  );
+}
+
 export function MetricBlock({ metrics }: { metrics: MetricRow[] }) {
+  const [openKey, setOpenKey] = useState<string | null>(null);
   const groups = new Map<string, MetricRow[]>();
   for (const m of metrics) {
     const list = groups.get(m.kind) || [];
@@ -64,41 +87,53 @@ export function MetricBlock({ metrics }: { metrics: MetricRow[] }) {
           <section key={kind}>
             <h3 className="mb-3 text-[13px] font-semibold text-navy">{KIND_LABEL[kind] || kind}</h3>
             <div className="space-y-3">
-              {rows.map((m) => (
-                <div key={m.key} className="rounded-2xl border border-line bg-mist/60 px-4 py-4">
-                  <div className="flex items-start justify-between gap-3">
-                    <div className="min-w-0 font-medium leading-snug text-ink">
-                      {m.label}
-                      <InfoTip label={m.label}>{m.plain}</InfoTip>
+              {rows.map((m) => {
+                const open = openKey === m.key;
+                return (
+                  <div key={m.key} className="rounded-2xl border border-line bg-mist/60 px-4 py-4">
+                    <div className="flex items-start justify-between gap-3">
+                      <div className="min-w-0 font-medium leading-snug text-ink">
+                        {m.label}
+                        <TipButton
+                          label={m.label}
+                          open={open}
+                          onToggle={() => setOpenKey(open ? null : m.key)}
+                        />
+                      </div>
+                      <span className={`shrink-0 rounded-pill px-2.5 py-0.5 text-[11px] ${verdictTone(m.verdict)}`}>
+                        {m.verdict_label}
+                      </span>
                     </div>
-                    <span className={`shrink-0 rounded-pill px-2.5 py-0.5 text-[11px] ${verdictTone(m.verdict)}`}>
-                      {m.verdict_label}
-                    </span>
-                  </div>
-                  {m.peer ? (
-                    <div className="mt-3 grid grid-cols-3 gap-3 text-sm">
-                      <div>
-                        <div className="text-[11px] uppercase tracking-[0.08em] text-faint">This stock</div>
-                        <div className="font-mono text-[16px]">{fmtMetric(m.value, m.unit)}</div>
-                      </div>
-                      <div>
-                        <div className="text-[11px] uppercase tracking-[0.08em] text-faint">Industry</div>
-                        <div className="font-mono text-[16px]">{fmtMetric(m.industry, m.unit)}</div>
-                      </div>
-                      <div>
-                        <div className="text-[11px] uppercase tracking-[0.08em] text-faint">Gap</div>
-                        <div className="font-mono text-[16px]">
-                          {m.delta_pct == null ? "—" : `${m.delta_pct > 0 ? "+" : ""}${m.delta_pct.toFixed(0)}%`}
+                    {open ? (
+                      <p className="mt-2 rounded-2xl bg-navy px-3.5 py-3 text-[13px] font-normal leading-relaxed text-white">
+                        {m.plain}
+                      </p>
+                    ) : null}
+                    {m.peer ? (
+                      <div className="mt-3 grid grid-cols-3 gap-3 text-sm">
+                        <div>
+                          <div className="text-[11px] uppercase tracking-[0.08em] text-faint">This stock</div>
+                          <div className="font-mono text-[16px]">{fmtMetric(m.value, m.unit)}</div>
+                        </div>
+                        <div>
+                          <div className="text-[11px] uppercase tracking-[0.08em] text-faint">Industry</div>
+                          <div className="font-mono text-[16px]">{fmtMetric(m.industry, m.unit)}</div>
+                        </div>
+                        <div>
+                          <div className="text-[11px] uppercase tracking-[0.08em] text-faint">Gap</div>
+                          <div className="font-mono text-[16px]">
+                            {m.delta_pct == null ? "—" : `${m.delta_pct > 0 ? "+" : ""}${m.delta_pct.toFixed(0)}%`}
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  ) : (
-                    <div className="mt-3 font-mono text-[22px] text-navy">{fmtMetric(m.value, m.unit)}</div>
-                  )}
-                  {m.peer ? <PeerTrack value={m.value} industry={m.industry} higherBetter={m.higher_better} /> : null}
-                  <p className="mt-3 text-sm leading-relaxed text-muted">{m.explain}</p>
-                </div>
-              ))}
+                    ) : (
+                      <div className="mt-3 font-mono text-[22px] text-navy">{fmtMetric(m.value, m.unit)}</div>
+                    )}
+                    {m.peer ? <PeerTrack value={m.value} industry={m.industry} higherBetter={m.higher_better} /> : null}
+                    <p className="mt-3 text-sm leading-relaxed text-muted">{m.explain}</p>
+                  </div>
+                );
+              })}
             </div>
           </section>
         );
@@ -108,20 +143,28 @@ export function MetricBlock({ metrics }: { metrics: MetricRow[] }) {
 }
 
 export function MissingMetrics() {
+  const [openKey, setOpenKey] = useState<string | null>(null);
   return (
     <div className="space-y-3">
-      {MISSING_METRICS.map((m) => (
-        <div key={m.key} className="rounded-2xl border border-dashed border-line px-4 py-3">
-          <div className="flex items-center justify-between gap-3">
-            <div className="font-medium text-ink">
-              {m.label}
-              <InfoTip label={m.label}>{m.short}</InfoTip>
+      {MISSING_METRICS.map((m) => {
+        const open = openKey === m.key;
+        return (
+          <div key={m.key} className="rounded-2xl border border-dashed border-line px-4 py-3">
+            <div className="flex items-center justify-between gap-3">
+              <div className="font-medium text-ink">
+                {m.label}
+                <TipButton label={m.label} open={open} onToggle={() => setOpenKey(open ? null : m.key)} />
+              </div>
+              <span className="shrink-0 rounded-pill bg-mist px-2.5 py-0.5 text-[11px] text-faint">Not in this snapshot</span>
             </div>
-            <span className="shrink-0 rounded-pill bg-mist px-2.5 py-0.5 text-[11px] text-faint">Not in this snapshot</span>
+            {open ? (
+              <p className="mt-2 rounded-2xl bg-navy px-3.5 py-3 text-[13px] leading-relaxed text-white">{m.short}</p>
+            ) : (
+              <p className="mt-2 text-sm leading-relaxed text-muted">{m.short}</p>
+            )}
           </div>
-          <p className="mt-2 text-sm leading-relaxed text-muted">{m.short}</p>
-        </div>
-      ))}
+        );
+      })}
     </div>
   );
 }
