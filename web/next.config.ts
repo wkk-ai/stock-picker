@@ -1,7 +1,13 @@
 import type { NextConfig } from "next";
 
 const isStatic = process.env.NEXT_PUBLIC_STATIC_EXPORT === "1";
-const basePath = isStatic ? process.env.NEXT_PUBLIC_BASE_PATH || "/stock-picker" : "";
+// Empty string is a valid "no prefix" (phone preview / Hostinger).
+// Only default to /stock-picker when the env var is unset.
+const basePath = isStatic
+  ? (process.env.NEXT_PUBLIC_BASE_PATH === undefined
+      ? "/stock-picker"
+      : process.env.NEXT_PUBLIC_BASE_PATH)
+  : "";
 
 const nextConfig: NextConfig = {
   ...(isStatic
