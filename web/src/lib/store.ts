@@ -22,16 +22,54 @@ declare global {
   var __stockPickerStore: Store | undefined;
 }
 
+const LS_KEY = "stockpicker-desk-v1";
+
+function defaultStore(): Store {
+  return {
+    watchlist: [...snapshot.watchlist],
+    portfolio: snapshot.portfolio.map((p) => ({ ...p })),
+    alerts: snapshot.alerts.map((a) => ({ ...a })),
+    moatOverrides: {},
+    thesis: {},
+    nextAlertId: Math.max(0, ...snapshot.alerts.map((a) => a.id)) + 1,
+  };
+}
+
+function loadLocal(): Partial<Store> | null {
+  if (typeof window === "undefined") return null;
+  try {
+    const raw = window.localStorage.getItem(LS_KEY);
+    return raw ? (JSON.parse(raw) as Partial<Store>) : null;
+  } catch {
+    return null;
+  }
+}
+
+export function persistStore() {
+  if (typeof window === "undefined" || !globalThis.__stockPickerStore) return;
+  try {
+    window.localStorage.setItem(LS_KEY, JSON.stringify(globalThis.__stockPickerStore));
+  } catch {
+    /* ignore quota */
+  }
+}
+
 function store(): Store {
   if (!globalThis.__stockPickerStore) {
-    globalThis.__stockPickerStore = {
-      watchlist: [...snapshot.watchlist],
-      portfolio: snapshot.portfolio.map((p) => ({ ...p })),
-      alerts: snapshot.alerts.map((a) => ({ ...a })),
-      moatOverrides: {},
-      thesis: {},
-      nextAlertId: Math.max(0, ...snapshot.alerts.map((a) => a.id)) + 1,
-    };
+    const base = defaultStore();
+    const local = loadLocal();
+    globalThis.__stockPickerStore = local
+      ? {
+          ...base,
+          ...local,
+          watchlist: local.watchlist || base.watchlist,
+          portfolio: local.portfolio || base.portfolio,
+          alerts: local.alerts || base.alerts,
+          moatOverrides: local.moatOverrides || {},
+          thesis: local.thesis || {},
+          nextAlertId: local.nextAlertId || base.nextAlertId,
+        }
+      : base;
   }
   return globalThis.__stockPickerStore;
 }
@@ -52,6 +90,8 @@ export function listItem(s: StockRow) {
     price: s.quote?.price ?? null,
     change_percent: s.quote?.change_percent ?? null,
     pe: s.indicators?.pe ?? null,
+    pb: s.indicators?.pb ?? null,
+    dividend_yield: s.indicators?.dividend_yield ?? null,
     roe: s.indicators?.roe ?? null,
     composite: s.score?.composite ?? null,
     band: s.score?.band ?? null,

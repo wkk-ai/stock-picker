@@ -1,18 +1,26 @@
 "use client";
 
-import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
-import { api, fmtNum, fmtPct, type StockListItem } from "@/lib/api";
-import { BandChip, Card, Disclaimer, PageHead, ScorePill } from "@/components/ui";
+import { api, type StockListItem } from "@/lib/api";
+import { Card, Disclaimer, Field, Flash, GhostButton, PageHead } from "@/components/ui";
+import { TickerList } from "@/components/TickerList";
+import { InfoTip } from "@/components/InfoTip";
+import { GLOSSARY } from "@/lib/glossary";
+import { richListItem, sectors as sectorsFromSnap } from "@/lib/research";
+import { getSnapshot } from "@/lib/store";
+
+const initialStocks = getSnapshot().stocks.map(richListItem);
+const initialSectors = sectorsFromSnap().sectors;
 
 export default function ScreenerPage() {
   const [sector, setSector] = useState("");
   const [maxPe, setMaxPe] = useState("");
   const [minRoe, setMinRoe] = useState("");
   const [preset, setPreset] = useState("");
-  const [rows, setRows] = useState<StockListItem[]>([]);
-  const [sectors, setSectors] = useState<Array<{ sector: string; count: number }>>([]);
-  const [loading, setLoading] = useState(true);
+  const [rows, setRows] = useState<StockListItem[]>(initialStocks);
+  const [sectors, setSectors] = useState<Array<{ sector: string; count: number }>>(initialSectors);
+  const [loading, setLoading] = useState(false);
+  const [flash, setFlash] = useState("");
 
   const query = useMemo(
     () => ({
@@ -36,97 +44,115 @@ export default function ScreenerPage() {
       .finally(() => setLoading(false));
   }, [query]);
 
+  function clear() {
+    setSector("");
+    setMaxPe("");
+    setMinRoe("");
+    setPreset("");
+  }
+
+  async function exportCsv() {
+    try {
+      const csv = await api.exportScreener(query);
+      const blob = new Blob([csv], { type: "text/csv;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "screener.csv";
+      a.click();
+      URL.revokeObjectURL(url);
+      setFlash("CSV downloaded.");
+    } catch {
+      setFlash("Could not export CSV.");
+    }
+  }
+
   return (
     <div>
       <PageHead
         title="Screener"
-        subtitle="Every Ibovespa name. Open a company to see each metric against its industry."
+        subtitle="Filter every Ibovespa name. Open a company to see each metric against its industry."
       />
 
-      <div className="mb-6 flex flex-wrap gap-3">
-        <select
-          className="border border-line bg-elev px-3 py-2.5 text-sm"
-          value={sector}
-          onChange={(e) => setSector(e.target.value)}
-        >
-          <option value="">All sectors</option>
-          {sectors.map((s) => (
-            <option key={s.sector} value={s.sector}>
-              {s.sector} ({s.count})
-            </option>
-          ))}
-        </select>
-        <input
-          className="border border-line bg-elev px-3 py-2.5 text-sm"
-          placeholder="Max P/L"
-          value={maxPe}
-          onChange={(e) => setMaxPe(e.target.value)}
-        />
-        <input
-          className="border border-line bg-elev px-3 py-2.5 text-sm"
-          placeholder="Min ROE %"
-          value={minRoe}
-          onChange={(e) => setMinRoe(e.target.value)}
-        />
-        <select
-          className="border border-line bg-elev px-3 py-2.5 text-sm"
-          value={preset}
-          onChange={(e) => setPreset(e.target.value)}
-        >
-          <option value="">No preset</option>
-          <option value="quality">Quality compounders</option>
-          <option value="value">Deep value</option>
-        </select>
-        <a
-          className="border border-line bg-elev px-3 py-2.5 text-sm text-muted hover:text-ink"
-          href="/api/export/screener.csv"
-        >
-          Export CSV
-        </a>
+      <div className="mb-3 flex flex-wrap gap-2">
+        {[
+          ["", "All names"],
+          ["quality", "Steady growers"],
+          ["value", "Cheaper names"],
+          ["income", "Income names"],
+        ].map(([id, label]) => (
+          <button
+            key={id || "all"}
+            type="button"
+            className={`tap px-4 py-2 text-[13px] ${
+              preset === id ? "bg-navy text-white" : "border border-line bg-elev text-ink"
+            }`}
+            onClick={() => setPreset(id)}
+          >
+            {label}
+          </button>
+        ))}
       </div>
 
-      <p className="mb-3 text-[12px] text-muted">{loading ? "Loading…" : `${rows.length} names`}</p>
+      <div className="mb-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+        <Field id="scr-sector" label="Sector">
+          <select
+            id="scr-sector"
+            className="w-full border border-line bg-elev px-3 py-2.5"
+            value={sector}
+            onChange={(e) => setSector(e.target.value)}
+          >
+            <option value="">All sectors</option>
+            {sectors.map((s) => (
+              <option key={s.sector} value={s.sector}>
+                {s.sector} ({s.count})
+              </option>
+            ))}
+          </select>
+        </Field>
+        <Field id="scr-pe" label="Max years of profit (P/L)" hint={GLOSSARY.pe.short}>
+          <input
+            id="scr-pe"
+            className="w-full border border-line bg-elev px-3 py-2.5"
+            inputMode="decimal"
+            placeholder="e.g. 12"
+            value={maxPe}
+            onChange={(e) => setMaxPe(e.target.value)}
+          />
+        </Field>
+        <Field id="scr-roe" label="Min profit on owners’ money %" hint={GLOSSARY.roe.short}>
+          <input
+            id="scr-roe"
+            className="w-full border border-line bg-elev px-3 py-2.5"
+            inputMode="decimal"
+            placeholder="e.g. 15"
+            value={minRoe}
+            onChange={(e) => setMinRoe(e.target.value)}
+          />
+        </Field>
+        <div className="flex items-end gap-2">
+          <GhostButton onClick={clear}>Clear</GhostButton>
+          <GhostButton onClick={exportCsv}>Export CSV</GhostButton>
+        </div>
+      </div>
+      <p className="mb-2 text-[12px] text-muted">
+        {preset === "quality" ? "Keeps higher-quality names (ROE and score)." : null}
+        {preset === "value" ? "Keeps cheaper names on P/L." : null}
+        {preset === "income" ? "Keeps names yielding at least 5%." : null}
+      </p>
+      <Flash text={flash} />
 
-      <Card>
+      <p className="mb-3 inline-flex items-center text-[12px] text-muted">
+        {loading ? "Loading…" : `${rows.length} names`}
+        <InfoTip label="P/L">{GLOSSARY.pe.short}</InfoTip>
+        <InfoTip label="ROE">{GLOSSARY.roe.short}</InfoTip>
+      </p>
+
+      <Card pad={false}>
         {loading ? (
-          <p className="text-muted text-sm">Loading…</p>
+          <p className="p-5 text-sm text-muted">Loading…</p>
         ) : (
-          <div className="overflow-x-auto">
-            <table className="w-full min-w-[720px] text-sm">
-              <thead>
-                <tr className="text-left text-muted">
-                  <th className="pb-3 font-medium">Ticker</th>
-                  <th className="pb-3 font-medium">Name</th>
-                  <th className="pb-3 font-medium">Sector</th>
-                  <th className="pb-3 font-medium">P/L</th>
-                  <th className="pb-3 font-medium">ROE</th>
-                  <th className="pb-3 font-medium">Score</th>
-                  <th className="pb-3 font-medium">Band</th>
-                </tr>
-              </thead>
-              <tbody>
-                {rows.map((r) => (
-                  <tr key={r.ticker} className="border-t border-line">
-                    <td className="py-4">
-                      <Link className="font-mono hover:text-accent" href={`/stocks/${r.ticker}`}>
-                        {r.ticker}
-                      </Link>
-                    </td>
-                    <td className="py-4 text-muted">{r.name}</td>
-                    <td className="py-4 text-muted">{r.sector}</td>
-                    <td className="py-4 font-mono">{fmtNum(r.pe, 1)}</td>
-                    <td className="py-4 font-mono">{fmtPct(r.roe)}</td>
-                    <td className="py-4">
-                      <ScorePill value={r.composite} />
-                    </td>
-                    <td className="py-4">
-                      <BandChip band={r.band} />
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+          <TickerList rows={rows} empty="No names match these filters. Tap Clear and try again." />
         )}
       </Card>
       <Disclaimer />

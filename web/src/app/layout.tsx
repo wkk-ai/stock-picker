@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { IBM_Plex_Mono, IBM_Plex_Sans } from "next/font/google";
 import { Shell } from "@/components/Shell";
 import "./globals.css";
@@ -15,13 +15,22 @@ const mono = IBM_Plex_Mono({
   weight: ["400", "500"],
 });
 
+const iconPath = `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/favicon.svg`;
+
 export const metadata: Metadata = {
   title: "Stock Picker BR",
   description: "Brazilian stock research dashboard — decision support, not advice.",
   icons: {
-    icon: [{ url: "/favicon.svg", type: "image/svg+xml" }],
-    apple: "/favicon.svg",
+    icon: [{ url: iconPath, type: "image/svg+xml" }],
+    apple: iconPath,
   },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#0B1F33",
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

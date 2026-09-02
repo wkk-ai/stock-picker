@@ -133,8 +133,31 @@ class AdvisorMathTest(unittest.TestCase):
         self.assertEqual(out["fairish"], 80.0)
         self.assertEqual(out["method"], "industry P/VP")
 
-    def test_payout_is_yield_times_pe(self):
-        self.assertAlmostEqual(0.12 * 6.2, 0.744, places=3)
+    def test_derived_payout_and_earnings_yield(self):
+        from app.engine.advisor import enrich_derived
+
+        row = _row(
+            "TAEE11",
+            "Utilities",
+            "20257",
+            price=38.73,
+            pe=8.25,
+            pb=1.66,
+            dividend_yield=0.0772,
+            ev_ebitda=9.45,
+            ebitda_margin=0.59,
+            roe=0.207,
+            roa=0.07,
+        )
+        enrich_derived(row, selic=14.0, ipca=4.5)
+        self.assertAlmostEqual(row["payout"], 0.0772 * 8.25, places=4)
+        self.assertAlmostEqual(row["earnings_yield"], 1 / 8.25, places=4)
+        self.assertAlmostEqual(row["lpa"], 38.73 / 8.25, places=3)
+        self.assertAlmostEqual(row["vpa"], 38.73 / 1.66, places=2)
+        self.assertLess(row["earnings_vs_selic"], 0)
+        self.assertIn("graham", row)
+        self.assertAlmostEqual(row["ebitda_yield"], 1 / 9.45, places=3)
+        self.assertGreater(row["financial_leverage"], 1)
 
     def test_scope_falls_back_when_sector_is_thin(self):
         universe = [

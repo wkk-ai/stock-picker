@@ -2,7 +2,8 @@
 
 import { useEffect, useState } from "react";
 import { api } from "@/lib/api";
-import { Card, Disclaimer, Label, PageHead } from "@/components/ui";
+import { Card, Disclaimer, Field, Flash, Label, PageHead, PrimaryButton, GhostButton } from "@/components/ui";
+import { GLOSSARY } from "@/lib/glossary";
 
 type Alert = {
   id: number;
@@ -21,6 +22,7 @@ export default function AlertsPage() {
   const [threshold, setThreshold] = useState("36");
   const [scenario, setScenario] = useState<Record<string, unknown> | null>(null);
   const [delta, setDelta] = useState("1");
+  const [flash, setFlash] = useState("");
 
   const load = () => api.alerts().then((a) => setAlerts(a as Alert[]));
 
@@ -31,113 +33,124 @@ export default function AlertsPage() {
 
   return (
     <div>
-      <PageHead title="Alerts" subtitle="Price, indicator, filings, and macro regime nudges." />
+      <PageHead title="Alerts" subtitle="Price, metric, filings, and economy/rates nudges. You turn them on here." />
 
       <Card className="mb-6">
         <Label>New alert</Label>
-        <div className="mt-3 flex flex-wrap gap-3">
-          <select
-            className="border border-line px-3 py-2 text-sm"
-            value={kind}
-            onChange={(e) => setKind(e.target.value)}
-          >
-            <option value="price">Price</option>
-            <option value="indicator">Indicator</option>
-            <option value="filing">Filing</option>
-            <option value="macro">Macro</option>
-          </select>
-          <input
-            className="border border-line px-3 py-2 text-sm"
-            value={ticker}
-            onChange={(e) => setTicker(e.target.value.toUpperCase())}
-            placeholder="Ticker"
-          />
-          <input
-            className="border border-line px-3 py-2 text-sm min-w-[220px]"
-            value={rule}
-            onChange={(e) => setRule(e.target.value)}
-            placeholder="Rule text"
-          />
-          <input
-            className="border border-line px-3 py-2 text-sm w-24"
-            value={threshold}
-            onChange={(e) => setThreshold(e.target.value)}
-            placeholder="Threshold"
-          />
-          <button
-            className="bg-navy px-4 py-2 text-sm text-white"
-            onClick={async () => {
-              await api.createAlert({
-                kind,
-                ticker,
-                rule,
-                threshold: threshold ? Number(threshold) : null,
-              });
-              await load();
-            }}
-          >
-            Arm
-          </button>
+        <div className="mt-3 grid gap-3 sm:grid-cols-2">
+          <Field id="al-kind" label="Alert type">
+            <select
+              id="al-kind"
+              className="w-full border border-line px-3 py-2.5"
+              value={kind}
+              onChange={(e) => setKind(e.target.value)}
+            >
+              <option value="price">Price</option>
+              <option value="indicator">Metric (e.g. years of profit)</option>
+              <option value="filing">Company filing</option>
+              <option value="macro">Economy / rates</option>
+            </select>
+          </Field>
+          <Field id="al-ticker" label="Ticker">
+            <input
+              id="al-ticker"
+              className="w-full border border-line px-3 py-2.5"
+              value={ticker}
+              onChange={(e) => setTicker(e.target.value.toUpperCase())}
+              placeholder="PETR4"
+            />
+          </Field>
+          <Field id="al-rule" label="Rule" className="sm:col-span-2">
+            <input
+              id="al-rule"
+              className="w-full border border-line px-3 py-2.5"
+              value={rule}
+              onChange={(e) => setRule(e.target.value)}
+              placeholder="PETR4 below 36"
+            />
+          </Field>
+          <Field id="al-th" label="Trigger level">
+            <input
+              id="al-th"
+              className="w-full border border-line px-3 py-2.5"
+              inputMode="decimal"
+              value={threshold}
+              onChange={(e) => setThreshold(e.target.value)}
+              placeholder="36"
+            />
+          </Field>
+          <div className="flex items-end">
+            <PrimaryButton
+              onClick={async () => {
+                await api.createAlert({
+                  kind,
+                  ticker,
+                  rule,
+                  threshold: threshold ? Number(threshold) : null,
+                });
+                await load();
+                setFlash("Alert turned on.");
+              }}
+            >
+              Turn on
+            </PrimaryButton>
+          </div>
         </div>
+        <Flash text={flash} />
       </Card>
 
-      <Card className="mb-6">
-        <div className="overflow-x-auto">
-        <table className="w-full text-sm">
-          <thead>
-              <tr className="text-left text-muted">
-              <th className="pb-3 font-medium">Type</th>
-              <th className="pb-3 font-medium">Rule</th>
-              <th className="pb-3 font-medium">Status</th>
-              <th className="pb-3 font-medium"></th>
-            </tr>
-          </thead>
-          <tbody>
+      <Card className="mb-6" pad={false}>
+        {alerts.length === 0 ? (
+          <p className="p-5 text-sm text-muted">No alerts yet. Turn one on above.</p>
+        ) : (
+          <ul className="divide-y divide-line">
             {alerts.map((a) => (
-              <tr key={a.id} className="border-t border-line">
-                <td className="py-4 capitalize">{a.kind}</td>
-                <td className="py-4 font-mono text-[13px]">{a.rule}</td>
-                <td className="py-4">
+              <li key={a.id} className="flex flex-wrap items-center justify-between gap-2 px-4 py-4">
+                <div>
+                  <div className="capitalize text-muted">{a.kind}</div>
+                  <div className="font-mono text-[13px]">{a.rule}</div>
+                </div>
+                <div className="flex items-center gap-3">
                   <span
-                    className={`rounded-[4px] px-2.5 py-1 text-xs ${
+                    className={`rounded-pill px-2.5 py-1 text-xs ${
                       a.status === "Triggered" ? "bg-soft text-accent" : "bg-[#FDF0E7] text-watch"
                     }`}
                   >
-                    {a.status}
+                    {a.status === "Armed" ? "On" : a.status}
                   </span>
-                </td>
-                <td className="py-4">
                   <button
-                    className="text-xs text-faint hover:text-down"
+                    className="tap text-[13px] text-down"
                     onClick={async () => {
+                      if (!window.confirm("Delete this alert?")) return;
                       await api.deleteAlert(a.id);
                       await load();
+                      setFlash("Alert deleted.");
                     }}
                   >
                     Delete
                   </button>
-                </td>
-              </tr>
+                </div>
+              </li>
             ))}
-          </tbody>
-        </table>
-        </div>
+          </ul>
+        )}
       </Card>
 
       <Card>
-        <Label>Selic scenario (heuristic)</Label>
-        <div className="mt-3 flex items-center gap-3">
-          <input
-            className="w-24 border border-line px-3 py-2 text-sm"
-            value={delta}
-            onChange={(e) => setDelta(e.target.value)}
-          />
-          <button
-            className="border border-line px-3 py-2 text-sm"
-            onClick={() => api.scenario(Number(delta)).then(setScenario)}
-          >
-            Simulate Δ Selic
-          </button>
+        <Label hint="A rough what-if if Brazil’s key rate moves. Not a forecast.">
+          What-if: Selic rate change
+        </Label>
+        <div className="mt-3 flex flex-wrap items-end gap-3">
+          <Field id="selic-delta" label="Selic change (percentage points)" hint={GLOSSARY.selic.short}>
+            <input
+              id="selic-delta"
+              className="w-28 border border-line px-3 py-2.5"
+              inputMode="decimal"
+              value={delta}
+              onChange={(e) => setDelta(e.target.value)}
+            />
+          </Field>
+          <GhostButton onClick={() => api.scenario(Number(delta)).then(setScenario)}>Run Selic change</GhostButton>
         </div>
         <ul className="mt-4 space-y-2 text-sm">
           {((scenario?.impacts as Array<{ sector: string; score_nudge: number }>) || []).map((i) => (

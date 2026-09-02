@@ -14,7 +14,7 @@ const links = [
 export function NavTabs() {
   const path = usePathname();
   return (
-    <nav className="flex gap-1 overflow-x-auto bg-elev px-5 border-b border-line">
+    <nav className="hidden gap-1 overflow-x-auto border-b border-line bg-elev px-5 md:flex" aria-label="Desk">
       {links.map((l) => {
         const on = l.href === "/" ? path === "/" : path.startsWith(l.href);
         return (
@@ -22,7 +22,7 @@ export function NavTabs() {
             key={l.href}
             href={l.href}
             className={`whitespace-nowrap px-3.5 py-3 text-[13px] ${
-              on ? "font-semibold text-navy border-b-2 border-gold" : "text-muted hover:text-ink"
+              on ? "border-b-2 border-gold font-semibold text-navy" : "text-muted hover:text-ink"
             }`}
           >
             {l.label}
