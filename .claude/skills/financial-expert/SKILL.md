@@ -46,9 +46,9 @@ Exact formulas: `references/formulas.md`.
 
 1. **Universe filter**: B3 with daily liquidity ≥ R$ 200 thousand; S&P 500 members. Drop missing price.
 2. **Sector-relative percentiles**: for each valuation metric, percentile rank inside the stock's sector (fallback: market) so a bank is compared with banks. Cheaper = higher percentile.
-3. **Value score (0-100)** = weighted average of percentiles: EV/EBIT 25%, P/E 20%, P/B 15%, P/FCF or P/S 15%, dividend yield 10%, EV/EBITDA 15%. Banks/insurers: P/E 40%, P/B 40%, DY 20% (EV and debt are meaningless for them — Damodaran, McKinsey ch. on financial institutions).
-4. **Quality score (0-100)**: ROIC (or ROE for financials) 35%, margins 20%, growth 15%, debt safety 20%, current ratio 10%, sector-relative.
-5. **Final score** = 0.6 × value + 0.4 × quality, minus penalties for red flags. Value without quality is the classic value trap (McKinsey: ROIC < WACC destroys value).
+3. **Value score (0-100)** = weighted average of percentiles: EV/EBIT 25%, P/E 20%, P/B 15%, EV/EBITDA 15%, dividend yield 10% (capped at 15%), P/FCF 8%, P/S 7%. Negative multiples are excluded, not "cheap". Banks/insurers: P/E 40%, P/B 40%, DY 20% (EV and debt are meaningless for them — Damodaran, McKinsey ch. on financial institutions). Missing metrics: weight redistributed.
+4. **Quality score (0-100)**: ROIC 35%, EBIT margin 10%, net margin 10%, revenue growth 15%, net debt/EBITDA 20%, current ratio 10%. Financials: ROE 60%, net margin 15%, growth 25%. Sector-relative; sectors with < 5 stocks fall back to the whole market.
+5. **Final score** = 0.6 × value + 0.4 × quality, minus penalties (no profit −15, negative equity −20, net debt/EBITDA > 4 −10, P/E < 3 −8, DY > 15% −8, current ratio < 1 −5, ROE > 60% −5, falling revenue −5, cyclical −3). Value without quality is the classic value trap (McKinsey: ROIC < WACC destroys value).
 6. **Fair-value references** shown, never as advice: Graham number, Bazin ceiling, and implied upside.
 
 ## 5. Red flags (penalize and show to the user)
