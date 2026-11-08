@@ -48,7 +48,7 @@ def macro() -> dict:
     except Exception as e:  # noqa: BLE001
         print("macro ipca failed:", e, file=sys.stderr)
     try:
-        r = requests.get("https://fred.stlouisfed.org/graph/fredgraph.csv?id=DGS10", timeout=30, headers={"User-Agent": "Mozilla/5.0"})
+        r = requests.get("https://fred.stlouisfed.org/graph/fredgraph.csv?id=DGS10&cosd=" + (dt.date.today() - dt.timedelta(days=30)).isoformat(), timeout=90, headers={"User-Agent": "Mozilla/5.0"})
         s = pd.read_csv(io.StringIO(r.text))
         s = pd.to_numeric(s.iloc[:, 1], errors="coerce").dropna()
         out["us10y"] = float(s.iloc[-1]) / 100

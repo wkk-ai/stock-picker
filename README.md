@@ -1,32 +1,29 @@
-# Stock Picker BR
+# Ações Baratas (stock-picker)
 
-Brazilian stock research dashboard. Decision support from CVM filings, BCB macros, and market quotes — not licensed investment advice.
+Daily ranking of Brazilian (B3) and US (S&P 500) stocks that look cheap on fundamental indicators, with quality checks and value-trap warnings. Educational tool, not investment advice.
 
-## Stack
+## How it works
 
-- **API:** FastAPI (Python) + SQLite (Postgres-ready via `DATABASE_URL`)
-- **Web:** Next.js + Tailwind
-- **Design:** [`design/`](./design/) tokens + wireframes (Penpot-ready)
+1. **Every weekday at 19:37 (São Paulo)** a GitHub Action (`.github/workflows/daily.yml`) runs `python -m pipeline.run`:
+   - Brazil: all listed stocks from Fundamentus, kept if daily liquidity ≥ R$ 1 million.
+   - US: S&P 500 members, fundamentals from Yahoo Finance (yfinance).
+   - Macro: Selic and IPCA (Banco Central), US 10-year Treasury (FRED).
+2. `pipeline/score.py` scores each stock: 60% value (multiples ranked against sector peers) + 40% quality, minus penalties for red flags. Rules come from `.claude/skills/financial-expert/SKILL.md`.
+3. Results go to `site/data/*.json` and, when the `DATABASE_URL` secret is set, to the Neon Postgres database (project `stock-picker`, tables `stocks`, `snapshots`, `macro`, `runs`) which keeps daily history.
+4. The static site in `site/` is published to GitHub Pages.
 
-## Quick start
+## Pages in the site
+
+Ranking · Strategies (Graham, Magic Formula, Bazin, pure value) · Sectors · Favorites (saved in the browser) · Methodology · one page per stock with indicators vs sector median, reasons and warnings.
+
+## Run locally
 
 ```bash
-# Backend
-cd backend
-python3 -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
-python -m app.bootstrap   # create DB + seed + sample ingest
-uvicorn app.main:app --reload --port 8000
-
-# Frontend (new terminal)
-cd web
-npm install
-npm run dev
+pip install -r pipeline/requirements.txt
+python -m pipeline.run --us-limit 20   # quick test
+cd site && python -m http.server 8000
 ```
 
-Open http://localhost:3000
+## Older app
 
-## Disclaimer
-
-Scores and bands are educational decision-support tools. They are not recommendations from a CVM-registered securities analyst.
+`backend/` (FastAPI) and `web/` (Next.js) are the earlier Brazil-only version. They are not used by the GitHub Pages site.

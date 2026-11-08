@@ -1,1 +1,37 @@
-<!doctype html><title>Ações Baratas</title><p>Em construção</p>
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ações Baratas</title>
+<meta name="description" content="Ranking diário de ações brasileiras e americanas baratas pelos principais indicadores fundamentalistas.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="top">
+  <div class="wrap top-row">
+    <a class="brand" href="#/">
+      <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="13" width="4" height="8" rx="1"/><rect x="10" y="8" width="4" height="13" rx="1"/><rect x="18" y="3" width="4" height="18" rx="1"/></svg>
+      <span>Ações Baratas</span>
+    </a>
+    <nav class="tabs" id="tabs">
+      <a href="#/" data-tab="ranking">Ranking</a>
+      <a href="#/estrategias" data-tab="estrategias">Estratégias</a>
+      <a href="#/setores" data-tab="setores">Setores</a>
+      <a href="#/favoritos" data-tab="favoritos">Favoritos</a>
+      <a href="#/metodologia" data-tab="metodologia">Metodologia</a>
+    </nav>
+  </div>
+  <div class="wrap macro" id="macro"></div>
+</header>
+<main class="wrap" id="app"><div class="loading">Carregando dados…</div></main>
+<footer class="wrap foot">
+  <p>Ferramenta educacional. Não é recomendação de investimento. Dados diários, não em tempo real. <span id="stamp"></span></p>
+</footer>
+<script src="app.js"></script>
+</body>
+</html>

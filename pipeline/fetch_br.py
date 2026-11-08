@@ -57,6 +57,11 @@ def _parse_table(html: str) -> pd.DataFrame:
         cells = [c.text_content().strip() for c in tr.xpath("./td")]
         if len(cells) >= len(COLS) and re.match(r"^[A-Z0-9]{4}\d{1,2}$", cells[0]):
             rows.append(cells[: len(COLS)])
+    if rows and not getattr(_parse_table, "_shown", False):
+        _parse_table._shown = True
+        heads = [h.text_content().strip() for h in doc.xpath("//table//th")]
+        print("fundamentus headers:", heads)
+        print("fundamentus first row:", rows[0])
     raw = pd.DataFrame(rows, columns=COLS)
     df = pd.DataFrame({"ticker": raw["ticker"]})
     for c in COLS[1:]:
@@ -89,6 +94,7 @@ def fetch() -> pd.DataFrame:
     s = requests.Session()
     df = _parse_table(_get(f"{BASE}/resultado.php", s))
     sec = sectors(s)
+    print(f"fundamentus: {len(df)} rows, {len(sec)} tickers with sector, {len(set(sec.values()))} sectors")
     df["sector"] = df["ticker"].map(sec).fillna("Outros")
     df["market"] = "BR"
     df["currency"] = "BRL"
