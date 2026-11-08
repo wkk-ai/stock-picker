@@ -36,8 +36,11 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          cp pipeline/data/fundamentals.json "$RUNNER_TEMP/fundamentals.json"
+          git fetch origin main
+          git reset --hard origin/main
+          cp "$RUNNER_TEMP/fundamentals.json" pipeline/data/fundamentals.json
           git add pipeline/data/fundamentals.json
           if git diff --cached --quiet; then echo "no change"; exit 0; fi
           git commit -m "Update multi-year fundamentals (CVM + SEC)"
-          git pull --rebase origin main
           git push origin HEAD:main
