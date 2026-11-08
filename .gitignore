@@ -9,3 +9,5 @@ node_modules/
 web/.next/
 *.egg-info/
 dist/
+site/data/*.json
+__pycache__/
