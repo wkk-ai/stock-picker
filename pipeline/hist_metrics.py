@@ -60,6 +60,10 @@ def metrics_for(h: dict, market_cap: float | None) -> dict:
             out["ni_growth_10"] = last / first - 1
     ly = h[years[-1]]
     ebit, ie = ly.get("ebit"), ly.get("int_exp")
+    if ie is not None and ly.get("fin_inc") is not None:
+        # Brazil: "despesas financeiras" also carry FX and inflation restatement, and cash earns Selic,
+        # so use the NET financial expense (expenses - financial income) as the interest burden.
+        ie = ie - ly["fin_inc"]
     if ebit is not None and ie is not None:
         out["coverage"] = (ebit / ie) if ie > 0 else (50.0 if ebit > 0 else None)
     s_ni = sum(ni[-3:])

@@ -155,7 +155,7 @@ def score(df: pd.DataFrame) -> pd.DataFrame:
     # Graham defensive investor: the seven tests of ch. 14 (history-based ones need fundamentals.json).
     df = apply_graham(df)
     snap = (df["pe"] > 0) & (df["pe"] <= 15) & (df["pb"] > 0) & ((df["pe"] * df["pb"]) <= 22.5) & (fin | (df["current_ratio"].fillna(0) >= 1.5))
-    full = (df["graham_total"] >= 6) & (df["graham_score"] >= df["graham_total"] - 1)  # at most one test missed
+    full = (df["graham_total"] >= 6) & (df["graham_score"] == df["graham_total"])  # every test with data must pass
     df["graham_pass"] = np.where(df["graham_total"] >= 6, full, snap)
 
     # Graham enterprising investor (Intelligent Investor ch. 15), with snapshot data:

@@ -5,7 +5,7 @@ US: SEC XBRL "frames" API (one request per concept per year for all filers), map
 
 Output: pipeline/data/fundamentals.json
   {"generated_at": ..., "BR": {ticker: {year: {field: value}}}, "US": {...}}
-Fields (all in currency units, annual): rev, ebit, ni, int_exp (positive number), cfo, div (paid, positive),
+Fields (all in currency units, annual): rev, ebit, ni, int_exp (positive number), fin_inc (BR financial income), cfo, div (paid, positive),
 ca, cl (current assets/liabilities), eq (equity), ltd (long-term debt), eps (US only).
 
 Usage: python -m pipeline.history [--years 12] [--skip-br] [--skip-us]
@@ -132,6 +132,8 @@ def br_year(year: int) -> dict[str, dict]:
                     put(cnpj, "rev", v, scale)
                 elif code == "3.05" and "antes do resultado financeiro" in ds:
                     put(cnpj, "ebit", v, scale)
+                elif code == "3.06.01" and "receita" in ds:
+                    put(cnpj, "fin_inc", abs(v) if v is not None else None, scale)
                 elif code == "3.06.02" and "despesa" in ds:
                     put(cnpj, "int_exp", abs(v) if v is not None else None, scale)
                 elif code == "3.11" and "lucro" in ds:

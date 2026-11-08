@@ -158,7 +158,7 @@
   }
 
   const STRATS = {
-    graham: { t: "Graham (investidor defensivo)", d: "Os 7 testes do capítulo 14: porte grande, balanço forte, lucro em 10 anos, dividendos em 10 anos, lucro crescendo 1/3 em 10 anos, P/L ≤ 15 sobre o lucro médio de 3 anos e P/L × P/VP ≤ 22,5. Entra quem passa em todos menos no máximo um (com dados de pelo menos 6 testes).", f: (s) => s.graham_pass, sort: ["graham_score", -1] },
+    graham: { t: "Graham (investidor defensivo)", d: "Os 7 testes do capítulo 14: porte grande, balanço forte, lucro em 10 anos, dividendos em 10 anos, lucro crescendo 1/3 em 10 anos, P/L ≤ 15 sobre o lucro médio de 3 anos e P/L × P/VP ≤ 22,5. Entra só quem passa em todos os testes que têm dados (no mínimo 6). Graham avisa que o filtro elimina a grande maioria das ações.", f: (s) => s.graham_pass, sort: ["graham_score", -1] },
     graham_ent: { t: "Graham (investidor empreendedor)", d: "Filtro do capítulo 15 de O Investidor Inteligente: P/L ≤ 9, P/VP ≤ 1,2, paga algum dividendo, tem lucro e liquidez corrente ≥ 1,5 (não financeiras). Graham recomenda comprar um grupo diversificado, não uma ação isolada.", f: (s) => s.graham_ent, sort: ["final_score", -1] },
     netnet: { t: "Net-net (Graham)", d: "Preço abaixo do capital de giro líquido (ativo circulante menos todo o passivo). Graham comprava a até 2/3 desse valor, sempre em grupo de muitas ações e excluindo empresas com prejuízo. Só Brasil (dado do Fundamentus).", f: (s) => s.net_net, sort: ["p_ncav", 1] },
     magic: { t: "Fórmula Mágica (Greenblatt)", d: "Combina EV/EBIT baixo (barata) com ROIC alto (boa empresa). Exclui bancos, seguradoras e utilities. Ranking separado por mercado.", f: (s) => isNum(s.magic_rank), sort: ["magic_rank", 1] },
