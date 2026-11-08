@@ -89,7 +89,7 @@ def score(df: pd.DataFrame) -> pd.DataFrame:
     df = df.copy()
     num_cols = ["price", "market_cap", "pe", "pb", "ps", "ev_ebitda", "ev_ebit", "p_fcf", "dy", "dps", "roe", "roic", "roa",
                 "net_margin", "ebit_margin", "gross_margin", "debt_equity", "net_debt_ebitda", "current_ratio",
-                "rev_growth", "eps", "bvps", "liquidity"]
+                "rev_growth", "eps", "bvps", "liquidity", "p_ncav"]
     for c in num_cols:
         df[c] = pd.to_numeric(df[c], errors="coerce") if c in df else np.nan
     fin = df["is_financial"].fillna(False).astype(bool)
@@ -120,4 +120,13 @@ def score(df: pd.DataFrame) -> pd.DataFrame:
 
     # Graham defensive checklist available from snapshot data (history-based items need statements).
     df["graham_pass"] = (df["pe"] > 0) & (df["pe"] <= 15) & (df["pb"] > 0) & ((df["pe"] * df["pb"]) <= 22.5) & (fin | (df["current_ratio"].fillna(0) >= 1.5))
+
+    # Graham enterprising investor (Intelligent Investor ch. 15), with snapshot data:
+    # P/E <= 9, current ratio >= 1.5, some dividend, profitable, price <= 1.2x book.
+    df["graham_ent"] = (df["pe"] > 0) & (df["pe"] <= 9) & (df["pb"] > 0) & (df["pb"] <= 1.2) & (df["dy"].fillna(0) > 0) & (fin | (df["current_ratio"].fillna(0) >= 1.5))
+
+    # Net-net (ch. 15): NCAV = current assets - total liabilities. Fundamentus gives price / NCAV per share.
+    pn = pd.to_numeric(df["p_ncav"], errors="coerce") if "p_ncav" in df else pd.Series(np.nan, index=df.index)
+    df["p_ncav"] = pn
+    df["net_net"] = (~fin) & (pn > 0) & (pn < 1) & (df["pe"] > 0)
     return df

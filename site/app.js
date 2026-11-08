@@ -153,6 +153,8 @@
 
   const STRATS = {
     graham: { t: "Graham (investidor defensivo)", d: "P/L ≤ 15, P/VP > 0, P/L × P/VP ≤ 22,5 e liquidez corrente ≥ 1,5 (não financeiras). Ordenado pela margem até o número de Graham, √(22,5 × LPA × VPA).", f: (s) => s.graham_pass, sort: ["upside", -1] },
+    graham_ent: { t: "Graham (investidor empreendedor)", d: "Filtro do capítulo 15 de O Investidor Inteligente: P/L ≤ 9, P/VP ≤ 1,2, paga algum dividendo, tem lucro e liquidez corrente ≥ 1,5 (não financeiras). Graham recomenda comprar um grupo diversificado, não uma ação isolada.", f: (s) => s.graham_ent, sort: ["final_score", -1] },
+    netnet: { t: "Net-net (Graham)", d: "Preço abaixo do capital de giro líquido (ativo circulante menos todo o passivo). Graham comprava a até 2/3 desse valor, sempre em grupo de muitas ações e excluindo empresas com prejuízo. Só Brasil (dado do Fundamentus).", f: (s) => s.net_net, sort: ["p_ncav", 1] },
     magic: { t: "Fórmula Mágica (Greenblatt)", d: "Combina EV/EBIT baixo (barata) com ROIC alto (boa empresa). Exclui bancos, seguradoras e utilities. Ranking separado por mercado.", f: (s) => isNum(s.magic_rank), sort: ["magic_rank", 1] },
     bazin: { t: "Dividendos (Bazin)", d: "Preço-teto = dividendo dos últimos 12 meses ÷ 6%. Mostra ações abaixo do preço-teto, sem DY atípico (> 15%).", f: (s) => isNum(s.bazin_price) && s.price < s.bazin_price && !(s.flags || []).includes("dy_atipico"), sort: ["dy", -1] },
     value: { t: "Valor puro", d: "Só a parte de valor do score (múltiplos vs. setor), sem olhar qualidade. Útil para achar candidatas, mas confira os alertas: é onde moram as armadilhas de valor.", f: () => true, sort: ["value_score", -1] },
@@ -163,7 +165,7 @@
     if (S._strat !== key) { S.sort = st.sort; S._strat = key; S.shown = 100; }
     const list = sortList(filtered().filter(st.f), ...S.sort);
     app.innerHTML = `<h1>Estratégias</h1><p class="sub">Métodos clássicos de value investing aplicados aos dados de hoje.</p>
-      <div class="controls"><div class="seg">${Object.entries(STRATS).map(([k, v]) => `<button data-strat="${k}" class="${k === key ? "on" : ""}">${v.t.split(" (")[0]}</button>`).join("")}</div></div>
+      <div class="controls"><div class="seg">${Object.entries(STRATS).map(([k, v]) => `<button data-strat="${k}" class="${k === key ? "on" : ""}">${v.t.replace("investidor ", "").replace(/^(.*) \((.*)\)$/, (m, a, b) => (a === "Graham" ? "Graham " + b : a))}</button>`).join("")}</div></div>
       <div class="card" style="margin-bottom:14px"><h2>${esc(st.t)}</h2><p class="note" style="margin:0">${esc(st.d)}</p></div>
       ${controls()}${table(list)}`;
     $("#count").textContent = `${list.length} ações`;
@@ -215,7 +217,7 @@
       const med = median(peers.map((p) => (positive(k) ? (p[k] > 0 ? p[k] : null) : p[k])));
       const valid = isNum(v) && (!positive(k) || v > 0);
       let cls = "";
-      if (valid && isNum(med)) cls = (dir === "low" ? v < med : v > med) ? "pos" : "neg";
+      if (valid && isNum(med) && Math.abs(v - med) > Math.abs(med) * 0.02) cls = (dir === "low" ? v < med : v > med) ? "pos" : "neg";
       return `<tr><td class="l">${label}</td><td class="num ${cls}">${valid ? fmt(v) : "–"}</td><td class="num dim">${isNum(med) ? fmt(med) : "–"}</td></tr>`;
     }).join("");
 
@@ -223,9 +225,17 @@
     const better = M.filter(([, k, dir]) => { const v = s[k]; const med = median(peers.map((p) => p[k])); return isNum(v) && isNum(med) && (!positive(k) || v > 0) && (dir === "low" ? v < med * 0.8 : v > med * 1.2); }).map((m) => m[0]);
     if (better.length) why.push(`Melhor que a mediana do setor (com folga de 20%) em: ${better.join(", ")}.`);
     if (s.graham_pass) why.push("Passa no filtro de Graham para o investidor defensivo (P/L ≤ 15 e P/L × P/VP ≤ 22,5).");
+    if (s.graham_ent) why.push("Passa no filtro de Graham para o investidor empreendedor (P/L ≤ 9, P/VP ≤ 1,2, paga dividendo).");
+    if (s.net_net) why.push(`Net-net: preço vale ${x(s.p_ncav, 2)}× o capital de giro líquido (ativo circulante menos todo o passivo).`);
     if (isNum(s.magic_rank)) why.push(`Posição ${x(s.magic_rank, 0)} na Fórmula Mágica do mercado ${s.market === "BR" ? "brasileiro" : "americano"}.`);
     if (isNum(s.bazin_price) && s.price < s.bazin_price) why.push(`Abaixo do preço-teto de Bazin (${money(s.bazin_price, s.currency)}).`);
     if (!why.length) why.push("Não se destaca como barata frente aos pares do setor hoje.");
+    const mac = S.meta.macro || {};
+    const rf = s.market === "BR" ? mac.selic : mac.us10y;
+    if (isNum(s.pe) && s.pe > 0 && isNum(rf)) {
+      const ey = 1 / s.pe;
+      why.push(`Rendimento do lucro (1 ÷ P/L) de ${pct(ey)} contra ${pct(rf)} ${s.market === "BR" ? "da Selic" : "do Treasury de 10 anos"}: ${ey >= rf ? "acima" : "abaixo"} da renda fixa. Graham pedia rendimento do lucro pelo menos igual ao de títulos de boa qualidade.`);
+    }
     const fl = (s.flags || []).map((f) => FLAGS[f] && `<li><span class="flag ${FLAGS[f][2] ? "red" : ""}">${esc(FLAGS[f][0])}</span> ${esc(FLAGS[f][1])}</li>`).filter(Boolean).join("");
     const up = upside(s);
 
@@ -259,8 +269,9 @@
       <h2>2. Score de valor (60%)</h2><p>Cada múltiplo vira um percentil dentro do próprio setor e mercado (banco comparado com banco, Brasil com Brasil). Pesos: EV/EBIT 25, P/L 20, P/VP 15, EV/EBITDA 15, dividend yield 10, P/FCL 8, P/Receita 7. Financeiras: P/L 40, P/VP 40, DY 20. Múltiplos negativos (prejuízo, patrimônio negativo) não contam como baratos.</p>
       <h2>3. Score de qualidade (40%)</h2><p>ROIC 35, crescimento de receita 15, dívida líquida/EBITDA 20, margens 20, liquidez corrente 10. Financeiras: ROE 60, margem 15, crescimento 25. Motivo: ação barata com retorno abaixo do custo de capital costuma ser armadilha de valor.</p>
       <h2>4. Penalidades</h2><table><tbody>${Object.values(FLAGS).map((f) => `<tr><td><span class="flag ${f[2] ? "red" : ""}">${esc(f[0])}</span></td><td>${esc(f[1])}</td></tr>`).join("")}</tbody></table>
-      <h2>5. Preços de referência</h2><p>Número de Graham = √(22,5 × LPA × VPA). Preço-teto de Bazin = dividendos de 12 meses ÷ 6%. São referências educacionais, não preço-alvo.</p>
-      <h2>6. Fontes e atualização</h2><p>Atualização automática uma vez por dia útil, após o fechamento da B3. Brasil: ${esc(m.BR || "Fundamentus")}. EUA: ${esc(m.US || "Yahoo Finance")}. Macro: ${esc(m.macro || "BCB e FRED")}. Histórico guardado em banco Postgres (Neon).</p>
+      <h2>5. Estratégias de Graham</h2><p>Defensivo (cap. 14): P/L ≤ 15, P/L × P/VP ≤ 22,5, liquidez corrente ≥ 1,5. Empreendedor (cap. 15): P/L ≤ 9, P/VP ≤ 1,2, paga dividendo, liquidez corrente ≥ 1,5. Net-net: preço abaixo de ativo circulante menos todo o passivo. Os critérios de histórico (10 anos sem prejuízo, 20 anos de dividendos, crescimento de 1/3 do lucro em 10 anos) ainda não entram porque os dados diários não trazem esse histórico.</p>
+      <h2>6. Preços de referência</h2><p>Número de Graham = √(22,5 × LPA × VPA). Preço-teto de Bazin = dividendos de 12 meses ÷ 6%. São referências educacionais, não preço-alvo.</p>
+      <h2>7. Fontes e atualização</h2><p>Atualização automática uma vez por dia útil, após o fechamento da B3. Brasil: ${esc(m.BR || "Fundamentus")}. EUA: ${esc(m.US || "Yahoo Finance")}. Macro: ${esc(m.macro || "BCB e FRED")}. Histórico guardado em banco Postgres (Neon).</p>
       <h2>Aviso</h2><p>Ferramenta educacional. Não é recomendação de compra ou venda, nem análise de analista credenciado pela CVM. Indicadores olham para o passado; confira os demonstrativos antes de qualquer decisão.</p></div>`;
   }
 
@@ -298,7 +309,7 @@
     const th = t.closest("th[data-sort]");
     if (th && th.dataset.sort !== "fav" && th.dataset.sort !== "flags") {
       const k = th.dataset.sort;
-      S.sort = [k, S.sort[0] === k ? -S.sort[1] : ["pe", "pb", "ev_ebit", "magic_rank", "ticker", "sector"].includes(k) ? 1 : -1];
+      S.sort = [k, S.sort[0] === k ? -S.sort[1] : ["pe", "pb", "ev_ebit", "magic_rank", "p_ncav", "ticker", "sector"].includes(k) ? 1 : -1];
       return route();
     }
     if (t.closest("[data-more]")) { S.shown += 100; return route(); }

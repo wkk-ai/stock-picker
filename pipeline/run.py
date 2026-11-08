@@ -28,7 +28,7 @@ FIELDS = [
     "ev_ebitda", "ev_ebit", "p_fcf", "dy", "roe", "roic", "roa", "net_margin", "ebit_margin", "gross_margin",
     "debt_equity", "net_debt_ebitda", "current_ratio", "rev_growth", "eps", "bvps", "dps", "liquidity",
     "graham_value", "bazin_price", "value_score", "quality_score", "final_score", "magic_rank", "graham_pass",
-    "is_financial", "flags",
+    "graham_ent", "net_net", "p_ncav", "is_financial", "flags",
 ]
 
 
