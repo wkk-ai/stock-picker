@@ -28,7 +28,7 @@ import requests
 
 OUT = Path(__file__).resolve().parent / "data" / "fundamentals.json"
 CVM = "https://dados.cvm.gov.br/dados/CIA_ABERTA/DOC"
-SEC_UA = {"User-Agent": "stock-picker research (github.com/wkk-ai/stock-picker) contact: noreply@github.com", "Accept-Encoding": "gzip, deflate"}
+SEC_UA = {"User-Agent": "stock-picker github-actions@users.noreply.github.com", "Accept-Encoding": "gzip, deflate"}
 BROWSER_UA = {"User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130 Safari/537.36"}
 
 
@@ -141,7 +141,7 @@ def br_year(year: int) -> dict[str, dict]:
             elif kind == "BPP":
                 if code == "2.01":
                     put(cnpj, "cl", v, scale)
-                elif code == "2.03":
+                elif code == "2.03" and "patrimonio" in ds:
                     put(cnpj, "eq", v, scale)
                 elif code == "2.02.01" and "emprestimo" in ds:
                     put(cnpj, "ltd", v, scale)
@@ -196,13 +196,18 @@ def _frame(concept: str, period: str, unit: str = "USD") -> dict[int, float]:
 
 
 def build_us(years: list[int]) -> dict:
-    r = get("https://www.sec.gov/files/company_tickers.json", SEC_UA)
+    # CIK -> ticker from the public S&P 500 constituents list (www.sec.gov blocks some cloud IPs).
+    r = get("https://raw.githubusercontent.com/datasets/s-and-p-500-companies/main/data/constituents.csv", {})
     if not r:
-        print("SEC ticker map unavailable", file=sys.stderr)
+        print("S&P 500 list unavailable", file=sys.stderr)
         return {}
     cik_tk: dict[int, str] = {}
-    for d in r.json().values():
-        cik_tk.setdefault(int(d["cik_str"]), d["ticker"].replace("-", ".").upper())
+    for row in csv.DictReader(io.StringIO(r.text)):
+        try:
+            cik_tk[int(row["CIK"])] = row["Symbol"].strip().upper()
+        except (KeyError, ValueError):
+            continue
+    print(f"S&P 500 CIKs: {len(cik_tk)}")
     out: dict[str, dict] = {}
 
     def store(vals: dict[int, float], year: int, key: str, absval: bool = False):
