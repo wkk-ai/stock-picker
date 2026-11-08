@@ -55,12 +55,15 @@ Read in full (every page): Graham, *O Investidor Inteligente* (with Zweig commen
 ## 4. Scoring method in the app
 
 1. **Universe**: B3 with daily liquidity ≥ R$ 200 thousand; S&P 500.
-2. **Percentiles inside market + sector** (fallback whole market if < 5 peers). Cheaper/better = higher.
-3. **Value score**: EV/EBIT 25, P/E 20, P/B 15, EV/EBITDA 15, DY 10 (capped at 15%), P/FCF 8, P/S 7. Negative multiples excluded. Financials: P/E 40, P/B 40, DY 20. Missing metric: weight redistributed.
-4. **Quality score**: ROIC 35, EBIT margin 10, net margin 10, revenue growth 15, net debt/EBITDA 20, current ratio 10. Financials: ROE 60, net margin 15, growth 25.
-5. **Final** = 0.6 × value + 0.4 × quality − penalties: negative equity −20, loss −15, net debt/EBITDA > 4 −10, P/E < 3 −8, DY > 15% −8, ROIC (ROE for banks) below cost of capital (13% BR, 8% US) −6, current ratio < 1 −5, ROE > 60% −5, falling revenue −5, cyclical −3.
-6. **Screens**: Graham defensive (snapshot version), Graham enterprising, net-net (BR only, Fundamentus P/Ativ.Circ.Líq), Magic Formula, Bazin, pure value.
-7. **Shown, never advice**: Graham number, Bazin ceiling, earnings yield vs Selic / US 10-yr.
+2. **Data**: daily snapshot (Fundamentus, Yahoo) + multi-year statements refreshed weekly (`pipeline/history.py`): CVM DFP consolidated for Brazil (12 years); Yahoo annual statements for the US (~4 years; SEC XBRL frames give 12 years when the `SEC_CONTACT_EMAIL` secret is set).
+3. **Percentiles inside market + sector** (fallback whole market if < 5 peers). Cheaper/better = higher.
+4. **Value score**: EV/EBIT 25, P/B 15, EV/EBITDA 15, P/E 10, P/E on 3-yr average earnings 10, DY 10 (capped at 15%), P/FCF 8, P/S 7. Negative multiples excluded. Financials: P/B 40, P/E 20, P/E 3-yr avg 20, DY 20. Missing metric: weight redistributed.
+5. **Quality score**: ROIC 30, net debt/EBITDA 15, profit stability (share of profitable years, last 10) 10, interest coverage 10, revenue growth 10, EBIT margin 8, net margin 7, operating cash ÷ net income (3 yrs) 5, current ratio 5. Financials: ROE 50, stability 25, growth 15, net margin 10.
+6. **Final** = 0.6 × value + 0.4 × quality − penalties: negative equity −20, loss −15, net debt/EBITDA > 4 −10, coverage < 2 −8, P/E < 3 −8, DY > 15% −8, ROIC (ROE for banks) below cost of capital (13% BR, 8% US) −6, profit without cash (CFO/NI < 0.5) −5, cyclical margin > 1.3× its multi-year average −5, current ratio < 1 −5, ROE > 60% −5, falling revenue −5, loss in last 5 yrs −4, cyclical −3.
+7. **Interest coverage in Brazil** uses NET financial expense (despesas − receitas financeiras): BR "despesas financeiras" include FX and inflation restatement and cash earns Selic, so gross coverage flagged over half the market.
+8. **Graham defensive screen**: the seven ch. 14 tests (size = top third of market cap; current ratio ≥ 2 and LT debt ≤ working capital, utilities LT debt ≤ 2× equity; no loss in 10 yrs; dividend every year; NI 3-yr avg ≥ +1/3 vs 10 yrs earlier; P/E 3-yr avg ≤ 15; P/B ≤ 1.5 or P/E × P/B ≤ 22.5). Passes only if every test with data passes and at least 6 have data. Uses net income, not EPS, so dilution is not captured.
+9. **Other screens**: Graham enterprising, net-net (BR only), Magic Formula, Bazin, pure value.
+10. **Shown, never advice**: Graham number, Bazin ceiling, earnings yield vs Selic / US 10-yr.
 
 ## 5. Red flags and value traps
 
@@ -90,9 +93,9 @@ Read in full (every page): Graham, *O Investidor Inteligente* (with Zweig commen
 - Educational tool, not a recommendation (CVM rules for analysts).
 - Prefer ranges over single fair values; disagreement between methods is information.
 
-## 8. Not yet in the app (needs multi-year statements, e.g. CVM DFP / SEC XBRL)
+## 8. Not yet in the app
 
-10-yr earnings stability, 20-yr dividend record, 3-yr average EPS P/E, interest coverage, cash-flow vs net-income check, own-history multiple ranges, mid-cycle margins, reverse DCF implied growth, justified EV/EBITA = (1 − T)(1 − g/ROIC)/(WACC − g).
+Own-history multiple ranges, reverse DCF implied growth, justified EV/EBITA = (1 − T)(1 − g/ROIC)/(WACC − g), EPS-based (dilution-aware) Graham growth, lease and pension adjustments to EV, 10+ years for US without the SEC e-mail.
 
 ## Appendix — formulas
 
