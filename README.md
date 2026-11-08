@@ -5,7 +5,7 @@ Daily ranking of Brazilian (B3) and US (S&P 500) stocks that look cheap on funda
 ## How it works
 
 1. **Every weekday at 19:37 (São Paulo)** a GitHub Action (`.github/workflows/daily.yml`) runs `python -m pipeline.run`:
-   - Brazil: all listed stocks from Fundamentus, kept if daily liquidity ≥ R$ 1 million.
+   - Brazil: all listed stocks from Fundamentus, kept if daily liquidity ≥ R$ 200 thousand.
    - US: S&P 500 members, fundamentals from Yahoo Finance (yfinance).
    - Macro: Selic and IPCA (Banco Central), US 10-year Treasury (FRED).
 2. `pipeline/score.py` scores each stock: 60% value (multiples ranked against sector peers) + 40% quality, minus penalties for red flags. Rules come from `.claude/skills/financial-expert/SKILL.md`.

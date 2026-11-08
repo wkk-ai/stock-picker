@@ -44,7 +44,7 @@ Exact formulas: `references/formulas.md`.
 
 ## 4. The scoring method used by the app
 
-1. **Universe filter**: B3 with daily liquidity ≥ R$ 1 million; S&P 500 members. Drop missing price.
+1. **Universe filter**: B3 with daily liquidity ≥ R$ 200 thousand; S&P 500 members. Drop missing price.
 2. **Sector-relative percentiles**: for each valuation metric, percentile rank inside the stock's sector (fallback: market) so a bank is compared with banks. Cheaper = higher percentile.
 3. **Value score (0-100)** = weighted average of percentiles: EV/EBIT 25%, P/E 20%, P/B 15%, P/FCF or P/S 15%, dividend yield 10%, EV/EBITDA 15%. Banks/insurers: P/E 40%, P/B 40%, DY 20% (EV and debt are meaningless for them — Damodaran, McKinsey ch. on financial institutions).
 4. **Quality score (0-100)**: ROIC (or ROE for financials) 35%, margins 20%, growth 15%, debt safety 20%, current ratio 10%, sector-relative.

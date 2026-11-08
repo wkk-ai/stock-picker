@@ -21,7 +21,7 @@ from pipeline.score import score
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "site" / "data"
-MIN_LIQ_BR = 1_000_000  # R$ per day (financial-expert skill, section 4)
+MIN_LIQ_BR = 200_000  # R$ per day; below this the quoted price is hard to trade
 
 FIELDS = [
     "ticker", "market", "name", "sector", "industry", "currency", "price", "market_cap", "pe", "pb", "ps",
@@ -47,11 +47,10 @@ def macro() -> dict:
         out["ipca_12m"] = acc - 1
     except Exception as e:  # noqa: BLE001
         print("macro ipca failed:", e, file=sys.stderr)
-    try:
-        r = requests.get("https://fred.stlouisfed.org/graph/fredgraph.csv?id=DGS10&cosd=" + (dt.date.today() - dt.timedelta(days=30)).isoformat(), timeout=90, headers={"User-Agent": "Mozilla/5.0"})
-        s = pd.read_csv(io.StringIO(r.text))
-        s = pd.to_numeric(s.iloc[:, 1], errors="coerce").dropna()
-        out["us10y"] = float(s.iloc[-1]) / 100
+    try:  # CBOE 10-year Treasury yield index; quoted in percent
+        import yfinance as yf
+        h = yf.Ticker("^TNX").history(period="10d")["Close"].dropna()
+        out["us10y"] = float(h.iloc[-1]) / 100
     except Exception as e:  # noqa: BLE001
         print("macro us10y failed:", e, file=sys.stderr)
     return out
@@ -152,7 +151,7 @@ def main() -> None:
         "date": day.isoformat(),
         "counts": {"BR": int((df["market"] == "BR").sum()), "US": int((df["market"] == "US").sum())},
         "macro": mac,
-        "sources": {"BR": "Fundamentus (resultado.php)", "US": "Yahoo Finance via yfinance; S&P 500 list: datasets/s-and-p-500-companies", "macro": "BCB SGS 432/433, FRED DGS10"},
+        "sources": {"BR": "Fundamentus (resultado.php)", "US": "Yahoo Finance via yfinance; S&P 500 list: datasets/s-and-p-500-companies", "macro": "BCB SGS 432/433; US 10y: CBOE ^TNX via Yahoo"},
         "notes": notes,
     }
     (OUT / "stocks.json").write_text(json.dumps(recs, ensure_ascii=False, separators=(",", ":")))

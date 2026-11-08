@@ -255,7 +255,7 @@
     const m = S.meta.sources || {};
     app.innerHTML = `<div class="prose"><h1>Metodologia</h1>
       <p class="sub">Regras tiradas da biblioteca de finanças (Graham, McKinsey Valuation, Damodaran, Berk-DeMarzo, Brealey-Myers, Ross, Gitman, Rosenbaum, material CFA).</p>
-      <h2>1. Universo</h2><p>Brasil: ações da B3 com liquidez diária média acima de R$ 1 milhão. EUA: as empresas do S&amp;P 500.</p>
+      <h2>1. Universo</h2><p>Brasil: ações da B3 com liquidez diária média acima de R$ 200 mil. EUA: as empresas do S&amp;P 500.</p>
       <h2>2. Score de valor (60%)</h2><p>Cada múltiplo vira um percentil dentro do próprio setor e mercado (banco comparado com banco, Brasil com Brasil). Pesos: EV/EBIT 25, P/L 20, P/VP 15, EV/EBITDA 15, dividend yield 10, P/FCL 8, P/Receita 7. Financeiras: P/L 40, P/VP 40, DY 20. Múltiplos negativos (prejuízo, patrimônio negativo) não contam como baratos.</p>
       <h2>3. Score de qualidade (40%)</h2><p>ROIC 35, crescimento de receita 15, dívida líquida/EBITDA 20, margens 20, liquidez corrente 10. Financeiras: ROE 60, margem 15, crescimento 25. Motivo: ação barata com retorno abaixo do custo de capital costuma ser armadilha de valor.</p>
       <h2>4. Penalidades</h2><table><tbody>${Object.values(FLAGS).map((f) => `<tr><td><span class="flag ${f[2] ? "red" : ""}">${esc(f[0])}</span></td><td>${esc(f[1])}</td></tr>`).join("")}</tbody></table>
