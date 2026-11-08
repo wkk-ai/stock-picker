@@ -150,7 +150,7 @@
       <div class="kpis">
         <div class="card kpi"><div class="label">Ações analisadas</div><div class="value num">${F.n0.format(mk.length)}</div><div class="hint">${S.meta.counts ? `${S.meta.counts.BR || 0} Brasil · ${S.meta.counts.US || 0} EUA` : ""}</div></div>
         <div class="card kpi"><div class="label">Maior score</div><div class="value">${top ? esc(top.ticker) : "–"}</div><div class="hint">${top ? "score " + x(top.final_score, 0) : ""}</div></div>
-        <div class="card kpi"><div class="label">Passam no filtro de Graham</div><div class="value num">${gp}</div><div class="hint">P/L ≤ 15 e P/L × P/VP ≤ 22,5</div></div>
+        <div class="card kpi"><div class="label">Passam no filtro de Graham</div><div class="value num">${gp}</div><div class="hint">7 testes do investidor defensivo</div></div>
         <div class="card kpi"><div class="label">Score mediano</div><div class="value num">${x(medScore, 0)}</div><div class="hint">de 0 a 100</div></div>
       </div>
       ${controls()}${table(list)}`;
