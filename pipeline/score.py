@@ -79,10 +79,18 @@ def flags(r: pd.Series) -> list[str]:
         f.append("receita_caindo")
     if any(k in sec for k in CYCLICAL):
         f.append("ciclica")
+    # Value trap core test (McKinsey): low multiple with return below cost of capital is deserved, not cheap.
+    ret = roe if r.get("is_financial") else r.get("roic")
+    hurdle = HURDLE.get(r.get("market"), 0.10)
+    if ret is not None and not pd.isna(ret) and ret < hurdle:
+        f.append("retorno_abaixo_custo")
     return f
 
 
-PENALTY = {"lucro_negativo": 15, "pl_muito_baixo": 8, "dy_atipico": 8, "divida_alta": 10, "liquidez_corrente_baixa": 5, "roe_alavancado": 5, "patrimonio_negativo": 20, "receita_caindo": 5, "ciclica": 3}
+# Rough cost of capital by market (McKinsey: US WACC ~8-9%; Brazil nominal BRL much higher with Selic ~15%).
+HURDLE = {"US": 0.08, "BR": 0.13}
+
+PENALTY = {"retorno_abaixo_custo": 6, "lucro_negativo": 15, "pl_muito_baixo": 8, "dy_atipico": 8, "divida_alta": 10, "liquidez_corrente_baixa": 5, "roe_alavancado": 5, "patrimonio_negativo": 20, "receita_caindo": 5, "ciclica": 3}
 
 
 def score(df: pd.DataFrame) -> pd.DataFrame:

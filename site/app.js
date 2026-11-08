@@ -41,6 +41,7 @@
     roe_alavancado: ["ROE > 60%", "ROE muito alto pode vir de patrimônio pequeno ou alavancagem, não de eficiência.", 0],
     patrimonio_negativo: ["PL negativo", "Patrimônio líquido negativo.", 1],
     receita_caindo: ["Receita caindo", "Receita encolhendo: risco de armadilha de valor (declínio estrutural).", 0],
+    retorno_abaixo_custo: ["Retorno < custo", "ROIC (ou ROE em bancos) abaixo do custo de capital aproximado (13% Brasil, 8% EUA). Múltiplo baixo com retorno baixo costuma ser merecido, não barganha.", 0],
     ciclica: ["Cíclica", "Setor cíclico/commodity: lucro atual pode estar no pico do ciclo.", 0],
   };
   const flagHtml = (f) => (f || []).map((k) => { const d = FLAGS[k]; return d ? `<span class="flag ${d[2] ? "red" : ""}" title="${esc(d[1])}">${esc(d[0])}</span>` : ""; }).join("");

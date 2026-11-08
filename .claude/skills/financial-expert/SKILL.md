@@ -1,82 +1,127 @@
 ---
 name: financial-expert
-description: Equity valuation and stock-screening rules distilled from William's finance library (Graham, McKinsey Valuation, Damodaran, Berk-DeMarzo, Brealey-Myers, Ross, Gitman, Rosenbaum, CFA notes, GBP/FEA material). Use when judging if a stock is cheap, building screeners or scores, or explaining indicators.
+description: Rules for judging if a stock is cheap: indicators, formulas, thresholds, scoring, sector cases and value-trap flags, drawn from William's finance library. Use for stock screening, valuation or explaining indicators.
 ---
 
 # Financial expert — how to judge if a stock is cheap
 
-Use this before writing any screening rule, score, fair-value formula or explanation in the stock-picker app, or when answering valuation questions. Book-by-book source notes are in `references/sources.md`; formulas in `references/formulas.md`.
+Use this before writing any screening rule, score, fair-value formula or explanation in the stock-picker app (github.com/wkk-ai/stock-picker, `pipeline/score.py`), or when answering valuation questions. Formulas: appendix. Full chapter-by-chapter notes of the books read cover to cover: `references/books/*.md`.
 
-## 1. Core principles (agreed across the library)
+Read in full (every page): Graham, *O Investidor Inteligente* (with Zweig comments); Koller/Goedhart/Wessels, *Valuation* (McKinsey); Rosenbaum & Pearl, *Investment Banking*; GBP course decks (Valuation, Análise de DFs, FCV). Other ~55 texts in the library were only scanned for valuation passages.
 
-1. **Price is not value.** A stock is cheap only relative to the cash it will generate and the risk of that cash (Graham; McKinsey ch. 1-3; Damodaran). Low multiple alone is not proof.
-2. **Value comes from ROIC above cost of capital, times growth.** Growth with ROIC below WACC destroys value (McKinsey "economic profit"; Berk-DeMarzo; Brealey-Myers). So a cheap stock with ROIC < WACC is often a trap.
-3. **Margin of safety.** Buy only well below a conservative estimate of intrinsic value; the gap protects against forecast error (Graham ch. 20).
-4. **Compare like with like.** Multiples only mean something versus sector peers, the company's own history, and the risk-free rate (McKinsey multiples chapter; Damodaran relative valuation; Rosenbaum comps).
-5. **Use normalized earnings.** Average several years (Graham: 3-year average EPS); cyclicals and commodities at peak earnings look cheap right before profits fall.
-6. **Balance sheet first.** Weak liquidity or heavy debt makes "cheap" dangerous (Graham defensive criteria; Gitman/Ross ratio analysis).
-7. **Behavior is the main risk.** Anchoring, herding and overconfidence drive mispricing and bad decisions (Kahneman; Munger; Graham "Mr. Market").
+## 1. Core principles
 
-## 2. Indicators the app must compute (definitions)
+1. **Price is not value.** A stock is cheap only against the cash it will earn and the risk of that cash. A low multiple alone proves nothing (Graham ch. 1, 20; McKinsey ch. 1-3).
+2. **Value = ROIC above cost of capital, times reinvestment.** Growth adds value only if return on new capital > WACC; at ROIC = WACC growth is worth zero (McKinsey value driver formula). A cheap stock with ROIC ≤ WACC is usually priced right — a value trap.
+3. **Margin of safety.** Buy at ≤ 2/3 of a conservative value (Graham "60-cent dollar"); for a DCF-based fair value ask ≥ 15-20% gap. Earnings yield (1/PE) should beat high-grade bond yield (Graham ch. 14).
+4. **Compare like with like.** Rank within sub-industry and market; never mix B3 with S&P 500 peers (rates, inflation, liquidity differ). Use the median, not the mean; drop peers with depressed/negative earnings (Rosenbaum ch. 1; McKinsey multiples chapter).
+5. **Normalize earnings.** Graham: 3-yr average EPS for P/E, 7-10 yr average for long view. McKinsey: mid-cycle margins for cyclicals; never peak or trough. Strip one-offs (asset-sale gains, impairments, provision reversals, tax credits) before any multiple (Rosenbaum; GBP DFs: one-offs lifted a BR net margin from 16% to 26%).
+6. **Balance sheet first.** Weak liquidity or heavy debt makes "cheap" dangerous (Graham defensive tests; Rosenbaum credit stats).
+7. **Returns come from changes in expectations.** A great company at a full price gives an ordinary return (McKinsey). Behavior (Mr. Market, herding, overconfidence) is the investor's main enemy (Graham ch. 8).
 
-Valuation (lower = cheaper): P/E (P/L), P/B (P/VP), P/S (PSR), EV/EBIT, EV/EBITDA, P/FCF. Yield form (higher = cheaper): earnings yield = EBIT/EV or E/P, FCF yield, dividend yield.
-Quality: ROE, ROIC, ROA, gross/EBIT/net margin, revenue and EPS growth (5y), earnings stability (years with loss).
-Safety: net debt/EBITDA, gross debt/equity, current ratio, interest coverage (EBIT/interest).
-Liquidity: average daily traded value (B3: "liquidez 2 meses").
-Exact formulas: `references/formulas.md`.
+## 2. Which multiple
 
-## 3. Rules of thumb with source
+- **Primary: EV/EBIT(A)** — after D&A so capex burden counts; independent of capital structure; excludes nonoperating items (McKinsey: beats P/E and EV/EBITDA).
+- **EV/EBITDA**: only among firms with similar asset intensity (own vs lease vs outsource distorts it); Rosenbaum's banker default.
+- **P/E**: secondary; distorted by leverage, cash piles (cash earning ~2% after tax implies P/E ~50), buybacks and one-offs. Never with EPS ≤ 0.
+- **P/B**: read only together with ROE (justified P/B = (ROE − g)/(ke − g)). Main tool for banks.
+- **P/S**: fallback for loss-makers with similar margins. **PEG**: flawed (ignores ROIC).
+- Forward beats trailing for accuracy (McKinsey: median error 23% trailing vs 16% 2-yr forward) but haircut analyst optimism; our data is trailing, so normalize.
+- Sector-specific: EV/EBITDAR (retail, airlines), EV/EBITDAX (oil & gas), P/FFO (REITs), NAV (holdings, real estate) — Rosenbaum.
+
+## 3. Numeric rules with source
 
 | Rule | Threshold | Source |
 |---|---|---|
-| Graham defensive P/E | P/E on 3-yr avg EPS ≤ 15 | Graham, ch. 14 |
-| Graham P/B | P/B ≤ 1.5, or P/E × P/B ≤ 22.5 | Graham, ch. 14 |
-| Graham number | √(22.5 × EPS × BVPS) = fair price ceiling | derived from the 22.5 rule |
-| Earnings yield vs bonds | E/P ≥ yield of high-grade bonds (BR: NTN-B/Selic; US: 10y or AA) | Graham, ch. 14 |
-| Earnings stability | profit in each of last 10 years | Graham, ch. 14 |
-| Growth | EPS up ≥ 1/3 over 10 yrs (3-yr averages) | Graham, ch. 14 |
-| Financial strength (industrial) | current ratio ≥ 2; long-term debt ≤ net working capital | Graham, ch. 14 |
-| Utilities | debt ≤ 2 × book equity | Graham, ch. 14 |
-| P/E bands (US, long-run) | <10 low, 10-20 moderate, >20 expensive | Zweig commentary in Graham |
-| Bazin (BR dividend) | ceiling price = avg dividend per share ÷ 6% | Décio Bazin (BR market practice) |
-| Magic Formula | rank by EV/EBIT (low) + ROIC (high), exclude financials and utilities | Greenblatt (market practice) |
-| Leverage comfort | net debt/EBITDA < 2-3× for non-financials | Rosenbaum credit stats; IB practice |
+| Defensive P/E | price ≤ 15 × 3-yr average EPS | Graham ch. 14 |
+| Defensive P/B | ≤ 1.5, or P/E × P/B ≤ 22.5 | Graham ch. 14 |
+| Defensive strength | current ratio ≥ 2; long-term debt ≤ net working capital; utilities debt ≤ 2× equity | Graham ch. 14 |
+| Defensive record | profit every year for 10 yrs; dividends 20 yrs (Zweig: 10 ok); EPS +1/3 in 10 yrs on 3-yr averages (Zweig: +50%) | Graham ch. 14 |
+| Enterprising screen | P/E ≤ 9; current ratio ≥ 1.5; debt ≤ 110% of net current assets; no loss in 5 yrs; some dividend; EPS > 5 yrs ago; price ≤ 1.2× tangible book | Graham ch. 15 |
+| Net-net | price < NCAV = current assets − ALL liabilities; Graham bought ≤ 2/3 NCAV, in groups, excluding loss-makers | Graham ch. 15 |
+| Graham number | √(22.5 × EPS × BVPS) | from the 22.5 rule |
+| Graham formula | V = normalized EPS × (8.5 + 2g), g capped ~5-7% | Graham ch. 11 |
+| Earnings yield vs bonds | E/P ≥ AA bond yield (max P/E = 1/yield) | Graham ch. 14 |
+| Bond-like coverage | pre-tax earnings ≥ 5× fixed charges on 7-yr average and weakest year | Graham ch. 6, 11 |
+| ROIC benchmarks (US) | median 9% ex-goodwill; >20% is top ~1/6; sector medians: pharma 18, software/household 15, retail 9, energy 7.7, utilities 6.2 | McKinsey ch. 6 |
+| Coverage | EBITA/interest < 2 unsustainable; investment grade ≈ 5-11× | McKinsey ch. 17 |
+| Leverage | net debt/EBITDA < 3× comfortable, 3-5× caution, > 5× LBO-like stress; EBITDA/interest < 2.5× weak, > 5× comfortable | Rosenbaum ch. 1, 4 |
+| DCF sanity | terminal value ≈ 70% of EV is normal, flag > 75-80%; terminal g 2-4% real-ish, ≤ nominal GDP; WACC ± 1 pt ≈ ± 8% value | Rosenbaum ch. 3 |
+| Takeover premium | precedents carry ~30-35% control premium — upper bound, not minority fair value | Rosenbaum ch. 2 |
+| Market regime | fair market P/E ~15 normal, ~10 with high inflation/rates | McKinsey |
+| Bazin | ceiling price = 12m dividend ÷ 6% | BR market practice |
+| Magic Formula | rank EV/EBIT (low) + ROIC (high); exclude financials and utilities | Greenblatt |
 
-## 4. The scoring method used by the app
+## 4. Scoring method in the app
 
-1. **Universe filter**: B3 with daily liquidity ≥ R$ 200 thousand; S&P 500 members. Drop missing price.
-2. **Sector-relative percentiles**: for each valuation metric, percentile rank inside the stock's sector (fallback: market) so a bank is compared with banks. Cheaper = higher percentile.
-3. **Value score (0-100)** = weighted average of percentiles: EV/EBIT 25%, P/E 20%, P/B 15%, EV/EBITDA 15%, dividend yield 10% (capped at 15%), P/FCF 8%, P/S 7%. Negative multiples are excluded, not "cheap". Banks/insurers: P/E 40%, P/B 40%, DY 20% (EV and debt are meaningless for them — Damodaran, McKinsey ch. on financial institutions). Missing metrics: weight redistributed.
-4. **Quality score (0-100)**: ROIC 35%, EBIT margin 10%, net margin 10%, revenue growth 15%, net debt/EBITDA 20%, current ratio 10%. Financials: ROE 60%, net margin 15%, growth 25%. Sector-relative; sectors with < 5 stocks fall back to the whole market.
-5. **Final score** = 0.6 × value + 0.4 × quality, minus penalties (no profit −15, negative equity −20, net debt/EBITDA > 4 −10, P/E < 3 −8, DY > 15% −8, current ratio < 1 −5, ROE > 60% −5, falling revenue −5, cyclical −3). Value without quality is the classic value trap (McKinsey: ROIC < WACC destroys value).
-6. **Fair-value references** shown, never as advice: Graham number, Bazin ceiling, and implied upside.
+1. **Universe**: B3 with daily liquidity ≥ R$ 200 thousand; S&P 500.
+2. **Percentiles inside market + sector** (fallback whole market if < 5 peers). Cheaper/better = higher.
+3. **Value score**: EV/EBIT 25, P/E 20, P/B 15, EV/EBITDA 15, DY 10 (capped at 15%), P/FCF 8, P/S 7. Negative multiples excluded. Financials: P/E 40, P/B 40, DY 20. Missing metric: weight redistributed.
+4. **Quality score**: ROIC 35, EBIT margin 10, net margin 10, revenue growth 15, net debt/EBITDA 20, current ratio 10. Financials: ROE 60, net margin 15, growth 25.
+5. **Final** = 0.6 × value + 0.4 × quality − penalties: negative equity −20, loss −15, net debt/EBITDA > 4 −10, P/E < 3 −8, DY > 15% −8, ROIC (ROE for banks) below cost of capital (13% BR, 8% US) −6, current ratio < 1 −5, ROE > 60% −5, falling revenue −5, cyclical −3.
+6. **Screens**: Graham defensive (snapshot version), Graham enterprising, net-net (BR only, Fundamentus P/Ativ.Circ.Líq), Magic Formula, Bazin, pure value.
+7. **Shown, never advice**: Graham number, Bazin ceiling, earnings yield vs Selic / US 10-yr.
 
-## 5. Red flags (penalize and show to the user)
+## 5. Red flags and value traps
 
-- Negative or near-zero earnings (P/E meaningless) — exclude from P/E ranking.
-- ROE > 60% with tiny equity (leverage illusion) or negative equity.
-- Net debt/EBITDA > 4× (non-financials); current ratio < 1.
-- Dividend yield > 15% (likely one-off or price collapse — trap risk).
-- P/E < 3 (often one-off gains, asset sales, tax credits — "quality of earnings").
-- Revenue shrinking over 5 years while multiples are low (structural decline).
-- Cyclicals/commodities (mining, oil, steel, pulp) at peak margins: flag "earnings may be at cycle peak".
-- Low liquidity: price may not be executable.
+- ROIC ≤ cost of capital with a low multiple (deserved discount). Weak ROIC persists: 43% of firms under 5% stay there 10 yrs later (McKinsey).
+- Low P/E from high leverage or peak cyclical earnings; low EV/EBITDA on capex- or lease-heavy firms.
+- EPS growth from buybacks, debt-funded acquisitions, asset sales, tax items; margins rising while R&D/ads/capex fall.
+- Serial acquirers: ROIC with goodwill far below ROIC without; revenue synergies rarely happen.
+- Dividends paid with debt (payout + reinvestment > cash flow); DY > 15%; equity issuance by a "cheap" stock.
+- Hidden debt: leases, unfunded pensions, litigation/tax provisions (big in Brazil), off-balance entities, minorities, preferred.
+- Earnings quality: operating cash flow far below net income; receivables or inventory growing faster than sales; "outras receitas operacionais" inflating EBIT; provisions reversed; low cash tax from deferrals.
+- Hype: recent IPOs, extreme P/S with persistent losses, P/E > 25-30 built on extrapolated growth (Graham).
+- Distressed, pre-profit or option-like names (biotech, exploration): screening "cheapness" is unreliable — keep them out of the ranking or flag.
 
-## 6. Sector special cases
+## 6. Sector and market cases
 
-- **Banks/insurers**: use P/E, P/B, ROE, DY. Ignore EV/EBITDA, net debt, current ratio, margins on revenue.
-- **Utilities/regulated**: high debt is normal; judge by DY and stable ROE; Graham limit debt ≤ 2× equity.
-- **Commodities/cyclicals**: prefer EV/EBIT on normalized (multi-year average) earnings; DY volatile.
-- **Holdings**: discount to sum-of-parts is common; flag.
-- **Growth/tech**: low P/S or EV/EBIT rare; use PEG cautiously; quality weight matters more.
-- **Brazil**: higher cost of capital (Selic, country risk) means lower fair multiples than US; compare BR to BR, US to US. Inflation distorts book values and nominal growth.
+- **Banks/insurers**: ROE vs cost of equity, P/B, P/E, DY. No EV, net debt, current ratio or revenue margins. Watch loan-loss provisions, efficiency ratio; insurers combined ratio. ROE ≈ ke means P/B ≈ 1.
+- **Utilities/regulated**: high debt normal (D/V ~ 47% fine); judge by DY, stable ROE; Graham: debt ≤ 2× equity.
+- **Cyclicals** (mining, oil, steel, pulp, chemicals, airlines): value on mid-cycle margins; peak signals = record ROIC plus rising capex and rising consensus. Coverage must hold in a downturn.
+- **Retail (BR)**: captive credit-card receivables inflate receivable days (Renner case); compare like with like.
+- **Holdings/dual class/conglomerates**: discount can persist without a catalyst.
+- **Brazil**: use BRL nominal rates consistently (NTN-B / prefixado), not USD rf on BRL flows. McKinsey warns against stacking a big country premium on WACC — prefer a crisis scenario haircut. High Selic hurts leveraged and long-working-capital firms; floating CDI debt matters more than P/E. Statutory tax 34% (IR + CSLL); JCP needs a normalized tax rate. Inflation flatters nominal ROIC on old assets. Low-liquidity B3 stocks show artificially low betas. Tag-along and ON/PN classes matter for minority value.
 
 ## 7. Communication rules
 
-- Always say "barata pelos indicadores", never "compre". Show the why (which metrics drove the score) and the flags.
-- Show data date and source. Indicators are backward-looking.
-- Educational tool, not a recommendation (CVM rules for analysts in Brazil).
+- Say "barata pelos indicadores", never "compre". Show the metrics that drove the score and the flags.
+- Show data date and source; indicators look backward.
+- Educational tool, not a recommendation (CVM rules for analysts).
+- Prefer ranges over single fair values; disagreement between methods is information.
 
-## 8. Coverage honesty
+## 8. Not yet in the app (needs multi-year statements, e.g. CVM DFP / SEC XBRL)
 
-The library has ~80 finance works (~50M characters). Full line-by-line reading was attempted with parallel readers and hit the plan's usage limit. This skill is built from targeted reading of the valuation, ratio and multiples sections of each work (keyword-dense passage extraction across all 62 available texts) plus the canonical frameworks those books teach. CFA 2018 curriculum box sets and Schweser L2 books were not yet readable (folder too deep to copy); formulas from them come from the Schweser quicksheets and FinQuiz formula sheet that were read. See `references/sources.md`.
+10-yr earnings stability, 20-yr dividend record, 3-yr average EPS P/E, interest coverage, cash-flow vs net-income check, own-history multiple ranges, mid-cycle margins, reverse DCF implied growth, justified EV/EBITA = (1 − T)(1 − g/ROIC)/(WACC − g).
+
+## Appendix — formulas
+
+Per-share values use the latest 12 months unless noted. EV = market cap + debt + preferred + minorities − cash.
+
+| Metric | Formula | Cheaper/better when |
+|---|---|---|
+| P/E | price ÷ EPS | lower, > 0 |
+| Earnings yield | EPS ÷ price | higher; compare with risk-free |
+| P/B | price ÷ book value per share | lower, > 0 (read with ROE) |
+| EV/EBIT, EV/EBITDA | EV ÷ EBIT(DA) | lower, > 0 |
+| P/FCF | market cap ÷ (CFO − capex) | lower, > 0 |
+| Dividend yield | 12m DPS ÷ price | higher, cap 15% |
+| ROE | net income ÷ average equity | higher (= ROIC + D/E × (ROIC − kd(1−t))) |
+| NOPLAT | EBITA × (1 − operating cash tax) | |
+| Invested capital | operating working capital + net PP&E + other operating assets (± goodwill) | |
+| ROIC | NOPLAT ÷ average invested capital | higher than WACC |
+| Economic profit | IC × (ROIC − WACC) | > 0 |
+| Value driver | EV = NOPLAT × (1 − g/RONIC) ÷ (WACC − g) | |
+| Justified EV/EBITA | (1 − T)(1 − g/ROIC) ÷ (WACC − g) | compare with actual |
+| Justified P/B | (ROE − g) ÷ (ke − g) | banks |
+| Net debt/EBITDA | (debt − cash) ÷ EBITDA | lower |
+| Coverage | EBIT(A) ÷ interest | higher (≥ 5 solid, < 2 unsustainable) |
+| Current ratio | current assets ÷ current liabilities | ≥ 1.5-2 |
+| NCAV | current assets − total liabilities | price below it = net-net |
+| Graham number | √(22.5 × EPS × BVPS) | price below it |
+| Graham formula | EPS × (8.5 + 2g) | |
+| Bazin ceiling | 12m DPS ÷ 0.06 | price below it |
+| CAPM | ke = rf + β × ERP (ERP 4.5-5.5% global) | |
+| WACC | E/V × ke + D/V × kd × (1 − t), target market weights | |
+| Unlever / relever β | βU = βL ÷ (1 + (1 − t) D/E); βL = βU × (1 + (1 − t) D/E) | |
+| Gordon / terminal | TV = FCF × (1 + g) ÷ (WACC − g) | g < WACC |

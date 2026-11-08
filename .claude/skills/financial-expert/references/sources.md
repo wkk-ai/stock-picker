@@ -1,13 +1,13 @@
 # Sources (William's Google Drive library)
 
-Status: `excerpt` = text extracted and keyword-dense valuation passages read; `pending` = file not copyable yet (folder 8-9 levels deep).
+Status: `read in full` = every page read, notes in `books/`; `excerpt` = text extracted and keyword-dense valuation passages read; `pending` = file not copyable yet (folder 8-9 levels deep).
 
  | # | Work | Tier | Pages/chars | Status |
 |---|---|---|---|---|
-| 1 | McKinsey Valuation | A | 2,145,449 chars | excerpt |
+| 1 | **McKinsey Valuation** | A | 2,145,449 chars | **read in full** |
 | 2 | Damodaran Applied Corporate Finance 4e | A | 3,399,789 chars | excerpt |
-| 3 | Graham O Investidor Inteligente | A | 1,288,890 chars | excerpt |
-| 4 | Rosenbaum Investment Banking | A | 1,174,389 chars | excerpt |
+| 3 | **Graham O Investidor Inteligente** | A | 1,288,890 chars | **read in full** |
+| 4 | **Rosenbaum Investment Banking** | A | 1,174,389 chars | **read in full** |
 | 5 | Berk DeMarzo Corporate Finance 3e | A | 4,967,911 chars | excerpt |
 | 6 | Brealey Myers Principles of Corporate Finance 10e | A | 5,645,091 chars | excerpt |
 | 7 | Ross Administracao Financeira | A | 5,935,208 chars | excerpt |
@@ -28,11 +28,11 @@ Status: `excerpt` = text extracted and keyword-dense valuation passages read; `p
 | 22 | Kahneman Judgment and Choice | A | 161,413 chars | excerpt |
 | 23 | Articles on Decision Bias | A | 63,237 chars | excerpt |
 | 24 | Anima Sugestoes de leituras | A | 928 chars | ocr needed |
-| 25 | GBP Valuation 1H20 | A | 214,941 chars | excerpt |
-| 26 | GBP FCV Aulas 1-2 | A | 26,449 chars | excerpt |
-| 27 | GBP FCV Aulas 5-6 | A | 57,974 chars | excerpt |
-| 28 | GBP FCV Aulas 7-8 | A | 56,507 chars | excerpt |
-| 29 | GBP Analise de DFs | A | 206,291 chars | excerpt |
+| 25 | **GBP Valuation 1H20** | A | 214,941 chars | **read in full** |
+| 26 | **GBP FCV Aulas 1-2** | A | 26,449 chars | **read in full** |
+| 27 | **GBP FCV Aulas 5-6** | A | 57,974 chars | **read in full** |
+| 28 | **GBP FCV Aulas 7-8** | A | 56,507 chars | **read in full** |
+| 29 | **GBP Analise de DFs** | A | 206,291 chars | **read in full** |
 | 30 | GBP Analise de Investimentos | A | 235,529 chars | excerpt |
 | 31 | Apostila GE INV 1 | A | 38,777 chars | excerpt |
 | 32 | Apostila GE INV 2 | A | 104,628 chars | excerpt |
