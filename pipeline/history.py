@@ -306,7 +306,13 @@ def main() -> None:
     res = {"generated_at": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds"), "years": [str(y) for y in years]}
     res["BR"] = old.get("BR", {}) if a.skip_br else build_br(years)
     res["US"] = old.get("US", {}) if a.skip_us else build_us(years)
-    if not a.skip_us and len(res["US"]) < 100:
+    old_us = old.get("US", {})
+    old_deep = sum(1 for h in old_us.values() if len(h) >= 8)
+    if not a.skip_us and len(res["US"]) < 100 and old_deep >= 100:
+        print("SEC data missing; keeping previous multi-year US data", file=sys.stderr)
+        res["US"] = old_us
+        res["US_source"] = old.get("US_source")
+    elif not a.skip_us and len(res["US"]) < 100:
         print("SEC data missing; falling back to Yahoo annual statements", file=sys.stderr)
         r = get("https://raw.githubusercontent.com/datasets/s-and-p-500-companies/main/data/constituents.csv", {})
         tks = [row["Symbol"].strip().upper() for row in csv.DictReader(io.StringIO(r.text))] if r else []
