@@ -46,9 +46,6 @@ jobs:
   deploy:
     needs: build
     runs-on: ubuntu-latest
-    # Publishing needs GitHub Pages turned on (Settings > Pages > Source: GitHub Actions).
-    # Until then, data collection still runs and this step must not mark the whole run as failed.
-    continue-on-error: true
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
