@@ -28,7 +28,9 @@ import requests
 
 OUT = Path(__file__).resolve().parent / "data" / "fundamentals.json"
 CVM = "https://dados.cvm.gov.br/dados/CIA_ABERTA/DOC"
-SEC_UA = {"User-Agent": "stock-picker github-actions@users.noreply.github.com", "Accept-Encoding": "gzip, deflate"}
+import os
+# SEC requires a real contact e-mail in the User-Agent; set repository secret SEC_CONTACT_EMAIL to enable 12-year US history.
+SEC_UA = {"User-Agent": f"stock-picker {os.environ.get('SEC_CONTACT_EMAIL', 'github-actions@users.noreply.github.com')}", "Accept-Encoding": "gzip, deflate"}
 BROWSER_UA = {"User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130 Safari/537.36"}
 
 
@@ -237,6 +239,58 @@ def build_us(years: list[int]) -> dict:
     return out
 
 
+YF_ROWS = {
+    "rev": ["Total Revenue", "Operating Revenue"],
+    "ebit": ["Operating Income", "EBIT"],
+    "ni": ["Net Income", "Net Income Common Stockholders"],
+    "int_exp": ["Interest Expense", "Interest Expense Non Operating"],
+    "eps": ["Diluted EPS"],
+}
+YF_CF = {"cfo": ["Operating Cash Flow"], "div": ["Cash Dividends Paid", "Common Stock Dividend Paid"]}
+YF_BS = {"ca": ["Current Assets"], "cl": ["Current Liabilities"], "eq": ["Stockholders Equity"], "ltd": ["Long Term Debt"]}
+
+
+def build_us_yahoo(tickers: list[str]) -> dict:
+    """Fallback when SEC refuses the runner: Yahoo annual statements (about 4 years)."""
+    import yfinance as yf
+
+    out: dict[str, dict] = {}
+    for i, tk in enumerate(tickers):
+        try:
+            t = yf.Ticker(tk.replace(".", "-"))
+            frames = [(t.income_stmt, YF_ROWS), (t.cashflow, YF_CF), (t.balance_sheet, YF_BS)]
+        except Exception as e:  # noqa: BLE001
+            print(f"  yahoo {tk}: {e}", file=sys.stderr)
+            continue
+        row_out: dict[str, dict] = {}
+        for df, spec in frames:
+            if df is None or getattr(df, "empty", True):
+                continue
+            for col in df.columns:
+                y = str(getattr(col, "year", col))[:4]
+                for key, names in spec.items():
+                    for n in names:
+                        if n in df.index:
+                            v = df.at[n, col]
+                            try:
+                                v = float(v)
+                            except (TypeError, ValueError):
+                                continue
+                            if v != v:
+                                continue
+                            if key in ("int_exp", "div"):
+                                v = abs(v)
+                            row_out.setdefault(y, {}).setdefault(key, round(v, 2))
+                            break
+        if row_out:
+            out[tk] = row_out
+        time.sleep(0.3)
+        if i % 100 == 0:
+            print(f"yahoo {i}/{len(tickers)}")
+    print(f"Yahoo statements: {len(out)} tickers")
+    return out
+
+
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--years", type=int, default=12)
@@ -250,6 +304,12 @@ def main() -> None:
     res = {"generated_at": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds"), "years": [str(y) for y in years]}
     res["BR"] = old.get("BR", {}) if a.skip_br else build_br(years)
     res["US"] = old.get("US", {}) if a.skip_us else build_us(years)
+    if not a.skip_us and len(res["US"]) < 100:
+        print("SEC data missing; falling back to Yahoo annual statements", file=sys.stderr)
+        r = get("https://raw.githubusercontent.com/datasets/s-and-p-500-companies/main/data/constituents.csv", {})
+        tks = [row["Symbol"].strip().upper() for row in csv.DictReader(io.StringIO(r.text))] if r else []
+        res["US"] = build_us_yahoo(tks)
+        res["US_source"] = "Yahoo (4 anos)"
     for m in ("BR", "US"):
         n = len(res[m])
         if n == 0 and old.get(m):

@@ -29,6 +29,8 @@ jobs:
           cache-dependency-path: pipeline/requirements.txt
       - run: pip install -r pipeline/requirements.txt
       - name: Build multi-year fundamentals (CVM + SEC)
+        env:
+          SEC_CONTACT_EMAIL: ${{ secrets.SEC_CONTACT_EMAIL }}
         run: python -m pipeline.history
       - name: Commit if changed
         run: |
