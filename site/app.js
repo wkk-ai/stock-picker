@@ -42,6 +42,10 @@
     patrimonio_negativo: ["PL negativo", "Patrimônio líquido negativo.", 1],
     receita_caindo: ["Receita caindo", "Receita encolhendo: risco de armadilha de valor (declínio estrutural).", 0],
     retorno_abaixo_custo: ["Retorno < custo", "ROIC (ou ROE em bancos) abaixo do custo de capital aproximado (13% Brasil, 8% EUA). Múltiplo baixo com retorno baixo costuma ser merecido, não barganha.", 0],
+    cobertura_baixa: ["Juros pesados", "Lucro operacional cobre os juros menos de 2 vezes (McKinsey: insustentável).", 1],
+    lucro_sem_caixa: ["Lucro sem caixa", "Nos últimos 3 anos, o caixa da operação foi menos da metade do lucro contábil.", 0],
+    pico_ciclo: ["Pico do ciclo", "Margem atual mais de 30% acima da média de vários anos em setor cíclico: o lucro pode cair.", 1],
+    prejuizo_recente: ["Prejuízo recente", "Teve prejuízo em pelo menos um dos últimos 5 anos (Graham pede 10 anos de lucro).", 0],
     ciclica: ["Cíclica", "Setor cíclico/commodity: lucro atual pode estar no pico do ciclo.", 0],
   };
   const flagHtml = (f) => (f || []).map((k) => { const d = FLAGS[k]; return d ? `<span class="flag ${d[2] ? "red" : ""}" title="${esc(d[1])}">${esc(d[0])}</span>` : ""; }).join("");
@@ -52,10 +56,11 @@
   // ---------- data ----------
   async function load() {
     const get = (u) => fetch(u, { cache: "no-cache" }).then((r) => (r.ok ? r.json() : null)).catch(() => null);
-    const [stocks, meta, hist] = await Promise.all([get("data/stocks.json"), get("data/meta.json"), get("data/history.json")]);
+    const [stocks, meta, hist, series] = await Promise.all([get("data/stocks.json"), get("data/meta.json"), get("data/history.json"), get("data/series.json")]);
     S.stocks = stocks || [];
     S.meta = meta || {};
     S.hist = hist || {};
+    S.series = series || {};
     for (const s of S.stocks) (S.bySector[s.market + "|" + s.sector] ||= []).push(s);
     renderMacro();
     route();
@@ -153,7 +158,7 @@
   }
 
   const STRATS = {
-    graham: { t: "Graham (investidor defensivo)", d: "P/L ≤ 15, P/VP > 0, P/L × P/VP ≤ 22,5 e liquidez corrente ≥ 1,5 (não financeiras). Ordenado pela margem até o número de Graham, √(22,5 × LPA × VPA).", f: (s) => s.graham_pass, sort: ["upside", -1] },
+    graham: { t: "Graham (investidor defensivo)", d: "Os 7 testes do capítulo 14: porte grande, balanço forte, lucro em 10 anos, dividendos em 10 anos, lucro crescendo 1/3 em 10 anos, P/L ≤ 15 sobre o lucro médio de 3 anos e P/L × P/VP ≤ 22,5. Entra quem passa em todos menos no máximo um (com dados de pelo menos 6 testes).", f: (s) => s.graham_pass, sort: ["graham_score", -1] },
     graham_ent: { t: "Graham (investidor empreendedor)", d: "Filtro do capítulo 15 de O Investidor Inteligente: P/L ≤ 9, P/VP ≤ 1,2, paga algum dividendo, tem lucro e liquidez corrente ≥ 1,5 (não financeiras). Graham recomenda comprar um grupo diversificado, não uma ação isolada.", f: (s) => s.graham_ent, sort: ["final_score", -1] },
     netnet: { t: "Net-net (Graham)", d: "Preço abaixo do capital de giro líquido (ativo circulante menos todo o passivo). Graham comprava a até 2/3 desse valor, sempre em grupo de muitas ações e excluindo empresas com prejuízo. Só Brasil (dado do Fundamentus).", f: (s) => s.net_net, sort: ["p_ncav", 1] },
     magic: { t: "Fórmula Mágica (Greenblatt)", d: "Combina EV/EBIT baixo (barata) com ROIC alto (boa empresa). Exclui bancos, seguradoras e utilities. Ranking separado por mercado.", f: (s) => isNum(s.magic_rank), sort: ["magic_rank", 1] },
@@ -200,6 +205,41 @@
       <p class="note">Score de ${pts[0][0].split("-").reverse().join("/")} a ${pts[n - 1][0].split("-").reverse().join("/")}</p>`;
   }
 
+  const G_TESTS = [
+    ["Porte", "Entre o terço maior do mercado em valor"],
+    ["Balanço forte", "Liquidez corrente ≥ 2 e dívida longa ≤ capital de giro (energia: dívida ≤ 2× patrimônio)"],
+    ["Lucro estável", "Nenhum prejuízo nos últimos 10 anos"],
+    ["Dividendos", "Pagou dividendo em todos os anos do histórico"],
+    ["Crescimento", "Lucro médio dos últimos 3 anos ≥ 1/3 maior que 10 anos antes"],
+    ["P/L moderado", "Preço ≤ 15× o lucro médio de 3 anos"],
+    ["P/VP moderado", "P/VP ≤ 1,5 ou P/L × P/VP ≤ 22,5"],
+  ];
+  function grahamCard(s) {
+    const cs = s.graham_checks || [];
+    if (!cs.length) return "";
+    const icon = { ok: '<span class="gk ok">✓</span>', fail: '<span class="gk no">✕</span>', na: '<span class="gk na">–</span>' };
+    return `<div class="card"><h2>Checklist de Graham <span class="dim num">${s.graham_score}/${s.graham_total}</span></h2>
+      <ul class="glist">${G_TESTS.map(([t, d], i) => `<li>${icon[cs[i]] || icon.na}<div><b>${t}</b><span class="note">${d}</span></div></li>`).join("")}</ul>
+      <p class="note">Investidor defensivo, O Investidor Inteligente cap. 14. "–" = sem dado ou não se aplica.</p></div>`;
+  }
+  function niChart(rows, cur) {
+    const pts = (rows || []).filter((r) => isNum(r[1]));
+    if (pts.length < 2) return `<p class="note">Sem histórico de balanços ainda para esta ação.</p>`;
+    const w = 320, h = 120, pad = 14, n = pts.length, bw = (w - pad * 2) / n;
+    const vals = pts.map((r) => r[1]);
+    const mx = Math.max(...vals, 0), mn = Math.min(...vals, 0), span = mx - mn || 1;
+    const y0 = pad + ((mx - 0) / span) * (h - pad * 2);
+    const bars = pts.map((r, i) => {
+      const v = r[1], y = pad + ((mx - Math.max(v, 0)) / span) * (h - pad * 2), hh = Math.max(1, (Math.abs(v) / span) * (h - pad * 2));
+      return `<rect x="${pad + i * bw + 2}" y="${v >= 0 ? y : y0}" width="${bw - 4}" height="${hh}" rx="2" fill="${v >= 0 ? "var(--bar)" : "var(--bad)"}"><title>${r[0]}: ${big(v, cur)}</title></rect>`;
+    }).join("");
+    const labels = pts.map((r, i) => (i === 0 || i === n - 1 || i === Math.floor(n / 2) ? `<text x="${pad + i * bw + bw / 2}" y="${h + 12}" text-anchor="middle" font-size="10" fill="var(--muted)">${r[0]}</text>` : "")).join("");
+    const last = pts[n - 1];
+    return `<svg viewBox="0 0 ${w} ${h + 16}" class="spark" style="height:150px"><line x1="${pad}" x2="${w - pad}" y1="${y0}" y2="${y0}" stroke="var(--line)"/>${bars}${labels}</svg>
+      <p class="note">Lucro líquido por ano (barras vermelhas = prejuízo). Último: ${big(last[1], cur)}${isNum(last[2]) ? ", receita " + big(last[2], cur) : ""}. Fonte: ${s_src(cur)}.</p>`;
+  }
+  const s_src = (cur) => (cur === "USD" ? "SEC (balanços XBRL)" : "CVM (DFP consolidado)");
+
   function viewStock(t) {
     const s = S.stocks.find((v) => v.ticker === t);
     if (!s) { app.innerHTML = `<a class="back" href="#/">← Voltar</a><p>Ação ${esc(t)} não encontrada nos dados de hoje.</p>`; return; }
@@ -211,8 +251,12 @@
       ["Margem EBIT", "ebit_margin", "high", (v) => pct(v), !s.is_financial], ["Margem líquida", "net_margin", "high", (v) => pct(v), true],
       ["Cresc. receita", "rev_growth", "high", (v) => pct(v), true], ["Dív. líq./EBITDA", "net_debt_ebitda", "low", (v) => x(v), !s.is_financial],
       ["Liquidez corrente", "current_ratio", "high", (v) => x(v, 2), !s.is_financial],
+      ["P/L lucro médio 3 anos", "pe_avg3", "low", (v) => x(v), true],
+      ["Cobertura de juros", "coverage", "high", (v) => (v >= 50 ? "sem dívida" : x(v) + "×"), !s.is_financial],
+      ["Caixa ÷ lucro (3 anos)", "cfo_ni_3", "high", (v) => x(v, 2) + "×", !s.is_financial],
+      ["Cresc. lucro 10 anos", "ni_growth_10", "high", (v) => pct(v, 0), true],
     ].filter((m) => m[4]);
-    const positive = (k) => ["pe", "pb", "ev_ebit", "ev_ebitda", "ps", "p_fcf"].includes(k);
+    const positive = (k) => ["pe", "pe_avg3", "pb", "ev_ebit", "ev_ebitda", "ps", "p_fcf"].includes(k);
     const rowsM = M.map(([label, k, dir, fmt]) => {
       const v = s[k];
       const med = median(peers.map((p) => (positive(k) ? (p[k] > 0 ? p[k] : null) : p[k])));
@@ -225,7 +269,7 @@
     const why = [];
     const better = M.filter(([, k, dir]) => { const v = s[k]; const med = median(peers.map((p) => p[k])); return isNum(v) && isNum(med) && (!positive(k) || v > 0) && (dir === "low" ? v < med * 0.8 : v > med * 1.2); }).map((m) => m[0]);
     if (better.length) why.push(`Melhor que a mediana do setor (com folga de 20%) em: ${better.join(", ")}.`);
-    if (s.graham_pass) why.push("Passa no filtro de Graham para o investidor defensivo (P/L ≤ 15 e P/L × P/VP ≤ 22,5).");
+    if (s.graham_pass) why.push(`Passa no filtro de Graham para o investidor defensivo (${s.graham_score} de ${s.graham_total} testes com dados).`);
     if (s.graham_ent) why.push("Passa no filtro de Graham para o investidor empreendedor (P/L ≤ 9, P/VP ≤ 1,2, paga dividendo).");
     if (s.net_net) why.push(`Net-net: preço vale ${x(s.p_ncav, 2)}× o capital de giro líquido (ativo circulante menos todo o passivo).`);
     if (isNum(s.magic_rank)) why.push(`Posição ${x(s.magic_rank, 0)} na Fórmula Mágica do mercado ${s.market === "BR" ? "brasileiro" : "americano"}.`);
@@ -257,6 +301,8 @@
         <div class="stack">
           <div class="card"><h2>Por que aparece barata</h2><ul class="why">${why.map((w) => `<li>${esc(w)}</li>`).join("")}</ul></div>
           <div class="card"><h2>Alertas</h2>${fl ? `<ul class="why">${fl}</ul>` : `<p class="note" style="margin:0">Nenhum alerta pelos dados disponíveis.</p>`}</div>
+          ${grahamCard(s)}
+          <div class="card"><h2>Lucro e receita em 10 anos</h2>${niChart(S.series[s.ticker], s.currency)}</div>
           <div class="card"><h2>Histórico do score</h2>${spark(S.hist[s.ticker])}</div>
         </div>
       </div>`;
@@ -267,10 +313,10 @@
     app.innerHTML = `<div class="prose"><h1>Metodologia</h1>
       <p class="sub">Regras tiradas da biblioteca de finanças (Graham, McKinsey Valuation, Damodaran, Berk-DeMarzo, Brealey-Myers, Ross, Gitman, Rosenbaum, material CFA).</p>
       <h2>1. Universo</h2><p>Brasil: ações da B3 com liquidez diária média acima de R$ 200 mil. EUA: as empresas do S&amp;P 500.</p>
-      <h2>2. Score de valor (60%)</h2><p>Cada múltiplo vira um percentil dentro do próprio setor e mercado (banco comparado com banco, Brasil com Brasil). Pesos: EV/EBIT 25, P/L 20, P/VP 15, EV/EBITDA 15, dividend yield 10, P/FCL 8, P/Receita 7. Financeiras: P/L 40, P/VP 40, DY 20. Múltiplos negativos (prejuízo, patrimônio negativo) não contam como baratos.</p>
-      <h2>3. Score de qualidade (40%)</h2><p>ROIC 35, crescimento de receita 15, dívida líquida/EBITDA 20, margens 20, liquidez corrente 10. Financeiras: ROE 60, margem 15, crescimento 25. Motivo: ação barata com retorno abaixo do custo de capital costuma ser armadilha de valor.</p>
+      <h2>2. Score de valor (60%)</h2><p>Cada múltiplo vira um percentil dentro do próprio setor e mercado (banco comparado com banco, Brasil com Brasil). Pesos: EV/EBIT 25, P/VP 15, EV/EBITDA 15, P/L 10, P/L sobre o lucro médio de 3 anos 10, dividend yield 10, P/FCL 8, P/Receita 7. Financeiras: P/VP 40, P/L 20, P/L médio 20, DY 20. Múltiplos negativos (prejuízo, patrimônio negativo) não contam como baratos.</p>
+      <h2>3. Score de qualidade (40%)</h2><p>ROIC 30, dívida líquida/EBITDA 15, estabilidade do lucro em 10 anos 10, cobertura de juros 10, crescimento de receita 10, margens 15, caixa ÷ lucro 5, liquidez corrente 5. Financeiras: ROE 50, estabilidade 25, crescimento 15, margem 10. Motivo: ação barata com retorno abaixo do custo de capital costuma ser armadilha de valor.</p>
       <h2>4. Penalidades</h2><table><tbody>${Object.values(FLAGS).map((f) => `<tr><td><span class="flag ${f[2] ? "red" : ""}">${esc(f[0])}</span></td><td>${esc(f[1])}</td></tr>`).join("")}</tbody></table>
-      <h2>5. Estratégias de Graham</h2><p>Defensivo (cap. 14): P/L ≤ 15, P/L × P/VP ≤ 22,5, liquidez corrente ≥ 1,5. Empreendedor (cap. 15): P/L ≤ 9, P/VP ≤ 1,2, paga dividendo, liquidez corrente ≥ 1,5. Net-net: preço abaixo de ativo circulante menos todo o passivo. Os critérios de histórico (10 anos sem prejuízo, 20 anos de dividendos, crescimento de 1/3 do lucro em 10 anos) ainda não entram porque os dados diários não trazem esse histórico.</p>
+      <h2>5. Estratégias de Graham</h2><p>Defensivo (cap. 14): os 7 testes — porte, balanço forte, 10 anos de lucro, dividendos, crescimento de 1/3 do lucro em 10 anos, P/L ≤ 15 sobre o lucro médio de 3 anos e P/L × P/VP ≤ 22,5. Empreendedor (cap. 15): P/L ≤ 9, P/VP ≤ 1,2, paga dividendo, liquidez corrente ≥ 1,5. Net-net: preço abaixo de ativo circulante menos todo o passivo. O histórico vem dos balanços oficiais (CVM e SEC), atualizado toda semana.</p>
       <h2>6. Preços de referência</h2><p>Número de Graham = √(22,5 × LPA × VPA). Preço-teto de Bazin = dividendos de 12 meses ÷ 6%. São referências educacionais, não preço-alvo.</p>
       <h2>7. Fontes e atualização</h2><p>Atualização automática uma vez por dia útil, após o fechamento da B3. Brasil: ${esc(m.BR || "Fundamentus")}. EUA: ${esc(m.US || "Yahoo Finance")}. Macro: ${esc(m.macro || "BCB e FRED")}. Histórico guardado em banco Postgres (Neon).</p>
       <h2>Aviso</h2><p>Ferramenta educacional. Não é recomendação de compra ou venda, nem análise de analista credenciado pela CVM. Indicadores olham para o passado; confira os demonstrativos antes de qualquer decisão.</p></div>`;

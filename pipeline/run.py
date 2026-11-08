@@ -17,6 +17,7 @@ import pandas as pd
 import requests
 
 from pipeline import fetch_br, fetch_us
+from pipeline.hist_metrics import add_history, load as load_fund
 from pipeline.score import score
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -29,6 +30,8 @@ FIELDS = [
     "debt_equity", "net_debt_ebitda", "current_ratio", "rev_growth", "eps", "bvps", "dps", "liquidity",
     "graham_value", "bazin_price", "value_score", "quality_score", "final_score", "magic_rank", "graham_pass",
     "graham_ent", "net_net", "p_ncav", "is_financial", "flags",
+    "pe_avg3", "profit_years", "loss_years", "hist_years", "div_years", "ni_growth_10", "coverage", "cfo_ni_3",
+    "ebit_margin_avg", "graham_checks", "graham_score", "graham_total",
 ]
 
 
@@ -141,6 +144,9 @@ def main() -> None:
     for c in FIELDS:
         if c not in df.columns:
             df[c] = None
+    fund = load_fund()
+    df, series = add_history(df, fund)
+    print("history coverage:", {m: int(df.loc[df["market"] == m, "hist_years"].notna().sum()) for m in ("BR", "US")})
     df = score(df)
     day = dt.datetime.now(dt.timezone(dt.timedelta(hours=-3))).date()
     mac = macro()
@@ -151,9 +157,10 @@ def main() -> None:
         "date": day.isoformat(),
         "counts": {"BR": int((df["market"] == "BR").sum()), "US": int((df["market"] == "US").sum())},
         "macro": mac,
-        "sources": {"BR": "Fundamentus (resultado.php)", "US": "Yahoo Finance via yfinance; S&P 500 list: datasets/s-and-p-500-companies", "macro": "BCB SGS 432/433; US 10y: CBOE ^TNX via Yahoo"},
+        "sources": {"history": "CVM DFP (Brasil) e SEC XBRL (EUA), " + str(fund.get("generated_at", "ainda não coletado")), "BR": "Fundamentus (resultado.php)", "US": "Yahoo Finance via yfinance; S&P 500 list: datasets/s-and-p-500-companies", "macro": "BCB SGS 432/433; US 10y: CBOE ^TNX via Yahoo"},
         "notes": notes,
     }
+    (OUT / "series.json").write_text(json.dumps(series, separators=(",", ":")))
     (OUT / "stocks.json").write_text(json.dumps(recs, ensure_ascii=False, separators=(",", ":")))
     (OUT / "meta.json").write_text(json.dumps(meta, ensure_ascii=False, indent=1))
     print("wrote", len(recs), "stocks")

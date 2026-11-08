@@ -113,3 +113,13 @@ td.flags { white-space: normal; min-width: 90px; max-width: 150px; line-height: 
   .hide-sm { display: none; }
   th, td { padding: 9px 8px; }
 }
+
+.glist { list-style: none; margin: 0; padding: 0; }
+.glist li { display: flex; gap: 10px; align-items: flex-start; padding: 6px 0; border-bottom: 1px solid var(--line); }
+.glist li:last-child { border-bottom: 0; }
+.glist b { display: block; font-weight: 600; }
+.glist .note { display: block; }
+.gk { flex: none; width: 22px; height: 22px; border-radius: 50%; display: grid; place-items: center; font-size: 12px; font-weight: 700; margin-top: 1px; }
+.gk.ok { background: var(--good-bg); color: var(--good); }
+.gk.no { background: var(--bad-bg); color: var(--bad); }
+.gk.na { background: var(--soft); color: var(--muted); }
