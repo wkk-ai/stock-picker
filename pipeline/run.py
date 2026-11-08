@@ -170,6 +170,9 @@ def main() -> None:
             part = df[df["market"] == mkt]
             print(f"--- top 12 {mkt} (of {len(part)}); coverage:", {c: int(part[c].notna().sum()) for c in ["pe", "pb", "ev_ebit", "dy", "roic", "net_debt_ebitda", "current_ratio"]})
             print(part.sort_values("final_score", ascending=False)[show].head(12).to_string(index=False))
+            fc = pd.Series([f for fs in part["flags"] for f in fs]).value_counts().to_dict()
+            print(f"flags {mkt}:", fc, "| graham defensive pass:", int(part["graham_pass"].sum()),
+                  "| median coverage:", part["coverage"].median(), "| median pe_avg3:", part["pe_avg3"].median())
     save_neon(df, mac, day, "; ".join(notes))
     if not (OUT / "history.json").exists():
         (OUT / "history.json").write_text("{}")

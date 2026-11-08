@@ -187,8 +187,14 @@ INSTANT = {
 }
 
 
+_SEC_FAILS = {"n": 0, "ok": 0}
+
+
 def _frame(concept: str, period: str, unit: str = "USD") -> dict[int, float]:
-    r = get(f"https://data.sec.gov/api/xbrl/frames/us-gaap/{concept}/{unit}/{period}.json", SEC_UA)
+    if _SEC_FAILS["ok"] == 0 and _SEC_FAILS["n"] >= 3:
+        return {}  # SEC refusing this runner: stop early instead of retrying ~200 requests
+    r = get(f"https://data.sec.gov/api/xbrl/frames/us-gaap/{concept}/{unit}/{period}.json", SEC_UA, tries=2)
+    _SEC_FAILS["ok" if r else "n"] += 1
     time.sleep(0.15)  # SEC fair-access: max 10 requests/second
     if not r:
         return {}
