@@ -48,7 +48,14 @@
     prejuizo_recente: ["Prejuízo recente", "Teve prejuízo em pelo menos um dos últimos 5 anos (Graham pede 10 anos de lucro).", 0],
     ciclica: ["Cíclica", "Setor cíclico/commodity: lucro atual pode estar no pico do ciclo.", 0],
   };
-  const flagHtml = (f) => (f || []).map((k) => { const d = FLAGS[k]; return d ? `<span class="flag ${d[2] ? "red" : ""}" title="${esc(d[1])}">${esc(d[0])}</span>` : ""; }).join("");
+  const flagChip = (k) => { const d = FLAGS[k]; return d ? `<span class="flag ${d[2] ? "red" : ""}" data-tip="${esc(d[1])}">${esc(d[0])}</span>` : ""; };
+  const flagHtml = (f) => (f || []).filter((k) => FLAGS[k]).map(flagChip).join("");
+  const flagCell = (f) => {
+    const fs = (f || []).filter((k) => FLAGS[k]).sort((a, b) => FLAGS[b][2] - FLAGS[a][2]);
+    if (fs.length <= 2) return fs.map(flagChip).join("");
+    const rest = fs.slice(2).map((k) => "• " + FLAGS[k][0] + ": " + FLAGS[k][1]).join("<br>");
+    return fs.slice(0, 2).map(flagChip).join("") + `<span class="flag flag-more" data-tip="${esc(rest)}" data-tip-html="1">+${fs.length - 2}</span>`;
+  };
 
   const ret = (s) => (s.is_financial ? s.roe : s.roic);
   const upside = (s) => (isNum(s.graham_value) && isNum(s.price) && s.price > 0 ? s.graham_value / s.price - 1 : null);
@@ -61,6 +68,7 @@
     S.meta = meta || {};
     S.hist = hist || {};
     S.series = series || {};
+    S.prices = {};
     for (const s of S.stocks) (S.bySector[s.market + "|" + s.sector] ||= []).push(s);
     renderMacro();
     route();
@@ -119,7 +127,7 @@
       <td class="num">${pct(s.dy)}</td>
       <td class="num hide-sm">${pct(ret(s))}</td>
       <td class="num hide-sm ${isNum(up) ? (up > 0 ? "pos" : "neg") : ""}">${isNum(up) ? (up > 0 ? "+" : "") + pct(up, 0) : "–"}</td>
-      <td class="l hide-sm flags">${flagHtml(s.flags)}</td></tr>`;
+      <td class="l hide-sm flags">${flagCell(s.flags)}</td></tr>`;
   }
   function table(list, opts = {}) {
     const [k, d] = S.sort;
@@ -225,19 +233,117 @@
   function niChart(rows, cur) {
     const pts = (rows || []).filter((r) => isNum(r[1]));
     if (pts.length < 2) return `<p class="note">Sem histórico de balanços ainda para esta ação.</p>`;
-    const w = 320, h = 120, pad = 14, n = pts.length, bw = (w - pad * 2) / n;
+    const w = 600, h = 170, pad = 16, n = pts.length, bw = (w - pad * 2) / n;
     const vals = pts.map((r) => r[1]);
     const mx = Math.max(...vals, 0), mn = Math.min(...vals, 0), span = mx - mn || 1;
-    const y0 = pad + ((mx - 0) / span) * (h - pad * 2);
+    const y0 = pad + (mx / span) * (h - pad * 2);
     const bars = pts.map((r, i) => {
-      const v = r[1], y = pad + ((mx - Math.max(v, 0)) / span) * (h - pad * 2), hh = Math.max(1, (Math.abs(v) / span) * (h - pad * 2));
-      return `<rect x="${pad + i * bw + 2}" y="${v >= 0 ? y : y0}" width="${bw - 4}" height="${hh}" rx="2" fill="${v >= 0 ? "var(--bar)" : "var(--bad)"}"><title>${r[0]}: ${big(v, cur)}</title></rect>`;
+      const [yr, ni, rev, ebit, div] = r;
+      const v = ni, y = pad + ((mx - Math.max(v, 0)) / span) * (h - pad * 2), hh = Math.max(1.5, (Math.abs(v) / span) * (h - pad * 2));
+      const tip = `<b>${yr}</b><br>Lucro líquido: ${big(ni, cur)}` + (isNum(rev) ? `<br>Receita: ${big(rev, cur)}` : "") +
+        (isNum(rev) && rev ? `<br>Margem líquida: ${pct(ni / rev)}` : "") + (isNum(ebit) && isNum(rev) && rev ? `<br>Margem EBIT: ${pct(ebit / rev)}` : "") +
+        (isNum(div) ? `<br>Dividendos pagos: ${big(div, cur)}` : "");
+      return `<g class="hz" data-tip="${esc(tip)}" data-tip-html="1"><rect x="${pad + i * bw}" y="0" width="${bw}" height="${h}" fill="transparent"/>
+        <rect class="b" x="${pad + i * bw + 3}" y="${v >= 0 ? y : y0}" width="${bw - 6}" height="${hh}" rx="3" fill="${v >= 0 ? "var(--bar)" : "var(--bad)"}"/></g>`;
     }).join("");
-    const labels = pts.map((r, i) => (i === 0 || i === n - 1 || i === Math.floor(n / 2) ? `<text x="${pad + i * bw + bw / 2}" y="${h + 12}" text-anchor="middle" font-size="10" fill="var(--muted)">${r[0]}</text>` : "")).join("");
+    const labels = pts.map((r, i) => (n <= 12 || i % 2 === 0 || i === n - 1 ? `<text x="${pad + i * bw + bw / 2}" y="${h + 14}" text-anchor="middle" font-size="11" fill="var(--muted)">${String(r[0]).slice(2)}</text>` : "")).join("");
     const last = pts[n - 1];
-    return `<svg viewBox="0 0 ${w} ${h + 16}" class="spark" style="height:150px"><line x1="${pad}" x2="${w - pad}" y1="${y0}" y2="${y0}" stroke="var(--line)"/>${bars}${labels}</svg>
-      <p class="note">Lucro líquido por ano (barras vermelhas = prejuízo). Último: ${big(last[1], cur)}${isNum(last[2]) ? ", receita " + big(last[2], cur) : ""}. Fonte: ${s_src(cur)}.</p>`;
+    return `<svg viewBox="0 0 ${w} ${h + 20}" class="chart"><line x1="${pad}" x2="${w - pad}" y1="${y0}" y2="${y0}" stroke="var(--line)"/>${bars}${labels}</svg>
+      <p class="note">Lucro líquido por ano; passe o mouse para ver receita, margens e dividendos. Barras vermelhas = prejuízo. Último: ${big(last[1], cur)}${isNum(last[2]) ? ", receita " + big(last[2], cur) : ""}. Fonte: ${s_src(cur)}.</p>`;
   }
+
+  // ---------- price chart ----------
+  const PRICE_RANGES = [["1M", 21, "d"], ["6M", 126, "d"], ["1A", 252, "d"], ["3A", 156, "w"], ["5A", 260, "w"], ["10A", 520, "w"]];
+  async function priceCard(s) {
+    const box = document.getElementById("pricebox");
+    if (!box) return;
+    let data = S.prices[s.ticker];
+    if (data === undefined) {
+      data = await fetch(`data/prices/${encodeURIComponent(s.ticker)}.json`, { cache: "no-cache" }).then((r) => (r.ok ? r.json() : null)).catch(() => null);
+      S.prices[s.ticker] = data;
+    }
+    if (!data || (!(data.d || []).length && !(data.w || []).length)) { box.innerHTML = `<p class="note">Histórico de preço ainda não coletado para esta ação.</p>`; return; }
+    const draw = (key) => {
+      const [label, nPts, kind] = PRICE_RANGES.find((r) => r[0] === key) || PRICE_RANGES[2];
+      const full = data[kind] || [];
+      const pts = full.slice(-nPts);
+      // 200-day moving average (daily) or 40-week (weekly) — the classic long-term trend line
+      const win = kind === "d" ? 200 : 40;
+      const ma = pts.map((_, i) => { const j = full.length - pts.length + i; if (j + 1 < win) return null; let t = 0; for (let k = j - win + 1; k <= j; k++) t += full[k][1]; return t / win; });
+      box.innerHTML = `<div class="prange">${PRICE_RANGES.map(([l]) => `<button data-pr="${l}" class="${l === label ? "on" : ""}">${l}</button>`).join("")}</div>` + priceSvg(pts, ma, s.currency, win, kind);
+      box.querySelectorAll("[data-pr]").forEach((b) => b.addEventListener("click", () => { store.set("prange", b.dataset.pr); draw(b.dataset.pr); }));
+      bindPriceHover(box, pts, ma, s.currency);
+    };
+    draw(store.get("prange", "1A"));
+  }
+  function priceSvg(pts, ma, cur, win, kind) {
+    if (pts.length < 2) return `<p class="note">Poucos dados para este período.</p>`;
+    const w = 900, h = 300, pl = 8, pr = 64, pt = 12, pb = 24;
+    const vals = pts.map((p) => p[1]).concat(ma.filter(isNum));
+    let lo = Math.min(...vals), hi = Math.max(...vals);
+    const padv = (hi - lo) * 0.06 || hi * 0.05 || 1; lo -= padv; hi += padv;
+    const X = (i) => pl + (i / (pts.length - 1)) * (w - pl - pr);
+    const Y = (v) => pt + ((hi - v) / (hi - lo)) * (h - pt - pb);
+    const line = pts.map((p, i) => `${i ? "L" : "M"}${X(i).toFixed(1)},${Y(p[1]).toFixed(1)}`).join("");
+    const area = `${line}L${X(pts.length - 1).toFixed(1)},${h - pb}L${X(0).toFixed(1)},${h - pb}Z`;
+    let maPath = ""; ma.forEach((v, i) => { if (isNum(v)) maPath += `${maPath ? "L" : "M"}${X(i).toFixed(1)},${Y(v).toFixed(1)}`; });
+    const first = pts[0][1], last = pts[pts.length - 1][1], chg = last / first - 1;
+    const up = chg >= 0;
+    const ticks = [0, 0.5, 1].map((f) => lo + (hi - lo) * (1 - f));
+    const yl = ticks.map((v) => `<text x="${w - pr + 6}" y="${Y(v) + 4}" font-size="11" fill="var(--muted)">${F.n2.format(v)}</text><line x1="${pl}" x2="${w - pr}" y1="${Y(v)}" y2="${Y(v)}" stroke="var(--line)" stroke-dasharray="2 4"/>`).join("");
+    const dl = [0, Math.floor((pts.length - 1) / 2), pts.length - 1].map((i) => `<text x="${X(i)}" y="${h - 6}" font-size="11" fill="var(--muted)" text-anchor="${i === 0 ? "start" : i === pts.length - 1 ? "end" : "middle"}">${fmtDate(pts[i][0])}</text>`).join("");
+    const lastMa = [...ma].reverse().find(isNum);
+    const trend = isNum(lastMa) ? (last >= lastMa ? `acima da média de ${win} ${kind === "d" ? "dias" : "semanas"} (tendência de alta)` : `abaixo da média de ${win} ${kind === "d" ? "dias" : "semanas"} (tendência de baixa)`) : "";
+    return `<div class="pchg"><span class="num ${up ? "pos" : "neg"}">${up ? "+" : ""}${pct(chg)}</span> no período${trend ? ` · preço ${trend}` : ""}</div>
+      <svg viewBox="0 0 ${w} ${h}" class="chart pchart">
+        <defs><linearGradient id="pg" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="var(--bar)" stop-opacity=".22"/><stop offset="1" stop-color="var(--bar)" stop-opacity="0"/></linearGradient></defs>
+        ${yl}<path d="${area}" fill="url(#pg)"/><path d="${line}" fill="none" stroke="var(--bar)" stroke-width="2" vector-effect="non-scaling-stroke"/>
+        ${maPath ? `<path d="${maPath}" fill="none" stroke="var(--warn)" stroke-width="1.5" stroke-dasharray="5 4" vector-effect="non-scaling-stroke"/>` : ""}
+        ${dl}<line class="cross" x1="0" x2="0" y1="${pt}" y2="${h - pb}" stroke="var(--muted)" stroke-width="1" style="display:none"/>
+        <circle class="dot" r="4" fill="var(--bar)" stroke="var(--panel)" stroke-width="2" style="display:none"/>
+        <rect class="hover" x="${pl}" y="0" width="${w - pl - pr}" height="${h}" fill="transparent" data-geom="${[w, h, pl, pr, pt, pb, lo, hi].join(",")}"/>
+      </svg>
+      <p class="note">Preço ajustado por dividendos e desdobramentos. Linha tracejada: média móvel de ${win} ${kind === "d" ? "dias" : "semanas"}. Fonte: Yahoo Finance.</p>`;
+  }
+  function bindPriceHover(box, pts, ma, cur) {
+    const svg = box.querySelector("svg.pchart"); if (!svg) return;
+    const r = svg.querySelector("rect.hover"), cross = svg.querySelector(".cross"), dot = svg.querySelector(".dot");
+    const [w, h, pl, pr, pt, pb, lo, hi] = r.dataset.geom.split(",").map(Number);
+    const X = (i) => pl + (i / (pts.length - 1)) * (w - pl - pr), Y = (v) => pt + ((hi - v) / (hi - lo)) * (h - pt - pb);
+    const move = (ev) => {
+      const bb = svg.getBoundingClientRect();
+      const cx = ((ev.touches ? ev.touches[0].clientX : ev.clientX) - bb.left) * (w / bb.width);
+      const i = Math.max(0, Math.min(pts.length - 1, Math.round(((cx - pl) / (w - pl - pr)) * (pts.length - 1))));
+      const [d, v] = pts[i];
+      cross.setAttribute("x1", X(i)); cross.setAttribute("x2", X(i)); cross.style.display = "";
+      dot.setAttribute("cx", X(i)); dot.setAttribute("cy", Y(v)); dot.style.display = "";
+      const ch = v / pts[0][1] - 1;
+      showTip(`<b>${fmtDate(d, true)}</b><br>${money(v, cur)}<br><span class="${ch >= 0 ? "pos" : "neg"}">${ch >= 0 ? "+" : ""}${pct(ch)}</span> desde o início do período` + (isNum(ma[i]) ? `<br>Média móvel: ${money(ma[i], cur)}` : ""), ev);
+    };
+    const leave = () => { cross.style.display = "none"; dot.style.display = "none"; hideTip(); };
+    r.addEventListener("mousemove", move); r.addEventListener("touchmove", move, { passive: true });
+    r.addEventListener("mouseleave", leave); r.addEventListener("touchend", leave);
+  }
+  const MES = ["jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dez"];
+  const fmtDate = (d, full) => { const [y, m, dd] = d.split("-"); return full ? `${dd}/${m}/${y}` : `${MES[+m - 1]}/${y.slice(2)}`; };
+
+  // ---------- tooltip ----------
+  const tipEl = document.createElement("div"); tipEl.className = "tip"; document.body.appendChild(tipEl);
+  function showTip(html, ev) {
+    tipEl.innerHTML = html; tipEl.style.display = "block";
+    const x = (ev.touches ? ev.touches[0].clientX : ev.clientX), y = (ev.touches ? ev.touches[0].clientY : ev.clientY);
+    const tw = tipEl.offsetWidth, th = tipEl.offsetHeight;
+    tipEl.style.left = Math.min(window.innerWidth - tw - 8, Math.max(8, x + 14)) + "px";
+    tipEl.style.top = (y - th - 12 < 8 ? y + 18 : y - th - 12) + "px";
+  }
+  function hideTip() { tipEl.style.display = "none"; }
+  document.addEventListener("mousemove", (ev) => {
+    const t = ev.target.closest && ev.target.closest("[data-tip]");
+    if (!t) { if (!ev.target.closest || !ev.target.closest("svg.pchart")) hideTip(); return; }
+    const raw = t.getAttribute("data-tip");
+    showTip(t.hasAttribute("data-tip-html") ? raw : esc(raw), ev);
+  });
+
   const s_src = (cur) => (cur === "USD" ? "SEC (balanços XBRL)" : "CVM (DFP consolidado)");
 
   function viewStock(t) {
@@ -294,6 +400,7 @@
         <div class="card kpi"><div class="label">Número de Graham</div><div class="value num">${money(s.graham_value, s.currency)}</div><div class="hint ${isNum(up) ? (up > 0 ? "pos" : "neg") : ""}">${isNum(up) ? (up > 0 ? "+" : "") + pct(up, 0) + " vs. preço" : "precisa de LPA e VPA positivos"}</div></div>
         <div class="card kpi"><div class="label">Valor de mercado</div><div class="value num">${big(s.market_cap, s.currency)}</div><div class="hint">liquidez diária ${big(s.liquidity, s.currency)}</div></div>
       </div>
+      <div class="card" style="margin-bottom:16px"><h2>Preço da ação</h2><div id="pricebox"><p class="note">Carregando…</p></div></div>
       <div class="grid2">
         <div class="card"><h2>Indicadores vs. mediana do setor</h2>
           <table class="mt"><thead><tr><th class="l">Indicador</th><th>${esc(s.ticker)}</th><th>Setor (${peers.length})</th></tr></thead><tbody>${rowsM}</tbody></table>
@@ -306,6 +413,7 @@
           <div class="card"><h2>Histórico do score</h2>${spark(S.hist[s.ticker])}</div>
         </div>
       </div>`;
+    priceCard(s);
   }
 
   function viewMethod() {

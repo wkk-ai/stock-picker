@@ -164,6 +164,11 @@ def main() -> None:
     (OUT / "stocks.json").write_text(json.dumps(recs, ensure_ascii=False, separators=(",", ":")))
     (OUT / "meta.json").write_text(json.dumps(meta, ensure_ascii=False, indent=1))
     print("wrote", len(recs), "stocks")
+    try:
+        from pipeline import prices
+        prices.build([(r["ticker"], r["market"]) for r in recs])
+    except Exception as e:  # noqa: BLE001  (price chart is optional; never block the ranking)
+        print("prices failed:", e, file=sys.stderr)
     show = ["ticker", "sector", "price", "pe", "pb", "ev_ebit", "dy", "roic", "roe", "value_score", "quality_score", "final_score", "flags"]
     with pd.option_context("display.width", 250, "display.max_columns", 20):
         for mkt in ("BR", "US"):

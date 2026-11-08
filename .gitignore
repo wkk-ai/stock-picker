@@ -11,3 +11,4 @@ web/.next/
 dist/
 site/data/*.json
 __pycache__/
+site/data/prices/

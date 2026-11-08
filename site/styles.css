@@ -70,7 +70,7 @@ tbody tr:last-child td { border-bottom: 0; }
 .bar { width: 70px; height: 6px; border-radius: 3px; background: var(--bar-bg); overflow: hidden; }
 .bar i { display: block; height: 100%; background: var(--bar); border-radius: 3px; }
 .pos { color: var(--good); } .neg { color: var(--bad); } .dim { color: var(--muted); }
-td.flags { white-space: normal; min-width: 90px; max-width: 150px; line-height: 1.9; }
+td.flags { white-space: nowrap; }
 .flag { display: inline-block; white-space: nowrap; font-size: 11px; padding: 1px 7px; border-radius: 999px; background: var(--warn-bg); color: var(--warn); margin: 1px 2px; }
 .flag.red { background: var(--bad-bg); color: var(--bad); }
 .star { border: 0; background: none; cursor: pointer; font-size: 16px; color: var(--muted); padding: 0 4px; }
@@ -123,3 +123,16 @@ td.flags { white-space: normal; min-width: 90px; max-width: 150px; line-height: 
 .gk.ok { background: var(--good-bg); color: var(--good); }
 .gk.no { background: var(--bad-bg); color: var(--bad); }
 .gk.na { background: var(--soft); color: var(--muted); }
+
+.flag.flag-more { background: var(--soft); color: var(--muted); cursor: help; }
+.flag { cursor: help; }
+.chart { width: 100%; height: auto; display: block; overflow: visible; }
+.chart .hz { cursor: pointer; }
+.chart .hz:hover .b { opacity: .75; }
+.tip { position: fixed; z-index: 50; display: none; pointer-events: none; background: var(--ink); color: var(--panel); font-size: 12.5px; line-height: 1.45; padding: 8px 10px; border-radius: 8px; max-width: 280px; box-shadow: 0 6px 20px rgba(0,0,0,.18); }
+.tip .pos { color: #4ade80; } .tip .neg { color: #f87171; }
+.prange { display: inline-flex; background: var(--soft); border-radius: 10px; padding: 3px; margin-bottom: 10px; }
+.prange button { border: 0; background: transparent; color: var(--muted); padding: 5px 11px; border-radius: 8px; font: inherit; font-size: 13px; font-weight: 600; cursor: pointer; }
+.prange button.on { background: var(--panel); color: var(--ink); box-shadow: var(--shadow); }
+.pchg { font-size: 14px; color: var(--muted); margin-bottom: 6px; }
+.pchg .num { font-weight: 700; font-size: 16px; }
