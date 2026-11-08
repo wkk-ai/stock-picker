@@ -128,10 +128,8 @@ def main() -> None:
     OUT.mkdir(parents=True, exist_ok=True)
     frames, notes = [], []
     if not a.skip_br:
-        br = fetch_br.fetch()
-        total = len(br)
-        br = br[(br["liquidity"].fillna(0) >= MIN_LIQ_BR) & br["price"].notna()]
-        print(f"BR: {total} listed, {len(br)} with liquidity >= R$ {MIN_LIQ_BR:,}")
+        br = fetch_br.fetch(MIN_LIQ_BR)
+        print(f"BR: {br.attrs.get('total')} listed, {len(br)} with liquidity >= R$ {MIN_LIQ_BR:,}")
         frames.append(br)
     if not a.skip_us:
         us = fetch_us.fetch(a.us_limit)
@@ -160,6 +158,12 @@ def main() -> None:
     (OUT / "stocks.json").write_text(json.dumps(recs, ensure_ascii=False, separators=(",", ":")))
     (OUT / "meta.json").write_text(json.dumps(meta, ensure_ascii=False, indent=1))
     print("wrote", len(recs), "stocks")
+    show = ["ticker", "sector", "price", "pe", "pb", "ev_ebit", "dy", "roic", "roe", "value_score", "quality_score", "final_score", "flags"]
+    with pd.option_context("display.width", 250, "display.max_columns", 20):
+        for mkt in ("BR", "US"):
+            part = df[df["market"] == mkt]
+            print(f"--- top 12 {mkt} (of {len(part)}); coverage:", {c: int(part[c].notna().sum()) for c in ["pe", "pb", "ev_ebit", "dy", "roic", "net_debt_ebitda", "current_ratio"]})
+            print(part.sort_values("final_score", ascending=False)[show].head(12).to_string(index=False))
     save_neon(df, mac, day, "; ".join(notes))
     if not (OUT / "history.json").exists():
         (OUT / "history.json").write_text("{}")

@@ -17,10 +17,10 @@ BASE = "https://www.fundamentus.com.br"
 # Column order of resultado.php (mapped by position because headers carry accents).
 COLS = [
     "ticker", "price", "pe", "pb", "ps", "dy", "p_assets", "p_wc", "p_ebit", "p_ncav",
-    "ev_ebit", "ev_ebitda", "ebit_margin", "net_margin", "current_ratio", "roic", "roe",
-    "liquidity", "equity", "debt_equity", "rev_growth",
+    "ev_ebit", "ev_ebitda", "gross_margin", "ebit_margin", "net_margin", "current_ratio", "roic", "roe",
+    "liquidity", "equity", "net_debt_equity", "rev_growth",
 ]
-PCT = {"dy", "ebit_margin", "net_margin", "roic", "roe", "rev_growth"}
+PCT = {"dy", "gross_margin", "ebit_margin", "net_margin", "roic", "roe", "rev_growth"}
 
 FINANCIAL_SECTORS = ("financeiro", "intermediários financeiros", "bancos", "previdência e seguros", "seguros", "serviços financeiros")
 
@@ -71,34 +71,39 @@ def _parse_table(html: str) -> pd.DataFrame:
     return df
 
 
-def sectors(session: requests.Session) -> dict[str, str]:
-    """ticker -> sector name, using the sector filter of resultado.php."""
-    html = _get(f"{BASE}/buscaavancada.php", session)
-    opts = re.findall(r'<option value="(\d+)"[^>]*>([^<]+)</option>', html)
-    out: dict[str, str] = {}
-    for sid, name in opts:
-        name = name.strip()
-        if not sid or not name or name.lower().startswith("todos"):
-            continue
-        try:
-            part = _parse_table(_get(f"{BASE}/resultado.php?setor={sid}", session))
-        except Exception:
-            continue
-        for t in part["ticker"]:
-            out[t] = name
-        time.sleep(0.4)
+def details(ticker: str, session: requests.Session) -> dict:
+    """Company name, sector and subsector from the stock page."""
+    html = _get(f"{BASE}/detalhes.php?papel={ticker}", session)
+    doc = lxml.html.fromstring(html)
+    out = {}
+    cells = [c.text_content().strip() for c in doc.xpath("//td")]
+    for i, c in enumerate(cells[:-1]):
+        label = c.lstrip("?").strip().lower()
+        if label in ("empresa", "setor", "subsetor") and label not in out:
+            out[label] = cells[i + 1]
     return out
 
 
-def fetch() -> pd.DataFrame:
+def fetch(min_liquidity: float = 0) -> pd.DataFrame:
     s = requests.Session()
     df = _parse_table(_get(f"{BASE}/resultado.php", s))
-    sec = sectors(s)
-    print(f"fundamentus: {len(df)} rows, {len(sec)} tickers with sector, {len(set(sec.values()))} sectors")
-    df["sector"] = df["ticker"].map(sec).fillna("Outros")
+    total = len(df)
+    df = df[(df["liquidity"].fillna(0) >= min_liquidity) & (df["price"].fillna(0) > 0)].copy()
+    names, secs, subs = {}, {}, {}
+    for t in df["ticker"]:
+        try:
+            d = details(t, s)
+        except Exception:  # noqa: BLE001
+            d = {}
+        names[t], secs[t], subs[t] = d.get("empresa") or t, d.get("setor") or "Outros", d.get("subsetor")
+        time.sleep(0.3)
+    print(f"fundamentus: {total} listed, {len(df)} liquid, {len(set(secs.values()))} sectors")
+    df["name"] = df["ticker"].map(names)
+    df["sector"] = df["ticker"].map(secs)
+    df["industry"] = df["ticker"].map(subs)
     df["market"] = "BR"
     df["currency"] = "BRL"
-    df["name"] = df["ticker"]
+    df.attrs["total"] = total
 
     # Derived absolute values (all from the same row, so they are consistent).
     mcap = df["equity"] * df["pb"]
@@ -114,6 +119,6 @@ def fetch() -> pd.DataFrame:
     net_income = mcap / df["pe"].where(df["pe"] != 0)
     df["roa"] = net_income / assets
     df["p_fcf"] = None
-    df["gross_margin"] = None
+    df["debt_equity"] = df["net_debt_equity"]
     df["is_financial"] = df["sector"].str.lower().apply(lambda x: any(k in x for k in FINANCIAL_SECTORS))
     return df
