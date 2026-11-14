@@ -65,3 +65,31 @@ def build(stocks: list[tuple[str, str]]) -> int:
         n += 1
     print(f"prices: {n} of {len(sym)} tickers")
     return n
+
+
+def stats(tickers: list[str], folder: Path | None = None) -> dict[str, dict]:
+    """Trend numbers from the saved price files: 12-month return, distance to the 200-day average,
+    position inside the 52-week range, and a small sparkline (about one point per two weeks)."""
+    folder = folder or OUT
+    out: dict[str, dict] = {}
+    for t in tickers:
+        f = folder / f"{t}.json"
+        if not f.exists():
+            continue
+        try:
+            d = [p[1] for p in json.loads(f.read_text()).get("d", [])]
+        except (OSError, ValueError):
+            continue
+        if len(d) < 60:
+            continue
+        last, year = d[-1], d[-252:]
+        s: dict = {"lo_52w": round(min(year), 4), "hi_52w": round(max(year), 4)}
+        s["pos_52w"] = round((last - s["lo_52w"]) / (s["hi_52w"] - s["lo_52w"]), 4) if s["hi_52w"] > s["lo_52w"] else None
+        if len(d) >= 252:
+            s["ret_12m"] = round(last / d[-252] - 1, 4)
+        if len(d) >= 200:
+            s["vs_ma200"] = round(last / (sum(d[-200:]) / 200) - 1, 4)
+        step = max(1, len(year) // 26)
+        s["spark"] = [round(v, 3) for v in year[::-step][::-1]]
+        out[t] = s
+    return out

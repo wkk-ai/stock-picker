@@ -28,3 +28,12 @@ cd site && python -m http.server 8000
 ## Older app
 
 `backend/` (FastAPI) and `web/` (Next.js) are the earlier Brazil-only version. They are not used by the GitHub Pages site.
+
+## Front end
+
+`site/index.html` + `site/styles.css` + `site/js/` (`core.js` state and vocabulary, `charts.js` SVG charts, `views.js` pages). No build step.
+Pages: Hoje (answer + matrix + reasons), Mapa (bubble charts, treemap), Explorar (table), Setores, one page per stock, Método.
+Colour is used only for the verdict.
+
+Local preview with real data (the sandbox cannot reach the data sources): fetch the `data` branch into a folder, then
+`python -m pipeline.dev_rebuild <folder>` and `python -m http.server -d site 8765`.

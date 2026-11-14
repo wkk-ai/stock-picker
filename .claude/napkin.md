@@ -4,3 +4,6 @@
 - 2026-11-07: Google Drive connector can't download files > ~5 MB (message too large). Use the Mac's synced Drive folder + stage files; folders deeper than 7 levels can't be staged.
 - 2026-11-07: GitHub Pages on this private repo failed before ("Ensure GitHub Pages has been enabled"). Pages must be turned on in repo Settings, and private repos need GitHub Pro or the repo made public.
 - Cloud sandbox and Mac VM can't reach Fundamentus/Yahoo/SEC. Test data fetching through GitHub Actions runs, not locally.
+- 2026-11-14: A signal title that reads positive next to a "!" mark ("Lucro todo ano" when it failed) confuses. Failed signals need their own negative wording (SIG_NEG).
+- 2026-11-14: `.kv div` also styled nested divs. Use child selectors (`.kv > div`) for grid cells.
+- For UI work: pull the `data` branch, run `pipeline.dev_rebuild`, screenshot light, dark and 390px before pushing.

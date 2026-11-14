@@ -11,6 +11,7 @@ import json
 import math
 import os
 import sys
+import time
 from pathlib import Path
 
 import pandas as pd
@@ -32,16 +33,20 @@ FIELDS = [
     "graham_ent", "net_net", "p_ncav", "is_financial", "flags",
     "pe_avg3", "profit_years", "loss_years", "hist_years", "div_years", "ni_growth_10", "coverage", "cfo_ni_3",
     "ebit_margin_avg", "graham_checks", "graham_score", "graham_total",
+    "ret_12m", "vs_ma200", "pos_52w", "lo_52w", "hi_52w", "spark", "dims", "signals", "sig_ok", "sig_total", "verdict",
 ]
 
 
 def macro() -> dict:
     out = {}
-    try:
-        r = requests.get("https://api.bcb.gov.br/dados/serie/bcdata.sgs.432/dados/ultimos/1?formato=json", timeout=30)
-        out["selic"] = float(r.json()[0]["valor"].replace(",", ".")) / 100
-    except Exception as e:  # noqa: BLE001
-        print("macro selic failed:", e, file=sys.stderr)
+    for attempt in range(3):
+        try:
+            r = requests.get("https://api.bcb.gov.br/dados/serie/bcdata.sgs.432/dados/ultimos/1?formato=json", timeout=30)
+            out["selic"] = float(r.json()[0]["valor"].replace(",", ".")) / 100
+            break
+        except Exception as e:  # noqa: BLE001
+            print("macro selic failed:", e, file=sys.stderr)
+            time.sleep(5 * (attempt + 1))
     try:
         r = requests.get("https://api.bcb.gov.br/dados/serie/bcdata.sgs.433/dados/ultimos/12?formato=json", timeout=30)
         acc = 1.0
@@ -56,6 +61,19 @@ def macro() -> dict:
         out["us10y"] = float(h.iloc[-1]) / 100
     except Exception as e:  # noqa: BLE001
         print("macro us10y failed:", e, file=sys.stderr)
+    missing = [k for k in ("selic", "ipca_12m", "us10y") if k not in out]
+    if missing and os.environ.get("DATABASE_URL"):  # a source was down today: reuse the last value saved in Neon
+        try:
+            import psycopg
+            with psycopg.connect(os.environ["DATABASE_URL"]) as con, con.cursor() as cur:
+                for k in missing:
+                    cur.execute("SELECT value FROM macro WHERE key = %s ORDER BY snap_date DESC LIMIT 1", (k,))
+                    row = cur.fetchone()
+                    if row:
+                        out[k] = float(row[0])
+                        print(f"macro {k}: using last saved value {out[k]}")
+        except Exception as e:  # noqa: BLE001
+            print("macro fallback failed:", e, file=sys.stderr)
     return out
 
 
@@ -72,7 +90,7 @@ def _clean(v):
 def to_records(df: pd.DataFrame) -> list[dict]:
     recs = []
     for r in df[FIELDS].to_dict(orient="records"):
-        recs.append({k: (_clean(v) if not isinstance(v, list) else v) for k, v in r.items()})
+        recs.append({k: (_clean(v) if not isinstance(v, (list, dict)) else v) for k, v in r.items()})
     return recs
 
 
@@ -147,9 +165,21 @@ def main() -> None:
     fund = load_fund()
     df, series = add_history(df, fund)
     print("history coverage:", {m: int(df.loc[df["market"] == m, "hist_years"].notna().sum()) for m in ("BR", "US")})
+    # Price history first: the trend numbers feed the verdict.
+    from pipeline import prices, verdict
+    try:
+        prices.build(list(zip(df["ticker"], df["market"])))
+    except Exception as e:  # noqa: BLE001  (price chart is optional; never block the ranking)
+        print("prices failed:", e, file=sys.stderr)
+    st = prices.stats(list(df["ticker"]))
+    for k in ("ret_12m", "vs_ma200", "pos_52w", "lo_52w", "hi_52w", "spark"):
+        df[k] = df["ticker"].map(lambda t, k=k: st.get(t, {}).get(k))
     df = score(df)
     day = dt.datetime.now(dt.timezone(dt.timedelta(hours=-3))).date()
     mac = macro()
+    df = verdict.apply(df, mac)
+    for mkt in ("BR", "US"):
+        print(f"verdicts {mkt}:", df[df["market"] == mkt]["verdict"].value_counts().to_dict())
 
     recs = to_records(df.sort_values("final_score", ascending=False))
     meta = {
@@ -164,11 +194,6 @@ def main() -> None:
     (OUT / "stocks.json").write_text(json.dumps(recs, ensure_ascii=False, separators=(",", ":")))
     (OUT / "meta.json").write_text(json.dumps(meta, ensure_ascii=False, indent=1))
     print("wrote", len(recs), "stocks")
-    try:
-        from pipeline import prices
-        prices.build([(r["ticker"], r["market"]) for r in recs])
-    except Exception as e:  # noqa: BLE001  (price chart is optional; never block the ranking)
-        print("prices failed:", e, file=sys.stderr)
     show = ["ticker", "sector", "price", "pe", "pb", "ev_ebit", "dy", "roic", "roe", "value_score", "quality_score", "final_score", "flags"]
     with pd.option_context("display.width", 250, "display.max_columns", 20):
         for mkt in ("BR", "US"):

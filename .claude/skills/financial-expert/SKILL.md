@@ -64,6 +64,9 @@ Read in full (every page): Graham, *O Investidor Inteligente* (with Zweig commen
 8. **Graham defensive screen**: the seven ch. 14 tests (size = top third of market cap; current ratio ≥ 2 and LT debt ≤ working capital, utilities LT debt ≤ 2× equity; no loss in 10 yrs; dividend every year; NI 3-yr avg ≥ +1/3 vs 10 yrs earlier; P/E 3-yr avg ≤ 15; P/B ≤ 1.5 or P/E × P/B ≤ 22.5). Passes only if every test with data passes and at least 6 have data. Uses net income, not EPS, so dilution is not captured.
 9. **Other screens**: Graham enterprising, net-net (BR only), Magic Formula, Bazin, pure value.
 10. **Shown, never advice**: Graham number, Bazin ceiling, earnings yield vs Selic / US 10-yr.
+11. **Verdict** (`pipeline/verdict.py`), the answer to "cheap and worth a look now?": *oportunidade* = value ≥ 60, quality ≥ 55, no grave flag (loss, negative equity, high debt, weak coverage, cycle peak), return above cost of capital, ≥ 60% of signals in favour; *barata_risco* = value ≥ 60 but fails the rest (value-trap zone); *boa_cara* = quality ≥ 65, no grave flag; *evitar* = negative equity, loss with weak quality, or both scores < 40; else *neutra*.
+12. **Ten signals**, each yes/no with its number: cheap vs sector, earnings yield > risk-free, below Graham number, P/E on 3-yr earnings ≤ 15, return > cost of capital, debt under control (ND/EBITDA ≤ 3 and coverage ≥ 2), profit every year, cash conversion ≥ 0.8, consistent dividends, price above 200-day average. Price trend is context only; it never enters the value score.
+13. **Five dimensions** (0–100 vs sector): valor, rentabilidade, segurança, estabilidade, tendência.
 
 ## 5. Red flags and value traps
 
