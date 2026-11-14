@@ -32,7 +32,8 @@ cd site && python -m http.server 8000
 ## Front end
 
 `site/index.html` + `site/styles.css` + `site/js/` (`core.js` state and vocabulary, `charts.js` SVG charts, `views.js` pages). No build step.
-Pages: Hoje (answer + matrix + reasons), Mapa (bubble charts, treemap), Explorar (table), Setores, one page per stock, Método.
+Pages: Hoje, Mapa, Rankings (nine strategy lists), Dividendos, Setores (dot plot + heat table), Explorar (table with column sets and CSV), Comparar (up to 3 stocks), Minha lista (favourites, target price, notes), one tabbed page per stock, Método.
+A global filter bar (sector, verdict, size, yield, P/E, return, debt, signals, shortcuts) applies to every chart and list. Notes, favourites and filters live in the browser only.
 Colour is used only for the verdict.
 
 Local preview with real data (the sandbox cannot reach the data sources): fetch the `data` branch into a folder, then

@@ -131,7 +131,7 @@ async function load() {
   S.stocks = stocks || []; S.meta = meta || {}; S.hist = hist || {}; S.series = series || {};
   for (const s of S.stocks) { (S.bySector[s.market + "|" + s.sector] ||= []).push(s); S.byTicker[s.ticker] = s; }
   if (S.meta.generated_at) $("#stamp").textContent = "Atualizado em " + new Date(S.meta.generated_at).toLocaleString("pt-BR") + ".";
-  route();
+  enrich(); route();
 }
 
 // ---------- tooltip ----------
@@ -161,3 +161,88 @@ function mount(id, fn) {
   draw(); mounts.push(draw);
 }
 let rz; window.addEventListener("resize", () => { clearTimeout(rz); rz = setTimeout(() => mounts.forEach((d) => d()), 150); });
+
+// ---------- global filters (apply to every chart and list) ----------
+const F0 = () => ({ q: "", sector: "", verdicts: [], size: "", dy: 0, pe: 0, ret: 0, debt: 0, sig: 0, favs: false, nofin: false, nograve: false, up: false });
+S.f = Object.assign(F0(), store.get("filters", {}), { q: "" });
+S.fopen = false;
+const saveF = () => store.set("filters", S.f);
+const GRAVE = ["lucro_negativo", "patrimonio_negativo", "divida_alta", "cobertura_baixa", "pico_ciclo"];
+const FSEL = {
+  dy: ["Dividend yield mínimo", [[0, "Qualquer"], [0.02, "2%"], [0.04, "4%"], [0.06, "6%"], [0.08, "8%"]]],
+  pe: ["P/L máximo", [[0, "Qualquer"], [5, "5"], [10, "10"], [15, "15"], [20, "20"]]],
+  ret: ["Retorno mínimo (ROIC ou ROE)", [[0, "Qualquer"], [0.1, "10%"], [0.15, "15%"], [0.2, "20%"]]],
+  debt: ["Dívida líquida ÷ EBITDA máxima", [[0, "Qualquer"], [1, "1×"], [2, "2×"], [3, "3×"]]],
+  sig: ["Sinais a favor, no mínimo", [[0, "Qualquer"], [0.5, "50%"], [0.6, "60%"], [0.8, "80%"]]],
+};
+const FTOG = { favs: "Só favoritos ★", nofin: "Sem bancos e seguradoras", nograve: "Sem alerta grave", up: "Só em tendência de alta" };
+const FSIZE = { "": "Todos os tamanhos", G: "Grandes", M: "Médias", P: "Pequenas" };
+function passF(s) {
+  const f = S.f, q = f.q.trim().toLowerCase();
+  if (q && !(s.ticker.toLowerCase().includes(q) || (s.name || "").toLowerCase().includes(q))) return false;
+  if (f.sector && s.sector !== f.sector) return false;
+  if (f.verdicts.length && !f.verdicts.includes(s.verdict)) return false;
+  if (f.size && s.size !== f.size) return false;
+  if (f.dy && !(s.dy >= f.dy)) return false;
+  if (f.pe && !(s.pe > 0 && s.pe <= f.pe)) return false;
+  if (f.ret && !(ret(s) >= f.ret)) return false;
+  if (f.debt && !s.is_financial && !(isNum(s.net_debt_ebitda) && s.net_debt_ebitda <= f.debt)) return false;
+  if (f.sig && !(s.sig_total && s.sig_ok / s.sig_total >= f.sig)) return false;
+  if (f.favs && !S.favs.has(s.ticker)) return false;
+  if (f.nofin && s.is_financial) return false;
+  if (f.nograve && (s.flags || []).some((x) => GRAVE.includes(x))) return false;
+  if (f.up && !(s.vs_ma200 >= 0)) return false;
+  return true;
+}
+const filtered = () => inMarket().filter(passF);
+const nFilters = () => { const f = S.f, z = F0(); return Object.keys(z).filter((k) => (Array.isArray(z[k]) ? f[k].length : f[k] !== z[k])).length; };
+
+// ---------- numbers derived once, after load ----------
+function enrich() {
+  for (const mkt of ["BR", "US"]) {
+    const l = S.stocks.filter((s) => s.market === mkt && isNum(s.market_cap)).sort((a, b) => b.market_cap - a.market_cap);
+    l.forEach((s, i) => { s.size = i < l.length / 3 ? "G" : i < (2 * l.length) / 3 ? "M" : "P"; });
+  }
+  for (const s of S.stocks) {
+    s.payout = s.eps > 0 && isNum(s.dps) ? s.dps / s.eps : null;
+    s.drawdown = s.hi_52w > 0 && s.price > 0 ? Math.min(0, s.price / s.hi_52w - 1) : null;
+    const r = rf(s.market); s.ey_gap = s.pe > 0 && isNum(r) ? 1 / s.pe - r : null;
+    s.implied_g = s.pe > 0 ? (s.pe - 8.5) / 200 : null;
+    const ser = S.series[s.ticker] || [], last = ser[ser.length - 1], old = last && ser.find((q) => q[0] === last[0] - 5);
+    const cagr = (i) => (last && old && last[i] > 0 && old[i] > 0 ? Math.pow(last[i] / old[i], 0.2) - 1 : null);
+    s.ni_cagr5 = cagr(1); s.rev_cagr5 = cagr(2);
+    s.div_share = s.hist_years > 0 && isNum(s.div_years) ? Math.min(1, s.div_years / s.hist_years) : null;
+    const h = S.hist[s.ticker] || []; s.d_score = h.length > 1 ? h[h.length - 1][1] - h[0][1] : null;
+  }
+}
+Object.assign(METRICS, {
+  ev_ebit: { l: "EV/EBIT", get: (s) => (s.ev_ebit > 0 ? s.ev_ebit : null), f: (v) => x(v) },
+  payout: { l: "Payout (dividendo ÷ lucro)", short: "Payout", f: (v) => pct(v, 0), dom: [0, 2] },
+  div_share: { l: "Anos em que pagou dividendo", short: "Anos pagando", f: (v) => pct(v, 0), dom: [0, 1] },
+  drawdown: { l: "Queda desde a máxima de 52 semanas", short: "Queda desde a máxima", f: (v) => pct(v, 0) },
+  pos_52w: { l: "Posição na faixa de 52 semanas", f: (v) => pct(v, 0), dom: [0, 1] },
+  mcap: { l: "Valor de mercado (escala log)", short: "Valor de mercado", get: (s) => (s.market_cap > 0 ? Math.log10(s.market_cap) : null), f: (v) => { const b = Math.pow(10, v) / 1e9; return NF[b < 10 ? 1 : 0].format(b) + " bi"; } },
+  ni_cagr5: { l: "Crescimento do lucro em 5 anos (ao ano)", short: "Cresc. do lucro 5a", f: (v) => spct(v) },
+  rev_cagr5: { l: "Crescimento da receita em 5 anos (ao ano)", short: "Cresc. da receita 5a", f: (v) => spct(v) },
+  ey_gap: { l: "Prêmio do lucro sobre a renda fixa", short: "Prêmio sobre renda fixa", f: (v) => (isNum(v) ? (v > 0 ? "+" : "") + NF[1].format(v * 100) + " p.p." : "–") },
+});
+const GLOSS = {
+  pe: "Preço ÷ lucro por ação. Quantos anos de lucro você paga. Menor é mais barato.", pe_avg3: "Preço ÷ lucro médio de 3 anos. Suaviza um ano fora da curva.",
+  pb: "Preço ÷ valor patrimonial por ação. Abaixo de 1, paga menos que o patrimônio contábil.", ev_ebit: "Valor da firma (ações + dívida líquida) ÷ lucro operacional. Compara empresas com dívidas diferentes.",
+  ev_ebitda: "Valor da firma ÷ EBITDA.", ps: "Preço ÷ receita por ação.", dy: "Dividendos dos últimos 12 meses ÷ preço.", payout: "Parte do lucro paga em dividendos. Acima de 100% não se sustenta.",
+  ret: "ROIC (ROE para bancos): quanto o negócio rende sobre o capital investido.", ebit_margin: "Lucro operacional ÷ receita.", net_margin: "Lucro líquido ÷ receita.",
+  net_debt_ebitda: "Anos de geração de caixa para pagar a dívida líquida. Acima de 3 preocupa.", coverage: "Lucro operacional ÷ juros. Abaixo de 2 é apertado.", current_ratio: "O que entra em 12 meses ÷ o que vence em 12 meses.",
+  graham_gap: "Quanto o preço está abaixo do número de Graham.", ey_gap: "Rendimento do lucro (1 ÷ P/L) menos o juro da renda fixa.", drawdown: "Quanto o preço caiu desde o ponto mais alto em 52 semanas.",
+  vs_ma200: "Preço contra a média dos últimos 200 dias. Acima = tendência de alta.", value_score: "Quão barata contra o setor, de 0 a 100.", quality_score: "Quão boa é a empresa contra o setor, de 0 a 100.",
+  final_score: "60% valor + 40% qualidade, menos descontos por alerta.", sig: "Quantos dos dez sinais estão a favor.", ni_cagr5: "Crescimento médio anual do lucro em 5 anos.", rev_cagr5: "Crescimento médio anual da receita em 5 anos.",
+  div_share: "Em quantos anos do histórico a empresa pagou dividendo.", range52: "Onde o preço está entre a mínima e a máxima de 52 semanas.", mcap: "Preço × número de ações.", liquidity: "Volume médio negociado por dia.",
+};
+const SERIES_COLORS = ["var(--s1)", "var(--s2)", "var(--s3)"];
+async function getPrices(tk) {
+  if (S.prices[tk] === undefined) S.prices[tk] = await fetch(`data/prices/${encodeURIComponent(tk)}.json`, { cache: "no-cache" }).then((r) => (r.ok ? r.json() : null)).catch(() => null);
+  return S.prices[tk];
+}
+function downloadCsv(name, rows) {
+  const csv = rows.map((r) => r.map((c) => { const v = c === null || c === undefined ? "" : typeof c === "number" ? String(c).replace(".", ",") : String(c); return /[";\n]/.test(v) ? '"' + v.replace(/"/g, '""') + '"' : v; }).join(";")).join("\n");
+  const a = document.createElement("a"); a.href = URL.createObjectURL(new Blob(["﻿" + csv], { type: "text/csv;charset=utf-8" })); a.download = name; document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(a.href), 2000);
+}

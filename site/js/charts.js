@@ -112,6 +112,7 @@ function histogram(list, w, key, o) {
   g += `<line x1="${pl}" x2="${w - pr}" y1="${h - pb}" y2="${h - pb}" stroke="var(--axis)"/>`;
   for (const t of niceTicks(o.lo, o.hi, w < 520 ? 4 : 7)) g += `<text x="${X(t)}" y="${h - pb + 16}" text-anchor="middle">${m.f(t)}</text>`;
   if (isNum(o.ref) && o.ref > o.lo && o.ref < o.hi) { const rx = X(o.ref), right = rx < w * 0.7; g += `<line x1="${rx}" x2="${rx}" y1="${pt - 8}" y2="${h - pb}" stroke="var(--ink)" stroke-width="1.5"/><text class="ql" x="${rx + (right ? 6 : -6)}" y="${pt - 12}" text-anchor="${right ? "start" : "end"}" style="fill:var(--ink)">${esc(o.refLabel)}</text>`; }
+  if (isNum(o.mark)) { const mx2 = X(Math.max(o.lo, Math.min(o.hi, o.mark))); g += `<line x1="${mx2}" x2="${mx2}" y1="${pt}" y2="${h - pb}" stroke="var(--ink)" stroke-width="2" stroke-dasharray="3 3"/><circle cx="${mx2}" cy="${pt}" r="5" fill="var(--ink)"/><text class="ql" x="${mx2 + (mx2 < w * 0.7 ? 9 : -9)}" y="${pt + 4}" text-anchor="${mx2 < w * 0.7 ? "start" : "end"}" style="fill:var(--ink)">${esc(o.markLabel || "")}</text>`; }
   return `<svg class="chart" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}" role="img" aria-label="Distribuição de ${esc(m.l)}">${g}</svg>`;
 }
 
@@ -195,8 +196,7 @@ function miniBars(rows, w, fmt) {
 const PRICE_RANGES = [["1M", 21, "d"], ["6M", 126, "d"], ["1A", 252, "d"], ["3A", 156, "w"], ["5A", 260, "w"], ["10A", 520, "w"]];
 async function priceCard(s) {
   const box = document.getElementById("pricebox"); if (!box) return;
-  let data = S.prices[s.ticker];
-  if (data === undefined) { data = await fetch(`data/prices/${encodeURIComponent(s.ticker)}.json`, { cache: "no-cache" }).then((r) => (r.ok ? r.json() : null)).catch(() => null); S.prices[s.ticker] = data; }
+  const data = await getPrices(s.ticker); if (!document.body.contains(box)) return;
   if (!data || (!(data.d || []).length && !(data.w || []).length)) { box.innerHTML = `<p class="note">Histórico de preço ainda não coletado para esta ação.</p>`; return; }
   const draw = (key) => {
     const [label, nPts, kind] = PRICE_RANGES.find((r) => r[0] === key) || PRICE_RANGES[2];
@@ -243,4 +243,53 @@ function bindPriceHover(box, pts, ma, cur) {
   };
   const leave = () => { cross.style.display = "none"; dot.style.display = "none"; hideTip(); };
   r.addEventListener("mousemove", move); r.addEventListener("touchmove", move, { passive: true }); r.addEventListener("mouseleave", leave); r.addEventListener("touchend", leave);
+}
+
+// ---------- more chart types ----------
+/** Several series on one indexed axis. series: [{name, color, pts:[[label, value]]}] all the same length. */
+function lineChart(series, w, o = {}) {
+  const ss = series.filter((s) => s.pts.length > 1); if (!ss.length) return `<p class="note">Sem dados para este gráfico.</p>`;
+  const h = o.h || Math.round(Math.min(320, Math.max(220, w * 0.36))), pl = 0, pr = 54, pt = 12, pb = 22, n = Math.max(...ss.map((s) => s.pts.length));
+  const vals = ss.flatMap((s) => s.pts.map((p) => p[1])).filter(isNum); let lo = Math.min(...vals, isNum(o.ref) ? o.ref : Infinity), hi = Math.max(...vals, isNum(o.ref) ? o.ref : -Infinity);
+  const pad = (hi - lo) * 0.06 || 1; lo -= pad; hi += pad;
+  const X = (i) => pl + (i / (n - 1)) * (w - pl - pr), Y = (v) => pt + ((hi - v) / (hi - lo)) * (h - pt - pb), f = o.fmt || ((v) => x(v, 0));
+  let g = niceTicks(lo, hi, 4).map((v) => `<line x1="${pl}" x2="${w - pr}" y1="${Y(v)}" y2="${Y(v)}" stroke="var(--line)"/><text x="${w - pr + 8}" y="${Y(v) + 4}">${f(v)}</text>`).join("");
+  if (isNum(o.ref)) g += `<line x1="${pl}" x2="${w - pr}" y1="${Y(o.ref)}" y2="${Y(o.ref)}" stroke="var(--axis)" stroke-dasharray="4 4"/>`;
+  for (const s of ss) {
+    let d = ""; s.pts.forEach((p, i) => { if (isNum(p[1])) d += `${d ? "L" : "M"}${X(i + n - s.pts.length).toFixed(1)},${Y(p[1]).toFixed(1)}`; });
+    if (o.area && d) g += `<path d="${d}L${X(n - 1).toFixed(1)},${Y(isNum(o.ref) ? o.ref : lo)}L${X(n - s.pts.length).toFixed(1)},${Y(isNum(o.ref) ? o.ref : lo)}Z" fill="${s.color}" fill-opacity=".14"/>`;
+    g += `<path d="${d}" fill="none" stroke="${s.color}" stroke-width="2" stroke-linejoin="round"/>`;
+  }
+  const ref = ss.reduce((a, b) => (b.pts.length > a.pts.length ? b : a)), lab = (i) => (o.xfmt ? o.xfmt(ref.pts[i][0]) : ref.pts[i][0]);
+  g += [0, Math.floor((n - 1) / 2), n - 1].map((i) => `<text x="${X(i)}" y="${h - 5}" text-anchor="${i === 0 ? "start" : i === n - 1 ? "end" : "middle"}">${lab(i)}</text>`).join("");
+  const step = Math.max(1, Math.ceil(n / 160)), cw = ((w - pl - pr) / (n - 1)) * step;
+  for (let i = 0; i < n; i += step) {
+    const tip = `<b>${o.xfull ? o.xfull(ref.pts[i][0]) : lab(i)}</b>` + ss.map((s) => { const p = s.pts[i - (n - s.pts.length)]; return p && isNum(p[1]) ? `<br>${ss.length > 1 || o.named ? esc(s.name) + ": " : ""}${f(p[1])}` : ""; }).join("");
+    g += `<rect class="hzc" x="${X(i) - cw / 2}" y="${pt}" width="${cw}" height="${h - pt - pb}" fill="transparent" data-tip="${esc(tip)}"/>`;
+  }
+  return `<svg class="chart" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}" role="img" aria-label="${esc(o.label || "Gráfico de linhas")}">${g}</svg>`;
+}
+/** Radar with up to three overlaid profiles. list: [{name, color, dims}] */
+function radarMulti(list, w) {
+  const size = Math.min(w, 380), c = size / 2, R = c - 74, n = DIMS.length;
+  const P = (i, v) => { const a = -Math.PI / 2 + (i * 2 * Math.PI) / n, r = (Math.max(0, Math.min(100, v)) / 100) * R; return [c + r * Math.cos(a), c + r * Math.sin(a)]; };
+  let g = [25, 50, 75, 100].map((v) => `<polygon points="${DIMS.map((_, i) => P(i, v).map((q) => q.toFixed(1)).join(",")).join(" ")}" fill="none" stroke="${v === 50 ? "var(--axis)" : "var(--line)"}"/>`).join("");
+  DIMS.forEach(([k, l], i) => { const [ax, ay] = P(i, 100), [tx, ty] = P(i, 120); g += `<line x1="${c}" y1="${c}" x2="${ax}" y2="${ay}" stroke="var(--line)"/><text x="${tx}" y="${ty + 4}" text-anchor="${tx > c + 10 ? "start" : tx < c - 10 ? "end" : "middle"}" style="fill:var(--ink2);font-size:12px">${l}</text>`; });
+  for (const it of list) g += `<polygon points="${DIMS.map(([k], i) => P(i, it.dims && isNum(it.dims[k]) ? it.dims[k] : 0).map((z) => z.toFixed(1)).join(",")).join(" ")}" fill="${it.color}" fill-opacity=".08" stroke="${it.color}" stroke-width="2" stroke-linejoin="round" data-tip="<b>${esc(it.name)}</b><br>${DIMS.map(([k, l]) => `${l}: ${it.dims && isNum(it.dims[k]) ? it.dims[k] : "–"}`).join("<br>")}"/>`;
+  return `<svg class="chart" style="max-width:${size}px;margin:0 auto" width="${size}" height="${size}" viewBox="0 0 ${size} ${size}" role="img" aria-label="Perfis sobrepostos">${g}</svg>`;
+}
+/** Fair-value references against today's price. rows: [{label, v, hint}] */
+function fairChart(rows, price, w, cur) {
+  const rs = rows.filter((r) => isNum(r.v) && r.v > 0); if (!rs.length || !(price > 0)) return `<p class="note">Sem dados suficientes para estimar referências de valor.</p>`;
+  const narrow = w < 560, lab = narrow ? 0 : 230, pr = 118, rh = narrow ? 60 : 40, pt = 30, h = pt + rs.length * rh + 8;
+  const hi = Math.max(price, ...rs.map((r) => r.v)) * 1.08, X = (v) => lab + (Math.min(hi, v) / hi) * (w - lab - pr), px = X(price);
+  let g = `<line x1="${px}" x2="${px}" y1="${pt - 8}" y2="${h}" stroke="var(--ink)" stroke-width="1.5"/><text class="ql" x="${px}" y="${pt - 14}" text-anchor="${px > w - pr - 60 ? "end" : "middle"}" style="fill:var(--ink)">Preço hoje ${money(price, cur)}</text>`;
+  rs.forEach((r, i) => {
+    const y = pt + i * rh + rh / 2 + (narrow ? 8 : 0), up = r.v / price - 1, good = up >= 0, vx = X(r.v);
+    g += `<g data-tip="<b>${esc(r.label)}</b><br>${esc(r.hint)}<br>${money(r.v, cur)} (${spct(up)} contra o preço)"><rect x="0" y="${y - rh / 2}" width="${w}" height="${rh}" fill="transparent"/>`;
+    g += `<text x="0" y="${narrow ? y - 16 : y + 4}" style="fill:var(--ink);font-size:13px;paint-order:stroke;stroke:var(--page);stroke-width:4px">${esc(r.label)}</text><line x1="${lab}" x2="${w - pr}" y1="${y}" y2="${y}" stroke="var(--line)"/>`;
+    g += `<rect x="${Math.min(px, vx)}" y="${y - 4}" width="${Math.max(1, Math.abs(vx - px))}" height="8" rx="4" fill="${good ? "var(--v-oportunidade)" : "var(--v-barata_risco)"}" fill-opacity=".85"/><circle cx="${vx}" cy="${y}" r="6" fill="${good ? "var(--v-oportunidade)" : "var(--v-barata_risco)"}" stroke="var(--page)" stroke-width="2"/>`;
+    g += `<text x="${w}" y="${y - 2}" text-anchor="end" style="fill:var(--ink);font-weight:600;font-size:13px">${money(r.v, cur)}</text><text x="${w}" y="${y + 13}" text-anchor="end">${spct(up)}</text></g>`;
+  });
+  return `<svg class="chart" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}" role="img" aria-label="Referências de valor contra o preço">${g}</svg>`;
 }

@@ -7,3 +7,7 @@
 - 2026-11-14: A signal title that reads positive next to a "!" mark ("Lucro todo ano" when it failed) confuses. Failed signals need their own negative wording (SIG_NEG).
 - 2026-11-14: `.kv div` also styled nested divs. Use child selectors (`.kv > div`) for grid cells.
 - For UI work: pull the `data` branch, run `pipeline.dev_rebuild`, screenshot light, dark and 390px before pushing.
+- 2026-11-14: `main { padding }` lost to `.wrap { padding: 0 24px }` (class beats element), so every page title sat glued to the header. Scope layout padding as `main.wrap`. William reads tight spacing as a bug: keep generous gaps (88px between sections).
+- 2026-11-14: Ratios on a tiny base explode (5-year profit growth of 77%, index charts starting on a near-zero year, payout "best = 0%"). Cap or pick a sane base before ranking or charting.
+- Any chart or list must respect the global filters (`filtered()`), never `inMarket()` directly.
+
