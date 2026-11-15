@@ -1,3 +1,9 @@
+# Moved
+
+The stock screener now lives inside the personal finance app: https://github.com/wkk-ai/fin-dash-wkkai (Ações section, `pipeline/` and `stocks/`). This repository only publishes a redirect and is kept for its history. Nothing here runs on a schedule any more.
+
+---
+
 # Ações Baratas (stock-picker)
 
 Daily ranking of Brazilian (B3) and US (S&P 500) stocks that look cheap on fundamental indicators, with quality checks and value-trap warnings. Educational tool, not investment advice.
